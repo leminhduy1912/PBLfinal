@@ -120,8 +120,10 @@ return(
   }
   layoutId='expandableCar'
   >
-  <div>
-    <UilTimes onClick={setExpanded}/>
+  <div style={{alignSelf:'flex-end', cursor:'pointer', color:'white'}}>
+    <UilTimes 
+    onClick={setExpanded}
+    />
   </div>
   <span>{param.title}</span>
   <div className="chartContainer">
