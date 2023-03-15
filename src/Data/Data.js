@@ -40,23 +40,23 @@ import {
 
   export const cardsData = [
     {
-      title: "Sales",
+      title: "New Stores",
       color: {
         backGround: "linear-gradient(180deg, #bb67ff 0%, #c484f3 100%)",
         boxShadow: "0px 10px 20px 0px #e0c6f5",
       },
       barValue: 70,
       value: "25,970",
-      png: UilUsdSquare,
+      png: UilStore,
       series: [
         {
-          name: "Sales",
-          data: [31, 40, 28, 51, 42, 109, 100],
+          name: "New Stores",
+          data: [31, 40, 28, 51, 42, 109],
         },
       ],
     },
     {
-      title: "Revenue",
+      title: "Certificated",
       color: {
         backGround: "linear-gradient(180deg, #FF919D 0%, #FC929D 100%)",
         boxShadow: "0px 10px 20px 0px #FDC0C7",
@@ -66,13 +66,13 @@ import {
       png: UilMoneyWithdrawal,
       series: [
         {
-          name: "Revenue",
-          data: [10, 100, 50, 70, 80, 30, 40],
+          name: "Certificated",
+          data: [10, 100, 50, 70, 80, 30],
         },
       ],
     },
     {
-      title: "Expenses",
+      title: "Plan Created",
       color: {
         backGround:
           "linear-gradient(rgb(248, 212, 154) -146.42%, rgb(255 202 113) -46.42%)",
@@ -83,8 +83,8 @@ import {
       png: UilClipboardAlt,
       series: [
         {
-          name: "Expenses",
-          data: [10, 25, 15, 30, 12, 15, 20],
+          name: "Plan Created",
+          data: [10, 25, 15, 30, 12,67],
         },
       ],
     },
