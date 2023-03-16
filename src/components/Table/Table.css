@@ -1,6 +1,28 @@
-.ReactTable{
-    margin-top: 10px;
+/* .rt-tr-group{
+  text-align: center;
+} */
+/* .rt-td:nth-child(6){
+  color: rgb(102, 247, 102);
+  text-align: center;
+} */
+
+.Active:nth-child(6){
+  color: rgb(2, 197, 2);
+  font-size: 17px;
 }
-.Table{
-    margin-top: 10px;
+.Pause:nth-child(6){
+  color: red;
+  font-size: 17px;
+}
+.ReactTable{
+  box-shadow: 0px 13px 20px 0px #80808029;
+  border-radius: 15px;
+  /* border: 0.1px solid black; */
+  /* background-color: #f1f1f1; */
+}
+h1{
+  font-size: 25px;
+}
+.rt-th{
+ font-weight: bold;
 }
