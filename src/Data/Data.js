@@ -167,9 +167,9 @@ import {
     },
     {
       id:4,
-      storeName:"Banh ep chu nam",
+      storeName:"Banh ep ",
       storeAddress:"300 Hoang Dieu",
-      number:"000000",
+      number:"001000",
       description:"banh ep",
       action:"Active",
       kindof:"kinh doanh thuc an"

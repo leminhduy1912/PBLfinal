@@ -32,23 +32,12 @@ const columns=[
                 accessor:'action',
             } 
         ]
-        // const getTdProps = (state, columnIndex) => {
-        //   return {
-           
-        //     // className: 'my-custom-class',
-        //   };
-        // };
+       
         const getTdProps = (state, rowInfo, column) => {
           {console.log(rowInfo.index)}
           return {
             
             className: (rowInfo.original.action === 'Active') ? 'Active' : 'Pause', 
-            style: {
-              // fontWeight:(rowInfo.index===0) ?'bold':'normal'
-              // background: rowInfo.index % 2 === 0 ? 'red' : 'blue', // set alternate row background color
-              // color: rowInfo.row.age > 30 ? 'red' : 'inherit', // set red font color for cells where age > 30
-
-            },
           };
         };
         const pageSizeOptions = [5, 10]; 
