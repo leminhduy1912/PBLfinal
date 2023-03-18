@@ -1,25 +1,40 @@
-import logo from './logo.svg';
+import { useEffect, useRef, useState } from 'react'
+import {UilSignOutAlt} from "@iconscout/react-unicons"
+import { SidebarData } from './Data/Data';
+import React from 'react'
+// import MainDash from './components/Sidebar/Maindash/MainDash';
+
 import './App.css';
 
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
+import Login from './Component/Login/Login';
+import Sidebar from './Component/Admin/Sidebar/Sidebar';
+import Dashboard from './Component/Admin/Dashboard/Dashboard';
+// import Sidebar from './components/Sidebar/Sidebar';
+
 function App() {
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+    <div className='App'>
+     {/* <Routes>
+      <Route exact path='/' element={<Dashboard/>}/>
+      {/* <Route path='/admin' element={<Sidebar/>}  /> */}
+           
+    <Sidebar/>
+   
+   
+ 
+  </div>
+  </BrowserRouter>
+  )
+
 }
 
 export default App;
