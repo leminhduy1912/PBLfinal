@@ -9,7 +9,7 @@ import './App.css';
 
 import {
   BrowserRouter,
-  Switch,
+  Routes,
   Route,
   Link
 } from "react-router-dom";
@@ -26,10 +26,12 @@ function App() {
   return (
     <BrowserRouter>
     <div className='App'>
-     <Switch>
-      <Route exact path='/' > <Login/> </Route>
-      <Route path='/adminDashboard'> <Sidebar/></Route>
-     </Switch>
+     <Routes>
+      <Route exact path='/' element={<Login/>}/>
+      <Route path='/admin' element={<Sidebar/>}  />
+           
+    
+      </Routes>
  
   </div>
   </BrowserRouter>

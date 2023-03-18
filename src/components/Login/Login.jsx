@@ -1,25 +1,19 @@
 import React, { useState } from "react"
-import { Redirect, useHistory } from 'react-router-dom';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-  } from "react-router-dom";
+import { Navigate, Redirect, useHistory, useNavigate } from 'react-router-dom';
+
 import Sidebar from "../Sidebar/Sidebar";
 import Table from "../Table/Table";
 import "./Login.css"
 
 const Login=()=>{
-    const history = useHistory()
+   const navigate= useNavigate()
    const [username,setUsername] = useState('');
    const [password,setPassword] = useState('');
    const [role,setRole]= useState('Admin')
    const handleLogIn = (e)=>{
     e.preventDefault();
     if (role==='Admin'){
-       history.replace('/adminDashboard')
-       {console.log("a");}
+      navigate('/admin')
     }
    }
     return(
@@ -31,7 +25,7 @@ const Login=()=>{
           <input type="text" placeholder='Password'
           onChange={(e)=>{setPassword(e.target.value)}}
           />
-          <a href="/dashboard"
+          <a href="/adminDashboar"
           onClick={(e)=>handleLogIn(e)}
           >Log In</a>
           <p>Not a member ? <a
