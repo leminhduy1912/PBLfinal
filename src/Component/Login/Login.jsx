@@ -6,15 +6,15 @@ import { Navigate, Redirect, useHistory, useNavigate } from 'react-router-dom';
 import "./Login.css"
 
 const Login=()=>{
-//    const navigate= useNavigate()
+ const navigate= useNavigate();
    const [username,setUsername] = useState('');
    const [password,setPassword] = useState('');
    const [role,setRole]= useState('Admin')
    const handleLogIn = (e)=>{
-    // e.preventDefault();
-    // if (role==='Admin'){
-    //   navigate('/admin')
-    // }
+    e.preventDefault();
+    if (role==='Admin'){
+      navigate('/admin')
+    }
    }
     return(
         <div className='Login'>

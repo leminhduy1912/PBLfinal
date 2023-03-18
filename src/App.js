@@ -26,8 +26,15 @@ function App() {
      {/* <Routes>
       <Route exact path='/' element={<Dashboard/>}/>
       {/* <Route path='/admin' element={<Sidebar/>}  /> */}
+  
+     <Routes>
+      <Route exact path='/' element={<Login/>}/>
+      <Route path='/admin' element={<Sidebar/>}  />
            
-    <Sidebar/>
+    
+      </Routes>
+ 
+  
    
    
  
