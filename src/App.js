@@ -1,86 +1,40 @@
 
-import './App.css';
-import MainDash from './components/Sidebar/Maindash/MainDash';
 import { useEffect, useRef, useState } from 'react'
-import { Route,Routes } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import {UilSignOutAlt} from "@iconscout/react-unicons"
 import { SidebarData } from './Data/Data';
 import React from 'react'
-import Logo from './photos/admin.png'
-import Table from './components/Table/Table';
-// const Login=()=>{
- 
-//     return(
-//         <div className='Login'>
-//           <h1>Login</h1>
-//           <input type="text" placeholder='Username'/>
-//           <input type="text" placeholder='Password'/>
-//           <button>Log In</button>
-//           <p>Not a member ? <a
-//           >Sign Up</a></p>
-//         </div>
-//     )
-   
-// }
+import MainDash from './components/Sidebar/Maindash/MainDash';
+import Login from './components/Login/Login';
+import './App.css';
 
-
-// const Sidebar= (props)=>{
-//     const [selected,setSelected] = useState(0)
-//    let contentCurrent;
-//    if(selected===0){
-//  contentCurrent= <MainDash/>
-//    }
-//    const component = [<MainDash/>]
-//     return (
-//         <div className='AppGlass'>
-//         <div>
-//         <div className="Sidebar">
-//             {/* {logo} */}
-//             <div className='logo'>
-//             <img src={Logo} alt="" />
-//             <span>{props.name}</span>
-//             </div>
-//         </div>
-
-//            {/* Menu */}
-
-//            <div className="menu">
-//              {SidebarData.map((item,index)=>{
-//                    return (
-//                     <div className={selected===index?'menuItem active':'menuItem'}
-//                     key={index}
-//                     onClick={()=>{setSelected(index)
-//                     }}
-//                     >
-//                            <item.icon/>
-//                            <span>{item.heading}</span>
-//                     </div>
-//                    )
-//              })}
-//              <div className='menuItem'>
-//                  <UilSignOutAlt/>
-//              </div>
-//            </div>
-//       </div>
-//      {/* < MainDash/> */}
-//      <div>{contentCurrent}</div>;
-//       </div>
-//     )
-// }
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Sidebar from './components/Sidebar/Sidebar';
 
 function App() {
-  
- return (
-  <div className='App'>
-    <a href='/'>click</a>
-  <Routes>
-  <Route path='/' element={Table}/>
-  </Routes>
+//   const [logInSuccess,setLogInSuccess] = useState(true)
+//  return (
+//   <div className='App'>
+// {logInSuccess&&<Sidebar/>}
+//   </div>
+//  )
 
-   </div>
-  
- )
+  return (
+    <BrowserRouter>
+    <div className='App'>
+     <Switch>
+      <Route exact path='/' > <Login/> </Route>
+      <Route path='/adminDashboard'> <Sidebar/></Route>
+     </Switch>
+ 
+  </div>
+  </BrowserRouter>
+  )
+
 }
 
 export default App;
