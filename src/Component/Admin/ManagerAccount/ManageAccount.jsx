@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import ReactTable from 'react-table'
 import "react-table/react-table.css"  
 import { fetchDataAcccount } from '../../../Data/Data'
+import Loading from '../../Loading/Loading'
 
 const ManageAccount = () => {
-    const [data,setData]= useState([])
-    console.log(data);
+    const navigate = useNavigate()
+    const [data,setData]= useState([]) 
+    const [getDataSuccess,setGetDataSucceess] =useState(false)
   useEffect(()=>{
+    
     fetch('https://jsonplaceholder.typicode.com/users')
     .then(res=>res.json())
-    .then(data=>setData(data))
+    .then(data=>{
+        setData(data)
+        setGetDataSucceess(true)
+    })
   },[])
     const columns= [
         {
@@ -39,7 +46,12 @@ const ManageAccount = () => {
             )
         }
     ]
-  return (
+if (getDataSuccess===false){
+    return (
+      <Loading/>  
+    )}
+    else{
+    return(
     <div>
  <h1>Table</h1>
     
@@ -50,7 +62,7 @@ const ManageAccount = () => {
     />
 
 </div>
-  )
+    )}
 }
 
 export default ManageAccount

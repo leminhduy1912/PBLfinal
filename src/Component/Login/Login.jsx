@@ -9,11 +9,19 @@ const Login=()=>{
  const navigate= useNavigate();
    const [username,setUsername] = useState('');
    const [password,setPassword] = useState('');
-   const [role,setRole]= useState('Admin')
+   const [role,setRole]= useState('Admin');
+   const [success,setSuccess] = useState(false)
    const handleLogIn = (e)=>{
     e.preventDefault();
+    if (success===false){
+      navigate('/loading')
+    }
     if (role==='Admin'){
-      navigate('/admin')
+      setSuccess(true)
+      {setTimeout(()=>{
+        navigate('/admin')
+      },1000)}
+
     }
    }
     return(

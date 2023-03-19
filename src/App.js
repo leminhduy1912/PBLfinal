@@ -15,6 +15,7 @@ import {
 import Login from './Component/Login/Login';
 import Sidebar from './Component/Admin/Sidebar/Sidebar';
 import Dashboard from './Component/Admin/Dashboard/Dashboard';
+import Loading from './Component/Loading/Loading';
 // import Sidebar from './components/Sidebar/Sidebar';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
   
      <Routes>
       <Route exact path='/' element={<Login/>}/>
+      <Route  path='/loading' element={<Loading/>}/>
       <Route path='/admin' element={<Sidebar/>}  />
            
     
