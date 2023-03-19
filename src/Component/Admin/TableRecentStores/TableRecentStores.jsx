@@ -48,7 +48,6 @@ const columns=[
     >
       Recent Stores</h1>
     <ReactTable
-   
      getTdProps={getTdProps}
       columns={columns}
       data={recentStores}
