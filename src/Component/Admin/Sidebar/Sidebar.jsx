@@ -9,6 +9,8 @@ import { Form } from 'react-router-dom'
 import { SidebarData } from '../../../Data/Data'
 import  Logo  from '../../../Photos/admin.png'
 import Dashboard from '../Dashboard/Dashboard'
+import ManageAccount from '../ManagerAccount/ManageAccount'
+
 const Sidebar= ()=>{
     const [selected,setSelected] = useState(0);
     let tab;
@@ -17,6 +19,9 @@ const Sidebar= ()=>{
  }
  if(selected===2){
     // tab= <StoreInfor/>
+ }
+ if(selected===3){
+    tab= <ManageAccount/>
  }
     return (
     <div  className='AppGlass'>

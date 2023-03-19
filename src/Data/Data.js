@@ -36,6 +36,27 @@ import {
 
   ];
 
+// async function  fetchDataAcccount(){  
+//   const respone= await fetch('https://jsonplaceholder.typicode.com/users')
+//   const dataAccount = await respone.json();
+  
+//  return dataAccount;
+
+// }
+// export{fetchDataAcccount}
+// async function  fetchDataAcccount(){  
+  
+//   fetch('https://jsonplaceholder.typicode.com/users')
+//  .then(res=>res.json())
+// //  .then(data=>
+
+// //   )
+
+// }
+// export{fetchDataAcccount}
+
+
+
 
 
   export const cardsData = [

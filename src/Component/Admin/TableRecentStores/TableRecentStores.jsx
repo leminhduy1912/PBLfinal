@@ -35,7 +35,7 @@ const columns=[
         ]
        
         const getTdProps = (state, rowInfo, column) => {
-          {console.log(rowInfo.index)}
+          
           return {
             
             className: (rowInfo.original.action === 'Active') ? 'Active' : 'Pause', 
