@@ -24,7 +24,8 @@ const Sidebar= ()=>{
     tab= <ManageAccount/>
  }
     return (
-    <div  className='AppGlass'>
+        <div className='Sidebar-container' >
+    <div  className='Sidebar-glass'>
         <div>
         <div className="Sidebar">
             {/* {logo} */}
@@ -57,8 +58,11 @@ const Sidebar= ()=>{
       </div>
 
 
-{ tab}
+        <div className="content">
+        { tab }
+        </div>
      
+      </div>
       </div>
     )
 }

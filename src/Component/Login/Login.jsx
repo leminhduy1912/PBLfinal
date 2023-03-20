@@ -25,6 +25,8 @@ const Login=()=>{
     }
    }
     return(
+       <div className="LogIn-container">
+        <div className="LogIn-glass">
         <div className='Login'>
           <h1>Login</h1>
           <input type="text" placeholder='Username'
@@ -33,12 +35,14 @@ const Login=()=>{
           <input type="text" placeholder='Password'
           onChange={(e)=>{setPassword(e.target.value)}}
           />
-          <a href="/adminDashboar"
+          <button
           onClick={(e)=>handleLogIn(e)}
-          >Log In</a>
+          >Log In</button>
           <p>Not a member ? <a
           >Sign Up</a></p>
         </div>
+        </div>
+       </div>
     )
    
 }

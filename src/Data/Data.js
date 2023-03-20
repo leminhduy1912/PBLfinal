@@ -9,8 +9,14 @@ import {
     UilStore,
     UilPerson,
     UilMoneyWithdrawal,
-    UilUsdSquare
+    UilUsdSquare,
   } from "@iconscout/react-unicons";
+
+import HomeIcon from "@mui/icons-material/Home"
+import InfoIcon from "@mui/icons-material/Info"
+import  CommentRoundedIcon  from '@mui/icons-material/CommentRounded'
+import  PhoneRoundedIcon  from '@mui/icons-material/PhoneRounded'
+import  ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded'
 
   export const SidebarData= [
     {
@@ -36,24 +42,7 @@ import {
 
   ];
 
-// async function  fetchDataAcccount(){  
-//   const respone= await fetch('https://jsonplaceholder.typicode.com/users')
-//   const dataAccount = await respone.json();
-  
-//  return dataAccount;
 
-// }
-// export{fetchDataAcccount}
-// async function  fetchDataAcccount(){  
-  
-//   fetch('https://jsonplaceholder.typicode.com/users')
-//  .then(res=>res.json())
-// //  .then(data=>
-
-// //   )
-
-// }
-// export{fetchDataAcccount}
 
 
 
@@ -111,6 +100,29 @@ import {
     },
   ];
 
+  export const navbarOptions= [
+    {
+      text:'Homepage',
+      icon:<HomeIcon/>
+    },
+    {
+      text:'About',
+      icon:<InfoIcon/>
+    },
+    {
+      text:'Contact',
+      icon:<PhoneRoundedIcon/>
+    },
+    {
+      text:"Testimonials",
+      icon:<CommentRoundedIcon/>
+
+    },
+    {
+      text:'Cart',
+      icon:<ShoppingCartRoundedIcon/>
+    },
+  ]
 
 
   export const recentStores=[

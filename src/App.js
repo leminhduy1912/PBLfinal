@@ -16,6 +16,7 @@ import Login from './Component/Login/Login';
 import Sidebar from './Component/Admin/Sidebar/Sidebar';
 import Dashboard from './Component/Admin/Dashboard/Dashboard';
 import Loading from './Component/Loading/Loading';
+import HomePage from './Component/HomePage/HomePage';
 // import Sidebar from './components/Sidebar/Sidebar';
 
 function App() {
@@ -24,22 +25,12 @@ function App() {
   return (
     <BrowserRouter>
     <div className='App'>
-     {/* <Routes>
-      <Route exact path='/' element={<Dashboard/>}/>
-      {/* <Route path='/admin' element={<Sidebar/>}  /> */}
-  
      <Routes>
-      <Route exact path='/' element={<Login/>}/>
+      <Route exact path='/' element={<HomePage/>}/>
+      <Route path='/login' element={<Login/>}/>
       <Route  path='/loading' element={<Loading/>}/>
       <Route path='/admin' element={<Sidebar/>}  />
-           
-    
       </Routes>
- 
-  
-   
-   
- 
   </div>
   </BrowserRouter>
   )
