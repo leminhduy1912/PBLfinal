@@ -17,6 +17,7 @@ const Login=()=>{
       navigate('/loading')
     }
     if (role==='Admin'){
+      localStorage.setItem("Role","Admin")
       setSuccess(true)
       {setTimeout(()=>{
         navigate('/admin')

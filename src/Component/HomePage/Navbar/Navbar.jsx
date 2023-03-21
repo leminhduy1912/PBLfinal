@@ -2,11 +2,21 @@ import React, { useState } from 'react'
 import "./Navbar.css"
 import Logo from "../../../Photos/logoDanang.jpg"
 import { useNavigate } from 'react-router-dom'
+import Home from '../Home/Home'
+import Contact from '../Contact/Contact'
 function Navbar() {
   const navigate= useNavigate()
   const [selected,setSelected] = useState(0)
   const menuOptions= [{title:"Trang Chủ"},{title:"Giới thiệu"},{title:"Liên hệ"},{title:"Đóng góp ý kiến"}]
+  let tab;
+  if (selected===0){
+    tab=<Home/>
+  }
+  if (selected===2){
+    tab=<Contact/>
+  }
   return (
+    <div>
     <div className="nav">
         <div className="logo">
             <img src={Logo} alt="" />
@@ -27,6 +37,8 @@ function Navbar() {
           >Log In</button>
           <button>Sign Up</button>
         </div>
+      </div>
+      {tab}
       </div>
   )
 }

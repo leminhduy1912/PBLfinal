@@ -53,9 +53,6 @@ function CompactCard({param,setExpanded}){
   )
 }
 
-
-
-
 // Expanded Card
 function ExpandedCard({param,setExpanded}){
   // Chartline

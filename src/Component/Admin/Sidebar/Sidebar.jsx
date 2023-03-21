@@ -12,6 +12,10 @@ import Dashboard from '../Dashboard/Dashboard'
 import ManageAccount from '../ManagerAccount/ManageAccount'
 
 const Sidebar= ()=>{
+  let data;
+  if (localStorage.getItem("Role")==="Admin"){
+    data=SidebarData
+  }
     const [selected,setSelected] = useState(0);
     let tab;
     if(selected===0){
@@ -38,7 +42,7 @@ const Sidebar= ()=>{
            {/* Menu */}
 
            <div className="menu">
-             {SidebarData.map((item,index)=>{
+             {data.map((item,index)=>{
                    return (
                     <div className={selected===index?'menuItem active':'menuItem'}
                     key={index}
