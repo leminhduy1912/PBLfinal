@@ -20,7 +20,7 @@ const Login=()=>{
       localStorage.setItem("Role","Admin")
       setSuccess(true)
       {setTimeout(()=>{
-        navigate('/admin')
+        navigate('/admin/dashBoard')
       },1000)}
 
     }

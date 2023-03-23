@@ -49,7 +49,7 @@ const Sidebar= ()=>{
                     onClick={()=>{
                       setSelected(index)
                       if(index===0){
-navigate('/admin/dashBoard')
+                       navigate('/admin/dashBoard')
                       }
                       if(index===3){
                         navigate('/admin/manageAccount')
