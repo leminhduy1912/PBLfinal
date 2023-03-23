@@ -17,6 +17,8 @@ import Sidebar from './Component/Admin/Sidebar/Sidebar';
 import Dashboard from './Component/Admin/Dashboard/Dashboard';
 import Loading from './Component/Loading/Loading';
 import HomePage from './Component/HomePage/HomePage';
+import ManageAccount from './Component/Admin/ManagerAccount/ManageAccount';
+import AccountUpdate from './Component/Admin/ManagerAccount/AccountUpdate/AccountUpdate';
 // import Sidebar from './components/Sidebar/Sidebar';
 
 function App() {
@@ -29,7 +31,11 @@ function App() {
       <Route exact path='/' element={<HomePage/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route  path='/loading' element={<Loading/>}/>
-      <Route path='/admin' element={<Sidebar/>}  />
+      <Route path='/admin' element={<Sidebar/>}>
+        <Route path='dashBoard' element={<Dashboard/>}/>
+        <Route path='manageAccount' element={<ManageAccount/>}/>
+        <Route path='accountUpdate' element={<AccountUpdate/>}/>
+      </Route>
       </Routes>
   </div>
   </BrowserRouter>

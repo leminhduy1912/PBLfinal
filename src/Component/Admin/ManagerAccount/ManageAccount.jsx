@@ -1,14 +1,16 @@
+import { AnimateSharedLayout } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ReactTable from 'react-table'
 import "react-table/react-table.css"  
 import { fetchDataAcccount } from '../../../Data/Data'
 import Loading from '../../Loading/Loading'
-
+import AccountUpdate from './AccountUpdate/AccountUpdate'
 const ManageAccount = () => {
-    const navigate = useNavigate()
+ 
     const [data,setData]= useState([]) 
-    const [getDataSuccess,setGetDataSucceess] =useState(false)
+    const [getDataSuccess,setGetDataSucceess] =useState(true)
+    const navigate= useNavigate();
   useEffect(()=>{
     
     fetch('https://jsonplaceholder.typicode.com/users')
@@ -18,6 +20,10 @@ const ManageAccount = () => {
         setGetDataSucceess(true)
     })
   },[])
+  const handleUpdateAccount=(row)=>{
+  navigate('/admin/accountUpdate')
+
+  }
     const columns= [
         {
             Header:'Username',
@@ -42,7 +48,9 @@ const ManageAccount = () => {
         {
             Header:'Action',
             Cell:row=>(
-                <button>Details</button>
+                <button
+                onClick={()=>handleUpdateAccount(row)}
+                >Update</button>
             )
         }
     ]
@@ -52,16 +60,21 @@ if (getDataSuccess===false){
     )}
     else{
     return(
-    <div>
- <h1>Table</h1>
-    
-    <ReactTable
-    columns={columns}
-    data={data}
-    defaultPageSize={14}
-    />
 
-</div>
+      
+    
+
+   
+          <div>
+            <h1>Table</h1>
+            <ReactTable
+              columns={columns}
+              data={data}
+              defaultPageSize={14}
+            />
+          </div>
+      
+        
     )}
 }
 

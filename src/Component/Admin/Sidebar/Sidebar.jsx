@@ -1,11 +1,10 @@
 import './Sidebar.css'
 import { useState } from 'react'
-// import Logo from '../../Photos/admin.png'
-//  import { SidebarData } from '../../Data/Data'
+
 import {UilSignOutAlt} from "@iconscout/react-unicons"
 import React from 'react'
 
-import { Form } from 'react-router-dom'
+import { Form, Outlet, useNavigate } from 'react-router-dom'
 import { SidebarData } from '../../../Data/Data'
 import  Logo  from '../../../Photos/admin.png'
 import Dashboard from '../Dashboard/Dashboard'
@@ -13,6 +12,7 @@ import ManageAccount from '../ManagerAccount/ManageAccount'
 
 const Sidebar= ()=>{
   let data;
+  const navigate= useNavigate();
   if (localStorage.getItem("Role")==="Admin"){
     data=SidebarData
   }
@@ -46,7 +46,15 @@ const Sidebar= ()=>{
                    return (
                     <div className={selected===index?'menuItem active':'menuItem'}
                     key={index}
-                    onClick={()=>setSelected(index)}
+                    onClick={()=>{
+                      setSelected(index)
+                      if(index===0){
+navigate('/admin/dashBoard')
+                      }
+                      if(index===3){
+                        navigate('/admin/manageAccount')
+                                              }
+                    }}
                     >
                            <item.icon/>
                            <span>{item.heading}</span>
@@ -63,7 +71,8 @@ const Sidebar= ()=>{
 
 
         <div className="content">
-        { tab }
+        {/* { tab } */}
+        <Outlet/>
         </div>
      
       </div>
