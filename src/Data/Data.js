@@ -25,7 +25,7 @@ import  ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded'
     },
     {
         icon:UilClipboardAlt,
-        heading:"Create Plan"
+        heading:"Plan"
     },
     {
         icon: UilStore,

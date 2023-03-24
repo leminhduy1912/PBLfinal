@@ -6,6 +6,7 @@ import "react-table/react-table.css"
 import { fetchDataAcccount } from '../../../Data/Data'
 import Loading from '../../Loading/Loading'
 import AccountUpdate from './AccountUpdate/AccountUpdate'
+import "./ManageAccount.css"
 const ManageAccount = () => {
  
     const [data,setData]= useState([]) 
@@ -54,27 +55,22 @@ const ManageAccount = () => {
             )
         }
     ]
+    const pageSizeOptions = [5, 10]; 
 if (getDataSuccess===false){
     return (
       <Loading/>  
     )}
     else{
     return(
-
-      
-    
-
-   
           <div>
             <h1>Table</h1>
             <ReactTable
               columns={columns}
               data={data}
-              defaultPageSize={14}
+              defaultPageSize={10}
+              pageSizeOptions={pageSizeOptions}
             />
           </div>
-      
-        
     )}
 }
 

@@ -6,11 +6,30 @@ import { Navigate, Redirect, useHistory, useNavigate } from 'react-router-dom';
 import "./Login.css"
 
 const Login=()=>{
+  const data=[
+    {
+   username:"minh ngoc",
+   password:"123",
+   role:"Admin"
+  },
+  {
+    username:"minh duy",
+    password:"123",
+    role:"MOD"
+   },
+   {
+    username:"minh quan",
+    password:"123",
+    role:"User"
+   }
+]
  const navigate= useNavigate();
-   const [username,setUsername] = useState('');
-   const [password,setPassword] = useState('');
+   const [username,setUsername] = useState('')
+   const [password,setPassword] = useState('')
    const [role,setRole]= useState('Admin');
+   const [dataLogin,setDataLogin]= useState([])
    const [success,setSuccess] = useState(false)
+  
    const handleLogIn = (e)=>{
     e.preventDefault();
     if (success===false){
@@ -25,6 +44,7 @@ const Login=()=>{
 
     }
    }
+   
     return(
        <div className="LogIn-container">
         <div className="LogIn-glass">

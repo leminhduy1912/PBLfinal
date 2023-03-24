@@ -1,3 +1,21 @@
 .ReactTable{
     width: 70%;
 }
+
+.ReactTable .rt-tbody .rt-td:last-child {
+    border-right: 0;
+    display: flex;
+    justify-content: center;
+    align-items:center ;
+}
+.ReactTable .rt-tbody .rt-td:last-child button{
+    cursor: pointer;
+    background-color: #f799a354;
+    border: none;
+    width: 70px;
+    height: 20px;
+    font-size: 14px;
+    border-radius: 10px;
+    font-weight: 400;
+   
+}

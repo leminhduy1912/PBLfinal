@@ -19,6 +19,7 @@ import Loading from './Component/Loading/Loading';
 import HomePage from './Component/HomePage/HomePage';
 import ManageAccount from './Component/Admin/ManagerAccount/ManageAccount';
 import AccountUpdate from './Component/Admin/ManagerAccount/AccountUpdate/AccountUpdate';
+import PlanInspect from './Component/Admin/PlanInspect/PlanInspect';
 // import Sidebar from './components/Sidebar/Sidebar';
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Route path='dashBoard' element={<Dashboard/>}/>
         <Route path='manageAccount' element={<ManageAccount/>}/>
         <Route path='accountUpdate' element={<AccountUpdate/>}/>
+        <Route path='planInspect' element={<PlanInspect/>}/>
       </Route>
       </Routes>
   </div>

@@ -1,0 +1,19 @@
+.ReactTable .rt-tbody .rt-td:last-child {
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+.ReactTable .rt-tbody .rt-td {
+   margin: 10px 0px;
+}
+.Qualified:nth-child(6){
+    background-color: rgb(145 254 159/49%);
+    color: green;
+}
+.Unqualified:nth-child(6){
+   
+    color: red;
+    background-color: #ffadad8f;
+}

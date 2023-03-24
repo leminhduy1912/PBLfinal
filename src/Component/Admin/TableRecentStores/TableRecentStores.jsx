@@ -6,7 +6,7 @@ import { recentStores } from "../../../Data/Data";
 import "./TableRecentStores.css"
 
 const  TableRecentStores= ()=>{
-
+     
 const columns=[
             {
                 Header:'Name Store',

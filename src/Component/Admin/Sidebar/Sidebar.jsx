@@ -17,16 +17,7 @@ const Sidebar= ()=>{
     data=SidebarData
   }
     const [selected,setSelected] = useState(0);
-    let tab;
-    if(selected===0){
-        {tab = <Dashboard/>}
- }
- if(selected===2){
-    // tab= <StoreInfor/>
- }
- if(selected===3){
-    tab= <ManageAccount/>
- }
+  
     return (
         <div className='Sidebar-container' >
     <div  className='Sidebar-glass'>
@@ -51,6 +42,9 @@ const Sidebar= ()=>{
                       if(index===0){
                        navigate('/admin/dashBoard')
                       }
+                      if(index===1){
+                        navigate('/admin/planInspect')
+                       }
                       if(index===3){
                         navigate('/admin/manageAccount')
                                               }
@@ -71,10 +65,8 @@ const Sidebar= ()=>{
 
 
         <div className="content">
-        {/* { tab } */}
         <Outlet/>
         </div>
-     
       </div>
       </div>
     )
