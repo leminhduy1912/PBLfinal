@@ -2,9 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import {UilSignOutAlt} from "@iconscout/react-unicons"
 import { SidebarData } from './Data/Data';
 import React from 'react'
-// import MainDash from './components/Sidebar/Maindash/MainDash';
-
-import './App.css';
 
 import {
   BrowserRouter,
@@ -20,7 +17,8 @@ import HomePage from './Component/HomePage/HomePage';
 import ManageAccount from './Component/Admin/ManagerAccount/ManageAccount';
 import AccountUpdate from './Component/Admin/ManagerAccount/AccountUpdate/AccountUpdate';
 import PlanInspect from './Component/Admin/PlanInspect/PlanInspect';
-// import Sidebar from './components/Sidebar/Sidebar';
+import './App.css';
+
 
 function App() {
 
@@ -32,7 +30,7 @@ function App() {
       <Route exact path='/' element={<HomePage/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route  path='/loading' element={<Loading/>}/>
-      <Route path='/admin' element={<Sidebar/>}>
+      <Route path='/admin' element={<Sidebar data={SidebarData}/>}>
         <Route path='dashBoard' element={<Dashboard/>}/>
         <Route path='manageAccount' element={<ManageAccount/>}/>
         <Route path='accountUpdate' element={<AccountUpdate/>}/>

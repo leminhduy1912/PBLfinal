@@ -10,12 +10,10 @@ import  Logo  from '../../../Photos/admin.png'
 import Dashboard from '../Dashboard/Dashboard'
 import ManageAccount from '../ManagerAccount/ManageAccount'
 
-const Sidebar= ()=>{
-  let data;
+const Sidebar= (props)=>{
+  const  {data}= props;
   const navigate= useNavigate();
-  if (localStorage.getItem("Role")==="Admin"){
-    data=SidebarData
-  }
+ 
     const [selected,setSelected] = useState(0);
   
     return (
