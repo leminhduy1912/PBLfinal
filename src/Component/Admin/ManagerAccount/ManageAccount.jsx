@@ -62,8 +62,11 @@ if (getDataSuccess===false){
     )}
     else{
     return(
-          <div>
-            <h1>Table</h1>
+          <div className='ManageAccount'>
+            <div className='ManageAccount-header'>
+            <h1>Account Management</h1>
+            <button>Add Account</button>
+            </div>
             <ReactTable
               columns={columns}
               data={data}

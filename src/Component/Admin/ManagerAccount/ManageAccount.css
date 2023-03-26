@@ -19,3 +19,21 @@
     font-weight: 400;
    
 }
+
+.ManageAccount-header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.ManageAccount-header button{
+    width: 110px;
+    height: 35px;
+    background-color: #f799a354;
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+}

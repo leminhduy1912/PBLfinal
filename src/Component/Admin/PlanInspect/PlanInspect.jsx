@@ -82,6 +82,10 @@ function PlanInspect() {
       };
   return (
     <div className='PlanInspect'>
+        <div className='PlanInspect-header'>
+        <h1>Plan Management</h1>
+        <button>Add Plan</button>
+        </div>
  <ReactTable
  getTdProps={getTdProps}
  data={data}
