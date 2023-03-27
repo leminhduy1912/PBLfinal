@@ -18,6 +18,7 @@ import ManageAccount from './Component/Admin/ManagerAccount/ManageAccount';
 import AccountUpdate from './Component/Admin/ManagerAccount/AccountUpdate/AccountUpdate';
 import PlanInspect from './Component/Admin/PlanInspect/PlanInspect';
 import './App.css';
+import Stores from './Component/Admin/Stores/Stores';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Route path='manageAccount' element={<ManageAccount/>}/>
         <Route path='accountUpdate' element={<AccountUpdate/>}/>
         <Route path='planInspect' element={<PlanInspect/>}/>
+        <Route path='stores' element={<Stores/>}/>
       </Route>
       </Routes>
   </div>

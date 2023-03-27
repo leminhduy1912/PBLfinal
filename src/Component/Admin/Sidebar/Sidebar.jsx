@@ -43,6 +43,9 @@ const Sidebar= (props)=>{
                       if(index===1){
                         navigate('/admin/planInspect')
                        }
+                       if(index===2){
+                        navigate('/admin/stores')
+                       }
                       if(index===3){
                         navigate('/admin/manageAccount')
                                               }

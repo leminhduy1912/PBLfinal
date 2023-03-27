@@ -41,7 +41,7 @@ const columns=[
             className: (rowInfo.original.action === 'Active') ? 'Active' : 'Pause', 
           };
         };
-        const pageSizeOptions = [5, 10]; 
+        const pageSizeOptions = [5]; 
   return (
    <div>
     <h1
@@ -51,7 +51,7 @@ const columns=[
      getTdProps={getTdProps}
       columns={columns}
       data={recentStores}
-       defaultPageSize={10}
+       defaultPageSize={6}
        pageSizeOptions={pageSizeOptions}
     />
     </div>

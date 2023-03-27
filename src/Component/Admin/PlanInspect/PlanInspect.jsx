@@ -46,7 +46,7 @@ function PlanInspect() {
         }
 
     ]
-
+    const pageSizeOptions = [10]; 
     const columns = [
         {
             Header:'Name Store',
@@ -57,7 +57,7 @@ function PlanInspect() {
             accessor:'addressStore'
         },
         {
-            Header:'Time test',
+            Header:'Time Test',
             accessor:'time'
         },
         {
@@ -91,6 +91,7 @@ function PlanInspect() {
  data={data}
  columns={columns}
  defaultPageSize={5}
+ pageSizeOptions={pageSizeOptions}
  />
     </div>
   )

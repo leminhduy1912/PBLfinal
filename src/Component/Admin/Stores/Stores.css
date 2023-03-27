@@ -1,0 +1,16 @@
+
+.Pause:nth-child(6){
+    border-radius: 30px;
+    text-align: center;
+    color: red;
+    background-color: #ffadad8f;
+}
+.Active:nth-child(6) {
+    background-color: rgb(145 254 159/49%);
+    color: green;
+   border-radius: 30px;
+   text-align: center;
+}      
+.ReactTable{
+    width: 100% !important;
+}
