@@ -11,6 +11,21 @@
    border-radius: 30px;
    text-align: center;
 }      
-.ReactTable{
-    width: 100% !important;
+.Stores-header{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}  
+.Stores-header button{
+    width: 110px;
+    height: 35px;
+    background-color: #f799a354;
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
 }
