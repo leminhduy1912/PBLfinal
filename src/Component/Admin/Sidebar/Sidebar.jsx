@@ -11,7 +11,7 @@ import Dashboard from '../Dashboard/Dashboard'
 import ManageAccount from '../ManagerAccount/ManageAccount'
 
 const Sidebar= (props)=>{
-  const  {data}= props;
+  const  {data,role}= props;
   const navigate= useNavigate();
  
     const [selected,setSelected] = useState(0);
@@ -24,7 +24,7 @@ const Sidebar= (props)=>{
             {/* {logo} */}
             <div className='logo'>
             <img src={Logo} alt="" />
-            <span>Admin</span>
+            <span>{role}</span>
             </div>
         </div>
 

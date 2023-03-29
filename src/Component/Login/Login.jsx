@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { Navigate, Redirect, useHistory, useNavigate } from 'react-router-dom';
+import Loading from "../Loading/Loading";
 
 // import Sidebar from "../Sidebar/Sidebar";
 // import Table from "../Table/Table";
@@ -8,23 +9,23 @@ import "./Login.css"
 const Login=()=>{
   const data=[
     {
-   username:"minh ngoc",
+   email:"minhngoc@gmail.com",
    password:"123",
    role:"Admin"
   },
   {
-    username:"minh duy",
+    email:"minhduy@gmail.com",
     password:"123",
     role:"MOD"
    },
    {
-    username:"minh quan",
+    email:"minhquan@gmail.com",
     password:"123",
     role:"User"
    }
 ]
  const navigate= useNavigate();
-   const [username,setUsername] = useState('')
+   const [email,setEmail] = useState('')
    const [password,setPassword] = useState('')
    const [role,setRole]= useState('Admin');
    const [dataLogin,setDataLogin]= useState([])
@@ -33,15 +34,19 @@ const Login=()=>{
    const handleLogIn = (e)=>{
     e.preventDefault();
     if (success===false){
-      navigate('/loading')
+      <Loading/>
     }
-    if (role==='Admin'){
+    // Admin
+    if (email==="minhngoc@gmail.com" && password==="123"){
       localStorage.setItem("Role","Admin")
       setSuccess(true)
-      {setTimeout(()=>{
-        navigate('/admin/dashBoard')
-      },1000)}
-
+      navigate('/admin/dashBoard')
+    }
+    // Moderrator
+    if (email==="minhduy@gmail.com" && password==="123"){
+      localStorage.setItem("Role","Moderrator")
+      setSuccess(true)
+      navigate('/moderrator/dashBoard')
     }
    }
    
@@ -51,7 +56,7 @@ const Login=()=>{
         <div className='Login'>
           <h1>Login</h1>
           <input type="text" placeholder='Username'
-          onChange={(e)=>{setUsername(e.target.value)}}
+          onChange={(e)=>{setEmail(e.target.value)}}
           />
           <input type="text" placeholder='Password'
           onChange={(e)=>{setPassword(e.target.value)}}

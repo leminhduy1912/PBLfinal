@@ -31,12 +31,16 @@ function App() {
       <Route exact path='/' element={<HomePage/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route  path='/loading' element={<Loading/>}/>
-      <Route path='/admin' element={<Sidebar data={SidebarData}/>}>
+      <Route path='/admin' element={<Sidebar data={SidebarData} role={"Admin"}  />}>
         <Route path='dashBoard' element={<Dashboard/>}/>
         <Route path='manageAccount' element={<ManageAccount/>}/>
         <Route path='accountUpdate' element={<AccountUpdate/>}/>
         <Route path='planInspect' element={<PlanInspect/>}/>
         <Route path='stores' element={<Stores/>}/>
+      </Route>
+      <Route path='/moderrator' element={<Sidebar data={SidebarData}  role={"Moderator"} />}>
+        <Route path='dashBoard' element={<Dashboard/>}/>
+      
       </Route>
       </Routes>
   </div>
