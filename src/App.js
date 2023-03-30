@@ -23,7 +23,8 @@ import UpdateStore from './Component/Admin/Stores/UpdateStore/UpdateStore';
 import InforSelf from './Component/Admin/InforSelf/InforSelf';
 import AddStore from './Component/Admin/Stores/AddStore/AddStore';
 import AddAccount from './Component/Admin/ManagerAccount/AddAccount/AddAccount';
-
+import Register from './Component/Register/Register';
+// import Register from './Component/Register'
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
      <Routes>
       <Route exact path='/' element={<HomePage/>}/>
       <Route path='/login' element={<Login/>}/>
+      <Route path='/Register' element={<Register/>}/>
       <Route  path='/loading' element={<Loading/>}/>
 
       <Route path='/admin' element={<Sidebar data={SidebarData} role={"Admin"}  />}>
@@ -55,7 +57,7 @@ function App() {
         <Route path='dashBoard' element={<Dashboard/>}/>
       </Route>
       <Route path='/user' element={<Sidebar data={SidebarData}  role={"User"} />}>
-        <Route path='store' element={<Stores/>}/>
+        <Route path='stores' element={<Stores/>}/>
       </Route>
 
       </Routes>

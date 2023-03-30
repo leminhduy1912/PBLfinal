@@ -46,6 +46,11 @@ const Login=()=>{
       setSuccess(true)
       navigate('/moderrator/dashBoard')
     }
+    if (email==="minhquan@gmail.com" && password==="123"){
+      localStorage.setItem("Role","user")
+      setSuccess(true)
+      navigate('/user/stores')
+    }
    }
    
     return(
