@@ -19,13 +19,13 @@ function AddStore() {
       </div>
 
       <form action="">
-        <div className='form-group'>
+       <div className='form-group'>
         <label className='form-input-control'>Tên cửa hàng</label>
         <input className='form-input-control'type="text" placeholder='Tên cửa hàng'/>
         </div>
         <div className='form-group'>
         <label className='form-input-control'>Địa chỉ</label>
-        <input className='form-input-control'type="text" placeholder='Địa chỉ'/>
+        <input className='for m-input-control'type="text" placeholder='Địa chỉ'/>
         </div>
         <div className='form-group'>
         <label className='form-input-control'>Loại hình kinh doanh</label>
