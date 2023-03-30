@@ -41,11 +41,16 @@
 }
 .AddStore-content  form .form-input-control {
     height: 25px;
-    
-   
     border: none;
     border-radius: 30px;
 }
+.AddStore-content  form  select{
+    height: 40px;
+    padding: 7px;
+    border: 1px solid black;
+    border-radius: 30px;
+}
+
 .AddStore-content  form .form-group input{
     border: 1px solid black;
     padding: 10px;

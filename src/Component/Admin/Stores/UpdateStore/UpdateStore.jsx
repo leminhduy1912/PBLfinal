@@ -27,15 +27,27 @@ function UpdateStore() {
           </div>
           <div className='form-group'>
           <label className='form-input-control'>Loại hình kinh doanh</label>
-          <input className='form-input-control'type="text" placeholder='Phone Number'/>
+          <select name="" id="" >
+          <option value="" selected disabled>--Kind Of Bussiness--</option>
+          <option value="">Kinh doanh thuc pham</option>
+          <option value="">Kinh doanh thuc uon</option>
+        </select>
           </div>
           <div className='form-group'>
           <label className='form-input-control'>Chứng nhận</label>
-          <input className='form-input-control'type="text" placeholder='Address'/>
+          <select name="" id="" >
+          <option value="" selected disabled>--Certificated--</option>
+          <option value="">Kinh doanh thuc pham</option>
+          <option value="">Kinh doanh thuc uon</option>
+        </select>
           </div>
           <div className='form-group'>
           <label className='form-input-control'>Trạng thái hoạt động</label>
-          <input className='form-input-control'type="text" placeholder='NationalID'/>
+          <select name="" id="" >
+          <option value="" selected disabled>--Status--</option>
+          <option value="">Active</option>
+          <option value="">Inactive</option>
+        </select>
           </div>
           
         </form>

@@ -46,6 +46,12 @@
     border: none;
     border-radius: 30px;
 }
+.UpdateStore-content  form  select{
+    height: 40px;
+    padding: 7px;
+    border: 1px solid black;
+    border-radius: 30px;
+}
 .UpdateStore-content  form .form-group input{
     border: 1px solid black;
     padding: 10px;
