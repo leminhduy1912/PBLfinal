@@ -35,6 +35,7 @@ function App() {
       <Route exact path='/' element={<HomePage/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route  path='/loading' element={<Loading/>}/>
+
       <Route path='/admin' element={<Sidebar data={SidebarData} role={"Admin"}  />}>
         <Route path='dashBoard' element={<Dashboard/>}/>
         {/* Account */}
@@ -49,10 +50,14 @@ function App() {
         <Route path='addStore' element={<AddStore/>}/>
         <Route path='inforSelf' element={<InforSelf/>}/>
       </Route>
+
       <Route path='/moderrator' element={<Sidebar data={SidebarData}  role={"Moderator"} />}>
         <Route path='dashBoard' element={<Dashboard/>}/>
-      
       </Route>
+      <Route path='/user' element={<Sidebar data={SidebarData}  role={"User"} />}>
+        <Route path='store' element={<Stores/>}/>
+      </Route>
+
       </Routes>
   </div>
   </BrowserRouter>
