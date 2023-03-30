@@ -6,36 +6,54 @@ function AccountUpdate() {
   const navigate=useNavigate();
   return (
     <div className='AccountUpdate-container'>
-      <div className='AccountUpdate-content'>
-        <h1>Cập nhật tài khoản</h1>
-        <div className='x-icon'
-        onClick={()=>{
-          navigate('/admin/manageAccount')
-          
-        }}
-        ><FaTimes /></div>
-        <form action="">
-          <label htmlFor="">Tên người dùng:</label>
-          <input type="text" placeholder='Tên người dùng' />
-          <label htmlFor="">Email:</label>
-          <input type="text" placeholder='Email'/>
-          <label htmlFor="">Địa chỉ:</label>
-          <input type="text" placeholder='Địa chỉ'/>
-          <label htmlFor="">Giới tính</label>
-          <select name="" id="">
-           <option value="">Female</option>
-           <option value="">Male</option>
-           <option value="">Other</option>
-          </select>
-          <label htmlFor="">Status</label>
-          <select name="" id="">
-           <option value="">Active</option>
-           <option value="">Pause</option>
-          </select>
-        </form>
-        <button>Submit</button>
+    <div className='AccountUpdate-content'>
+      <h1>Update Account</h1>
+      
+      <div className='x-icon'
+      onClick={()=>{
+       
+        navigate('/admin/addAccount')
+      }}
+      ><FaTimes />
       </div>
+
+      <form action="">
+        <div className='form-group'>
+        <label className='form-input-control'>Tên đầy đủ</label>
+        <input className='form-input-control'type="text" placeholder='Tên đầy đủ'/>
+        </div>
+        <div className='form-group'>
+        <label className='form-input-control'>Email</label>
+        <input className='form-input-control'type="text" placeholder='Email'/>
+        </div>
+        <div className='form-group'>
+        <label className='form-input-control'>Số điện thoại</label>
+        <input className='form-input-control'type="text" placeholder='Phone Number'/>
+        </div>
+        <div className='form-group'>
+        <label className='form-input-control'>Địa chỉ</label>
+        <input className='form-input-control'type="text" placeholder='Address'/>
+        </div>
+        <div className='form-group'>
+        <label className='form-input-control'>Số CCCD</label>
+        <input className='form-input-control'type="text" placeholder='NationalID'/>
+        </div>
+        <div className='form-group'>
+        <label className='form-input-control'>Tình trạng</label>
+        <select className='form-input-control'>
+          <option value="" >Active</option>
+          <option value="" >Inactive</option>
+          <option value="" disabled  selected>---Select---</option>
+        </select>
+        </div>
+        
+      </form>
+      
+      <button>Submit</button>
+      
+      
     </div>
+  </div>
   )
 }
 

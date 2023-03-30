@@ -43,6 +43,62 @@ function PlanInspect() {
             auditor:"Nguyen Van Hieu",
             time:"27/2/2023",
             status:"Qualified"
+        },
+        {
+            nameStore:"Banh xeo co ba",
+            addressStore:"50 Hoang Dieu",
+            testReason:"Kiem tra dinh ky",
+            auditor:"Nguyen Van Hieu",
+            time:"27/2/2023",
+            status:"Qualified"
+        },
+        {
+            nameStore:"Banh xeo co ba",
+            addressStore:"50 Hoang Dieu",
+            testReason:"Kiem tra dinh ky",
+            auditor:"Nguyen Van Hieu",
+            time:"27/2/2023",
+            status:"Unqualified"
+        },
+        {
+            nameStore:"Banh xeo co ba",
+            addressStore:"50 Hoang Dieu",
+            testReason:"Kiem tra dinh ky",
+            auditor:"Nguyen Van Hieu",
+            time:"27/2/2023",
+            status:"Qualified"
+        },
+        {
+            nameStore:"Banh xeo co ba",
+            addressStore:"50 Hoang Dieu",
+            testReason:"Kiem tra dinh ky",
+            auditor:"Nguyen Van Hieu",
+            time:"27/2/2023",
+            status:"Unqualified"
+        },
+        {
+            nameStore:"Banh xeo co ba",
+            addressStore:"50 Hoang Dieu",
+            testReason:"Kiem tra dinh ky",
+            auditor:"Nguyen Van Hieu",
+            time:"27/2/2023",
+            status:"Qualified"
+        },
+        {
+            nameStore:"Banh xeo co ba",
+            addressStore:"50 Hoang Dieu",
+            testReason:"Kiem tra dinh ky",
+            auditor:"Nguyen Van Hieu",
+            time:"27/2/2023",
+            status:"Unqualified"
+        },
+        {
+            nameStore:"Banh xeo co ba",
+            addressStore:"50 Hoang Dieu",
+            testReason:"Kiem tra dinh ky",
+            auditor:"Nguyen Van Hieu",
+            time:"27/2/2023",
+            status:"Qualified"
         }
 
     ]
@@ -75,7 +131,9 @@ function PlanInspect() {
 
     ]
     const getTdProps = (state, rowInfo, column) => {
-          
+          if (!rowInfo){
+            return{}
+          }
         return {
           className: (rowInfo.original.status === 'Qualified') ? 'Qualified' : 'Unqualified', 
         };
@@ -90,7 +148,7 @@ function PlanInspect() {
  getTdProps={getTdProps}
  data={data}
  columns={columns}
- defaultPageSize={5}
+ defaultPageSize={10}
  pageSizeOptions={pageSizeOptions}
  />
     </div>

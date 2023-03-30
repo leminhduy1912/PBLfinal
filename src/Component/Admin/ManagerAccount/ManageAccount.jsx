@@ -65,7 +65,11 @@ if (getDataSuccess===false){
           <div className='ManageAccount'>
             <div className='ManageAccount-header'>
             <h1>Account Management</h1>
-            <button>Add Account</button>
+            <button
+            onClick={()=>{
+                navigate("/admin/addAccount")
+            }}
+            >Add Account</button>
             </div>
             <ReactTable
               columns={columns}

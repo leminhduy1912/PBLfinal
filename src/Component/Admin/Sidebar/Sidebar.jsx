@@ -13,8 +13,10 @@ import ManageAccount from '../ManagerAccount/ManageAccount'
 const Sidebar= (props)=>{
   const  {data,role}= props;
   const navigate= useNavigate();
- 
-    const [selected,setSelected] = useState(0);
+  const [selected,setSelected] = useState(0);
+  localStorage.setItem("tabCurrent",0);
+  let tabCurrent=localStorage.getItem("tabCurrent");
+  {console.log(selected);}
   
     return (
         <div className='Sidebar-container' >
@@ -49,6 +51,9 @@ const Sidebar= (props)=>{
                       if(index===3){
                         navigate('/admin/manageAccount')
                                               }
+                      if(index===4){
+                        navigate('/admin/inforSelf')
+                                }
                     }}
                     >
                            <item.icon/>

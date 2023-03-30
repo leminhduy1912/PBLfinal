@@ -37,7 +37,7 @@ import  ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded'
     },
     {
         icon: UilChart,
-        heading: 'Infor Self'
+        heading: 'Information'
     },
 
   ];

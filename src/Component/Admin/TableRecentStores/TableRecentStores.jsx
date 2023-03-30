@@ -35,7 +35,9 @@ const columns=[
         ]
        
         const getTdProps = (state, rowInfo, column) => {
-          
+          if (!rowInfo){
+            return{}
+          }
           return {
             
             className: (rowInfo.original.action === 'Active') ? 'Active' : 'Pause', 
@@ -52,7 +54,7 @@ const columns=[
       columns={columns}
       data={recentStores}
        defaultPageSize={6}
-       pageSizeOptions={pageSizeOptions}
+       
     />
     </div>
   );

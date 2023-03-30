@@ -1,11 +1,11 @@
-.AccountUpdate-container{
+.AddAccount-container{
     position: relative;
     width: 1000px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.AccountUpdate-content{
+.AddAccount-content{
     width: 800px;
     background-color: white; 
     display: flex;
@@ -15,7 +15,7 @@
     padding: 12px; 
     border-radius: 30px;
 }
-.AccountUpdate-content  form{
+.AddAccount-content  form{
     position: relative;
     display: flex;
     flex-direction: column;
@@ -24,13 +24,14 @@
     width: 100%;
     
 }
-.AccountUpdate-content  h1{
+.AddAccount-content  h1{
     text-align: center;
     text-transform: uppercase;
     font-weight: 300;
     letter-spacing: 1px;
+    
 }
-.AccountUpdate-content  form .form-group{
+.AddAccount-content  form .form-group{
     width: 300px;
     position: relative;
     display: flex;
@@ -38,25 +39,27 @@
     justify-content: center;
     margin: 3px 0px;
 }
-.AccountUpdate-content  form .form-input-control {
+.AddAccount-content  form .form-input-control {
     height: 25px;
+    
+   
     border: none;
     border-radius: 30px;
 }
-.AccountUpdate-content  form .form-group input{
+.AddAccount-content  form .form-group input{
     border: 1px solid black;
     padding: 10px;
 }
-.AccountUpdate-content  form .form-group input:focus{
+.AddAccount-content  form .form-group input:focus{
     outline-color: #f799a354;
 }
-.AccountUpdate-content  form label{
+.AddAccount-content  form label{
     text-align: start;
 }
 
 /* btn */
 
-.AccountUpdate-content  button{
+.AddAccount-content  button{
    
    margin-top: 10px;
    width: 310px;
@@ -72,7 +75,7 @@
 }
 
 
-.AccountUpdate-content .x-icon{
+.AddAccount-content .x-icon{
     width: 40px;
     height: 40px;
     font-size: 20px;
@@ -87,6 +90,6 @@
     overflow: hidden;
     cursor: pointer;
 }
-.AccountUpdate-content .x-icon:hover{
+.AddAccount-content .x-icon:hover{
     background-color: #a1a1a1;
 }

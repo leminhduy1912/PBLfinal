@@ -33,9 +33,7 @@ const Login=()=>{
   
    const handleLogIn = (e)=>{
     e.preventDefault();
-    if (success===false){
-      <Loading/>
-    }
+     success && <Loading/>
     // Admin
     if (email==="minhngoc@gmail.com" && password==="123"){
       localStorage.setItem("Role","Admin")
