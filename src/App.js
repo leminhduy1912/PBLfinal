@@ -27,7 +27,8 @@ import Register from './Component/Register/Register';
 // import Register from './Component/Register'
 
 function App() {
-
+  const [token,useToken] = useState();
+  
 
   return (
     <BrowserRouter>
