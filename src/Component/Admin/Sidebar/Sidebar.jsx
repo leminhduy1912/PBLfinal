@@ -1,5 +1,5 @@
 import './Sidebar.css'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 import {UilSignOutAlt} from "@iconscout/react-unicons"
 import React from 'react'
@@ -13,10 +13,13 @@ import ManageAccount from '../ManagerAccount/ManageAccount'
 const Sidebar= (props)=>{
   const  {data,role}= props;
   const navigate= useNavigate();
+  // let tabCurrent=localStorage.getItem("tabCurrent");
+  // localStorage.setItem("tabCurrent",0);
+  // const tabCurrent = useRef()
+  // tabCurrent.current=selected;
+  // tabCurrent.current=0
   const [selected,setSelected] = useState(0);
-  localStorage.setItem("tabCurrent",0);
-  let tabCurrent=localStorage.getItem("tabCurrent");
-  {console.log(selected);}
+
   
     return (
         <div className='Sidebar-container' >
@@ -40,6 +43,7 @@ const Sidebar= (props)=>{
                     onClick={()=>{
                       setSelected(index)
                       if(index===0){
+                        
                        navigate('/admin/dashBoard')
                       }
                       if(index===1){

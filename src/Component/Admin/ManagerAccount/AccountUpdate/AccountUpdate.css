@@ -36,10 +36,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 3px 0px;
+    margin-top: 6px; 
 }
 .AccountUpdate-content  form .form-input-control {
-    height: 25px;
+    height: 20px;
     border: none;
     border-radius: 30px;
 }

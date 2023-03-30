@@ -12,7 +12,7 @@ function AccountUpdate() {
       <div className='x-icon'
       onClick={()=>{
        
-        navigate('/admin/addAccount')
+        navigate('/admin/manageAccount')
       }}
       ><FaTimes />
       </div>
@@ -35,9 +35,17 @@ function AccountUpdate() {
         <input className='form-input-control'type="text" placeholder='Address'/>
         </div>
         <div className='form-group'>
-        <label className='form-input-control'>Số CCCD</label>
-        <input className='form-input-control'type="text" placeholder='NationalID'/>
+        <label className='form-input-control'>Số CMND/CCCD</label>
+        <input className='form-input-control'type="text" placeholder='Số CMND/CCCD'/>
         </div>
+        <div className='form-group'>
+    <label className='form-input-control'>Mật khẩu</label>
+    <input className='form-input-control'type="password" placeholder='Mật khẩu'/>
+    </div>
+    <div className='form-group'>
+    <label className='form-input-control'>Nhập lại mật khẩu</label>
+    <input className='form-input-control'type="password" placeholder='Nhập lại mật khẩu'/>
+    </div>
         <div className='form-group'>
         <label className='form-input-control'>Tình trạng</label>
         <select className='form-input-control'>
