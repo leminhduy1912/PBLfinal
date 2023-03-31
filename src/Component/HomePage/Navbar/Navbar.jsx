@@ -35,7 +35,11 @@ function Navbar() {
           <button
           onClick={()=>{navigate('/login')}}
           >Log In</button>
-          <button>Sign Up</button>
+          <button
+          onClick={()=>{
+            navigate('/register')
+          }}
+          >Sign Up</button>
         </div>
       </div>
       {tab}
