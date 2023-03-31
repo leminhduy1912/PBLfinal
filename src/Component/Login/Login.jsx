@@ -1,78 +1,61 @@
-import React, { useState } from "react"
-import { Navigate, Redirect, useHistory, useNavigate } from 'react-router-dom';
-import Loading from "../Loading/Loading";
+import React, { useState } from "react";
+import { loginHandler } from "./../../service/auth.service";
+import { useContext } from "react";
+import { StoreContext } from "../../store/";
+import { SET_AUTH_STATE } from "../../store/Constants";
+import "./Login.css";
+import { useNavigate } from "react-router-dom";
 
-// import Sidebar from "../Sidebar/Sidebar";
-// import Table from "../Table/Table";
-import "./Login.css"
-
-const Login=()=>{
-  const data=[
-    {
-   email:"minhngoc@gmail.com",
-   password:"123",
-   role:"Admin"
-  },
-  {
-    email:"minhduy@gmail.com",
-    password:"123",
-    role:"MOD"
-   },
-   {
-    email:"minhquan@gmail.com",
-    password:"123",
-    role:"User"
-   }
-]
- const navigate= useNavigate();
-   const [email,setEmail] = useState('')
-   const [password,setPassword] = useState('')
-   const [role,setRole]= useState('Admin');
-   const [dataLogin,setDataLogin]= useState([])
-   const [success,setSuccess] = useState(false)
-  
-   const handleLogIn = (e)=>{
+const Login = (props) => {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [errMessage, setErrMessage] = useState();
+  const [state, dispatch] = useContext(StoreContext);
+  const navigate = useNavigate();
+  const updateGlobalState = ({ token, role }) => {
+    dispatch({ type: SET_AUTH_STATE, payload: { token: token, role: role } });
+  };
+  const handleLogin = async (e) => {
     e.preventDefault();
-     success && <Loading/>
-    // Admin
-    if (email==="minhngoc@gmail.com" && password==="123"){
-      localStorage.setItem("Role","Admin")
-      setSuccess(true)
-      navigate('/admin/dashBoard')
+    try {
+      const res = await loginHandler(email, password);
+      if (res.meta.error) {
+        setErrMessage(res.meta.error);
+        return;
+      }
+      updateGlobalState({ token: res.data.ACCESS_TOKEN, role: res.data.role });
+      return navigate("/admin/dashBoard");
+    } catch (error) {
+      console.log(error);
     }
-    // Moderrator
-    if (email==="minhduy@gmail.com" && password==="123"){
-      localStorage.setItem("Role","Moderrator")
-      setSuccess(true)
-      navigate('/moderrator/dashBoard')
-    }
-    if (email==="minhquan@gmail.com" && password==="123"){
-      localStorage.setItem("Role","user")
-      setSuccess(true)
-      navigate('/user/stores')
-    }
-   }
-   
-    return(
-       <div className="LogIn-container">
-        <div className="LogIn-glass">
-        <div className='Login'>
-          <h1>Login</h1>
-          <input type="text" placeholder='Username'
-          onChange={(e)=>{setEmail(e.target.value)}}
-          />
-          <input type="text" placeholder='Password'
-          onChange={(e)=>{setPassword(e.target.value)}}
-          />
-          <button
-          onClick={(e)=>handleLogIn(e)}
-          >Log In</button>
-          <p>Not a member ? <a
-          >Sign Up</a></p>
+  };
+  return (
+    <div className="LogIn-container">
+      <div className="LogIn-glass">
+        <div className="Login">
+          <h1>Log In</h1>
+          <form>
+            <label>
+              <p>Email</p>
+              <input type="text" onChange={(e) => setEmail(e.target.value)} />
+            </label>
+            <label>
+              <p>Password</p>
+              <input
+                type="password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </label>
+            {errMessage && <div>{errMessage}</div>}
+            <div>
+              <button type="submit" onClick={handleLogin}>
+                Submit
+              </button>
+            </div>
+          </form>
         </div>
-        </div>
-       </div>
-    )
-   
-}
-export default Login
+      </div>
+    </div>
+  );
+};
+export default Login;
