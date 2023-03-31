@@ -1,7 +1,7 @@
 import { SidebarData } from "./Data/Data";
 import React from "react";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import Login from "./Component/Login/Login";
 import Sidebar from "./Component/Admin/Sidebar/Sidebar";
@@ -17,8 +17,9 @@ import InforSelf from "./Component/Admin/InforSelf/InforSelf";
 import AddStore from "./Component/Admin/Stores/AddStore/AddStore";
 import AddAccount from "./Component/Admin/ManagerAccount/AddAccount/AddAccount";
 import Register from "./Component/Register/Register";
-import { RequireAuth } from "./Component/Error/RequiredAuth";
+import CompanyRegister from "./Component/CompanyRegister/CompanyRegister";
 // import Register from './Component/Register'
+import { RequireAuth } from "./Component/Error/RequiredAuth";
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/Register" element={<Register />} />
+          <Route path="/Register" element={<CompanyRegister />} />
           <Route path="/loading" element={<Loading />} />
 
           <Route
