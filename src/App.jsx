@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/aria-role */
-import { SidebarData } from "./Data/Data";
+
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
@@ -21,9 +21,11 @@ import "./App.css";
 import { Admin } from "./pages/admin/Admin";
 import { Home } from "./pages/home/Home";
 import { ErrorComponent } from "./components/Error/ErrorComponent";
+import Sidebar from "./components/Sidebar/Sidebar"
 import Login from "./components/form/Login/Login";
 import Register from "./components/form/Register/Register";
 import CompanyRegister from "./components/form/CompanyRegister/CompanyRegister";
+import { SidebarData } from "./Data/Data";
 
 function App() {
   return (
@@ -31,7 +33,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin" element={<Sidebar data={SidebarData} role="Admin"/>} />
           <Route path="/*" element={<ErrorComponent />} />
           <Route path="/404" element={<ErrorComponent />} />
           <Route path="/login" element={<Login />} />

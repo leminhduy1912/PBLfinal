@@ -1,10 +1,12 @@
 .Active:nth-child(6){
   background-color: rgb(145 254 159/49%);
   color: green;
+  border-radius: 20px;
   }
   .Pause:nth-child(6){
     color: red;
     background-color: #ffadad8f;
+  border-radius: 20px;
   }
 
   .ReactTable{
@@ -18,4 +20,7 @@
   }
   .rt-th{
    font-weight: bold;
+  }
+  .rt-tr{
+ margin-top: 3px;
   }

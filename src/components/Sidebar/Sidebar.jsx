@@ -10,16 +10,16 @@ import { SidebarData } from "../../Data/Data";
 import Logo from "../../asset/admin.png";
 import Dashboard from "../Admin/Dashboard/Dashboard";
 import ManageAccount from "../Admin/ManagerAccount/ManageAccount";
+import { Admin } from "../../pages/admin/Admin";
 
 const Sidebar = (props) => {
   const { data, role } = props;
   const navigate = useNavigate();
-  // let tabCurrent=localStorage.getItem("tabCurrent");
-  // localStorage.setItem("tabCurrent",0);
-  // const tabCurrent = useRef()
-  // tabCurrent.current=selected;
-  // tabCurrent.current=0
   const [selected, setSelected] = useState(0);
+  let tab;
+  if (selected===0){
+    tab= <Admin/>
+  }
 
   return (
     <div className="Sidebar-container">
@@ -44,21 +44,22 @@ const Sidebar = (props) => {
                   key={index}
                   onClick={() => {
                     setSelected(index);
-                    if (index === 0) {
-                      navigate("/admin/dashBoard");
-                    }
-                    if (index === 1) {
-                      navigate("/admin/planInspect");
-                    }
-                    if (index === 2) {
-                      navigate("/admin/stores");
-                    }
-                    if (index === 3) {
-                      navigate("/admin/manageAccount");
-                    }
-                    if (index === 4) {
-                      navigate("/admin/inforSelf");
-                    }
+                    // if (index === 0) {
+                    //   tab = <Admin/>
+                    //  {console.log(tab);}
+                    // }
+                    // if (index === 1) {
+                    //   navigate("/admin/planInspect");
+                    // }
+                    // if (index === 2) {
+                    //   navigate("/admin/stores");
+                    // }
+                    // if (index === 3) {
+                    //   navigate("/admin/manageAccount");
+                    // }
+                    // if (index === 4) {
+                    //   navigate("/admin/inforSelf");
+                    // }
                   }}
                 >
                   <item.icon />
@@ -74,7 +75,7 @@ const Sidebar = (props) => {
         </div>
 
         <div className="content">
-          <Outlet />
+        {tab}
         </div>
       </div>
     </div>

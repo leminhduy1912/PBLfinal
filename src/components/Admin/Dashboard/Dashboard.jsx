@@ -1,8 +1,7 @@
 import React from "react";
 import CardsChart from "../../StatsBanner/StatsBanner";
-import TableRecentStores from "../TableRecentStores/TableRecentStores";
-
 import "./Dashboard.css";
+import TableRecentStores from "../../TableRecentStores/TableRecentStores";
 const Dashboard = () => {
   return (
     <div className="Maindash">
