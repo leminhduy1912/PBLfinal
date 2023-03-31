@@ -1,7 +1,8 @@
+/* eslint-disable jsx-a11y/aria-role */
 import { SidebarData } from "./Data/Data";
 import React from "react";
 
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Login from "./Component/Login/Login";
 import Sidebar from "./Component/Admin/Sidebar/Sidebar";
@@ -16,9 +17,7 @@ import UpdateStore from "./Component/Admin/Stores/UpdateStore/UpdateStore";
 import InforSelf from "./Component/Admin/InforSelf/InforSelf";
 import AddStore from "./Component/Admin/Stores/AddStore/AddStore";
 import AddAccount from "./Component/Admin/ManagerAccount/AddAccount/AddAccount";
-import Register from "./Component/Register/Register";
 import CompanyRegister from "./Component/CompanyRegister/CompanyRegister";
-// import Register from './Component/Register'
 import { RequireAuth } from "./Component/Error/RequiredAuth";
 
 function App() {

@@ -1,6 +1,5 @@
 import React from "react";
 import "./CardsChart.css";
-import { AnimateSharedLayout } from "framer-motion";
 import { cardsData } from "../../../Data/Data";
 import CardChart from "../CardChart/CardChart";
 
@@ -18,11 +17,9 @@ const CardsChart = () => {
               png={card.png}
               series={card.series}
             />
-      
           </div>
         );
       })}
-      
     </div>
   );
 };
