@@ -21,6 +21,9 @@ import "./App.css";
 import { Admin } from "./pages/admin/Admin";
 import { Home } from "./pages/home/Home";
 import { ErrorComponent } from "./components/Error/ErrorComponent";
+import Login from "./components/form/Login/Login";
+import Register from "./components/form/Register/Register";
+import CompanyRegister from "./components/form/CompanyRegister/CompanyRegister";
 
 function App() {
   return (
@@ -31,6 +34,8 @@ function App() {
           <Route path="/admin" element={<Admin />} />
           <Route path="/*" element={<ErrorComponent />} />
           <Route path="/404" element={<ErrorComponent />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<CompanyRegister />} />
         </Routes>
         {/* <Routes>
           <Route exact path="/" element={<HomePage />} />
