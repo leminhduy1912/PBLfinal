@@ -33,7 +33,7 @@
     "vite": "^4.2.0"
   },
   "scripts": {
-    "start": " cross-env vite --open",
+    "dev": " cross-env vite --open",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
