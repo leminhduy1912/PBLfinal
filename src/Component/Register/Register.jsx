@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import "./Register.css";
 function Register() {
+  const [fullname, setFullname] = useState();
+  const [address, useAddress] = useState();
+  const [email, useEmail] = useState();
+  const [nationalId, useNationalId] = useState();
+  const [password, setPassword] = useState();
+
+  const fullnameRef = useRef();
+
+  const handleRegister = () => {
+    console.log(fullnameRef.current.value);
+  };
+
   return (
     <div className="Register-container">
       <div className="Register-content">
@@ -13,6 +25,7 @@ function Register() {
                 className="form-input-control"
                 type="text"
                 placeholder="Tên đầy đủ"
+                ref={fullnameRef}
               />
             </div>
             <div className="form-group">
@@ -56,7 +69,7 @@ function Register() {
               />
             </div>
           </form>
-          <button>Register</button>
+          <button onClick={handleRegister}>Register</button>
         </div>
       </div>
     </div>
