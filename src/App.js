@@ -24,6 +24,7 @@ import InforSelf from './Component/Admin/InforSelf/InforSelf';
 import AddStore from './Component/Admin/Stores/AddStore/AddStore';
 import AddAccount from './Component/Admin/ManagerAccount/AddAccount/AddAccount';
 import Register from './Component/Register/Register';
+import CompanyRegister from './Component/CompanyRegister/CompanyRegister';
 // import Register from './Component/Register'
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
      <Routes>
       <Route exact path='/' element={<HomePage/>}/>
       <Route path='/login' element={<Login/>}/>
-      <Route path='/Register' element={<Register/>}/>
+      <Route path='/Register' element={<CompanyRegister/>}/>
       <Route  path='/loading' element={<Loading/>}/>
 
       <Route path='/admin' element={<Sidebar data={SidebarData} role={"Admin"}  />}>
