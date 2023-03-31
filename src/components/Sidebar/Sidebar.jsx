@@ -4,13 +4,12 @@ import "./Sidebar.css";
 import { useRef, useState } from "react";
 
 import { UilSignOutAlt } from "@iconscout/react-unicons";
-import React from "react";
 
 import { Form, Outlet, useNavigate } from "react-router-dom";
-import { SidebarData } from "../../../Data/Data";
-import Logo from "../../../asset/admin.png";
-import Dashboard from "../Dashboard/Dashboard";
-import ManageAccount from "../ManagerAccount/ManageAccount";
+import { SidebarData } from "../../Data/Data";
+import Logo from "../../asset/admin.png";
+import Dashboard from "../Admin/Dashboard/Dashboard";
+import ManageAccount from "../Admin/ManagerAccount/ManageAccount";
 
 const Sidebar = (props) => {
   const { data, role } = props;
@@ -27,7 +26,6 @@ const Sidebar = (props) => {
       <div className="Sidebar-glass">
         <div>
           <div className="Sidebar">
-            {/* {logo} */}
             <div className="logo">
               <img src={Logo} alt="" />
               <span>{role}</span>

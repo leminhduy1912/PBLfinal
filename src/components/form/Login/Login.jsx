@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { loginHandler } from "./../../service/auth.service";
+import { loginHandler } from "../../../service/auth.service";
 import { useContext } from "react";
-import { StoreContext } from "../../store/";
-import { SET_AUTH_STATE } from "../../store/Constants";
+import { StoreContext } from "../../../store";
+import { SET_AUTH_STATE } from "../../../store/Constants";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 

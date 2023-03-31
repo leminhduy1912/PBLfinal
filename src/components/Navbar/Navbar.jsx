@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Navbar.css";
-import Logo from "../../../asset/logoDanang.jpg";
+import Logo from "../../asset/logoDanang.jpg";
 import { useNavigate } from "react-router-dom";
-import Home from "../Home/Home";
 import Contact from "../Contact/Contact";
+import Banner from "./../Banner/Banner";
 function Navbar() {
   const navigate = useNavigate();
   const [selected, setSelected] = useState(0);
@@ -17,7 +17,7 @@ function Navbar() {
   ];
   let tab;
   if (selected === 0) {
-    tab = <Home />;
+    tab = <Banner />;
   }
   if (selected === 2) {
     tab = <Contact />;

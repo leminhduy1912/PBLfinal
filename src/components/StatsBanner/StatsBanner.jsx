@@ -1,9 +1,9 @@
 import React from "react";
-import "./CardsChart.css";
-import { cardsData } from "../../../Data/Data";
-import CardChart from "../CardChart/CardChart";
+import "./StatsBanner.css";
+import { cardsData } from "../../Data/Data";
+import CardChart from "../Card/CardChart";
 
-const CardsChart = () => {
+const StatsBanner = () => {
   return (
     <div className="Cards">
       {cardsData.map((card, id) => {
@@ -24,4 +24,4 @@ const CardsChart = () => {
   );
 };
 
-export default CardsChart;
+export default StatsBanner;
