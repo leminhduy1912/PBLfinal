@@ -28,8 +28,8 @@
     font-size: 15px;
     font-weight: 500;
     cursor: pointer;
-
-
-
-    
+}
+.rt-td>button{
+    background-color:#f799a354 ;
+    text-align: center;
 }

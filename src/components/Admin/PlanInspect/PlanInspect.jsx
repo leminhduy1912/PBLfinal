@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactTable from 'react-table'
 import "./PlanInspect.css"
 import "react-table/react-table.css" 
+import AddPlan from './AddPlan/AddPlan'
 function PlanInspect() {
     const data=[
         {
@@ -102,7 +103,7 @@ function PlanInspect() {
         }
 
     ]
-    const pageSizeOptions = [10]; 
+     
     const columns = [
         {
             Header:'Name Store',
@@ -138,8 +139,11 @@ function PlanInspect() {
           className: (rowInfo.original.status === 'Qualified') ? 'Qualified' : 'Unqualified', 
         };
       };
+      const pageSizeOptions = [10];
+      const [isOpenAddPlanModal,setIsOpenAddPlanModal]= useState(false)
   return (
     <div className='PlanInspect'>
+        {isOpenAddPlanModal&&<AddPlan/>}
         <div className='PlanInspect-header'>
         <h1>Plan Management</h1>
         <button>Add Plan</button>

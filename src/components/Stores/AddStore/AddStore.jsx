@@ -5,8 +5,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 import "./AddStore.css";
-function AddStore() {
+function AddStore({statusModalAdd}) {
   const navigate = useNavigate();
+  const handleAddModalHide=()=>{
+    statusModalAdd(false)
+  }
   return (
     <div className="AddStore-container">
       <div className="AddStore-content">
@@ -14,9 +17,9 @@ function AddStore() {
 
         <div
           className="x-icon"
-          onClick={() => {
-            navigate("/admin/stores");
-          }}
+          onClick={() => 
+           handleAddModalHide()
+          }
         >
           <FaTimes />
         </div>
@@ -33,7 +36,7 @@ function AddStore() {
           <div className="form-group">
             <label className="form-input-control">Địa chỉ</label>
             <input
-              className="for m-input-control"
+              className="form-input-control"
               type="text"
               placeholder="Địa chỉ"
             />

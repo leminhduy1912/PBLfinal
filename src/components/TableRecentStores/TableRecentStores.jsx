@@ -41,7 +41,7 @@ const TableRecentStores = () => {
       className: rowInfo.original.action === "Active" ? "Active" : "Pause",
     };
   };
-  const pageSizeOptions = [5];
+  const pageSizeOptions = [6];
   return (
     <div>
       <h1>Recent Stores</h1>
@@ -50,6 +50,7 @@ const TableRecentStores = () => {
         columns={columns}
         data={recentStores}
         defaultPageSize={6}
+        pageSizeOptions={pageSizeOptions}
       />
     </div>
   );

@@ -1,12 +1,15 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React from "react";
+import React, { useState } from "react";
 import "./AccountUpdate.css";
 import { FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-function AccountUpdate() {
-  const navigate = useNavigate();
+function AccountUpdate({statusModalUpdateHide}) {
+ const handleHideUpdateModal=()=>{
+  statusModalUpdateHide(false)
+ }
+
   return (
     <div className="AccountUpdate-container">
       <div className="AccountUpdate-content">
@@ -14,9 +17,9 @@ function AccountUpdate() {
 
         <div
           className="x-icon"
-          onClick={() => {
-            navigate("/admin/manageAccount");
-          }}
+          onClick={ 
+            handleHideUpdateModal
+          }
         >
           <FaTimes />
         </div>

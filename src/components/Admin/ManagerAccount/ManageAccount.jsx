@@ -4,10 +4,19 @@ import ReactTable from "react-table";
 import "react-table/react-table.css";
 import Loading from "../../Loading/Loading";
 import "./ManageAccount.css";
+import AccountUpdate from "./AccountUpdate/AccountUpdate";
+import AddAccount from "./AddAccount/AddAccount";
 const ManageAccount = () => {
   const [data, setData] = useState([]);
   const [getDataSuccess, setGetDataSucceess] = useState(true);
-  const navigate = useNavigate();
+  const [showModalUpdate,setShowModalUpdate] = useState(false);
+  const handleUpdateAccount = (value) => {
+      setShowModalUpdate(value) 
+  };
+  const [showModalAddAccount,setShowModalAddAccount]= useState(false);
+  const handleAddAccount=(value)=>{
+   setShowModalAddAccount(value)
+  }
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((res) => res.json())
@@ -16,9 +25,6 @@ const ManageAccount = () => {
         setGetDataSucceess(true);
       });
   }, []);
-  const handleUpdateAccount = (row) => {
-    navigate("/admin/accountUpdate");
-  };
   const columns = [
     {
       Header: "Username",
@@ -43,7 +49,7 @@ const ManageAccount = () => {
     {
       Header: "Action",
       Cell: (row) => (
-        <button onClick={() => handleUpdateAccount(row)}>Update</button>
+        <button onClick={() => handleUpdateAccount(true)}>Update</button>
       ),
     },
   ];
@@ -53,11 +59,14 @@ const ManageAccount = () => {
   } else {
     return (
       <div className="ManageAccount">
+        {showModalUpdate&&<AccountUpdate      statusModalUpdateHide={handleUpdateAccount}/>}
+        {showModalAddAccount&&<AddAccount      statusModalAddAccountHide={handleAddAccount}/>}
+
         <div className="ManageAccount-header">
           <h1>Account Management</h1>
           <button
             onClick={() => {
-              navigate("/admin/addAccount");
+             handleAddAccount(true)
             }}
           >
             Add Account

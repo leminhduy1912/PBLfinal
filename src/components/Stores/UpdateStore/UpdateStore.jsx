@@ -1,21 +1,30 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 import "./UpdateStore.css";
-function UpdateStore() {
+function UpdateStore({statusModalUpdate}) {
   const navigate = useNavigate();
+const handleHideUpdateModal=(value)=>{
+statusModalUpdate(value)
+}
   return (
-    <div className="UpdateStore-container">
+    
+    <div className="UpdateStore-container"
+    
+    >
       <div className="UpdateStore-content">
+
+        
         <h1>Update Store</h1>
 
         <div
           className="x-icon"
           onClick={() => {
-            navigate("/admin/stores");
+            console.log("B");
+              handleHideUpdateModal(false)
           }}
         >
           <FaTimes />

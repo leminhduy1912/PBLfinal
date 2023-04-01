@@ -1,9 +1,12 @@
 import React from 'react'
 import { FaTimes } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom'
+
 import "./AddAccount.css"
-function AddAccount() {
-    const navigate= useNavigate()
+function AddAccount({statusModalAddAccountHide}) {
+   const handleHideModaAddAccount=()=>{
+   statusModalAddAccountHide(false)
+   
+   }
   return (
     <div className='AddAccount-container'>
     <div className='AddAccount-content'>
@@ -11,9 +14,7 @@ function AddAccount() {
   <h1>Add Account</h1>
   
   <div className='x-icon'
-  onClick={()=>{
-    navigate('/admin/manageAccount')
-  }}
+  onClick={ handleHideModaAddAccount  }
   ><FaTimes />
   </div>
 

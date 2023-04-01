@@ -11,7 +11,8 @@ import Logo from "../../asset/admin.png";
 import Dashboard from "../Admin/Dashboard/Dashboard";
 import ManageAccount from "../Admin/ManagerAccount/ManageAccount";
 import { Admin } from "../../pages/admin/Admin";
-
+import PlanInspect from "../Admin/PlanInspect/PlanInspect"
+import Stores from "../Stores/Stores"
 const Sidebar = (props) => {
   const { data, role } = props;
   const navigate = useNavigate();
@@ -20,9 +21,21 @@ const Sidebar = (props) => {
   if (selected===0){
     tab= <Admin/>
   }
+  if (selected===1){
+    tab= <PlanInspect/>
+  }
+  if (selected===2){
+    tab= <Stores/>
+  }
+  if (selected===3){
+    tab= <ManageAccount/>
+  }
 
   return (
+    
+   
     <div className="Sidebar-container">
+     
       <div className="Sidebar-glass">
         <div>
           <div className="Sidebar">
@@ -79,6 +92,7 @@ const Sidebar = (props) => {
         </div>
       </div>
     </div>
+    
   );
 };
 export default Sidebar;

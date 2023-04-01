@@ -2,7 +2,12 @@
 import "./AddPlan.css"
 function AddPlan() {
   return (
-    <div>AddPlan</div>
+    <div className="AddPlan-container">
+      <div className="AddPlan-content">
+  
+        AddPlan
+      </div>
+    </div>
   )
 }
 

@@ -26,6 +26,7 @@ import Login from "./components/form/Login/Login";
 import Register from "./components/form/Register/Register";
 import CompanyRegister from "./components/form/CompanyRegister/CompanyRegister";
 import { SidebarData } from "./Data/Data";
+import AddPlan from "./components/Admin/PlanInspect/AddPlan/AddPlan";
 
 function App() {
   return (

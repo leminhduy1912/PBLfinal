@@ -2,7 +2,9 @@ import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import ReactTable from 'react-table';
+import UpdateStore from "./UpdateStore/UpdateStore"
 import "./Stores.css"
+import AddStore from './AddStore/AddStore';
 function Stores() {
     const dataStores=[
         {
@@ -126,8 +128,18 @@ function Stores() {
             status:"Active"
         }
     ]
+    const [showUpdateStoreModal,setShowUpdateStoreModal] = useState(false)
+    function handleShowUpdateModal (value){
+        setShowUpdateStoreModal(value)
+    }
+    const [showAddStoreModal,setShowAddStoreModal]= useState(false)
+   
+    const handleAddStore=(value)=>{
+   setShowAddStoreModal(value)
+   console.log("a");
+    }
     const [data,setData]= useState(dataStores);
-    const navigate=useNavigate();
+  
     const columns = [
         {
             Header:'Name Store',
@@ -157,14 +169,20 @@ function Stores() {
         Header:'Action',
             Cell:row=>(
                 <button
-                onClick={()=>{
-                    navigate("/admin/storesUpdate")
-                }}
-                >Update</button>
-        )}
+                onClick={()=>handleShowUpdateModal(true)}
+                >Edit</button>
+        )},
+        {
+            Header:'',
+                Cell:row=>(
+                    <button
+                    >Delete</button>
+            )}
+        
 
     ]
-    const pageSizeOptions=[5,10]
+    
+    const pageSizeOptions=[5,9]
     const getTdProps = (state, rowInfo, column) => {
           if (!rowInfo){
             return{}
@@ -173,22 +191,26 @@ function Stores() {
           className: (rowInfo.original.status === 'Active') ? 'Active' : 'Pause', 
         };
       };
-      
+    
+
   return (
     <div className='Stores-container'>
+    {showUpdateStoreModal&&<UpdateStore  statusModalUpdate={handleShowUpdateModal}    />}
+    {showAddStoreModal&&<AddStore        statusModalAdd={handleAddStore}           />}
+  
      <div className='Stores-header'>
         <h1>Stores Infomation</h1>
         <button
-        onClick={()=>{
-           navigate('/admin/addStore')
-        }}
+        onClick={()=>
+        handleAddStore(true)
+        }
         >Add Store</button>
      </div>
      <ReactTable
      getTdProps={getTdProps}
       data={data}
       columns={columns}
-    defaultPageSize={10}
+    defaultPageSize={9}
     pageSizeOptions={pageSizeOptions}
      />
     </div>
