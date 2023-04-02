@@ -13,6 +13,7 @@ import ManageAccount from "../Admin/ManagerAccount/ManageAccount";
 import { Admin } from "../../pages/admin/Admin";
 import PlanInspect from "../Admin/PlanInspect/PlanInspect"
 import Stores from "../Stores/Stores"
+import Information from "../Admin/Information/Information";
 const Sidebar = (props) => {
   const { data, role } = props;
   const navigate = useNavigate();
@@ -29,6 +30,9 @@ const Sidebar = (props) => {
   }
   if (selected===3){
     tab= <ManageAccount/>
+  }
+  if (selected===4){
+    tab= <Information/>
   }
 
   return (
