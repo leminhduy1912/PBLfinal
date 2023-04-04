@@ -61,22 +61,6 @@ const Sidebar = (props) => {
                   key={index}
                   onClick={() => {
                     setSelected(index);
-                    // if (index === 0) {
-                    //   tab = <Admin/>
-                    //  {console.log(tab);}
-                    // }
-                    // if (index === 1) {
-                    //   navigate("/admin/planInspect");
-                    // }
-                    // if (index === 2) {
-                    //   navigate("/admin/stores");
-                    // }
-                    // if (index === 3) {
-                    //   navigate("/admin/manageAccount");
-                    // }
-                    // if (index === 4) {
-                    //   navigate("/admin/inforSelf");
-                    // }
                   }}
                 >
                   <item.icon />
@@ -87,6 +71,7 @@ const Sidebar = (props) => {
 
             <div className="menuItem">
               <UilSignOutAlt />
+              <span>Log out</span>
             </div>
           </div>
         </div>

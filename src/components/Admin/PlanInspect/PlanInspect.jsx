@@ -4,6 +4,10 @@ import "./PlanInspect.css"
 import "react-table/react-table.css" 
 import AddPlan from './AddPlan/AddPlan'
 function PlanInspect() {
+    const [showModalAddPlan,setShowModalAddPlan] = useState(false)
+    const handleShowMoDalAddPlan=(value)=>{
+        setShowModalAddPlan(value)
+    }
     const data=[
         {
             nameStore:"Banh xeo co ba",
@@ -140,13 +144,15 @@ function PlanInspect() {
         };
       };
       const pageSizeOptions = [10];
-      const [isOpenAddPlanModal,setIsOpenAddPlanModal]= useState(false)
+      
   return (
     <div className='PlanInspect'>
-        {isOpenAddPlanModal&&<AddPlan/>}
+        {showModalAddPlan&&<AddPlan  statusHideModalAddPlan={handleShowMoDalAddPlan}   />}
         <div className='PlanInspect-header'>
         <h1>Plan Management</h1>
-        <button>Add Plan</button>
+        <button
+        onClick={()=>handleShowMoDalAddPlan(true)}
+        >Add Plan</button>
         </div>
  <ReactTable
  getTdProps={getTdProps}

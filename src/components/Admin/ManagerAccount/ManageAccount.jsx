@@ -75,7 +75,7 @@ const ManageAccount = () => {
         <ReactTable
           columns={columns}
           data={data}
-          defaultPageSize={10}
+          defaultPageSize={9}
           pageSizeOptions={pageSizeOptions}
         />
       </div>
