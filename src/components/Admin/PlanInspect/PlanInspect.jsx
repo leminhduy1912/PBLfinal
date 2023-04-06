@@ -3,11 +3,16 @@ import ReactTable from 'react-table'
 import "./PlanInspect.css"
 import "react-table/react-table.css" 
 import AddPlan from './AddPlan/AddPlan'
+import UpdatePlan from './UpdatePlan/UpdatePlan'
 function PlanInspect() {
     const [showModalAddPlan,setShowModalAddPlan] = useState(false)
     const handleShowMoDalAddPlan=(value)=>{
         setShowModalAddPlan(value)
     }
+    const [showModalUpdatePlan,setShowModalUpdatePlan]= useState(false)
+    const handleUpdatePlan=(value)=>{
+       setShowModalUpdatePlan(value)
+         }
     const data=[
         {
             nameStore:"Banh xeo co ba",
@@ -133,6 +138,12 @@ function PlanInspect() {
             Header:'Status',
             accessor:'status'
         },
+        {
+            Header:'Action',
+            Cell: (row) => (
+                <button onClick={() => handleUpdatePlan(true)}>Update</button>
+              ),
+        },
 
     ]
     const getTdProps = (state, rowInfo, column) => {
@@ -148,6 +159,7 @@ function PlanInspect() {
   return (
     <div className='PlanInspect'>
         {showModalAddPlan&&<AddPlan  statusHideModalAddPlan={handleShowMoDalAddPlan}   />}
+        {showModalUpdatePlan&&<UpdatePlan     />}
         <div className='PlanInspect-header'>
         <h1>Plan Management</h1>
         <button
@@ -158,7 +170,7 @@ function PlanInspect() {
  getTdProps={getTdProps}
  data={data}
  columns={columns}
- defaultPageSize={10}
+ defaultPageSize={9}
  pageSizeOptions={pageSizeOptions}
  />
     </div>

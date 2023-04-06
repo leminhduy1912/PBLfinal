@@ -11,9 +11,12 @@
 .Qualified:nth-child(6){
     background-color: rgb(145 254 159/49%);
     color: green;
+    border: none;
+    border-radius: 20px;
 }
 .Unqualified:nth-child(6){
-   
+    border: none;
+    border-radius: 20px;
     color: red;
     background-color: #ffadad8f;
 }
