@@ -4,15 +4,17 @@ import "./PlanInspect.css"
 import "react-table/react-table.css" 
 import AddPlan from './AddPlan/AddPlan'
 import UpdatePlan from './UpdatePlan/UpdatePlan'
+import { RequireAuth } from '../../../hoc/RequiredAuth'
 function PlanInspect() {
     const [showModalAddPlan,setShowModalAddPlan] = useState(false)
     const handleShowMoDalAddPlan=(value)=>{
         setShowModalAddPlan(value)
+        console.log("A");
     }
     const [showModalUpdatePlan,setShowModalUpdatePlan]= useState(false)
-    const handleUpdatePlan=(value)=>{
+    const handleShowModalUpdatePlan=(value)=>{
        setShowModalUpdatePlan(value)
-         }
+    }
     const data=[
         {
             nameStore:"Banh xeo co ba",
@@ -141,7 +143,7 @@ function PlanInspect() {
         {
             Header:'Action',
             Cell: (row) => (
-                <button onClick={() => handleUpdatePlan(true)}>Update</button>
+                <button onClick={() =>handleShowModalUpdatePlan(true)}>Update</button>
               ),
         },
 
@@ -159,12 +161,14 @@ function PlanInspect() {
   return (
     <div className='PlanInspect'>
         {showModalAddPlan&&<AddPlan  statusHideModalAddPlan={handleShowMoDalAddPlan}   />}
-        {showModalUpdatePlan&&<UpdatePlan     />}
+        {showModalUpdatePlan&&<UpdatePlan   statusHideModalUpdatePlan={handleShowModalUpdatePlan}  />}
         <div className='PlanInspect-header'>
         <h1>Plan Management</h1>
-        <button
-        onClick={()=>handleShowMoDalAddPlan(true)}
-        >Add Plan</button>
+        <RequireAuth role={"admin"}> 
+            <button
+            onClick={()=>handleShowMoDalAddPlan(true)}
+            >Add Plan</button>
+        </RequireAuth>
         </div>
  <ReactTable
  getTdProps={getTdProps}

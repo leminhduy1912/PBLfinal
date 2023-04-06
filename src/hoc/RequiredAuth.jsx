@@ -4,6 +4,7 @@ export const RequireAuth = ({ children, role }) => {
   console.log(role);
   const { isLogged } = useLoginStatus(role);
   if (!isLogged) {
-    return <ErrorComponent />;
+    // return <ErrorComponent />;
+    return < ></>;
   } else return children;
 };

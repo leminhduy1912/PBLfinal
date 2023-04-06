@@ -35,7 +35,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/admin" element={<Sidebar data={SidebarData} role="Admin"/>} />
-          <Route path="/moderrator" element={<Sidebar data={SidebarData} role="Moderrator"/>} />
+          <Route path="/moderrator" element={<Sidebar data={SidebarData} />} />
           <Route path="/*" element={<ErrorComponent />} />
           <Route path="/404" element={<ErrorComponent />} />
           <Route path="/login" element={<Login />} />
