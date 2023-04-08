@@ -1,220 +1,90 @@
-import React from 'react'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import ReactTable from 'react-table';
-import UpdateStore from "./UpdateStore/UpdateStore"
-import "./Stores.css"
-import AddStore from './AddStore/AddStore';
+import React from "react";
+import "./Stores.css";
+import AddStore from "./AddStore/AddStore";
+import { useFetchUser } from "../../hooks/useFetchUser";
+import { RowUsers } from "../tables/user/users";
+import { Pagination } from "@mui/material";
+import { useState } from "react";
 function Stores() {
-    const dataStores=[
-        {
-            nameStore:"Banh xeo co ba",
-            addressStore:"50 Hoang Dieu",
-            kindOfBussiness:"Kinh doanh thuc an",
-            certificated:"WHO999",
-            manager:"Nguyen Van Hieu",
-            status:"Active"
-        },
-        {
-            nameStore:"Banh xeo co hai",
-            addressStore:"50 Hoang Dieu",
-            kindOfBussiness:"Kinh doanh thuc an",
-            certificated:"WHO999",
-            manager:"Nguyen Van Hieu",
-            status:"Pause"
-        },
-        {
-            nameStore:"Banh xeo co nam",
-            addressStore:"50 Hoang Dieu",
-            kindOfBussiness:"Kinh doanh thuc an",
-            certificated:"WHO999",
-            manager:"Nguyen Van Hieu",
-            status:"Active"
-        },
-        {
-            nameStore:"Banh xeo co sau",
-            addressStore:"50 Hoang Dieu",
-            kindOfBussiness:"Kinh doanh thuc an",
-            certificated:"WHO999",
-            manager:"Nguyen Van Hieu",
-            status:"Pause"
-        },
-        {
-            nameStore:"Banh xeo co muoi",
-            addressStore:"50 Hoang Dieu",
-            kindOfBussiness:"Kinh doanh thuc an",
-            certificated:"WHO999",
-            manager:"Nguyen Van Hieu",
-            status:"Active"
-        },
-        {
-            nameStore:"Banh xeo co ba",
-            addressStore:"50 Hoang Dieu",
-            kindOfBussiness:"Kinh doanh thuc an",
-            certificated:"WHO999",
-            manager:"Nguyen Van Hieu",
-            status:"Active"
-        },
-        {
-            nameStore:"Banh xeo co hai",
-            addressStore:"50 Hoang Dieu",
-            kindOfBussiness:"Kinh doanh thuc an",
-            certificated:"WHO999",
-            manager:"Nguyen Van Hieu",
-            status:"Pause"
-        },
-        {
-            nameStore:"Banh xeo co nam",
-            addressStore:"50 Hoang Dieu",
-            kindOfBussiness:"Kinh doanh thuc an",
-            certificated:"WHO999",
-            manager:"Nguyen Van Hieu",
-            status:"Active"
-        },
-        {
-            nameStore:"Banh xeo co sau",
-            addressStore:"50 Hoang Dieu",
-            kindOfBussiness:"Kinh doanh thuc an",
-            certificated:"WHO999",
-            manager:"Nguyen Van Hieu",
-            status:"Pause"
-        },
-        {
-            nameStore:"Banh xeo co muoi",
-            addressStore:"50 Hoang Dieu",
-            kindOfBussiness:"Kinh doanh thuc an",
-            certificated:"WHO999",
-            manager:"Nguyen Van Hieu",
-            status:"Active"
-        },
-        {
-            nameStore:"Banh xeo co ba",
-            addressStore:"50 Hoang Dieu",
-            kindOfBussiness:"Kinh doanh thuc an",
-            certificated:"WHO999",
-            manager:"Nguyen Van Hieu",
-            status:"Active"
-        },
-        {
-            nameStore:"Banh xeo co hai",
-            addressStore:"50 Hoang Dieu",
-            kindOfBussiness:"Kinh doanh thuc an",
-            certificated:"WHO999",
-            manager:"Nguyen Van Hieu",
-            status:"Pause"
-        },
-        {
-            nameStore:"Banh xeo co nam",
-            addressStore:"50 Hoang Dieu",
-            kindOfBussiness:"Kinh doanh thuc an",
-            certificated:"WHO999",
-            manager:"Nguyen Van Hieu",
-            status:"Active"
-        },
-        {
-            nameStore:"Banh xeo co sau",
-            addressStore:"50 Hoang Dieu",
-            kindOfBussiness:"Kinh doanh thuc an",
-            certificated:"WHO999",
-            manager:"Nguyen Van Hieu",
-            status:"Pause"
-        },
-        {
-            nameStore:"Banh xeo co muoi",
-            addressStore:"50 Hoang Dieu",
-            kindOfBussiness:"Kinh doanh thuc an",
-            certificated:"WHO999",
-            manager:"Nguyen Van Hieu",
-            status:"Active"
-        }
-    ]
-    const [showUpdateStoreModal,setShowUpdateStoreModal] = useState(false)
-    function handleShowUpdateModal (value){
-        setShowUpdateStoreModal(value)
-    }
-    const [showAddStoreModal,setShowAddStoreModal]= useState(false)
-   
-    const handleAddStore=(value)=>{
-   setShowAddStoreModal(value)
-   console.log("a");
-    }
-    const [data,setData]= useState(dataStores);
-  
-    const columns = [
-        {
-            Header:'Name Store',
-            accessor:'nameStore'
-        },
-        {
-            Header:'Address Store',
-            accessor:'addressStore'
-        },
-        {
-            Header:'Kind Of Bussiness',
-            accessor:'kindOfBussiness'
-        },
-        {
-            Header:'Certificated',
-            accessor:'certificated'
-        },
-        {
-            Header:'Manager',
-            accessor:'manager'
-        },
-        {
-            Header:'Status',
-            accessor:'status'
-        },
-        {
-        Header:'Action',
-            Cell:row=>(
-                <button
-                onClick={()=>handleShowUpdateModal(true)}
-                >Edit</button>
-        )},
-        {
-            Header:'',
-                Cell:row=>(
-                    <button
-                    >Delete</button>
-            )}
-        
-
-    ]
-    
-    const pageSizeOptions=[5,9]
-    const getTdProps = (state, rowInfo, column) => {
-          if (!rowInfo){
-            return{}
-          }
-        return {
-          className: (rowInfo.original.status === 'Active') ? 'Active' : 'Pause', 
-        };
-      };
-    
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const [email, setEmail] = useState("");
+  const [fullname, setFullName] = useState("");
+  const [filter, setFilter] = useState({ fullname, email, page: 1 });
+  const { data, pagination, error, loading } = useFetchUser(filter);
+  const length = data.length;
+  const handleOnChange = (event, value) => {
+    setCurrentPage(value);
+    setFilter({ fullname: fullname, email: email, page: value });
+    // console.log(currentPage);
+  };
+  const handleOnClick = () => {
+    setFilter({ fullname: fullname, email: email, page: currentPage });
+    setEmail("");
+    setFullName("");
+  };
+  const handleKeyEnter = (event) => {
+    if (event.key === "Enter")
+      setFilter({ fullname: fullname, email: email, page: currentPage });
+  };
   return (
-    <div className='Stores-container'>
-    {showUpdateStoreModal&&<UpdateStore  statusModalUpdate={handleShowUpdateModal}    />}
-    {showAddStoreModal&&<AddStore        statusModalAdd={handleAddStore}           />}
-  
-     <div className='Stores-header'>
-        <h1>Stores Infomation</h1>
-        <button
-        onClick={()=>
-        handleAddStore(true)
-        }
-        >Add Store</button>
-     </div>
-     <ReactTable
-     getTdProps={getTdProps}
-      data={data}
-      columns={columns}
-    defaultPageSize={9}
-    pageSizeOptions={pageSizeOptions}
-     />
-    </div>
-  )
+    <>
+      <div>
+        <input
+          onChange={(e) => setEmail(e.target.value)}
+          onKeyDown={handleKeyEnter}
+          placeholder="--email--"
+        ></input>
+        <input
+          onChange={(e) => setFullName(e.target.value)}
+          onKeyDown={handleKeyEnter}
+          placeholder="--fullname--"
+        ></input>
+        <button onClick={handleOnClick}> Search </button>
+        <button> Add </button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Company</th>
+            <th>TAX</th>
+            <th>Type of Business</th>
+            <th>email</th>
+            <th>status</th>
+            <th>role</th>
+            <th>action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Array.isArray(data) &&
+            data.map((item, index) => {
+              return (
+                <RowUsers
+                  key={index}
+                  index={index + 1 + (currentPage - 1) * length}
+                  {...item}
+                />
+              );
+            })}
+        </tbody>
+      </table>
+      {loading && <> Loading...</>}
+
+      {data && (
+        <>
+          <br />
+          <Pagination
+            count={pagination.totalPages}
+            showFirstButton
+            showLastButton
+            page={currentPage}
+            onPage
+            onChange={handleOnChange}
+          />
+        </>
+      )}
+    </>
+  );
 }
 
-export default Stores
+export default Stores;

@@ -8,7 +8,7 @@ export const RowUsers = (props) => {
         <td>{props.companyName ?? "null"}</td>
         <td>{props.taxIndentity ?? "null"}</td>
         <td>{props.businessId ?? "null"}</td>
-        <td>{props.fullName}</td>
+        <td>{props.email}</td>
         <td>{props.action === 1 ? "Active" : "Inactive"}</td>
         <td>{props.role.roleName ?? ""}</td>
         <td className="td-button">

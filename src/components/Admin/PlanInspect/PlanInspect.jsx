@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/aria-role */
 import React, { useState } from "react";
 import "./PlanInspect.css";
-import "react-table/react-table.css";
 import AddPlan from "./AddPlan/AddPlan";
 import UpdatePlan from "./UpdatePlan/UpdatePlan";
 import { RequireAuth } from "../../../hoc/RequiredAuth";

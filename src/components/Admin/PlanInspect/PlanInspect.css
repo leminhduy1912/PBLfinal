@@ -76,9 +76,9 @@ tbody tr {
   border-bottom: 1px solid #e3f1d5;
   /* &:last-child  { border:0; } */
 }
-tbody tr:last-child {
+/* tbody tr:last-child {
   border: 0;
-}
-tbody tr td {
-  padding-left: 2rem;
+} */
+td {
+  padding: 1.25rem;
 }
