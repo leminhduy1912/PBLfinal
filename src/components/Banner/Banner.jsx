@@ -1,6 +1,6 @@
 import React from "react";
 import "./Banner.css";
-function Banner() {
+export const Banner = () => {
   return (
     <div className="Home">
       <div className="Home-content">
@@ -9,12 +9,11 @@ function Banner() {
         </h2>
         <h3>Tra cứu kết quả tại đây </h3>
         <form>
-          <input type="text" placeholder="Nhập số ĐKKD" />
-          <button>Kiểm Tra</button>
+          <input type="text" placeholder="Nhập số ĐKKD" className="input-box" />
+          <input type="text" placeholder="Nhập số ĐKKD" className="input-box" />
+          <button>Tra Cứu</button>
         </form>
       </div>
     </div>
   );
-}
-
-export default Banner;
+};

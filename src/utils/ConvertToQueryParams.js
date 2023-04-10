@@ -5,5 +5,5 @@ export const ConvertToQueryParams = (paramsObj) => {
       query += key + "=" + paramsObj[key] + "&";
     }
   }
-  return "?" + query.slice(0, -1);
+  return query.slice(0, -1) === "" ? "" : "?" + query.slice(0, -1);
 };

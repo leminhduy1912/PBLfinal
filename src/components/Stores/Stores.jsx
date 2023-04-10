@@ -11,7 +11,6 @@ function Stores() {
   const [fullname, setFullName] = useState("");
   const [filter, setFilter] = useState({ fullname, email, page: 1 });
   const { data, pagination, error, loading } = useFetchUser(filter);
-  const length = data.length;
   const handleOnChange = (event, value) => {
     setCurrentPage(value);
     setFilter({ fullname: fullname, email: email, page: value });
@@ -61,7 +60,7 @@ function Stores() {
               return (
                 <RowUsers
                   key={index}
-                  index={index + 1 + (currentPage - 1) * length}
+                  index={index + 1 + (currentPage - 1) * 8}
                   {...item}
                 />
               );
