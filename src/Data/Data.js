@@ -24,8 +24,12 @@ export const SidebarData = [
     heading: "Plan",
   },
   {
-    icon: UilStore,
-    heading: "Stores",
+    icon: UilUsersAlt,
+    heading: "Users",
+  },
+  {
+    icon: UilUsersAlt,
+    heading: "Products",
   },
   {
     icon: UilUsersAlt,
@@ -33,7 +37,7 @@ export const SidebarData = [
   },
   {
     icon: UilChart,
-    heading: "Information",
+    heading: "Profile",
   },
 ];
 
