@@ -1,4 +1,4 @@
-import { Axios } from "../config";
+import { Axios } from "~config";
 
 export const getAllProducts = async (query) => {
   return await Axios({

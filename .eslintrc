@@ -42,13 +42,13 @@
       },
       "alias": {
         "map": [
-          ["@pages", "./src/pages/index.js"],
-          ["@hooks", "./src/hooks/index.ts"],
-          ["@components", "./src/components/index.js"],
-          ["@utils", "./src/utils/index.js"],
-          ["@service", "./src/service/index.js"],
-          ["@store", "./src/store/index.js"],
-          ["@config", "./src/config/index.js"]
+          ["~pages", "./src/pages/index.js"],
+          ["~hooks", "./src/hooks/index.js"],
+          ["~components", "./src/components/index.js"],
+          ["~utils", "./src/utils/index.js"],
+          ["~service", "./src/service/index.js"],
+          ["~store", "./src/store/index.js"],
+          ["~config", "./src/config/index.js"]
         ],
         "extensions": [".js", ".jsx"]
       }

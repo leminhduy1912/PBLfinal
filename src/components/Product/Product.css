@@ -1,0 +1,16 @@
+.product-card-container {
+  padding: 1.5rem;
+  display: flex;
+  width: 650px;
+  border: 1px solid rgb(125, 121, 121);
+  margin: auto;
+  margin-top: 3rem;
+  border-radius: 30px;
+  outline: none;
+}
+.product-card-image {
+  margin: auto;
+  height: 80px;
+  width: 400px;
+  display: flex;
+}
