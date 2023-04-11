@@ -1,4 +1,4 @@
-.ReactTable .rt-tbody .rt-td:last-child {
+/* .ReactTable .rt-tbody .rt-td:last-child {
     border-radius: 30px;
     display: flex;
     justify-content: center;
@@ -11,9 +11,12 @@
 .Qualified:nth-child(6){
     background-color: rgb(145 254 159/49%);
     color: green;
+    border: none;
+    border-radius: 20px;
 }
 .Unqualified:nth-child(6){
-   
+    border: none;
+    border-radius: 20px;
     color: red;
     background-color: #ffadad8f;
 }
@@ -33,4 +36,49 @@
     font-size: 15px;
     font-weight: 500;
     cursor: pointer;
+} */
+table {
+  width: 100%;
+}
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+table {
+  border-spacing: 1;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 6px;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+table * {
+  position: relative;
+}
+
+/* td,
+th {
+  padding-left: 2rem;
+} */
+
+thead tr {
+  height: 60px;
+  background: #ffed86;
+  font-size: 16px;
+}
+tbody tr {
+  height: 48px;
+  border-bottom: 1px solid #e3f1d5;
+  /* &:last-child  { border:0; } */
+}
+/* tbody tr:last-child {
+  border: 0;
+} */
+td {
+  padding: 1.25rem;
 }

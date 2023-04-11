@@ -5,8 +5,8 @@ import "./Navbar.css";
 import Logo from "../../asset/logoDanang.jpg";
 import { useNavigate } from "react-router-dom";
 import Contact from "../Contact/Contact";
-import Banner from "./../Banner/Banner";
-function Navbar() {
+// import Banner from "./../Banner/Banner";
+export const Navbar = () => {
   const navigate = useNavigate();
   const [selected, setSelected] = useState(0);
   const menuOptions = [
@@ -15,13 +15,13 @@ function Navbar() {
     { title: "Liên hệ" },
     { title: "Đóng góp ý kiến" },
   ];
-  let tab;
-  if (selected === 0) {
-    tab = <Banner />;
-  }
-  if (selected === 2) {
-    tab = <Contact />;
-  }
+  // let tab;
+  // if (selected === 0) {
+  //   tab = <Banner />;
+  // }
+  // if (selected === 2) {
+  //   tab = <Contact />;
+  // }
   return (
     <div>
       <div className="nav">
@@ -58,9 +58,7 @@ function Navbar() {
           </button>
         </div>
       </div>
-      {tab}
+      {/* {tab} */}
     </div>
   );
-}
-
-export default Navbar;
+};

@@ -32,23 +32,23 @@ statusModalUpdate(value)
 
         <form action="">
           <div className="form-group">
-            <label className="form-input-control">Tên cửa hàng</label>
+            <label className="form-input-control">Name Store</label>
             <input
               className="form-input-control"
               type="text"
-              placeholder="Fullname"
+              placeholder="Name Store"
             />
           </div>
           <div className="form-group">
-            <label className="form-input-control">Địa chỉ</label>
+            <label className="form-input-control">Address</label>
             <input
               className="form-input-control"
               type="text"
-              placeholder="Email"
+              placeholder="Address"
             />
           </div>
           <div className="form-group">
-            <label className="form-input-control">Loại hình kinh doanh</label>
+            <label className="form-input-control">Kind of Bussiness</label>
             <select name="" id="">
               <option value="" selected disabled>
                 --Kind Of Bussiness--
@@ -58,7 +58,7 @@ statusModalUpdate(value)
             </select>
           </div>
           <div className="form-group">
-            <label className="form-input-control">Chứng nhận</label>
+            <label className="form-input-control">Certificated</label>
             <select name="" id="">
               <option value="" selected disabled>
                 --Certificated--
@@ -68,7 +68,7 @@ statusModalUpdate(value)
             </select>
           </div>
           <div className="form-group">
-            <label className="form-input-control">Trạng thái hoạt động</label>
+            <label className="form-input-control">Status</label>
             <select name="" id="">
               <option value="" selected disabled>
                 --Status--

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ReactTable from "react-table";
-import "react-table/react-table.css";
 import Loading from "../../Loading/Loading";
 import "./ManageAccount.css";
 import AccountUpdate from "./AccountUpdate/AccountUpdate";
@@ -9,14 +7,14 @@ import AddAccount from "./AddAccount/AddAccount";
 const ManageAccount = () => {
   const [data, setData] = useState([]);
   const [getDataSuccess, setGetDataSucceess] = useState(true);
-  const [showModalUpdate,setShowModalUpdate] = useState(false);
+  const [showModalUpdate, setShowModalUpdate] = useState(false);
   const handleUpdateAccount = (value) => {
-      setShowModalUpdate(value) 
+    setShowModalUpdate(value);
   };
-  const [showModalAddAccount,setShowModalAddAccount]= useState(false);
-  const handleAddAccount=(value)=>{
-   setShowModalAddAccount(value)
-  }
+  const [showModalAddAccount, setShowModalAddAccount] = useState(false);
+  const handleAddAccount = (value) => {
+    setShowModalAddAccount(value);
+  };
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((res) => res.json())
@@ -59,7 +57,7 @@ const ManageAccount = () => {
   } else {
     return (
       <div className="ManageAccount">
-        {showModalUpdate&&<AccountUpdate      statusModalUpdateHide={handleUpdateAccount}/>}
+        {/* {showModalUpdate&&<AccountUpdate      statusModalUpdateHide={handleUpdateAccount}/>}
         {showModalAddAccount&&<AddAccount      statusModalAddAccountHide={handleAddAccount}/>}
 
         <div className="ManageAccount-header">
@@ -75,9 +73,9 @@ const ManageAccount = () => {
         <ReactTable
           columns={columns}
           data={data}
-          defaultPageSize={10}
+          defaultPageSize={9}
           pageSizeOptions={pageSizeOptions}
-        />
+        /> */}
       </div>
     );
   }

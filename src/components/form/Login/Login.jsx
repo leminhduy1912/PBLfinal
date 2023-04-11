@@ -24,7 +24,7 @@ const Login = (props) => {
         return;
       }
       updateGlobalState({ token: res.data.ACCESS_TOKEN, role: res.data.role });
-      return navigate("/admin/dashBoard");
+      return navigate("/admin");
     } catch (error) {
       console.log(error);
     }

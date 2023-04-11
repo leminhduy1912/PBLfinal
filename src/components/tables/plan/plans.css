@@ -1,0 +1,13 @@
+tr td input {
+  display: none;
+}
+tbody tr td button {
+  margin: 1rem;
+  padding: 0.5rem;
+}
+.td-button {
+  padding: 0 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

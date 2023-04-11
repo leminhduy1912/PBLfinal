@@ -1,9 +1,9 @@
-import { useLoginStatus } from "../hooks/useLoginStatus";
+import { useAuth } from "../hooks/useLoginStatus";
 import { ErrorComponent } from "../components/Error/ErrorComponent";
 export const RequireAuth = ({ children, role }) => {
-  console.log(role);
-  const { isLogged } = useLoginStatus(role);
+  const { isLogged } = useAuth(role);
   if (!isLogged) {
-    return <ErrorComponent />;
+    // return <ErrorComponent />;
+    return <></>;
   } else return children;
 };

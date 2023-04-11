@@ -1,8 +1,4 @@
 import { createContext } from "react";
+import { initialState } from "./Reducer";
 
-const globalState = {
-  token: "",
-  role: "",
-};
-
-export const Context = createContext(globalState);
+export const Context = createContext(initialState);
