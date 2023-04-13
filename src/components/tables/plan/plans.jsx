@@ -16,14 +16,14 @@ export const PlanRowElement = (props) => {
         <td>{props.company.companyName}</td>
         <td>{DateConvert(props.time)}</td>
         <td className="td-button" style={{ overflow: "hidden" }}>
-          <RequireAuth role="admin">
-            <button onClick={() => getInfo(props)}>Details</button>
-            <button>Update</button>
-            <button>Cancel</button>
-          </RequireAuth>
-          <RequireAuth role="moderator">
-            <button>Report</button>
-          </RequireAuth>
+          {/* <RequireAuth role="admin"> */}
+          <button onClick={() => getInfo(props)}>Details</button>
+          <button>Update</button>
+          <button>Cancel</button>
+          {/* </RequireAuth> */}
+          {/* <RequireAuth role="moderator"> */}
+          <button>Report</button>
+          {/* </RequireAuth> */}
         </td>
       </tr>
     </>

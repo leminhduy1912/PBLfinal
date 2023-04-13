@@ -4,7 +4,7 @@ import { RowUsers } from "../tables/user/users";
 import { useFetchUser } from "../../hooks/useFetchUser";
 const TableRecentStores = () => {
   const { data, pagination, error, loading } = useFetchUser("");
-  console.log(pagination);
+  // console.log(pagination);
   return (
     <div>
       <h1>Recent Stores</h1>

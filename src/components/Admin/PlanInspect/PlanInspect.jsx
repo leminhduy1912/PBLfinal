@@ -148,9 +148,9 @@ function PlanInspect() {
     // />
     <>
       <div className="table-wrapper">
-        <RequireAuth role="admin">
-          <button>Add Plan</button>
-        </RequireAuth>
+        {/* <RequireAuth role="admin"> */}
+        <button>Add Plan</button>
+        {/* </RequireAuth> */}
         <table>
           <thead>
             <tr>

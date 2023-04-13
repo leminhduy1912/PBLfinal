@@ -25,23 +25,38 @@ import Login from "./components/form/Login/Login";
 import Register from "./components/form/Register/Register";
 import CompanyRegister from "./components/form/CompanyRegister/CompanyRegister";
 import { SidebarData } from "./Data/Data";
-import AddPlan from "./components/Admin/PlanInspect/AddPlan/AddPlan";
+// import AddPlan from "./components/Admin/PlanInspect/AddPlan/AddPlan";
+import { RedirectAccess, RequireAuth } from "~hoc";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route
+          {/* <Route
             path="/admin"
             element={<Sidebar data={SidebarData} role="Admin" />}
-          />
-          <Route path="/moderrator" element={<Sidebar data={SidebarData} />} />
+            />
+          <Route path="/moderrator" element={<Sidebar data={SidebarData} />} /> */}
           <Route path="/*" element={<ErrorComponent />} />
           <Route path="/404" element={<ErrorComponent />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<CompanyRegister />} />
+
+          <Route element={<RedirectAccess />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<CompanyRegister />} />
+            <Route path="/" element={<Home />} />
+          </Route>
+
+          <Route element={<RequireAuth roles={["admin", "moderator"]} />}>
+            <Route
+              path="/home"
+              element={<Sidebar data={SidebarData} role="Admin" />}
+            />
+            <Route
+              path="/moderrator"
+              element={<Sidebar data={SidebarData} />}
+            />
+          </Route>
         </Routes>
         {/* <Routes>
           <Route exact path="/" element={<HomePage />} />

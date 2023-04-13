@@ -9,7 +9,7 @@ export const useProduct = () => {
   const [pagination, setPagination] = useState({});
 
   const loadData = async (url) => {
-    let res = null;
+    let res = {};
     try {
       setLoading(true);
       res = await getAllProducts(ConvertToQueryParams(url));
@@ -18,7 +18,9 @@ export const useProduct = () => {
     } catch (error) {
       setError(error);
     } finally {
-      if (res !== null) setLoading(false);
+      if (res !== undefined) {
+        setLoading(false);
+      }
     }
   };
 

@@ -68,8 +68,11 @@ function Stores() {
         </tbody>
       </table>
       {loading && <> Loading...</>}
-
-      {data && (
+      {!(
+        data &&
+        Object.keys(data).length === 0 &&
+        Object.getPrototypeOf(data) === Object.prototype
+      ) && (
         <>
           <br />
           <Pagination
@@ -77,7 +80,6 @@ function Stores() {
             showFirstButton
             showLastButton
             page={currentPage}
-            onPage
             onChange={handleOnChange}
           />
         </>

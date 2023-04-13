@@ -7,18 +7,22 @@ export const useFetchUser = (url) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [pagination, setPagination] = useState({});
-  console.log(ConvertToQueryParams(url));
+  // console.log(ConvertToQueryParams(url));
   useEffect(() => {
     (async () => {
+      let res;
       try {
         setLoading(true);
-        const res = await getAllUser(ConvertToQueryParams(url));
+        res = await getAllUser(ConvertToQueryParams(url));
         setData(res.data.result);
         setPagination(res.pagination);
       } catch (error) {
         setError(error);
       } finally {
-        setLoading(false);
+        console.log(res);
+        if (res !== undefined) {
+          setLoading(false);
+        }
       }
     })();
   }, [url]);
