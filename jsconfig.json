@@ -14,7 +14,8 @@
       "~utils": ["utils/index.js"],
       "~service": ["service/index.js"],
       "~store": ["store/index.js"],
-      "~config": ["config/index.js"]
+      "~config": ["config/index.js"],
+      "~hoc": ["hoc/index.js"]
     }
   },
   "exclude": ["node_modules", "**/node_modules/*"]

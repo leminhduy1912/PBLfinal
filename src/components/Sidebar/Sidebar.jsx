@@ -12,6 +12,7 @@ import { Admin } from "../../pages/admin/Admin";
 import PlanInspect from "../Admin/PlanInspect/PlanInspect";
 import Stores from "../Stores/Stores";
 import Information from "../Admin/Information/Information";
+import { ProductAdmin } from "~components";
 const Sidebar = (props) => {
   const { data, role } = props;
   const [selected, setSelected] = useState(0);
@@ -26,7 +27,7 @@ const Sidebar = (props) => {
     tab = <Stores />;
   }
   if (selected === 3) {
-    tab = <ManageAccount />;
+    tab = <ProductAdmin />;
   }
   if (selected === 4) {
     tab = <Information />;

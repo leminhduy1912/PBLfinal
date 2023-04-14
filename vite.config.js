@@ -13,6 +13,7 @@ export default defineConfig({
       "~service": path.resolve(__dirname, "./src/service"),
       "~store": path.resolve(__dirname, "./src/store"),
       "~config": path.resolve(__dirname, "./src/config"),
+      "~hoc": path.resolve(__dirname, "./src/hoc"),
     },
   },
 });

@@ -1,31 +1,30 @@
 import { useEffect, useState } from "react";
-import { getAllUser } from "../service/user.service";
-import { ConvertToQueryParams } from "../utils/ConvertToQueryParams";
+import { getAllProducts } from "~service";
+import { ConvertToQueryParams } from "~utils";
 
-export const useFetchUser = (url) => {
+export const useAdminProduct = (url) => {
   const [data, setData] = useState({});
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [pagination, setPagination] = useState({});
-  // console.log(ConvertToQueryParams(url));
+  console.log(ConvertToQueryParams(url));
   useEffect(() => {
     (async () => {
       let res;
       try {
         setLoading(true);
-        res = await getAllUser(ConvertToQueryParams(url));
+        res = await getAllProducts(ConvertToQueryParams(url));
         setData(res.data.result);
         setPagination(res.pagination);
       } catch (error) {
         setError(error);
       } finally {
-        console.log(res);
-        if (res !== undefined) {
+        if(res !== undefined){
           setLoading(false);
         }
       }
     })();
   }, [url]);
 
-  return { data, pagination, error, loading };
+  return { data: { items: data, pagination }, error, loading };
 };
