@@ -1,53 +1,41 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { FaTimes } from "react-icons/fa";
-import "./UpdateStore.css";
-function UpdateStore(props) {
-  const navigate = useNavigate();
-  const handleHideUpdateUsers=()=>{
-    props.handleShowUserUpdate(false)
-  }
+import React from 'react'
+import "./DetailsStores.css"
+import { FaTimes } from 'react-icons/fa'
+function DetailsStores(props) {
+   const  handleHideModalDetailsUser=()=>{
+        props.handleShowUsersDetails(false)
+    }
   return (
-    
-    <div className="UpdateStore-container"
-    
-    >
-      <div className="UpdateStore-content">
-
-        
-        <h1>Update Store</h1>
+    <div className="DetailsStore-container">
+      <div className="DetailsStore-content">
+        <h1>User Details</h1>
 
         <div
           className="x-icon"
-          onClick={
-              handleHideUpdateUsers
-          }
+          onClick={handleHideModalDetailsUser}
         >
           <FaTimes />
         </div>
 
         <form action="">
           <div className="form-group">
-            <label className="form-input-control">Name Store</label>
+            <label className="form-input-control">Tên cửa hàng</label>
             <input
               className="form-input-control"
               type="text"
-              placeholder="Name Store"
+              placeholder="Tên cửa hàng"
             />
           </div>
           <div className="form-group">
-            <label className="form-input-control">Address</label>
+            <label className="form-input-control">Địa chỉ</label>
             <input
               className="form-input-control"
               type="text"
-              placeholder="Address"
+              placeholder="Địa chỉ"
             />
           </div>
           <div className="form-group">
-            <label className="form-input-control">Kind of Bussiness</label>
+            <label className="form-input-control">Loại hình kinh doanh</label>
             <select name="" id="">
               <option value="" selected disabled>
                 --Kind Of Bussiness--
@@ -57,7 +45,7 @@ function UpdateStore(props) {
             </select>
           </div>
           <div className="form-group">
-            <label className="form-input-control">Certificated</label>
+            <label className="form-input-control">Chứng nhận</label>
             <select name="" id="">
               <option value="" selected disabled>
                 --Certificated--
@@ -67,7 +55,7 @@ function UpdateStore(props) {
             </select>
           </div>
           <div className="form-group">
-            <label className="form-input-control">Status</label>
+            <label className="form-input-control">Tình trạng</label>
             <select name="" id="">
               <option value="" selected disabled>
                 --Status--
@@ -78,10 +66,10 @@ function UpdateStore(props) {
           </div>
         </form>
 
-        <button>Submit</button>
+      
       </div>
     </div>
-  );
+  )
 }
 
-export default UpdateStore;
+export default DetailsStores

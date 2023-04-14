@@ -10,15 +10,18 @@ export const useAdminProduct = (url) => {
   console.log(ConvertToQueryParams(url));
   useEffect(() => {
     (async () => {
+      let res;
       try {
         setLoading(true);
-        const res = await getAllProducts(ConvertToQueryParams(url));
+        res = await getAllProducts(ConvertToQueryParams(url));
         setData(res.data.result);
         setPagination(res.pagination);
       } catch (error) {
         setError(error);
       } finally {
-        setLoading(false);
+        if(res !== undefined){
+          setLoading(false);
+        }
       }
     })();
   }, [url]);

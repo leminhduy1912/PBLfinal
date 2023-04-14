@@ -1,0 +1,116 @@
+.DetailsStore-container{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+    display: flex;
+    top: 0;
+    left: 0;
+
+    justify-content: center;
+    align-items: center;
+   
+  
+   
+}
+.DetailsStore-header{
+    width: 100%;
+}
+.DetailsStore-content{
+    width: 800px;
+    background-color: white; 
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    padding: 12px; 
+    border-radius: 30px;
+    position: relative;
+
+}
+.DetailsStore-content  form{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  align-items: center;
+    width: 100%;
+    
+}
+.DetailsStore-content  h1{
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 300;
+    letter-spacing: 1px;
+    font-size: 25px;
+    
+}
+.DetailsStore-content  form .form-group{
+    width: 300px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 3px 0px;
+}
+.DetailsStore-content  form .form-input-control {
+    height: 25px;
+    
+   
+    border: none;
+    border-radius: 30px;
+}
+.DetailsStore-content  form  select{
+    height: 40px;
+    padding: 7px;
+    border: 1px solid black;
+    border-radius: 30px;
+}
+.DetailsStore-content  form .form-group input{
+    border: 1px solid black;
+    padding: 10px;
+}
+.DetailsStore-content  form .form-group input:focus{
+    outline-color: #f799a354;
+}
+.DetailsStore-content  form label{
+    text-align: start;
+}
+
+/* btn */
+
+.DetailsStore-content  button{
+   
+   margin-top: 10px;
+   width: 310px;
+   height: 40px;
+   border-radius: 30px;
+   border: none;
+   text-transform: uppercase;
+   background-color: #d48088cd;
+   cursor: pointer;
+
+   font-weight: 500px;
+   font-size: 14px;
+}
+
+
+.DetailsStore-content .x-icon{
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border: none;
+    border-radius: 30px;
+     display: flex;
+    justify-content: center;
+    align-items: center; 
+    overflow: hidden;
+    cursor: pointer;
+}
+.DetailsStore-content .x-icon:hover{
+    background-color: #a1a1a1;
+}

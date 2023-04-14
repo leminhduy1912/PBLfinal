@@ -21,16 +21,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 100vh
   }
   
   .Sidebar-glass{
     
     
     display: flex;
-    
-   
-    height: 97vh;
+   min-height: 97vh;
     width: 97vw;
     border-radius: 2rem;
     background-color: var(--glass);
@@ -75,7 +73,6 @@
     align-items: center;
     gap: 1rem;
     position: relative;
-   
     height: 2.5rem;
     margin-left: 2rem;
     font-size: 14px;
@@ -96,11 +93,11 @@
     background-color: var(--pink);
 }
 
-.menu .menuItem:last-child{
+/* .menu .menuItem:last-child{
     position: absolute;
-    bottom: 2.3rem;
+    bottom: 1px;
 
-}
+} */
 
 
 

@@ -5,7 +5,21 @@ import { useFetchUser } from "../../hooks/useFetchUser";
 import { RowUsers } from "../tables/user/users";
 import { Pagination } from "@mui/material";
 import { useState } from "react";
+import DetailsStores from "./DetailsStores/DetailsStores";
+import UpdateStore from "./UpdateStore/UpdateStore";
 function Stores() {
+
+  const [showModalUsersDetails,setShowModalUsersDetails] = useState(false)
+  const handleShowUsersDetails=(value)=>{
+    setShowModalUsersDetails(value)
+  }
+
+  const [showModalUsersUpdate,setShowModalUsersUpdate] = useState(false)
+  const handleShowUserUpdate=(value)=>{
+   setShowModalUsersUpdate(value)
+  }
+
+
   const [currentPage, setCurrentPage] = useState(1);
   const [email, setEmail] = useState("");
   const [fullname, setFullName] = useState("");
@@ -28,6 +42,8 @@ function Stores() {
   return (
     <>
       <div>
+        {showModalUsersDetails && <DetailsStores  handleShowUsersDetails={handleShowUsersDetails}    /> }
+        {showModalUsersUpdate&& <UpdateStore      handleShowUserUpdate={handleShowUserUpdate}/>     }
         <input
           onChange={(e) => setEmail(e.target.value)}
           onKeyDown={handleKeyEnter}
@@ -62,6 +78,8 @@ function Stores() {
                   key={index}
                   index={index + 1 + (currentPage - 1) * 8}
                   {...item}
+                  handleShowUsersDetails={handleShowUsersDetails}
+                  handleShowUserUpdate={handleShowUserUpdate}
                 />
               );
             })}

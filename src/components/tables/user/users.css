@@ -1,10 +1,15 @@
-.td-button {
-  padding: 0 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+.user-table-row{
+  height: 12px;
 }
-.td-button button {
-  font-size: 0.75rem;
-  display: flex;
+.user-table-row .td-button button{
+  width: 63px;
+  height: 30px;
+  background-color: #ffed86;
+  border: none;
+  cursor: pointer;
+  margin: 0px 2px;
+  border: none;
+  border-radius: 10px;
+ 
 }
