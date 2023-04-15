@@ -1,15 +1,44 @@
 
+
 .user-table-row{
-  height: 12px;
+ min-height: 50px;
+  position: relative;
+  overflow: hidden;
 }
-.user-table-row .td-button button{
-  width: 63px;
-  height: 30px;
-  background-color: #ffed86;
+.user-table-row:last-child{
+  border-bottom: 0px;
+}
+.user-table-row td{
+min-height: 20px;
+min-width: 40px;
+}
+ /* .user-table-row .td-button{
+  
+ display: flex;
+ justify-content: space-around;
+ align-items: center;
+ min-height: 114px;
+border: none;
+ 
+
+}  */
+.user-table-row td:last-child {
+  /* display: flex;
+  justify-content: space-around;
+  align-items: center; */
   border: none;
+  border-bottom: 1px solid black;
+}
+.user-table-row td:last-child button {
+
   cursor: pointer;
-  margin: 0px 2px;
+  width: 60px;
+  height: 35px;
+  margin-bottom: 5px ;
+  background-color: var(--activeItem);
   border: none;
   border-radius: 10px;
- 
+}
+.btn {
+  display:block;
 }

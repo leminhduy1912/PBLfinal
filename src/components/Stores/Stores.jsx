@@ -1,5 +1,6 @@
 import React from "react";
 import "./Stores.css";
+import { Search, SearchOutlined } from '@mui/icons-material';
 import AddStore from "./AddStore/AddStore";
 import { useFetchUser } from "../../hooks/useFetchUser";
 import { RowUsers } from "../tables/user/users";
@@ -41,21 +42,26 @@ function Stores() {
   };
   return (
     <>
-      <div>
+      <div className="header-users">
         {showModalUsersDetails && <DetailsStores  handleShowUsersDetails={handleShowUsersDetails}    /> }
         {showModalUsersUpdate&& <UpdateStore      handleShowUserUpdate={handleShowUserUpdate}/>     }
+        <div className="searching">
+          <span>
+            <SearchOutlined/>
+          </span>
         <input
           onChange={(e) => setEmail(e.target.value)}
           onKeyDown={handleKeyEnter}
-          placeholder="--email--"
+          placeholder="Enter Email"
         ></input>
         <input
           onChange={(e) => setFullName(e.target.value)}
           onKeyDown={handleKeyEnter}
-          placeholder="--fullname--"
+          placeholder="Enter FullName"
         ></input>
         <button onClick={handleOnClick}> Search </button>
-        <button> Add </button>
+        </div>
+        <button className="btn"> Add </button>
       </div>
       <table>
         <thead>
@@ -64,10 +70,10 @@ function Stores() {
             <th>Company</th>
             <th>TAX</th>
             <th>Type of Business</th>
-            <th>email</th>
-            <th>status</th>
-            <th>role</th>
-            <th>action</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Role</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -93,6 +99,7 @@ function Stores() {
       ) && (
         <>
           <br />
+          <div className="pagination">
           <Pagination
             count={pagination.totalPages}
             showFirstButton
@@ -100,6 +107,7 @@ function Stores() {
             page={currentPage}
             onChange={handleOnChange}
           />
+          </div>
         </>
       )}
     </>

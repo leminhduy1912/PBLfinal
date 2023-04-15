@@ -16,7 +16,7 @@
     border-radius: 10px;
   }
   input:focus{
-    outline-color: #C484F3;
+    outline-color: white;
   }
   .Login>button{
     width: 63%;

@@ -33,7 +33,7 @@
     background-color:#f799a354 ;
     text-align: center;
 } */
-table {
+/* table {
   width: 100%;
 }
 table,
@@ -63,7 +63,7 @@ table * {
     padding-left: 2rem;
   } */
 
-thead tr {
+/* thead tr {
   height: 60px;
   background: #ffed86;
   font-size: 16px;
@@ -71,8 +71,8 @@ thead tr {
 tbody tr {
   height: 48px;
   border-bottom: 1px solid #e3f1d5;
-  /* &:last-child  { border:0; } */
-}
+ 
+}  */
 /* thead tr th,
 tbody tr td {
   display: flex;
@@ -82,3 +82,70 @@ tbody tr td {
 /* tbody tr:last-child {
   border: 0;
 } */
+
+
+.header-users{
+  display: flex ;
+  justify-content: space-between;
+  padding: 10px;
+}
+.header-users  .btn {
+  width: 140px;
+  height: 50px;
+  padding: 10px;
+  background-color: rgb(251, 123, 144);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;  
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.header-users .searching{
+  width: 650px;
+  height: 50px;
+  background-color: var(--activeItem);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: none;
+  border-radius: 30px;
+}
+.header-users .searching input{
+  width: 170px;
+  height: 20px;
+  padding: 5px 18px;
+  border: none;
+  border-radius: 25px;
+  overflow: hidden;
+}
+.header-users .searching span{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  width: 20px;
+}
+.header-users .searching button {
+width: 80px;
+height: 30px;
+padding: 5px;
+background-color: rgb(251, 123, 144);
+border: none;
+border-radius: 25px;
+}
+.pagination{
+  width: 100%;
+  /* height: 20px; */
+  display: grid;
+  place-items: center;
+  margin-bottom: 20px;
+}
+/* .MuiPaginationItem-root.Mui-selected:hover {
+  background-color: red !important; 
+} */
+.css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+  background-color: var(--activeItem) !important;
+}
