@@ -21,15 +21,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh
+    min-height: 100%
   }
   
   .Sidebar-glass{
     
     
     display: flex;
-   min-height: 97vh;
-    width: 97vw;
+   min-height: 99vh;
+    width: 99vw;
     border-radius: 2rem;
     background-color: var(--glass);
     overflow: hidden;
@@ -42,7 +42,7 @@
     position: relative;
     padding-top: 4rem;
     transition: all ;
-    width: 200px;
+    width: 150px;
 }
 
 .logo{

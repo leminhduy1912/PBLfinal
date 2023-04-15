@@ -27,9 +27,9 @@ export const RowUsers = (props) => {
         <td>{props.email}</td>
         <td>{props.action === 1 ? "Active" : "Inactive"}</td>
         <td>{props.role.roleName ?? ""}</td>
-        <td className="td-button">
-          <button onClick={handleShowUsersDetail}>Details</button>
-          <button onClick={handleShowUserUpdate}>Update</button>
+        <td >
+          <button onClick={handleShowUsersDetail} className="btn">Details</button>
+          <button onClick={handleShowUserUpdate} className="btn">Update</button>
           <button>Inactive</button>
         </td>
       </tr>
