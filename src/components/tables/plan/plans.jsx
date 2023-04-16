@@ -6,7 +6,15 @@ const getInfo = (props) => {
   console.log(props);
 };
 export const PlanRowElement = (props) => {
+  const handleDetails=()=>{
+      props.handleShowMoDalDetailsPlan(true)
+  }
+  const hanldeUpdate=()=>{
+    props.handleShowModalUpdatePlan(true)
+    console.log("a");
+  }
   return (
+   
     <>
       <tr>
         <td style={{ textAlign: "center", padding: 0 }}>
@@ -17,8 +25,8 @@ export const PlanRowElement = (props) => {
         <td>{DateConvert(props.time)}</td>
         <td className="td-button" style={{ overflow: "hidden" }}>
           {/* <RequireAuth role="admin"> */}
-          <button onClick={() => getInfo(props)}>Details</button>
-          <button>Update</button>
+          <button onClick={handleDetails}>Details</button>
+          <button onClick={hanldeUpdate}>Update</button>
           <button>Cancel</button>
           {/* </RequireAuth> */}
           {/* <RequireAuth role="moderator"> */}

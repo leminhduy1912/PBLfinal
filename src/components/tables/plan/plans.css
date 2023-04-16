@@ -1,13 +1,18 @@
-/* tr td input {
-  display: none;
-}
-tbody tr td button {
-  margin: 1rem;
-  padding: 0.5rem;
-}
-.td-button {
-  padding: 0 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* td:last-child{
+padding-left: 40px;
+max-width: 300px;
 } */
+.td-button{
+  padding-left: 40px;
+  max-width: 300px;
+  }
+td:last-child button {
+padding: 0px 10px;
+margin: 0px 30px;
+height: 30px;
+background-color: var(--activeItem);
+border: none;
+cursor: pointer;
+border-radius: 15px;
+
+}
