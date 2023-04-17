@@ -14,3 +14,24 @@
   width: 400px;
   display: flex;
 }
+
+.product-header{
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.product-header button{
+
+width: 150px;
+height: 40px;
+background-color: rgb(251, 123, 144);
+border: none;
+border-radius: 30px;
+cursor: pointer;
+text-transform: uppercase;
+letter-spacing: 1px;
+font-size: 14px;
+/* padding: 5px 10px; */
+}

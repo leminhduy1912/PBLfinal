@@ -1,10 +1,10 @@
 
 import "./AddPlan.css"
-import { FaTimes } from "react-icons/fa"
-function AddPlan({statusHideModalAddPlan}) {
+import ClearIcon from '@mui/icons-material/Clear';
+function AddPlan(props) {
   const data=["Banh xeo co ba ","Banh canh co tu","Banh mi Ba Hung","Tap hoa Co thuy","VinMart"]
   const handleHideModalAddPlan=()=>{
-    statusHideModalAddPlan(false)
+  props.handleShowModalAddPlan(false)
   }
   return (
     <div className="AddPlan-container">
@@ -12,7 +12,7 @@ function AddPlan({statusHideModalAddPlan}) {
         <h1>Add Plan</h1>
         <div className='x-icon'
 onClick={handleHideModalAddPlan}
-  ><FaTimes />
+  ><ClearIcon/>
   </div>
         <form action="">
 

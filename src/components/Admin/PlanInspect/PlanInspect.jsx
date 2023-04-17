@@ -6,16 +6,20 @@ import UpdatePlan from "./UpdatePlan/UpdatePlan";
 import { RequireAuth } from "../../../hoc/RequiredAuth";
 import { PlanRowElement } from "../../tables";
 import { Pagination, TablePagination } from "@mui/material";
+import DetailsPlan from "./DetailsPlan/DetailsPlan";
 function PlanInspect() {
-  const [showModalAddPlan, setShowModalAddPlan] = useState(false);
-  const handleShowMoDalAddPlan = (value) => {
-    setShowModalAddPlan(value);
-    console.log("A");
+  const [showModalDetailsPlan, setShowModalDetailsPlan] = useState(false);
+  const handleShowMoDalDetailsPlan = (value) => {
+    setShowModalDetailsPlan(value);
   };
   const [showModalUpdatePlan, setShowModalUpdatePlan] = useState(false);
   const handleShowModalUpdatePlan = (value) => {
     setShowModalUpdatePlan(value);
   };
+  const [showModalAddPlan,setShowModalAddPlan]= useState(false)
+  const handleShowModalAddPlan=(value)=>{
+   setShowModalAddPlan(value)
+  }
 
   const plans = [
     {
@@ -74,82 +78,34 @@ function PlanInspect() {
       action: 1,
       company: {
         companyId: "gAqA9MeKb3IRVEXJHs7uFpz",
-        companyName: "Hoppe LLC",
+        companyName: "Hoppe ",
         action: 1,
       },
     },
   ];
-  const columns = [
-    {
-      Header: "Name Store",
-      accessor: "nameStore",
-    },
-    {
-      Header: "Address Store",
-      accessor: "addressStore",
-    },
-    {
-      Header: "Time Test",
-      accessor: "time",
-    },
-    {
-      Header: "Auditor",
-      accessor: "auditor",
-    },
-    {
-      Header: "Test Reason",
-      accessor: "testReason",
-    },
-    {
-      Header: "Status",
-      accessor: "status",
-    },
-    {
-      Header: "Action",
-      Cell: (row) => (
-        <button onClick={() => handleShowModalUpdatePlan(true)}>Update</button>
-      ),
-    },
-  ];
-  // const getTdProps = (state, rowInfo, column) => {
-  //   if (!rowInfo) {
-  //     return {};
-  //   }
-  //   return {
-  //     className:
-  //       rowInfo.original.status === "Qualified" ? "Qualified" : "Unqualified",
-  //   };
-  // };
-  // const pageSizeOptions = [10];
+ 
+
   const handleOnChange = (event, value) => {
     console.log(value);
   };
   return (
-    // <div className="PlanInspect">
-    //   {showModalAddPlan && (
-    //     <AddPlan statusHideModalAddPlan={handleShowMoDalAddPlan} />
-    //   )}
-    //   {showModalUpdatePlan && (
-    //     <UpdatePlan statusHideModalUpdatePlan={handleShowModalUpdatePlan} />
-    //   )}
-    //   <div className="PlanInspect-header">
-    //     <h1>Plan Management</h1>
-    //     <RequireAuth role={"admin"}>
-    //       <button onClick={() => handleShowMoDalAddPlan(true)}>Add Plan</button>
-    //     </RequireAuth>
-    //   </div>
 
-    //  <ReactTable
-    //   getTdProps={getTdProps}
-    //   data={data}
-    //   columns={columns}
-    //   defaultPageSize={9}
-    //   pageSizeOptions={pageSizeOptions}
-    // />
     <>
+    {showModalDetailsPlan&& <DetailsPlan   handleShowMoDalDetailsPlan={handleShowMoDalDetailsPlan}    />}
+    {showModalUpdatePlan&& <UpdatePlan handleShowModalUpdatePlan={handleShowModalUpdatePlan}            />}
+    {showModalAddPlan&& <AddPlan   handleShowModalAddPlan={handleShowModalAddPlan}/>}
       <div className="table-wrapper">
         {/* <RequireAuth role="admin"> */}
-        <button>Add Plan</button>
+        <div className="planInspect-header">
+          <h1>Plan Management</h1>
+          <button
+          onClick={()=>{
+          setShowModalAddPlan(true)
+           
+          }}  
+          >Add Plan</button>
+
+        </div>
         {/* </RequireAuth> */}
         <table>
           <thead>
@@ -168,6 +124,8 @@ function PlanInspect() {
                     key={index}
                     index={index + 1}
                     {...plan}
+                    handleShowModalUpdatePlan={handleShowModalUpdatePlan}
+                    handleShowMoDalDetailsPlan={handleShowMoDalDetailsPlan}
                   ></PlanRowElement>
                 );
               })}
@@ -175,14 +133,16 @@ function PlanInspect() {
         </table>
       </div>
       {/* <TablePagination total={5} /> */}
+      <div className="pagination">
       <Pagination
         count={20}
         showFirstButton
         showLastButton
         onChange={handleOnChange}
       />
+      </div>
     </>
-    // </div>
+   
   );
 }
 

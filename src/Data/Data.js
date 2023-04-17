@@ -6,6 +6,7 @@ import {
   UilChart,
   UilStore,
   UilMoneyWithdrawal,
+  UilPizzaSlice
 } from "@iconscout/react-unicons";
 
 // import HomeIcon from "@mui/icons-material/Home";
@@ -28,12 +29,8 @@ export const SidebarData = [
     heading: "Users",
   },
   {
-    icon: UilUsersAlt,
+    icon: UilPizzaSlice,
     heading: "Products",
-  },
-  {
-    icon: UilUsersAlt,
-    heading: "Accounts",
   },
   {
     icon: UilChart,

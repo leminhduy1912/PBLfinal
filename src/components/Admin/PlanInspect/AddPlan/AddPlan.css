@@ -85,7 +85,7 @@
     justify-content: center;
     align-items: center;
     border: none;
-    border-radius: 10px;
+    border-radius: 20px;
     cursor: pointer;
 }
 .AddPlan-content .x-icon:hover{

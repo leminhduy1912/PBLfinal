@@ -1,13 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import "./TableRecentStores.css";
 import { RowUsers } from "../tables/user/users";
 import { useFetchUser } from "../../hooks/useFetchUser";
+import DetailsStores from "../Stores/DetailsStores/DetailsStores";
+import UpdateStore from "../Stores/UpdateStore/UpdateStore";
 const TableRecentStores = () => {
   const { data, pagination, error, loading } = useFetchUser("");
-  // console.log(pagination);
+   const [showModalDetailsUser,setShowModalDetailsUser]= useState(false)
+   const handleShowUsersDetails=(value)=>{
+    setShowModalDetailsUser(value)
+   }
+   const [showModalUpdateUser,setShowModalUpdateUser]= useState(false)
+   const handleShowUserUpdate=(value)=>{
+    setShowModalUpdateUser(value)
+   }
+  //  const handleShowUsersDetails=(value)=>{
+  //   setShowModalDetailsUser(value)
+  //  }
   return (
+    <>
+  {showModalDetailsUser&&<DetailsStores     handleShowUsersDetails={handleShowUsersDetails} />}
+  {showModalUpdateUser&& <UpdateStore handleShowUserUpdate={handleShowUserUpdate}/>}
     <div className="TableRecentStore">
-      <h1>Recent Stores</h1>
+      <h1>Recent Users</h1>
       <table>
         <thead>
           <tr>
@@ -24,12 +39,19 @@ const TableRecentStores = () => {
         <tbody>
           {Array.isArray(data) &&
             data.map((item, index) => {
-              return <RowUsers key={index} index={index + 1} {...item} classname/>;
+              return <RowUsers 
+              key={index} 
+              index={index + 1} 
+              {...item} 
+              handleShowUsersDetails={handleShowUsersDetails}
+              handleShowUserUpdate={handleShowUserUpdate}
+              />;
             })}
         </tbody>
       </table>
       {loading && <div>Loading...</div>}
-    </div>
+    </div>\
+    </>
   );
 };
 

@@ -1,0 +1,65 @@
+.detailsPlan-container{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.6);
+    display: grid;
+    place-items: center;
+    z-index: 4;
+}
+.detailsPlan-container .detailsPlan-content{
+    position: relative;
+    width: 500px;
+    height: 250px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: none;
+    border-radius: 30px;
+}
+.detailsPlan-header .x-icon{
+position: absolute;
+top: 10px;
+right: 10px;
+display: grid;
+place-items: center;
+width: 30px;
+height: 30px;
+border: none;
+border-radius: 20px;
+cursor: pointer;
+}
+.detailsPlan-header .x-icon:hover{
+    background-color: #a1a1a1;
+}
+.detailsPlan-header h1{
+    position: relative;
+    top: 5px;
+    left: 170px;
+    font-size: 25px;
+    font-weight: 400;
+}
+.detailsPlan-content form {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+}
+.detailsPlan-content form .form-group{
+    width: 300px;
+    height: 30px;
+    margin: 15px 0px;
+    
+}
+.detailsPlan-content form .form-group input{
+    height: 25px;
+    min-width: 100px;
+    margin-left: 3px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid black;
+}
