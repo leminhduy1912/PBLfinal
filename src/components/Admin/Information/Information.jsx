@@ -55,7 +55,7 @@ function Information() {
 </form>
 
 
-   <button >Cập nhật</button>
+   <button disabled>Cập nhật</button>
         </div>
     </div>
   )

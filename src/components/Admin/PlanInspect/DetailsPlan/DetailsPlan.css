@@ -39,8 +39,8 @@ cursor: pointer;
     position: relative;
     top: 5px;
     left: 170px;
-    font-size: 32px;
-    /* font-weight: 400; */
+    font-size: 25px;
+    font-weight: 400;
 }
 .detailsPlan-content form {
     width: 100%;

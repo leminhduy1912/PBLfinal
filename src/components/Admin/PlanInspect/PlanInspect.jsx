@@ -15,9 +15,11 @@ function PlanInspect() {
   const [showModalUpdatePlan, setShowModalUpdatePlan] = useState(false);
   const handleShowModalUpdatePlan = (value) => {
     setShowModalUpdatePlan(value);
-    console.log("d");
-   
   };
+  const [showModalAddPlan,setShowModalAddPlan]= useState(false)
+  const handleShowModalAddPlan=(value)=>{
+   setShowModalAddPlan(value)
+  }
 
   const plans = [
     {
@@ -90,12 +92,18 @@ function PlanInspect() {
 
     <>
     {showModalDetailsPlan&& <DetailsPlan   handleShowMoDalDetailsPlan={handleShowMoDalDetailsPlan}    />}
-    {showModalUpdatePlan&& <UpdatePlan     handleShowModalUpdatePlan={handleShowModalUpdatePlan}                                                           />}
+    {showModalUpdatePlan&& <UpdatePlan handleShowModalUpdatePlan={handleShowModalUpdatePlan}            />}
+    {showModalAddPlan&& <AddPlan   handleShowModalAddPlan={handleShowModalAddPlan}/>}
       <div className="table-wrapper">
         {/* <RequireAuth role="admin"> */}
         <div className="planInspect-header">
           <h1>Plan Management</h1>
-          <button>Add</button>
+          <button
+          onClick={()=>{
+          setShowModalAddPlan(true)
+           
+          }}  
+          >Add Plan</button>
 
         </div>
         {/* </RequireAuth> */}

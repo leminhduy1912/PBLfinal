@@ -2,19 +2,19 @@ import React from 'react'
 // import { FaTimes } from 'react-icons/fa';
 import ClearIcon from '@mui/icons-material/Clear';
 import "./AddAccount.css"
-function AddAccount({statusModalAddAccountHide}) {
-   const handleHideModaAddAccount=()=>{
-   statusModalAddAccountHide(false)
+function AddAccount(props) {
+   const handleHideModaAddUser=()=>{
+ props.handleShowModalAddUser(false)
    
    }
   return (
     <div className='AddAccount-container'>
     <div className='AddAccount-content'>
    
-    <h1>Add Account</h1>
+    <h1>Add User</h1>
     
     <div className='x-icon'
-    onClick={ handleHideModaAddAccount  }
+    onClick={ handleHideModaAddUser  }
     ><ClearIcon/>
     </div>
 

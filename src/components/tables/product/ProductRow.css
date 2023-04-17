@@ -1,0 +1,4 @@
+.product-table-row td:last-child{
+    margin: 0px 40px;
+    max-width: 150px;
+}

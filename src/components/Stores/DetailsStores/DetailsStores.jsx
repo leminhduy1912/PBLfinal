@@ -3,7 +3,7 @@ import "./DetailsStores.css"
 import { FaTimes } from 'react-icons/fa'
 function DetailsStores(props) {
    const  handleHideModalDetailsUser=()=>{
-        props.handleShowUsersDetails(false)
+         props.handleShowUsersDetails(false)
     }
   return (
     <div className="DetailsStore-container">

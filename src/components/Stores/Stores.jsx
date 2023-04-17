@@ -8,6 +8,7 @@ import { Pagination } from "@mui/material";
 import { useState } from "react";
 import DetailsStores from "./DetailsStores/DetailsStores";
 import UpdateStore from "./UpdateStore/UpdateStore";
+import AddAccount from "../Admin/ManagerAccount/AddAccount/AddAccount"
 function Stores() {
 
   const [showModalUsersDetails,setShowModalUsersDetails] = useState(false)
@@ -20,6 +21,10 @@ function Stores() {
    setShowModalUsersUpdate(value)
   }
 
+  const [showModalAddUser,setShowModalAddUser] = useState(false)
+  const handleShowModalAddUser=(value)=>{
+    setShowModalAddUser(value)
+  }
 
   const [currentPage, setCurrentPage] = useState(1);
   const [email, setEmail] = useState("");
@@ -45,6 +50,7 @@ function Stores() {
       <div className="header-users">
         {showModalUsersDetails && <DetailsStores  handleShowUsersDetails={handleShowUsersDetails}    /> }
         {showModalUsersUpdate&& <UpdateStore      handleShowUserUpdate={handleShowUserUpdate}/>     }
+        {showModalAddUser&& <AddAccount           handleShowModalAddUser={handleShowModalAddUser}                      />}
         <div className="searching">
           <span>
             <SearchOutlined/>
@@ -61,7 +67,12 @@ function Stores() {
         ></input>
         <button onClick={handleOnClick}> Search </button>
         </div>
-        <button className="btn"> Add </button>
+        <button 
+        className="btn"
+        onClick={()=>{
+          setShowModalAddUser(true)
+        }}
+        > Add User</button>
       </div>
       <table>
         <thead>
@@ -86,6 +97,7 @@ function Stores() {
                   {...item}
                   handleShowUsersDetails={handleShowUsersDetails}
                   handleShowUserUpdate={handleShowUserUpdate}
+                 
                 />
               );
             })}
