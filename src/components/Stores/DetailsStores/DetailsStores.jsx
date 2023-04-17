@@ -21,6 +21,7 @@ function DetailsStores(props) {
           <div className="form-group">
             <label className="form-input-control">Tên cửa hàng</label>
             <input
+              disabled
               className="form-input-control"
               type="text"
               placeholder="Tên cửa hàng"
@@ -29,9 +30,19 @@ function DetailsStores(props) {
           <div className="form-group">
             <label className="form-input-control">Địa chỉ</label>
             <input
+              disabled
               className="form-input-control"
               type="text"
               placeholder="Địa chỉ"
+            />
+          </div>
+          <div className="form-group">
+            <label className="form-input-control">Email</label>
+            <input
+              disabled
+              className="form-input-control"
+              type="text"
+              placeholder="Email"
             />
           </div>
           <div className="form-group">

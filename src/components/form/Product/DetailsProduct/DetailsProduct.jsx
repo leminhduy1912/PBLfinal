@@ -26,6 +26,7 @@ function DetailsProduct(props) {
             className="form-input-control"
             type="text"
             placeholder="Product Name"
+            disabled
           />
         </div>
         <div className="form-group">
@@ -34,6 +35,7 @@ function DetailsProduct(props) {
             className="form-input-control"
             type="text"
             placeholder="Company Name"
+            disabled
           />
         </div>
         <div className="form-group">

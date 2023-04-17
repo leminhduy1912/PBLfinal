@@ -22,12 +22,19 @@ function DetailsPlan(props) {
 
         <div className="form-group">
           <label htmlFor="">Tên cửa hàng: </label>
-          <input type="text" placeholder='Tên cửa hàng'/>
+          <input 
+          type="text" 
+          placeholder='Tên cửa hàng'
+          disabled
+          />
         </div>
 
         <div className="form-group">
           <label htmlFor="">Chọn thời gian:</label>
-          <input type="date" />
+          <input 
+          type="date" 
+          disabled
+          />
         </div>
 
       </form>
