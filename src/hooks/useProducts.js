@@ -24,22 +24,7 @@ export const useProduct = () => {
     }
   };
 
-  // useEffect(() => {
-  //   // async () => {
-  //   //   let res = null;
-  //   //   try {
-  //   //     setLoading(true);
-  //   //     res = await getAllProducts(ConvertToQueryParams(url));
-  //   //     setData(res.data.results);
-  //   //     setPagination(res.pagination);
-  //   //   } catch (error) {
-  //   //     setError(error);
-  //   //   } finally {
-  //   //     if (res !== null) setLoading(false);
-  //   //   }
-  //   // };
-  //   loadData();
-  // }, [url, loadData]);
+ 
   return {
     data: { items: data, pagination },
     error,

@@ -1,0 +1,29 @@
+.certificate-container{
+    position: relative;
+    width: 100%;
+ 
+}
+.certificate-header{
+    padding-bottom: 30px;
+    position: relative;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.certificate-header button{
+   background-color: #FF919D;
+   height:  50px;
+   border: none;
+   border-radius: 30px;
+   padding: 15px;
+   cursor: pointer;
+   text-transform: uppecase;
+   letter-spacing: 1px;
+   font-size: 15px;
+   font-weight: 500;
+}
+.certificate-img{
+    width: 90px;
+}

@@ -20,8 +20,8 @@ function AddAccount(props) {
 
     <form action="">
       <div className='form-group'>
-      <label className='form-input-control'>Tên đầy đủ</label>
-      <input className='form-input-control'type="text" placeholder='Tên đầy đủ'/>
+      <label className='form-input-control'>Tên người dùng / Tên cửa hàng</label>
+      <input className='form-input-control'type="text" placeholder='Nhập tên người dùng / cửa hàng'/>
       </div>
       <div className='form-group'>
       <label className='form-input-control'>Email</label>
@@ -35,9 +35,19 @@ function AddAccount(props) {
       <label className='form-input-control'>Địa chỉ</label>
       <input className='form-input-control'type="text" placeholder='Địa chỉ'/>
       </div>
+    
       <div className='form-group'>
-      <label className='form-input-control'>Số CMND/CCCD</label>
-      <input className='form-input-control'type="text" placeholder='Số CMND/CCCD'/>
+      <label className='form-input-control'>Chức vụ</label>
+      <select name="" id="">
+        <option value="" disabled selected>--Chức vụ--</option>
+        <option value="">Người dùng</option>
+        <option value="">Thanh tra</option>
+        <option value="">Cửa hàng</option>
+      </select>
+      </div>
+      <div className='form-group'>
+      <label className='form-input-control'>Loại hình kinh doanh(đối với cửa hàng)</label>
+      <input className='form-input-control'type="text" placeholder='Loại hình kinh doanh'/>
       </div>
       <div className='form-group'>
       <label className='form-input-control'>Mật khẩu</label>

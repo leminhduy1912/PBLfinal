@@ -13,6 +13,7 @@ import PlanInspect from "../Admin/PlanInspect/PlanInspect";
 import Stores from "../Stores/Stores";
 import Information from "../Admin/Information/Information";
 import { ProductAdmin } from "~components";
+import Certificate from "../Admin/Certificate/Certificate";
 const Sidebar = (props) => {
   const { data, role } = props;
   const [selected, setSelected] = useState(0);
@@ -30,6 +31,9 @@ const Sidebar = (props) => {
     tab = <ProductAdmin />;
   }
   if (selected === 4) {
+    tab = <Certificate />;
+  }
+  if (selected === 5) {
     tab = <Information />;
   }
 

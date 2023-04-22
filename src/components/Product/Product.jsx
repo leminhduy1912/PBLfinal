@@ -14,23 +14,7 @@ export const Product = (props) => {
   } = product;
   return (
     <div className="product-card-container">
-      {/* <div className="product-card-content">
-        <h1>Công ty sở hữu</h1>
-        <h2>{productName} </h2>
-        <span>
-          <i> &#x28; {typeName} &#x29;</i>
-        </span>
-        <h4>{companyName}</h4>
-      </div>
-      <div className="product-card-image">
-        {certificates.length > 0 ? (
-          certificates.map((image, index) => {
-            return <ProductImage key={index} image={image} />;
-          })
-        ) : (
-          <h1>No Certificates</h1>
-        )}
-      </div> */}
+
       <div className="product-information">
         <h3>Tên công ty :</h3>
         <h3>{companyName}</h3>

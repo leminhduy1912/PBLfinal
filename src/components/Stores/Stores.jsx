@@ -8,7 +8,7 @@ import { Pagination } from "@mui/material";
 import { useState } from "react";
 import DetailsStores from "./DetailsStores/DetailsStores";
 import UpdateStore from "./UpdateStore/UpdateStore";
-import AddAccount from "../Admin/ManagerAccount/AddAccount/AddAccount"
+import AddAccount from "../form/AddAccount/AddAccount"
 function Stores() {
 
   const [showModalUsersDetails,setShowModalUsersDetails] = useState(false)

@@ -2,8 +2,8 @@ import React from 'react'
 import "./Comment.css"
 function Comment() {
   return (
-    <div className='comment-container'>
-       <div className="comment-content">
+    <div className='comment-form-container'>
+       <div className="comment-form-content">
         <h1>Đóng góp ý kiến </h1>
         <form action="">
         <div className="form-group">
