@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../Loading/Loading";
 import "./ManageAccount.css";
-import AccountUpdate from "./AccountUpdate/AccountUpdate";
-import AddAccount from "./AddAccount/AddAccount";
+import AccountUpdate from "../../form/AccountUpdate/AccountUpdate";
+import AddAccount from "../../form/AddAccount/AddAccount";
 const ManageAccount = () => {
   const [data, setData] = useState([]);
   const [getDataSuccess, setGetDataSucceess] = useState(true);

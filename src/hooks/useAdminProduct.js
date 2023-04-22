@@ -7,7 +7,7 @@ export const useAdminProduct = (url) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [pagination, setPagination] = useState({});
-  console.log(ConvertToQueryParams(url));
+
   useEffect(() => {
     (async () => {
       let res;

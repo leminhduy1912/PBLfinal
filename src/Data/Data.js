@@ -6,7 +6,8 @@ import {
   UilChart,
   UilStore,
   UilMoneyWithdrawal,
-  UilPizzaSlice
+  UilPizzaSlice,
+  UilCheckCircle
 } from "@iconscout/react-unicons";
 
 // import HomeIcon from "@mui/icons-material/Home";
@@ -31,6 +32,10 @@ export const SidebarData = [
   {
     icon: UilPizzaSlice,
     heading: "Products",
+  },
+  {
+    icon:  UilCheckCircle,
+    heading: "Certificate",
   },
   {
     icon: UilChart,

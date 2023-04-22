@@ -37,6 +37,7 @@
 }
 .Home-content form input {
   padding: 15px;
+  margin-left: 5px;
   width: 60%;
   border: 1px solid #ff919d;
   border-radius: 30px;
@@ -45,7 +46,7 @@
   outline: none;
 }
 .Home-content form button {
-  width: 110px;
+  width: 150px;
   height: 40px;
   margin-left: 10px;
   border: none;

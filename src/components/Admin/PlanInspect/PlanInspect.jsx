@@ -1,12 +1,12 @@
 /* eslint-disable jsx-a11y/aria-role */
 import React, { useState } from "react";
 import "./PlanInspect.css";
-import AddPlan from "./AddPlan/AddPlan";
-import UpdatePlan from "./UpdatePlan/UpdatePlan";
+import AddPlan from "../../form/AddPlan/AddPlan";
+import UpdatePlan from "../../form/UpdatePlan/UpdatePlan";
 import { RequireAuth } from "../../../hoc/RequiredAuth";
 import { PlanRowElement } from "../../tables";
 import { Pagination, TablePagination } from "@mui/material";
-import DetailsPlan from "./DetailsPlan/DetailsPlan";
+import DetailsPlan from "../../form/DetailsPlan/DetailsPlan";
 function PlanInspect() {
   const [showModalDetailsPlan, setShowModalDetailsPlan] = useState(false);
   const handleShowMoDalDetailsPlan = (value) => {
@@ -110,7 +110,7 @@ function PlanInspect() {
         <table>
           <thead>
             <tr>
-              <th>ID</th>
+              
               <th>Company</th>
               <th>Time</th>
               <th>Action</th>

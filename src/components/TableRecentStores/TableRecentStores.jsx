@@ -4,8 +4,10 @@ import { RowUsers } from "../tables/user/users";
 import { useFetchUser } from "../../hooks/useFetchUser";
 import DetailsStores from "../Stores/DetailsStores/DetailsStores";
 import UpdateStore from "../Stores/UpdateStore/UpdateStore";
+import { useFetchCertificate } from "../../hooks/useFetchCertificate";
 const TableRecentStores = () => {
-  const { data, pagination, error, loading } = useFetchUser("");
+   const { data, pagination, error, loading } = useFetchUser("");
+  // const {data,error,loading}= useFetchCertificate()
    const [showModalDetailsUser,setShowModalDetailsUser]= useState(false)
    const handleShowUsersDetails=(value)=>{
     setShowModalDetailsUser(value)
@@ -14,9 +16,7 @@ const TableRecentStores = () => {
    const handleShowUserUpdate=(value)=>{
     setShowModalUpdateUser(value)
    }
-  //  const handleShowUsersDetails=(value)=>{
-  //   setShowModalDetailsUser(value)
-  //  }
+  
   return (
     <>
   {showModalDetailsUser&&<DetailsStores     handleShowUsersDetails={handleShowUsersDetails} />}
@@ -50,7 +50,7 @@ const TableRecentStores = () => {
         </tbody>
       </table>
       {loading && <div>Loading...</div>}
-    </div>\
+    </div>
     </>
   );
 };

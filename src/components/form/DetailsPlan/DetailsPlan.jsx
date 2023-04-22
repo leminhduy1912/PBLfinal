@@ -30,7 +30,7 @@ function DetailsPlan(props) {
         </div>
 
         <div className="form-group">
-          <label htmlFor="">Chọn thời gian:</label>
+          <label htmlFor="">Thời gian:</label>
           <input 
           type="date" 
           disabled

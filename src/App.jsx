@@ -2,21 +2,7 @@
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-// import Login from "./Component/Login/Login";
-// import Sidebar from "./Component/Admin/Sidebar/Sidebar";
-// import Dashboard from "./Component/Admin/Dashboard/Dashboard";
-// import Loading from "./Component/Loading/Loading";
-// import HomePage from "./Component/HomePage/HomePage";
-// import ManageAccount from "./Component/Admin/ManagerAccount/ManageAccount";
-// import AccountUpdate from "./Component/Admin/ManagerAccount/AccountUpdate/AccountUpdate";
-// import PlanInspect from "./Component/Admin/PlanInspect/PlanInspect";
-// import Stores from "./Component/Admin/Stores/Stores";
-// import UpdateStore from "./Component/Admin/Stores/UpdateStore/UpdateStore";
-// import InforSelf from "./Component/Admin/InforSelf/InforSelf";
-// import AddStore from "./Component/Admin/Stores/AddStore/AddStore";
-// import AddAccount from "./Component/Admin/ManagerAccount/AddAccount/AddAccount";
-// import CompanyRegister from "./Component/CompanyRegister/CompanyRegister";
-// import { RequireAuth } from "./Component/Error/RequiredAuth";
+
 import { Admin } from "./pages/admin/Admin";
 import { Home } from "./pages/home/Home";
 import { ErrorComponent } from "./components/Error/ErrorComponent";
@@ -27,6 +13,9 @@ import CompanyRegister from "./components/form/CompanyRegister/CompanyRegister";
 import { SidebarData } from "./Data/Data";
 // import AddPlan from "./components/Admin/PlanInspect/AddPlan/AddPlan";
 import { RedirectAccess, RequireAuth } from "~hoc";
+import Contact from "../src/components/Contact/Contact";
+import { Banner, Navbar } from "~components";
+// import HomePage from "./components/HomePage/HomePage";
 
 function App() {
   return (
@@ -51,7 +40,11 @@ function App() {
             <Route
               path="/home"
               element={<Sidebar data={SidebarData} role="Admin" />}
-            />
+            >   
+                
+
+            </Route>
+           
             <Route
               path="/moderrator"
               element={<Sidebar data={SidebarData} />}

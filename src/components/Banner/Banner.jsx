@@ -1,6 +1,22 @@
 import React, { useState } from "react";
 import "./Banner.css";
-export const Banner = ({ setFilter, filter, execute }) => {
+import { useProduct } from "~hooks";
+import { Product } from "../Product/Product";
+import { Pagination } from "@mui/material";
+export const Banner = () => {
+  const [isHome,setIsHome]= useState(true)
+  const [tabCurrent,setTabCurrent]= useState(0);
+  const [filter, setFilter] = useState({ product: "", company: "", page: 1 });
+  const [page, setPage] = useState(1);
+  const { data, error, loading, execute } = useProduct();
+  const onChange = (event, value) => {
+    setPage(page);
+    setFilter({ ...filter, page: value });
+  };
+
+
+
+
   const [company, setCompany] = useState("");
   const [product, setProduct] = useState("");
   const onClick = (e) => {
@@ -9,8 +25,11 @@ export const Banner = ({ setFilter, filter, execute }) => {
     execute({ ...filter, company: company, product: product });
     setProduct("");
     setCompany("");
+    
+    
   };
   return (
+    <div>
     <div className="Home">
       <div className="Home-content">
         <h2>
@@ -20,14 +39,14 @@ export const Banner = ({ setFilter, filter, execute }) => {
         <form>
           <input
             type="text"
-            placeholder="Nhập Ten Cong Ty"
+            placeholder="Nhập Tên Công Ty"
             className="input-box"
             value={company}
             onChange={(e) => setCompany(e.target.value)}
           />
           <input
             type="text"
-            placeholder="Nhập Ten San Pham / Thuc Pham"
+            placeholder="Nhập Tên Sản Phẩm / Thực Phẩm"
             className="input-box"
             value={product}
             onChange={(e) => setProduct(e.target.value)}
@@ -36,5 +55,25 @@ export const Banner = ({ setFilter, filter, execute }) => {
         </form>
       </div>
     </div>
+
+
+    {/* {<div> loading ? <>Loading...</> : <></>  </div>} */}
+      {isHome ? <div> {data.items.length > 0 &&
+        data.items.map((product, index) => {
+          return <Product key={index} product={product} />;
+        })}
+      <br />
+      {data?.pagination?.totalPages > 0 && (
+        <div className="pagination">
+
+          <Pagination
+            count={data.pagination.totalPages}
+            page={data.pagination.currentpage}
+            onChange={onChange}
+          />
+        </div>
+      )} </div> : <></>}
+
+</div>
   );
 };
