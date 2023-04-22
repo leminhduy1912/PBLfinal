@@ -27,6 +27,9 @@ import CompanyRegister from "./components/form/CompanyRegister/CompanyRegister";
 import { SidebarData } from "./Data/Data";
 // import AddPlan from "./components/Admin/PlanInspect/AddPlan/AddPlan";
 import { RedirectAccess, RequireAuth } from "~hoc";
+import Contact from "../src/components/Contact/Contact";
+import { Banner, Navbar } from "~components";
+// import HomePage from "./components/HomePage/HomePage";
 
 function App() {
   return (
@@ -50,8 +53,12 @@ function App() {
           <Route element={<RequireAuth roles={["admin", "moderator"]} />}>
             <Route
               path="/home"
-              element={<Sidebar data={SidebarData} role="Admin" />}
-            />
+              element={<CompanyRegister />}
+            >   
+                
+
+            </Route>
+           
             <Route
               path="/moderrator"
               element={<Sidebar data={SidebarData} />}
