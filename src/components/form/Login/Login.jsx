@@ -3,14 +3,14 @@ import { loginHandler } from "../../../service/auth.service";
 import { useContext } from "react";
 import { StoreContext } from "../../../store";
 import { SET_AUTH_STATE } from "../../../store/Constants";
-import "./Login.css";
 import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 const Login = (props) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [errMessage, setErrMessage] = useState();
-  const [state, dispatch] = useContext(StoreContext);
+  const [dispatch] = useContext(StoreContext);
   const navigate = useNavigate();
   const updateGlobalState = ({ token, role }) => {
     dispatch({ type: SET_AUTH_STATE, payload: { token: token, role: role } });
@@ -35,26 +35,30 @@ const Login = (props) => {
         <div className="Login">
           <h1>Log In</h1>
           <form>
-
             <div className="form-group">
-              <label htmlFor="">Email</label>
-              <input type="text" placeholder="Email" />
+              <label htmlFor="email">Email</label>
+              <input
+                id="email"
+                type="text"
+                placeholder="Email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
 
             <div className="form-group">
-              <label htmlFor="">Password</label>
-              <input 
-              type="text" 
-              placeholder="Password" 
-              onChange={(e) => setPassword(e.target.value)}
+              <label htmlFor="password">Password</label>
+              <input
+                id="password"
+                type="password"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             {errMessage && <div>{errMessage}</div>}
-         
-              <button type="submit" onClick={handleLogin}>
-                Submit
-              </button>
-           
+
+            <button type="submit" onClick={handleLogin}>
+              Submit
+            </button>
           </form>
         </div>
       </div>

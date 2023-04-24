@@ -6,21 +6,17 @@ const getInfo = (props) => {
   console.log(props);
 };
 export const PlanRowElement = (props) => {
-  const handleDetails=()=>{
-      props.handleShowMoDalDetailsPlan(true)
-  }
-  const hanldeUpdate=()=>{
-    props.handleShowModalUpdatePlan(true)
+  const handleDetails = () => {
+    props.handleShowMoDalDetailsPlan(true);
+  };
+  const hanldeUpdate = () => {
+    props.handleShowModalUpdatePlan(true);
     console.log("a");
-  }
+  };
   return (
-   
     <>
       <tr>
-        <td style={{ textAlign: "center", padding: 0 }}>
-          {props.index}
-          <input value={props.id} disabled></input>
-        </td>
+        <td style={{ textAlign: "center", padding: 0 }}>{props.index}</td>
         <td>{props.company.companyName}</td>
         <td>{DateConvert(props.time)}</td>
         <td className="td-button" style={{ overflow: "hidden" }}>

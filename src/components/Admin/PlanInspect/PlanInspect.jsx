@@ -16,10 +16,10 @@ function PlanInspect() {
   const handleShowModalUpdatePlan = (value) => {
     setShowModalUpdatePlan(value);
   };
-  const [showModalAddPlan,setShowModalAddPlan]= useState(false)
-  const handleShowModalAddPlan=(value)=>{
-   setShowModalAddPlan(value)
-  }
+  const [showModalAddPlan, setShowModalAddPlan] = useState(false);
+  const handleShowModalAddPlan = (value) => {
+    setShowModalAddPlan(value);
+  };
 
   const plans = [
     {
@@ -83,34 +83,38 @@ function PlanInspect() {
       },
     },
   ];
- 
 
   const handleOnChange = (event, value) => {
     console.log(value);
   };
   return (
-
     <>
-    {showModalDetailsPlan&& <DetailsPlan   handleShowMoDalDetailsPlan={handleShowMoDalDetailsPlan}    />}
-    {showModalUpdatePlan&& <UpdatePlan handleShowModalUpdatePlan={handleShowModalUpdatePlan}            />}
-    {showModalAddPlan&& <AddPlan   handleShowModalAddPlan={handleShowModalAddPlan}/>}
+      {showModalDetailsPlan && (
+        <DetailsPlan handleShowMoDalDetailsPlan={handleShowMoDalDetailsPlan} />
+      )}
+      {showModalUpdatePlan && (
+        <UpdatePlan handleShowModalUpdatePlan={handleShowModalUpdatePlan} />
+      )}
+      {showModalAddPlan && (
+        <AddPlan handleShowModalAddPlan={handleShowModalAddPlan} />
+      )}
       <div className="table-wrapper">
         {/* <RequireAuth role="admin"> */}
         <div className="planInspect-header">
           <h1>Plan Management</h1>
           <button
-          onClick={()=>{
-          setShowModalAddPlan(true)
-           
-          }}  
-          >Add Plan</button>
-
+            onClick={() => {
+              setShowModalAddPlan(true);
+            }}
+          >
+            Add Plan
+          </button>
         </div>
         {/* </RequireAuth> */}
         <table>
           <thead>
             <tr>
-              
+              <th>ID</th>
               <th>Company</th>
               <th>Time</th>
               <th>Action</th>
@@ -134,15 +138,14 @@ function PlanInspect() {
       </div>
       {/* <TablePagination total={5} /> */}
       <div className="pagination">
-      <Pagination
-        count={20}
-        showFirstButton
-        showLastButton
-        onChange={handleOnChange}
-      />
+        <Pagination
+          count={20}
+          showFirstButton
+          showLastButton
+          onChange={handleOnChange}
+        />
       </div>
     </>
-   
   );
 }
 
