@@ -19,6 +19,7 @@ const handleShowMoDalUpdateProduct=()=>{
     action,
     product_type: { id: typeId, name: typeName },
   } = product;
+
   return (
     <>
       <tr className="product-table-row">

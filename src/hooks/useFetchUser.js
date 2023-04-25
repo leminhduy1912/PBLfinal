@@ -7,7 +7,7 @@ export const useFetchUser = (url) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [pagination, setPagination] = useState({});
-  // console.log(ConvertToQueryParams(url));
+
   useEffect(() => {
     (async () => {
       let res;
@@ -19,7 +19,7 @@ export const useFetchUser = (url) => {
       } catch (error) {
         setError(error);
       } finally {
-        console.log(res);
+         console.log(res);
         if (res !== undefined) {
           setLoading(false);
         }

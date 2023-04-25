@@ -33,7 +33,12 @@ function App() {
           <Route element={<RedirectAccess />}>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<CompanyRegister />} />
-            <Route path="/" element={<Home />} />
+            {/* <Route path="/" element={<Home />} /> */}
+            <Route
+              path="/home"
+              element={<Sidebar data={SidebarData} role="Admin" />}
+            >   </Route>
+          
           </Route>
 
           <Route element={<RequireAuth roles={["admin", "moderator"]} />}>

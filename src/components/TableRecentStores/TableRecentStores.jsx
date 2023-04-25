@@ -1,26 +1,94 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./TableRecentStores.css";
 import { RowUsers } from "../tables/user/users";
 import { useFetchUser } from "../../hooks/useFetchUser";
 import DetailsStores from "../Stores/DetailsStores/DetailsStores";
 import UpdateStore from "../Stores/UpdateStore/UpdateStore";
-import { useFetchCertificate } from "../../hooks/useFetchCertificate";
+import { useFetchCertificate} from "../../hooks/useFetchCertificate";
+import {useFetchBusinessType } from "../../hooks/useFetchBusinessType"
+import DetailsUser from "../Stores/DetailsUser/DetailsUser";
+import UpdateUser from "../Stores/UpdateUser/UpdateUser";
 const TableRecentStores = () => {
    const { data, pagination, error, loading } = useFetchUser("");
-  // const {data,error,loading}= useFetchCertificate()
+
    const [showModalDetailsUser,setShowModalDetailsUser]= useState(false)
    const handleShowUsersDetails=(value)=>{
     setShowModalDetailsUser(value)
    }
-   const [showModalUpdateUser,setShowModalUpdateUser]= useState(false)
-   const handleShowUserUpdate=(value)=>{
-    setShowModalUpdateUser(value)
+   const [showModalUserStoreDetails,setShowModalUserStoreDetails]= useState(false)
+   const handleShowUserStoreDetails=(value)=>{
+     setShowModalUserStoreDetails(value)
+    }
+    const [showModalUpdateUser,setShowModalUpdateUser]= useState(false)
+    const handleShowUserUpdate=(value)=>{
+     setShowModalUpdateUser(value)
+    }
+    const [showModalUpdateUserStore,setShowModalUpdateUserStore]= useState(false)
+    const handleShowUserUpdateStore=(value)=>{
+     setShowModalUpdateUserStore(value)
+    }
+
+   const [formDataUser,setFormDataUser]= useState( {
+    action:'',
+    email:'',
+    fullName:'',
+    id:'',
+    nationalId:'',
+    userNumber:'',
+    roleId:'',
+   })
+   const handleSetFormDataUser=(newObj)=>{
+   setFormDataUser(newObj)
    }
+console.log(formDataUser
+);
+   const [formDataUserStore,setFormDataUserStore]= useState( {
+    action:'',
+    businessId:'',
+    companyId:'',
+    companyName:'',
+    email:'',
+    faxNumber:'',
+    fullName:'',
+    id:'',
+    phoneNumber:'',
+    nationalId:'',
+    userNumber:'',
+    roleId:'',
+    taxIndentity:'',
   
+   })
+   const handleSetFormDataUserStore=(newObj)=>{
+    setFormDataUserStore(newObj)
+   }
+ 
+// console.log(formDataUserStore);
   return (
     <>
-  {showModalDetailsUser&&<DetailsStores     handleShowUsersDetails={handleShowUsersDetails} />}
-  {showModalUpdateUser&& <UpdateStore handleShowUserUpdate={handleShowUserUpdate}/>}
+  {showModalUserStoreDetails&&
+  <DetailsStores     
+  handleShowUserStoreDetails={handleShowUserStoreDetails} 
+  formDataUserStore={formDataUserStore}
+  />}
+
+  {showModalDetailsUser&& 
+  <DetailsUser 
+  handleShowUsersDetails={handleShowUsersDetails} 
+  formDataUser={formDataUser}
+  />}
+
+
+  {showModalUpdateUser&& 
+  <UpdateUser 
+  handleShowUserUpdate={handleShowUserUpdate}
+  formDataUser={formDataUser}
+  />}
+
+  {showModalUpdateUserStore &&
+   <UpdateStore
+   handleShowUserUpdateStore={handleShowUserUpdateStore}
+   formDataUserStore={formDataUserStore}
+   />}
     <div className="TableRecentStore">
       <h1>Recent Users</h1>
       <table>
@@ -45,6 +113,12 @@ const TableRecentStores = () => {
               {...item} 
               handleShowUsersDetails={handleShowUsersDetails}
               handleShowUserUpdate={handleShowUserUpdate}
+              handleShowUserStoreDetails={handleShowUserStoreDetails}
+              formDataUser={formDataUser}
+              handleSetFormDataUser={handleSetFormDataUser}
+              formDataUserStore={formDataUserStore}
+              handleSetFormDataUserStore={handleSetFormDataUserStore}
+              handleShowUserUpdateStore={handleShowUserUpdateStore}
               />;
             })}
         </tbody>

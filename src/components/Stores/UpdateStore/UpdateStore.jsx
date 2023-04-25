@@ -5,82 +5,188 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 import "./UpdateStore.css";
+import { useFetchBusinessType } from "../../../hooks/useFetchBusinessType";
 function UpdateStore(props) {
-  const navigate = useNavigate();
-  const handleHideUpdateUsers=()=>{
-    props.handleShowUserUpdate(false)
-  }
+  const {dataBusinessType,loadingBusinessType,errorBusinessType}= useFetchBusinessType();
+console.log(props.formDataUserStore);
   return (
     
-    <div className="UpdateStore-container"
-    
-    >
-      <div className="UpdateStore-content">
-
-        
-        <h1>Update Store</h1>
-
-        <div
+    <div className='company-update-container'>
+    <div className='company-update-content'>
+        <div className="company-update-form">
+          <div 
           className="x-icon"
-          onClick={
-              handleHideUpdateUsers
-          }
-        >
-          <FaTimes />
-        </div>
-
+          onClick={()=>{
+            props.handleShowUserUpdateStore(false)
+          }}
+          >
+            <FaTimes/>
+            
+          </div>
+        <h1>Update Company</h1>
         <form action="">
-          <div className="form-group">
-            <label className="form-input-control">Name Store</label>
-            <input
-              className="form-input-control"
-              type="text"
-              placeholder="Name Store"
-            />
-          </div>
-          <div className="form-group">
-            <label className="form-input-control">Address</label>
-            <input
-              className="form-input-control"
-              type="text"
-              placeholder="Address"
-            />
-          </div>
-          <div className="form-group">
-            <label className="form-input-control">Kind of Bussiness</label>
-            <select name="" id="">
-              <option value="" selected disabled>
-                --Kind Of Bussiness--
-              </option>
-              <option value="">Kinh doanh thuc pham</option>
-              <option value="">Kinh doanh thuc uon</option>
-            </select>
-          </div>
-          <div className="form-group">
-            <label className="form-input-control">Certificated</label>
-            <select name="" id="">
-              <option value="" selected disabled>
-                --Certificated--
-              </option>
-              <option value="">Kinh doanh thuc pham</option>
-              <option value="">Kinh doanh thuc uon</option>
-            </select>
-          </div>
-          <div className="form-group">
-            <label className="form-input-control">Status</label>
-            <select name="" id="">
-              <option value="" selected disabled>
-                --Status--
-              </option>
-              <option value="">Active</option>
-              <option value="">Inactive</option>
-            </select>
-          </div>
-        </form>
+            <div className='company-information'>
 
-        <button>Submit</button>
-      </div>
+                <div className="form-group">
+
+                <div className="label">
+                <label  htmlFor="">Tên công ty</label>
+                
+                </div>
+
+                <input
+                 
+                className='form-control' 
+                type="text" 
+                placeholder='Tên công ty' 
+                value={props.formDataUserStore.companyName}
+                />
+                </div>
+                
+
+                <div className="form-group">
+                <div className="label">    
+                <label  htmlFor="">FAX Number</label>
+              
+                </div>
+                <input
+                 
+                className='form-control' 
+                type="text" 
+                placeholder='FAX Number'
+                value={props.formDataUserStore.faxNumber}
+                 />
+                </div>
+                 
+                 <div className="form-group">
+                    <div className='label'>
+                <label className='form-control' htmlFor="">Email</label>
+                
+                </div>
+                <input 
+                
+                className='form-control' 
+                type="text" 
+                placeholder='Email'
+                value={props.formDataUserStore.email}
+                 />
+                </div>
+
+                <div className="form-group">  
+                <div className="label">
+                <label  htmlFor="">Mã số thuế</label>
+               
+                </div>
+                <input
+                
+                className='form-control'
+                type="text" 
+                placeholder='Mã số thuế' 
+                value={props.formDataUserStore.taxIndentity}
+                />
+                </div>
+                 
+                <div className="form-group">
+                <div className="label">
+                <label htmlFor="">Status</label>
+                
+                </div>
+                <select name="" id="" value={props.formDataUserStore.action}>
+                <option value={1}>Active</option>
+                <option value={0}>Inactive</option>
+                </select>
+                </div>
+             
+
+            </div>
+
+            <div className="company-information">
+
+                <div className="form-group">   
+                <div className="label">
+                <label  htmlFor="">Họ và tên người đại diện công ty(chi nhánh)</label>
+                
+                </div>
+                <input 
+               
+                className='form-control' 
+                type="text" 
+                placeholder='Họ và tên'
+                value={props.formDataUserStore.fullName}
+                 />
+                </div>
+
+                <div className="form-group">    
+                <div className="label">
+                <label  htmlFor="">Số điện thoại người đại diện</label>
+                
+                </div>
+                <input 
+                
+                className='form-control' 
+                type="text" 
+                placeholder='Số diện thoại' 
+                value={props.formDataUserStore.phoneNumber}
+                />
+                </div>
+
+                <div className="form-group">
+                <div className="label">    
+                <label  htmlFor="">Số CMND/CCCD người đại diện</label>
+               
+                </div>
+                <input 
+                
+                className='form-control' 
+                type="text" 
+                placeholder='Số CMND/CCCD'
+                value={props.formDataUserStore.nationalId}
+                 />
+                </div>
+
+                <div className="form-group">
+                <div className="label">
+                <label htmlFor="">Loại hình kinh doanh</label>
+                
+                </div>
+
+                <select name="" id=""  value={props.formDataUserStore.businessId}> 
+                  <option value="" >--None--</option>
+                  {dataBusinessType.map((item)=>{
+                    return (
+                      <option value={item.businessId}>{item.typeName}</option>
+                    )
+                  })}
+                </select>
+                </div>
+
+
+                <div className="form-group">
+                <div className="label">
+                <label htmlFor="">Chức vụ</label>
+                
+                </div>
+                <select name="" id="" value={props.formDataUserStore.roleId} >
+                 <option value={0}>Admin</option>
+                 <option value={1}>Moderator</option>
+                 <option value={2}>User</option>
+                 <option value={3}>Store</option>
+                </select>
+                </div>
+
+              
+                
+
+            </div>
+        </form>
+     
+
+       <button>Submit</button>
+        
+      
+        </div>
     </div>
+</div>
   );
 }
 
