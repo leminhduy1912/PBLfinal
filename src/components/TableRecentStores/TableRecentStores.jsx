@@ -40,8 +40,8 @@ const TableRecentStores = () => {
    const handleSetFormDataUser=(newObj)=>{
    setFormDataUser(newObj)
    }
-console.log(formDataUser
-);
+// console.log(formDataUser
+// );
    const [formDataUserStore,setFormDataUserStore]= useState( {
     action:'',
     businessId:'',

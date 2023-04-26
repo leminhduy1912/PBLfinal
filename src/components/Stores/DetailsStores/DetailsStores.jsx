@@ -4,7 +4,7 @@ import { FaTimes } from 'react-icons/fa'
 import { useFetchBusinessType } from '../../../hooks/useFetchBusinessType'
 function DetailsStores(props) {
    const {dataBusinessType,loadingBusinessType,errorBusinessType}= useFetchBusinessType();
-console.log(props.formDataUserStore);
+
   return (
     <div className='company-information-container'>
     <div className='company-information-content'>

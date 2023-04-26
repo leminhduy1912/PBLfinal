@@ -9,17 +9,63 @@ import { useState } from "react";
 import DetailsStores from "./DetailsStores/DetailsStores";
 import UpdateStore from "./UpdateStore/UpdateStore";
 import AddAccount from "../form/AddAccount/AddAccount"
+import DetailsUser from "./DetailsUser/DetailsUser";
+import UpdateUser from "./UpdateUser/UpdateUser"
 function Stores() {
-
+// Details
   const [showModalUsersDetails,setShowModalUsersDetails] = useState(false)
   const handleShowUsersDetails=(value)=>{
     setShowModalUsersDetails(value)
   }
+  const [formDataUser,setFormDataUser]= useState( {
+    action:'',
+    email:'',
+    fullName:'',
+    id:'',
+    nationalId:'',
+    userNumber:'',
+    roleId:'',
+   })
+   const handleSetFormDataUser=(newObj)=>{
+   setFormDataUser(newObj)
+   }
+ console.log(formDataUser);
 
+   const [showModalUserDetailsStore,setShowModalUserDetailsStore]= useState(false)
+   const handleShowUserStoreDetails=(value)=>{
+    setShowModalUserDetailsStore(value)
+   }
+   const [formDataUserStore,setFormDataUserStore]= useState( {
+    action:'',
+    businessId:'',
+    companyId:'',
+    companyName:'',
+    email:'',
+    faxNumber:'',
+    fullName:'',
+    id:'',
+    phoneNumber:'',
+    nationalId:'',
+    userNumber:'',
+    roleId:'',
+    taxIndentity:'',
+  
+   })
+   const handleSetFormDataUserStore=(newObj)=>{
+    setFormDataUserStore(newObj)
+   }
+
+
+  //  Update
   const [showModalUsersUpdate,setShowModalUsersUpdate] = useState(false)
   const handleShowUserUpdate=(value)=>{
    setShowModalUsersUpdate(value)
   }
+
+  const [showModalUpdateUserStore,setShowModalUpdateUserStore]= useState(false)
+    const handleShowUserUpdateStore=(value)=>{
+     setShowModalUpdateUserStore(value)
+    }
 
   const [showModalAddUser,setShowModalAddUser] = useState(false)
   const handleShowModalAddUser=(value)=>{
@@ -31,6 +77,7 @@ function Stores() {
   const [fullname, setFullName] = useState("");
   const [filter, setFilter] = useState({ fullname, email, page: 1 });
   const { data, pagination, error, loading } = useFetchUser(filter);
+  console.log(data);
   const handleOnChange = (event, value) => {
     setCurrentPage(value);
     setFilter({ fullname: fullname, email: email, page: value });
@@ -47,10 +94,32 @@ function Stores() {
   };
   return (
     <>
+{showModalUsersDetails && 
+<DetailsUser 
+formDataUser={formDataUser}
+handleShowUsersDetails={handleShowUsersDetails}
+/> }
+
+{showModalUserDetailsStore&&
+<DetailsStores
+formDataUserStore={formDataUserStore}
+handleShowUserStoreDetails={handleShowUserStoreDetails}
+/>}
+
+{showModalUsersUpdate&& 
+<UpdateUser     
+handleShowUserUpdate={handleShowUserUpdate}
+formDataUser={formDataUser}
+/>}
+
+{showModalUpdateUserStore&& 
+<UpdateStore
+formDataUserStore={formDataUserStore}
+handleShowUserUpdateStore={handleShowUserUpdateStore}
+/>}
+
+        {showModalAddUser&& <AddAccount           handleShowModalAddUser={handleShowModalAddUser}                      />} 
       <div className="header-users">
-        {showModalUsersDetails && <DetailsStores  handleShowUsersDetails={handleShowUsersDetails}    /> }
-        {showModalUsersUpdate&& <UpdateStore      handleShowUserUpdate={handleShowUserUpdate}/>     }
-        {showModalAddUser&& <AddAccount           handleShowModalAddUser={handleShowModalAddUser}                      />}
         <div className="searching">
           <span>
             <SearchOutlined/>
@@ -96,9 +165,17 @@ function Stores() {
                   index={index + 1 + (currentPage - 1) * 8}
                   {...item}
                   handleShowUsersDetails={handleShowUsersDetails}
+                  formDataUser={formDataUser}
+                  handleSetFormDataUser={handleSetFormDataUser}
+                  
+                  handleShowUserStoreDetails={handleShowUserStoreDetails}
+                  formDataUserStore={formDataUserStore}
+
+                  handleSetFormDataUserStore={handleSetFormDataUserStore}
+
                   handleShowUserUpdate={handleShowUserUpdate}
-                 
-                />
+                  handleShowUserUpdateStore={handleShowUserUpdateStore}
+                  />
               );
             })}
         </tbody>
