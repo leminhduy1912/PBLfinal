@@ -16,10 +16,24 @@ const Certificate = () => {
     setShowModalUpdateCertificate(value)
     }
     
+    const [formDataCertificate,setFormDataCertificate]= useState({action:'',
+                                                               description:'',
+                                                                     id:'',
+                                                                   name:'',
+                                                                   path:''})
+    const handleSetFormDataCertificate=(Obj)=>{
+    setFormDataCertificate(Obj);
+    }
+ 
+    
   return (
     <>
     {showModalAddCertificate&& <AddCertificate  handleShowModalAddCertificate={handleShowModalAddCertificate}/>}
-    {showModalUpdateCertificate&& <UpdateCertificate  handleShowModalUpdateCertificate={handleShowModalUpdateCertificate}  />}
+    {showModalUpdateCertificate&& 
+    <UpdateCertificate  
+    handleShowModalUpdateCertificate={handleShowModalUpdateCertificate}  
+    formDataCertificate={formDataCertificate}
+    />}
     <div className="certificate-container">
     <div className="certificate-header">
         <h1>Certificates Management</h1>
@@ -46,6 +60,8 @@ const Certificate = () => {
            index={index+1}
            certificate={item}
            handleShowModalUpdateCertificate={handleShowModalUpdateCertificate}
+           formDataCertificate={formDataCertificate}
+           handleSetFormDataCertificate={handleSetFormDataCertificate}
            />
            )
           })}

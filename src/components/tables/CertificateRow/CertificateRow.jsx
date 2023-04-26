@@ -3,17 +3,27 @@ import { ProductImage } from '../../Image/ProductImage/ProductImage';
 import React from 'react'
 import "./CertificateRow.css"
 function CertificateRow(props) {
-    
+  
     const {index,certificate}= props;
-    
     const {
+      id,
+      action,
       name,
       description,
       path
     }= certificate
-    console.log(path);
-    const handleShowModalAddCertificate=()=>{
+    const newObject ={
+      ...props.formDataCertificate,
+      id:id,
+      action:action,
+      name:name,
+      description:description,
+      path:path
+    }
+   
+    const handleShowModalUpdateCertificate=()=>{
       props.handleShowModalUpdateCertificate(true)
+      props.handleSetFormDataCertificate(newObject)
     }
   return (
     <>
@@ -23,7 +33,7 @@ function CertificateRow(props) {
       <td>{<ProductImage image={path} />   }</td>
       <td>
         <button
-        onClick={handleShowModalAddCertificate}
+        onClick={handleShowModalUpdateCertificate}
         >Update</button>
         <button>Delete</button>
       </td>

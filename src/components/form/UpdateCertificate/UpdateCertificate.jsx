@@ -24,6 +24,7 @@ function UpdateCertificate(props) {
             className="form-input-control"
             type="text"
             placeholder="Tên chứng nhận"
+            value={props.formDataCertificate.name}
           />
         </div>
       
@@ -33,6 +34,7 @@ function UpdateCertificate(props) {
             className="form-input-control"
             type="text"
             placeholder="Nhập mô tả"
+            value={props.formDataCertificate.description}
           />
         </div>
         <div className="form-group">
@@ -40,6 +42,7 @@ function UpdateCertificate(props) {
           <input
             className="form-input-control"
             type="file"
+            // value={props.formDataCertificate.path}
           />
         </div>
 

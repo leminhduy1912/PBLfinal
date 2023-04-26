@@ -13,12 +13,13 @@ export const useFetchCertificate = () => {
           setLoading(true);
           res= await getAllCertificate();
           setData(res.data.result)
+         
         }
         catch (error){
           setError(error)
         }
         finally{
-          console.log(data);
+          
           if (res !== undefined) {
             setLoading(false);
           }

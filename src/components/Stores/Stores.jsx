@@ -118,7 +118,7 @@ formDataUserStore={formDataUserStore}
 handleShowUserUpdateStore={handleShowUserUpdateStore}
 />}
 
-        {showModalAddUser&& <AddAccount           handleShowModalAddUser={handleShowModalAddUser}                      />} 
+{showModalAddUser&& <AddAccount   handleShowModalAddUser={handleShowModalAddUser}/>} 
       <div className="header-users">
         <div className="searching">
           <span>
