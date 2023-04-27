@@ -1,4 +1,9 @@
 .product-table-row td:last-child{
-    margin: 0px 40px;
+    margin: 0px 30px;
     max-width: 150px;
+}
+.product-table-row td:last-child button {
+    width: 30px;
+    background-color: var(--activeItem);
+    margin: 0px 10px;
 }

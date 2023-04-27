@@ -9,7 +9,8 @@ max-width: 300px;
 td:last-child button {
 padding: 0px 10px;
 margin: 0px 30px;
-height: 30px;
+height: 35px;
+min-width: 100px;
 background-color: var(--activeItem);
 border: none;
 cursor: pointer;

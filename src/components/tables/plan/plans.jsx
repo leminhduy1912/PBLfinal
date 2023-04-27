@@ -2,16 +2,17 @@
 import { DateConvert } from "../../../utils/DateConvert";
 import "./plans.css";
 import { RequireAuth } from "./../../../hoc/RequiredAuth";
-const getInfo = (props) => {
-  console.log(props);
-};
+
+import { usePlanDetails } from '../../../hooks/usePlanDetails';
 export const PlanRowElement = (props) => {
+// const {data,loading,error}= usePlanDetails("RaEurAclqGCOy7vCSbuXFjZ");
+// console.log(data);
   const handleDetails = () => {
     props.handleShowMoDalDetailsPlan(true);
   };
   const hanldeUpdate = () => {
     props.handleShowModalUpdatePlan(true);
-    console.log("a");
+ 
   };
   return (
     <>
@@ -26,7 +27,7 @@ export const PlanRowElement = (props) => {
           <button>Cancel</button>
           {/* </RequireAuth> */}
           {/* <RequireAuth role="moderator"> */}
-          <button>Report</button>
+          <button>Add Inspector</button>
           {/* </RequireAuth> */}
         </td>
       </tr>
