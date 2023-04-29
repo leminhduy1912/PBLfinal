@@ -6,7 +6,7 @@ import { useCreateCompany } from '../../../hooks/useCreateUser'
 const AddCompany = (props) => {
     const {dataBusinessType,loadingBusinessType,errorBusinessType} = useFetchBusinessType();
     const [errMessage,setErrMessage]= useState('');
-    
+    const { fetchDataUser, setShowModalAddCompany } = props;
     const [formDataAddCompany,setFormDataAddCompany]= useState({
         companyName:'',
         phoneNumber:'',
@@ -22,17 +22,16 @@ const AddCompany = (props) => {
         roleId:2
     })
     const {success,message,loading,error,execute}= useCreateCompany();
+    if(success===true){
+      props.handleShowModalAddCompany(false)
+    }
+  
 
-  if(success===true){
-    props.handleShowModalAddCompany(false)}
-
-    const handleAddCompanySubmit =  (e) => {
+    const handleAddCompanySubmit = async(e) => {
         e.preventDefault();
-        execute(formDataAddCompany)
-      if(success===true){
-        props.handleShowModalAddCompany(false)
-        props.fetchDataUser()
-      }
+        await execute(formDataAddCompany)
+        setShowModalAddCompany(false)
+        await props.fetchDataUser()
       };
 
 
@@ -43,9 +42,11 @@ const AddCompany = (props) => {
         <h1>Add Company</h1>
         <div 
         className="x-icon"
-        onClick={()=>{props.handleShowModalAddCompany(false)}}
+        
         >
-            <FaTimes/>
+            <FaTimes
+            onClick={()=>{props.handleShowModalAddCompany(false)}}
+            />
         </div>
         <form action="">
             <div className='Company-infor'>
@@ -53,7 +54,7 @@ const AddCompany = (props) => {
                 <div className="form-group">
 
                 <div className="label">
-                <label  htmlFor="">Tên công ty</label>
+                <label  htmlFor="Tên công ty">Tên công ty</label>
                 <span>(*)</span>
                 </div>
 
@@ -68,7 +69,7 @@ const AddCompany = (props) => {
 
                 <div className="form-group">
                 <div className="label">    
-                <label  htmlFor="">Số điện thoại công ty</label>
+                <label  htmlFor="Số điện thoại công ty">Số điện thoại công ty</label>
                 <span>(*)</span>
                 </div>
                 <input 
@@ -81,7 +82,7 @@ const AddCompany = (props) => {
                  
                  <div className="form-group">
                     <div className='label'>
-                <label className='form-control' htmlFor="">Email</label>
+                <label className='form-control' htmlFor="Email">Email</label>
                 <span>(*)</span>
                 </div>
                 <input 
@@ -94,7 +95,7 @@ const AddCompany = (props) => {
 
                 <div className="form-group">  
                 <div className="label">
-                <label  htmlFor="">FAX Number   </label>
+                <label  htmlFor="FAX Number">FAX Number   </label>
                 <span>(*)</span>
                 </div>
                 <input 
@@ -107,7 +108,7 @@ const AddCompany = (props) => {
 
                 <div className="form-group">  
                 <div className="label">
-                <label  htmlFor="">Description  </label>
+                <label  htmlFor="Description">Description  </label>
                 <span>(*)</span>
                 </div>
                 <input 
@@ -120,7 +121,7 @@ const AddCompany = (props) => {
 
                 <div className="form-group">
                 <div className="label">
-                <label htmlFor="">Loại hình kinh doanh</label>
+                <label htmlFor="Loại hình kinh doanh">Loại hình kinh doanh</label>
                 <span>(*)</span>
                 </div>
                 <select 
@@ -129,7 +130,7 @@ const AddCompany = (props) => {
                     <option value="" disabled selected>--None--</option>
                   {dataBusinessType.map((item,index)=>{
                     return (
-                        <option value={item.businessId}>{item.typeName}</option>
+                        <option key={index}  value={item.businessId}>{item.typeName}</option>
                     )
                   })}
                 </select>
@@ -141,7 +142,7 @@ const AddCompany = (props) => {
 
                 <div className="form-group">  
                 <div className="label">
-                <label  htmlFor="">TAX Identity </label>
+                <label  htmlFor="TAX Identity">TAX Identity </label>
                 <span>(*)</span>
                 </div>
                 <input 
@@ -154,7 +155,7 @@ const AddCompany = (props) => {
 
                 <div className="form-group">   
                 <div className="label">
-                <label  htmlFor="">Họ và tên người đại diện công ty</label>
+                <label  htmlFor="Họ và tên người đại diện công ty">Họ và tên người đại diện công ty</label>
                 <span>(*)</span>
                 </div>
                 <input 
@@ -167,7 +168,7 @@ const AddCompany = (props) => {
 
                 <div className="form-group">    
                 <div className="label">
-                <label  htmlFor="">Số điện thoại người đại diện</label>
+                <label  htmlFor="Số điện thoại người đại diện">Số điện thoại người đại diện</label>
                 <span>(*)</span>
                 </div>
                 <input 
@@ -180,7 +181,7 @@ const AddCompany = (props) => {
 
                 <div className="form-group">
                 <div className="label">    
-                <label  htmlFor="">Số CMND/CCCD</label>
+                <label  htmlFor="Số CMND/CCCD">Số CMND/CCCD</label>
                 <span>(*)</span>
                 </div>
                 <input 
@@ -193,7 +194,7 @@ const AddCompany = (props) => {
 
                 <div className="form-group"> 
                 <div className='label'>  
-                <label  htmlFor="">Mật khẩu</label>
+                <label  htmlFor="Mật khẩu">Mật khẩu</label>
                 <span>(*)</span>
                 </div>
                 <input 
@@ -206,7 +207,7 @@ const AddCompany = (props) => {
 
                 <div className="form-group">
                 <div className="label">
-                <label htmlFor="">Chức vụ</label>
+                <label htmlFor="Chức vụ">Chức vụ</label>
                 <span>(*)</span>
                 </div>
                 <select name="" id="" disabled>

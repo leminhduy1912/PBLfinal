@@ -143,6 +143,7 @@ function Stores() {
         <AddCompany
           handleShowModalAddCompany={handleShowModalAddCompany}
           fetchDataUser={fetchDataUser}
+          setShowModalAddCompany={setShowModalAddCompany}
         />
       )}
       <div className="header-users">
@@ -169,7 +170,7 @@ function Stores() {
               setShowModalAddUser(true);
             }}
           >
-            {" "}
+          
             Add User
           </button>
           <button

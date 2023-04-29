@@ -14,7 +14,7 @@ function AddStore({statusModalAdd}) {
     <div className="AddStore-container">
       <div className="AddStore-content">
         <h1>Add Store</h1>
-
+    
         <div
           className="x-icon"
           onClick={() => 

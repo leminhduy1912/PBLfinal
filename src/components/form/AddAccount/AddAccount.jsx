@@ -14,7 +14,7 @@ function AddAccount(props) {
     roleId: "",
   });
   const { success, message, loading, error, execute } = useCreateUser();
-  console.log(message);
+  
 
   if (success == true) {
     props.handleShowModalAddUser(false);
@@ -32,11 +32,12 @@ function AddAccount(props) {
 
         <div
           className="x-icon"
-          onClick={() => {
-            props.handleShowModalAddUser();
-          }}
+        
         >
-          <ClearIcon />
+          <ClearIcon 
+           onClick={() => {
+            props.handleShowModalAddUser();
+          }}/>
         </div>
 
         <form action="">

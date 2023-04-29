@@ -3,19 +3,24 @@ import "./DetailsStores.css"
 import { FaTimes } from 'react-icons/fa'
 import { useFetchBusinessType } from '../../../hooks/useFetchBusinessType'
 function DetailsStores(props) {
+  {}
    const {dataBusinessType,loadingBusinessType,errorBusinessType}= useFetchBusinessType();
-console.log(props.formDataUserStore);
+// console.log(props.formDataUserStore);
   return (
     <div className='company-information-container'>
     <div className='company-information-content'>
         <div className="company-information-form">
           <div 
           className="x-icon"
-          onClick={()=>{
-            props.handleShowUserStoreDetails(false)
-          }}
-          >
-            <FaTimes/>
+          
+        >
+        {/*  */}
+            <FaTimes
+             onClick={()=>{
+              props.handleShowUserStoreDetails(false)
+            }}
+          onKeyDown={()=> props.handleShowUserStoreDetails(false)}
+            />
             
           </div>
         <h1>Company Details</h1>
@@ -25,7 +30,7 @@ console.log(props.formDataUserStore);
                 <div className="form-group">
 
                 <div className="label">
-                <label  htmlFor="">Tên công ty</label>
+                <label  htmlFor="id input">Tên công ty</label>
                 
                 </div>
 
@@ -41,7 +46,7 @@ console.log(props.formDataUserStore);
 
                 <div className="form-group">
                 <div className="label">    
-                <label  htmlFor="">FAX Number</label>
+                <label  htmlFor="FAX Number">FAX Number</label>
               
                 </div>
                 <input
@@ -55,7 +60,7 @@ console.log(props.formDataUserStore);
                  
                  <div className="form-group">
                     <div className='label'>
-                <label className='form-control' htmlFor="">Email</label>
+                <label className='form-control' htmlFor="Email">Email</label>
                 
                 </div>
                 <input 
@@ -69,7 +74,7 @@ console.log(props.formDataUserStore);
 
                 <div className="form-group">  
                 <div className="label">
-                <label  htmlFor="">Mã số thuế</label>
+                <label  htmlFor="Mã số thuế<">Mã số thuế</label>
                
                 </div>
                 <input
@@ -83,7 +88,7 @@ console.log(props.formDataUserStore);
                  
                 <div className="form-group">
                 <div className="label">
-                <label htmlFor="">Status</label>
+                <label htmlFor="Status">Status</label>
                 
                 </div>
                 <select name="" id="" disabled value={props.formDataUserStore.action}>
@@ -99,7 +104,7 @@ console.log(props.formDataUserStore);
 
                 <div className="form-group">   
                 <div className="label">
-                <label  htmlFor="">Họ và tên người đại diện công ty(chi nhánh)</label>
+                <label  htmlFor="Họ và tên người đại diện công ty(chi nhánh)">Họ và tên người đại diện công ty(chi nhánh)</label>
                 
                 </div>
                 <input 
@@ -113,7 +118,7 @@ console.log(props.formDataUserStore);
 
                 <div className="form-group">    
                 <div className="label">
-                <label  htmlFor="">Số điện thoại người đại diện</label>
+                <label  htmlFor="Số điện thoại người đại diện">Số điện thoại người đại diện</label>
                 
                 </div>
                 <input 
@@ -127,7 +132,7 @@ console.log(props.formDataUserStore);
 
                 <div className="form-group">
                 <div className="label">    
-                <label  htmlFor="">Số CMND/CCCD người đại diện</label>
+                <label  htmlFor="Số CMND/CCCD người đại diện">Số CMND/CCCD người đại diện</label>
                
                 </div>
                 <input 
@@ -141,13 +146,13 @@ console.log(props.formDataUserStore);
 
                 <div className="form-group">
                 <div className="label">
-                <label htmlFor="">Loại hinh kinh doanh</label>
+                <label htmlFor="Loại hinh kinh doanh">Loại hinh kinh doanh</label>
                 
                 </div>
                 <select name="" id="" disabled value={props.formDataUserStore.businessId}> 
-                  {dataBusinessType.map((item)=>{
+                  {dataBusinessType.map((item,index)=>{
                     return (
-                      <option value={item.businessId}>{item.typeName}</option>
+                      <option key={index} value={item.businessId}>{item.typeName}</option>
                     )
                   })}
                 </select>
@@ -156,7 +161,7 @@ console.log(props.formDataUserStore);
 
                 <div className="form-group">
                 <div className="label">
-                <label htmlFor="">Chức vụ</label>
+                <label htmlFor="Chức vụ">Chức vụ</label>
                 
                 </div>
                 <select name="" id="" value={props.formDataUserStore.roleId} disabled>
