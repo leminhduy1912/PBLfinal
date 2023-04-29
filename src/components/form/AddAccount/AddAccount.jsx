@@ -1,12 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 // import { FaTimes } from 'react-icons/fa';
+import { useCreateCompany, useCreateUser } from '../../../hooks/useCreateUser';
 import ClearIcon from '@mui/icons-material/Clear';
 import "./AddAccount.css"
 function AddAccount(props) {
-   const handleHideModaAddUser=()=>{
- props.handleShowModalAddUser(false)
-   
-   }
+const [formAdduser,setFormAddUser]= useState({
+  email:'',
+  fullName:'',
+  nationalId:'',
+  userNumber:'',
+  password:'',
+  roleId:''
+})
+const {success,message,loading,error,execute}= useCreateUser()
+console.log(message);
+
+if (success==true){
+  props.handleShowModalAddUser(false);
+}
+const handleAdduser=(e)=>{
+e.preventDefault();
+execute(formAdduser)
+}
   return (
     <div className='AddAccount-container'>
     <div className='AddAccount-content'>
@@ -14,61 +29,80 @@ function AddAccount(props) {
     <h1>Add User</h1>
     
     <div className='x-icon'
-    onClick={ handleHideModaAddUser  }
+    onClick={ ()=>{ props.handleShowModalAddUser(false)}  }
     ><ClearIcon/>
     </div>
 
     <form action="">
       <div className='form-group'>
-      <label className='form-input-control'>Tên người dùng / Tên cửa hàng</label>
-      <input className='form-input-control'type="text" placeholder='Nhập tên người dùng / cửa hàng'/>
+      <label className='form-input-control'>Tên người dùng</label>
+      <input 
+      className='form-input-control'
+      type="text" 
+      placeholder='Tên người dùng '
+      onChange={(e)=>{setFormAddUser({...formAdduser,fullName:e.target.value})}}
+      />
+      
       </div>
       <div className='form-group'>
       <label className='form-input-control'>Email</label>
-      <input className='form-input-control'type="text" placeholder='Email'/>
+      <input 
+      className='form-input-control'
+      type="text" 
+      placeholder='Email'
+      onChange={(e)=>{setFormAddUser({...formAdduser,email:e.target.value})}}
+      />
       </div>
+
+      <div className='form-group'>
+      <label className='form-input-control'>Số CCCD/CMND</label>
+      <input 
+      className='form-input-control'
+      type="text" 
+      placeholder='Email'
+      onChange={(e)=>{setFormAddUser({...formAdduser,nationalId:e.target.value})}}
+      />
+      </div>
+
+
       <div className='form-group'>
       <label className='form-input-control'>Số điện thoại</label>
-      <input className='form-input-control'type="text" placeholder='Số điện thoại'/>
+      <input 
+      className='form-input-control'
+      type="text" 
+      placeholder='Số điện thoại'
+      onChange={(e)=>{setFormAddUser({...formAdduser,userNumber:e.target.value})}}
+      />
       </div>
-      <div className='form-group'>
-      <label className='form-input-control'>Địa chỉ</label>
-      <input className='form-input-control'type="text" placeholder='Địa chỉ'/>
-      </div>
+      
     
       <div className='form-group'>
       <label className='form-input-control'>Chức vụ</label>
-      <select name="" id="">
+      <select name="" id="" onChange={(e)=>{setFormAddUser({...formAdduser,roleId:e.target.value})}}>
         <option value="" disabled selected>--Chức vụ--</option>
-        <option value="">Người dùng</option>
-        <option value="">Thanh tra</option>
-        <option value="">Cửa hàng</option>
+        <option value={1}>Người dùng</option>
+        <option value={2}>Thanh tra</option>
+       
       </select>
       </div>
-      <div className='form-group'>
-      <label className='form-input-control'>Loại hình kinh doanh(đối với cửa hàng)</label>
-      <input className='form-input-control'type="text" placeholder='Loại hình kinh doanh'/>
-      </div>
+     
       <div className='form-group'>
       <label className='form-input-control'>Mật khẩu</label>
-      <input className='form-input-control'type="password" placeholder='Mật khẩu'/>
+      <input 
+      className='form-input-control'
+      type="password" 
+      placeholder='Mật khẩu'
+      onChange={(e)=>{setFormAddUser({...formAdduser,password:e.target.value})}}
+      />
       </div>
-      <div className='form-group'>
-      <label className='form-input-control'>Nhập lại mật khẩu</label>
-      <input className='form-input-control'type="password" placeholder='Nhập lại mật khẩu'/>
-      </div>
-      <div className='form-group'>
-      <label className='form-input-control'>Trạng thái hoạt động</label>
-      <select name="" id="">
-        <option value="" disabled selected>--Status--</option>
-        <option value="">Active</option>
-        <option value="">Inactive</option>
-      </select>
-      </div>
+    
+   
       
     </form>
     
-    <button>Submit</button>
+    <button
+    onClick={handleAdduser}
+    >Submit</button>
   
   
 

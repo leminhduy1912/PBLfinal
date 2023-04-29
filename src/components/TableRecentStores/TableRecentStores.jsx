@@ -4,7 +4,7 @@ import { RowUsers } from "../tables/user/users";
 import { useFetchUser } from "../../hooks/useFetchUser";
 import DetailsStores from "../Stores/DetailsStores/DetailsStores";
 import UpdateStore from "../Stores/UpdateStore/UpdateStore";
-import { useFetchCertificate} from "../../hooks/useFetchCertificate";
+import { useFetchCertificate} from "../../hooks/Certificate/useFetchCertificate";
 import {useFetchBusinessType } from "../../hooks/useFetchBusinessType"
 import DetailsUser from "../Stores/DetailsUser/DetailsUser";
 import UpdateUser from "../Stores/UpdateUser/UpdateUser";

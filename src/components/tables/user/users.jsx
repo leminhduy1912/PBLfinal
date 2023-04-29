@@ -1,7 +1,9 @@
 import "./users.css";
 import { useFetchBusinessType } from "../../../hooks/useFetchBusinessType";
+import { useDeleteUser } from "../../../hooks/useDeleteUser";
 export const RowUsers = (props) => {
-  // console.log(props.formDataUserStore);
+  //  console.log(props.formDataUserStore);
+
   const {dataBusinessType,errorBusinessType,loadingBusinessType}= useFetchBusinessType();
   // console.log(props.index);
 
@@ -22,7 +24,7 @@ for ( let i=0;i<dataBusinessType.length;i++){
       action: props.action,
       nationalId:props.nationalId,
       userNumber:props.userNumber,
-      roleId:props.role.roleId
+      roleId:props.role.roleId//dung détructủing cho de doc
     }
   }
 
@@ -44,16 +46,26 @@ for ( let i=0;i<dataBusinessType.length;i++){
         taxIndentity:props.taxIndentity,
     }
   }
-  
+  const  {message,success,loading,error,execute} = useDeleteUser()
+  // console.log(success);
+  // console.log(message);
+  const handleDeleteUser=()=>{
+ 
+    //console.log(props.companyId);
+    execute(props.companyId)
+
+  }
   const handleShowUsersDetail=()=>{
   
  
     if (props.role.roleCode ==="MOD"){
+      
       props.handleShowUsersDetails(true)
       props.handleSetFormDataUser(Object)
     }
 
     if (props.role.roleCode ==="STR"){
+      console.log("Storre");
       props.handleShowUserStoreDetails(true)
       props.handleSetFormDataUserStore(Object)
     }
@@ -89,9 +101,11 @@ for ( let i=0;i<dataBusinessType.length;i++){
         <td>{props.action === 1 ? "Active" : "Inactive"}</td>
         <td>{props.role.roleName ?? ""}</td>
         <td >
+       
           <button onClick={handleShowUsersDetail} className="btn">Details</button>
-          <button onClick={handleShowUserUpdate} className="btn">Update</button>
-          <button>Inactive</button>
+          <button onClick={handleShowUserUpdate}  className="btn">Update</button>
+          <button onClick={handleDeleteUser}      className="btn">Inactive</button>
+          
         </td>
       </tr>
     

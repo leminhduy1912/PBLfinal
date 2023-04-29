@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Stores.css";
 import { Search, SearchOutlined } from '@mui/icons-material';
 import AddStore from "./AddStore/AddStore";
@@ -11,6 +11,7 @@ import UpdateStore from "./UpdateStore/UpdateStore";
 import AddAccount from "../form/AddAccount/AddAccount"
 import DetailsUser from "./DetailsUser/DetailsUser";
 import UpdateUser from "./UpdateUser/UpdateUser"
+import AddCompany from "./AddCompany/AddCompany";
 function Stores() {
 // Details
   const [showModalUsersDetails,setShowModalUsersDetails] = useState(false)
@@ -29,7 +30,7 @@ function Stores() {
    const handleSetFormDataUser=(newObj)=>{
    setFormDataUser(newObj)
    }
- console.log(formDataUser);
+
 
    const [showModalUserDetailsStore,setShowModalUserDetailsStore]= useState(false)
    const handleShowUserStoreDetails=(value)=>{
@@ -71,17 +72,26 @@ function Stores() {
   const handleShowModalAddUser=(value)=>{
     setShowModalAddUser(value)
   }
+  const [showModalAddCompany,setShowModalAddCompany] = useState(false)
+  const handleShowModalAddCompany=(value)=>{
+    setShowModalAddCompany(value)
+  }
 
   const [currentPage, setCurrentPage] = useState(1);
   const [email, setEmail] = useState("");
   const [fullname, setFullName] = useState("");
   const [filter, setFilter] = useState({ fullname, email, page: 1 });
-  const { data, pagination, error, loading } = useFetchUser(filter);
-  console.log(data);
+  const { data, pagination, error, loading ,executeDataUser} = useFetchUser(filter);
+
+const fetchDataUser=()=>{
+  executeDataUser(filter)
+}
+
+
   const handleOnChange = (event, value) => {
     setCurrentPage(value);
     setFilter({ fullname: fullname, email: email, page: value });
-    // console.log(currentPage);
+ 
   };
   const handleOnClick = () => {
     setFilter({ fullname: fullname, email: email, page: currentPage });
@@ -92,6 +102,7 @@ function Stores() {
     if (event.key === "Enter")
       setFilter({ fullname: fullname, email: email, page: currentPage });
   };
+
   return (
     <>
 {showModalUsersDetails && 
@@ -118,7 +129,15 @@ formDataUserStore={formDataUserStore}
 handleShowUserUpdateStore={handleShowUserUpdateStore}
 />}
 
-{showModalAddUser&& <AddAccount   handleShowModalAddUser={handleShowModalAddUser}/>} 
+{showModalAddUser&& 
+<AddAccount   
+handleShowModalAddUser={handleShowModalAddUser}
+/>} 
+{showModalAddCompany&& 
+<AddCompany
+ handleShowModalAddCompany={handleShowModalAddCompany}
+ fetchDataUser={fetchDataUser}
+/>}
       <div className="header-users">
         <div className="searching">
           <span>
@@ -135,13 +154,25 @@ handleShowUserUpdateStore={handleShowUserUpdateStore}
           placeholder="Enter FullName"
         ></input>
         <button onClick={handleOnClick}> Search </button>
+     
+        
         </div>
+        <div className="btn-area">
+
         <button 
         className="btn"
         onClick={()=>{
           setShowModalAddUser(true)
+        
         }}
         > Add User</button>
+        <button 
+        className="btn"
+        onClick={()=>{
+          setShowModalAddCompany(true)
+        }}
+        > Add Company</button>
+        </div>
       </div>
       <table>
         <thead>

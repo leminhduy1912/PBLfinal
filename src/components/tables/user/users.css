@@ -10,7 +10,7 @@
 }
 .user-table-row td{
 min-height: 20px;
-min-width: 40px;
+min-width: 90px;
 }
  /* .user-table-row .td-button{
   
@@ -28,13 +28,17 @@ border: none;
   align-items: center; */
   border: none;
   border-bottom: 1px solid black;
+ 
+ min-width: 140px;
+
 }
 .user-table-row td:last-child button {
 
   cursor: pointer;
-  width: 65px;
+  width: 130px;
   height: 35px;
-  margin-bottom: 5px ;
+  margin: 0 20px;
+  margin-bottom: 8px ;
   background-color: var(--activeItem);
   border: none;
   border-radius: 10px;

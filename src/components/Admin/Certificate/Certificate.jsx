@@ -1,4 +1,4 @@
-import { useFetchCertificate } from '../../../hooks/useFetchCertificate'
+import { useFetchCertificate } from '../../../hooks/Certificate/useFetchCertificate'
 import React, { useState } from 'react'
 import { Pagination } from '@mui/material'
 import CertificateRow from '../../tables/CertificateRow/CertificateRow'
@@ -6,7 +6,7 @@ import "./Certificate.css"
 import AddCertificate from '../../form/AddCertificate/AddCertificate'
 import UpdateCertificate from '../../form/UpdateCertificate/UpdateCertificate'
 const Certificate = () => {
-    const {data,error,loading} = useFetchCertificate();
+   
     const [showModalAddCertificate,setShowModalAddCertificate]= useState(false)
     const handleShowModalAddCertificate=(value)=>{
     setShowModalAddCertificate(value)
@@ -24,11 +24,18 @@ const Certificate = () => {
     const handleSetFormDataCertificate=(Obj)=>{
     setFormDataCertificate(Obj);
     }
- 
-    
+    const {data,error,loading,execute} = useFetchCertificate();
+    console.log(data);
+    const getCertificates=()=>{
+            execute()
+    }
+   
   return (
     <>
-    {showModalAddCertificate&& <AddCertificate  handleShowModalAddCertificate={handleShowModalAddCertificate}/>}
+    {showModalAddCertificate&& <AddCertificate 
+     handleShowModalAddCertificate={handleShowModalAddCertificate}
+     getCertificates={getCertificates}
+     />}
     {showModalUpdateCertificate&& 
     <UpdateCertificate  
     handleShowModalUpdateCertificate={handleShowModalUpdateCertificate}  
@@ -40,6 +47,7 @@ const Certificate = () => {
         <button
         onClick={()=>setShowModalAddCertificate(true)}
         >Add Certificate</button>
+      
     </div>
  
            <table className='certificate-table'>

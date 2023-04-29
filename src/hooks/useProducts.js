@@ -18,7 +18,7 @@ export const useProduct = () => {
     } catch (error) {
       setError(error);
     } finally {
-      console.log(res);
+      // console.log(res);
       if (res !== undefined) {
         setLoading(false);
       }

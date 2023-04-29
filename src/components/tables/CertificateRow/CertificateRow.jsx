@@ -2,10 +2,8 @@
 import { ProductImage } from '../../Image/ProductImage/ProductImage';
 import React from 'react'
 import "./CertificateRow.css"
-import { usePlanDetails } from '../../../hooks/usePlanDetails';
+
 function CertificateRow(props) {
-  const {data,loading,error}= usePlanDetails();
-  console.log(data);
     const {index,certificate}= props;
     const {
       id,

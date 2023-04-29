@@ -137,6 +137,12 @@ border: none;
 border-radius: 25px;
 cursor: pointer;
 }
+.header-users .btn-area{
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .pagination{
   margin-top: 10px;
   width: 100%;
