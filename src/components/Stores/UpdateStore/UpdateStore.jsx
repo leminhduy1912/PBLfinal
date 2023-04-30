@@ -2,15 +2,29 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 import { FaTimes } from "react-icons/fa";
 import "./UpdateStore.css";
 import { useFetchBusinessType } from "../../../hooks/useFetchBusinessType";
+
+import { useUpdateUser } from "../../../hooks/User/useUpdateUser";
+import Loading from "../../../components/Loading/Loading";
 function UpdateStore(props) {
-  const {dataBusinessType,loadingBusinessType,errorBusinessType}= useFetchBusinessType();
-console.log(props.formDataUserStore);
+const {dataBusinessType,loadingBusinessType,errorBusinessType}= useFetchBusinessType();
+const {message,success,loading,error,execute}= useUpdateUser()
+const [formUpdateUser,setFormUpdateUser]= useState(props.formDataUserStore)
+const [formTemp,setFormTemp]= useState()
+let id =formUpdateUser.id;
+const handleUpdateCompany=async(e)=>{
+e.preventDefault();
+await execute(formTemp,id)
+await props.fetchDataUser()
+props.handleShowUserUpdateStore(false)
+await props.handleShowActionPerform()
+}
   return (
-    
+    <>
+{/* {success==false?<Loading/>:null} */}
     <div className='company-update-container'>
     <div className='company-update-content'>
         <div className="company-update-form">
@@ -35,11 +49,13 @@ console.log(props.formDataUserStore);
                 </div>
 
                 <input
-                 
+                 onChange={(e)=>{setFormUpdateUser({...formUpdateUser,companyName:e.target.value},
+                              setFormTemp({...formTemp,companyName:e.target.value})      
+                  )}}
                 className='form-control' 
                 type="text" 
                 placeholder='Tên công ty' 
-                value={props.formDataUserStore.companyName}
+                value={formUpdateUser.companyName}
                 />
                 </div>
                 
@@ -50,11 +66,13 @@ console.log(props.formDataUserStore);
               
                 </div>
                 <input
-                 
+                  onChange={(e)=>{setFormUpdateUser({...formUpdateUser,faxNumber:e.target.value},
+                    setFormTemp({...formTemp,faxNumber:e.target.value})      
+        )}}
                 className='form-control' 
                 type="text" 
                 placeholder='FAX Number'
-                value={props.formDataUserStore.faxNumber}
+                value={formUpdateUser.faxNumber}
                  />
                 </div>
                  
@@ -64,11 +82,13 @@ console.log(props.formDataUserStore);
                 
                 </div>
                 <input 
-                
+                 onChange={(e)=>{setFormUpdateUser({...formUpdateUser,email:e.target.value},
+                  setFormTemp({...formTemp,email:e.target.value})      
+      )}}
                 className='form-control' 
                 type="text" 
                 placeholder='Email'
-                value={props.formDataUserStore.email}
+                value={formUpdateUser.email}
                  />
                 </div>
 
@@ -78,11 +98,13 @@ console.log(props.formDataUserStore);
                
                 </div>
                 <input
-                
+                 onChange={(e)=>{setFormUpdateUser({...formUpdateUser,taxIndentity:e.target.value},
+                  setFormTemp({...formTemp,taxIndentity:e.target.value})      
+      )}}
                 className='form-control'
                 type="text" 
                 placeholder='Mã số thuế' 
-                value={props.formDataUserStore.taxIndentity}
+                value={formUpdateUser.taxIndentity}
                 />
                 </div>
                  
@@ -91,7 +113,12 @@ console.log(props.formDataUserStore);
                 <label htmlFor="">Status</label>
                 
                 </div>
-                <select name="" id="" value={props.formDataUserStore.action}>
+                <select name="" id="" 
+                value={formUpdateUser.action}
+                onChange={(e)=>{setFormUpdateUser({...formUpdateUser,action:e.target.value},
+                  setFormTemp({...formTemp,action:e.target.value})      
+      )}}
+                >
                 <option value={1}>Active</option>
                 <option value={0}>Inactive</option>
                 </select>
@@ -108,25 +135,29 @@ console.log(props.formDataUserStore);
                 
                 </div>
                 <input 
-               
+                onChange={(e)=>{setFormUpdateUser({...formUpdateUser,fullName:e.target.value},
+                  setFormTemp({...formTemp,fullName:e.target.value})      
+      )}}
                 className='form-control' 
                 type="text" 
                 placeholder='Họ và tên'
-                value={props.formDataUserStore.fullName}
+                value={formUpdateUser.fullName}
                  />
                 </div>
-
+               
                 <div className="form-group">    
                 <div className="label">
                 <label  htmlFor="">Số điện thoại người đại diện</label>
                 
                 </div>
                 <input 
-                
+                 onChange={(e)=>{setFormUpdateUser({...formUpdateUser,phoneNumber:e.target.value},
+                  setFormTemp({...formTemp,phoneNumber:e.target.value})      
+      )}}
                 className='form-control' 
                 type="text" 
                 placeholder='Số diện thoại' 
-                value={props.formDataUserStore.phoneNumber}
+                value={formUpdateUser.phoneNumber}
                 />
                 </div>
 
@@ -136,11 +167,13 @@ console.log(props.formDataUserStore);
                
                 </div>
                 <input 
-                
+                 onChange={(e)=>{setFormUpdateUser({...formUpdateUser,nationalId:e.target.value},
+                  setFormTemp({...formTemp,nationalId:e.target.value})      
+      )}}
                 className='form-control' 
                 type="text" 
                 placeholder='Số CMND/CCCD'
-                value={props.formDataUserStore.nationalId}
+                value={formUpdateUser.nationalId}
                  />
                 </div>
 
@@ -150,11 +183,15 @@ console.log(props.formDataUserStore);
                 
                 </div>
 
-                <select name="" id=""  value={props.formDataUserStore.businessId}> 
+                <select name="" id=""  
+                 onChange={(e)=>{setFormUpdateUser({...formUpdateUser,businessId:e.target.value},
+                  setFormTemp({...formTemp,businessId:e.target.value})      
+      )}}
+                value={formUpdateUser.businessId}> 
                   <option value="" >--None--</option>
-                  {dataBusinessType.map((item)=>{
+                  {dataBusinessType.map((item,index)=>{
                     return (
-                      <option value={item.businessId}>{item.typeName}</option>
+                      <option key={index} value={item.businessId}>{item.typeName}</option>
                     )
                   })}
                 </select>
@@ -166,11 +203,12 @@ console.log(props.formDataUserStore);
                 <label htmlFor="">Chức vụ</label>
                 
                 </div>
-                <select name="" id="" value={props.formDataUserStore.roleId} >
-                 <option value={0}>Admin</option>
-                 <option value={1}>Moderator</option>
-                 <option value={2}>User</option>
-                 <option value={3}>Store</option>
+                <select name="" id="" 
+                
+                
+                 >
+                
+                 <option value={3} disabled selected >Store</option>
                 </select>
                 </div>
 
@@ -181,12 +219,15 @@ console.log(props.formDataUserStore);
         </form>
      
 
-       <button>Submit</button>
+       <button
+       onClick={handleUpdateCompany}
+       >Submit</button>
         
       
         </div>
     </div>
 </div>
+    </>
   );
 }
 

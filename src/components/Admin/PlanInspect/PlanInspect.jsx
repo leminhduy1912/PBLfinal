@@ -11,7 +11,7 @@ import { usePlan } from "../../../hooks/usePlan";
 import { usePlanDetails } from "../../../hooks/usePlanDetails";
 function PlanInspect() {
   const {dataPlanDetails,loadingPlanDetails,errorPlanDetails}= usePlanDetails("RaEurAclqGCOy7vCSbuXFjZ");
-console.log(dataPlanDetails);
+
   const [showModalDetailsPlan, setShowModalDetailsPlan] = useState(false);
   const handleShowMoDalDetailsPlan = (value) => {
     setShowModalDetailsPlan(value);
@@ -25,7 +25,7 @@ console.log(dataPlanDetails);
     setShowModalAddPlan(value);
   };
 const {data,loading,error}= usePlan();
-console.log(data);
+
   
 
   const handleOnChange = (event, value) => {

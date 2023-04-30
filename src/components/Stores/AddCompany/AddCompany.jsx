@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { FaTimes } from 'react-icons/fa'
 import "./AddCompany.css"
 import { useFetchBusinessType } from '../../../hooks/useFetchBusinessType'
-import { useCreateCompany } from '../../../hooks/useCreateUser'
+import { useCreateCompany } from '../../../hooks/User/useCreateUser'
 const AddCompany = (props) => {
     const {dataBusinessType,loadingBusinessType,errorBusinessType} = useFetchBusinessType();
     const [errMessage,setErrMessage]= useState('');
@@ -22,18 +22,17 @@ const AddCompany = (props) => {
         roleId:2
     })
     const {success,message,loading,error,execute}= useCreateCompany();
-    if(success===true){
-      props.handleShowModalAddCompany(false)
-    }
+   
   
 
     const handleAddCompanySubmit = async(e) => {
         e.preventDefault();
         await execute(formDataAddCompany)
-        setShowModalAddCompany(false)
         await props.fetchDataUser()
+        setShowModalAddCompany(false)
+        await props.handleShowActionPerform();
       };
-
+      
 
   return (
     <div className='add-company-container'>

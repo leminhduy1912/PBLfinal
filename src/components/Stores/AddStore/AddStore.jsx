@@ -2,11 +2,11 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";//roi
 import { FaTimes } from "react-icons/fa";
 import "./AddStore.css";
 function AddStore({statusModalAdd}) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const handleAddModalHide=()=>{
     statusModalAdd(false)
   }
@@ -14,7 +14,7 @@ function AddStore({statusModalAdd}) {
     <div className="AddStore-container">
       <div className="AddStore-content">
         <h1>Add Store</h1>
-    
+
         <div
           className="x-icon"
           onClick={() => 

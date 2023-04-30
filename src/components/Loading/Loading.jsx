@@ -1,6 +1,7 @@
 import React from 'react'
 import './Loading.css'
 const Loading = () => {
+  {console.log(Loading);}
   return (
     <div className='container'>
     <div className='loader'></div>

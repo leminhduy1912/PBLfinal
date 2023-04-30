@@ -1,11 +1,11 @@
 import "./users.css";
 import { useFetchBusinessType } from "../../../hooks/useFetchBusinessType";
-import { useDeleteUser } from "../../../hooks/useDeleteUser";
+import { useDeleteUser } from "../../../hooks/User/useDeleteUser";
 export const RowUsers = (props) => {
-  //  console.log(props.formDataUserStore);
+
 
   const {dataBusinessType,errorBusinessType,loadingBusinessType}= useFetchBusinessType();
-  // console.log(props.index);
+
 
   let nameBusinessType="";
 for ( let i=0;i<dataBusinessType.length;i++){
@@ -47,12 +47,12 @@ for ( let i=0;i<dataBusinessType.length;i++){
     }
   }
   const  {message,success,loading,error,execute} = useDeleteUser()
-  // console.log(success);
-  // console.log(message);
-  const handleDeleteUser=()=>{
- 
-    //console.log(props.companyId);
-    execute(props.companyId)
+
+  const handleDeleteUser=async(e)=>{
+    e.preventDefault();
+    await execute(props.id)
+    await props.fetchDataUser()
+    await props.handleShowActionPerform()   
 
   }
   const handleShowUsersDetail=()=>{
@@ -74,7 +74,6 @@ for ( let i=0;i<dataBusinessType.length;i++){
   const handleShowUserUpdate=()=>{
     if (props.role.roleCode ==="MOD"){
       props.handleShowUserUpdate(true)
-     
       props.handleSetFormDataUser(Object)
     }
     if (props.role.roleCode ==="STR"){
@@ -104,7 +103,7 @@ for ( let i=0;i<dataBusinessType.length;i++){
        
           <button onClick={handleShowUsersDetail} className="btn">Details</button>
           <button onClick={handleShowUserUpdate}  className="btn">Update</button>
-          <button onClick={handleDeleteUser}      className="btn">Inactive</button>
+          <button onClick={handleDeleteUser}      className="btn">{props.action === 1 ? "Inactive" : "Active"}</button>
           
         </td>
       </tr>

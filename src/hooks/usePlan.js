@@ -14,7 +14,7 @@ export const usePlan = () => {
         setLoading(true)
         res= await getAllPlans()
         setData(res.data.result);
-        console.log(data);
+  
        } catch (error) {
         setError(error)
        } finally{

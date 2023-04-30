@@ -1,4 +1,4 @@
-import { deleteUser } from "../service/user.service"
+import { deleteUser } from "../../service/user.service"
 import { useState } from "react";
 
 export const useDeleteUser=()=>{
@@ -12,6 +12,7 @@ export const useDeleteUser=()=>{
         try {
                 res= await deleteUser(id)
                 if (res.meta.status_code==200){
+                    setLoading(true)
                     setSuccess(true)
                     setMessage("Delete Success")
                 } 

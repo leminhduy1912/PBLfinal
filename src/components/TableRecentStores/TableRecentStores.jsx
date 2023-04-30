@@ -1,15 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import "./TableRecentStores.css";
 import { RowUsers } from "../tables/user/users";
-import { useFetchUser } from "../../hooks/useFetchUser";
+import { useFetchUser } from "../../hooks/User/useFetchUser";
 import DetailsStores from "../Stores/DetailsStores/DetailsStores";
 import UpdateStore from "../Stores/UpdateStore/UpdateStore";
-import { useFetchCertificate} from "../../hooks/Certificate/useFetchCertificate";
-import {useFetchBusinessType } from "../../hooks/useFetchBusinessType"
 import DetailsUser from "../Stores/DetailsUser/DetailsUser";
 import UpdateUser from "../Stores/UpdateUser/UpdateUser";
+import ActionSuccess from "../ActionSuccess/ActionSuccess";
 const TableRecentStores = () => {
-   const { data, pagination, error, loading } = useFetchUser("");
+  //  const { data, pagination, error, loading } = useFetchUser("");
+
+
+
+   const [email, setEmail] = useState("");
+   const [fullname, setFullName] = useState("");
+   const [filter, setFilter] = useState({ fullname, email, page: 1 });
+   const { data, pagination, error, loading, executeDataUser } =
+     useFetchUser(filter);
+ 
+   const fetchDataUser = async () => {
+     setFilter({ email: "", fullname: "", page: 1 });
+     await executeDataUser(filter);
+   };
+   const [actionPerform,setActionPerform]= useState(false)
+
+  const handleShowActionPerform=()=>{
+
+    setActionPerform(true)
+    setTimeout(()=>{
+      setActionPerform(false)
+    },3000)
+  }
+
+
+
+
 
    const [showModalDetailsUser,setShowModalDetailsUser]= useState(false)
    const handleShowUsersDetails=(value)=>{
@@ -65,6 +90,7 @@ const TableRecentStores = () => {
 // console.log(formDataUserStore);
   return (
     <>
+    {actionPerform&& <ActionSuccess/>}
   {showModalUserStoreDetails&&
   <DetailsStores     
   handleShowUserStoreDetails={handleShowUserStoreDetails} 
@@ -119,6 +145,8 @@ const TableRecentStores = () => {
               formDataUserStore={formDataUserStore}
               handleSetFormDataUserStore={handleSetFormDataUserStore}
               handleShowUserUpdateStore={handleShowUserUpdateStore}
+              fetchDataUser={fetchDataUser}
+              handleShowActionPerform={handleShowActionPerform}
               />;
             })}
         </tbody>

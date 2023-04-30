@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+// import React, { useEffect } from "react";
 import "./Stores.css";
-import { Search, SearchOutlined } from "@mui/icons-material";
-import AddStore from "./AddStore/AddStore";
-import { useFetchUser } from "../../hooks/useFetchUser";
+import { SearchOutlined } from "@mui/icons-material";
+// import AddStore from "./AddStore/AddStore";
+import { useFetchUser } from "../../hooks/User/useFetchUser";
 import { RowUsers } from "../tables/user/users";
 import { Pagination } from "@mui/material";
 import { useState } from "react";
@@ -12,7 +12,10 @@ import AddAccount from "../form/AddAccount/AddAccount";
 import DetailsUser from "./DetailsUser/DetailsUser";
 import UpdateUser from "./UpdateUser/UpdateUser";
 import AddCompany from "./AddCompany/AddCompany";
+import ActionSuccess from "../ActionSuccess/ActionSuccess";
+
 function Stores() {
+  
   // Details
   const [showModalUsersDetails, setShowModalUsersDetails] = useState(false);
   const handleShowUsersDetails = (value) => {
@@ -76,6 +79,21 @@ function Stores() {
     setShowModalAddCompany(value);
   };
 
+
+
+
+  const [actionPerform,setActionPerform]= useState(false)
+
+  const handleShowActionPerform=()=>{
+
+    setActionPerform(true)
+    setTimeout(()=>{
+      setActionPerform(false)
+    },3000)
+  }
+ 
+
+
   const [currentPage, setCurrentPage] = useState(1);
   const [email, setEmail] = useState("");
   const [fullname, setFullName] = useState("");
@@ -104,6 +122,7 @@ function Stores() {
 
   return (
     <>
+      {actionPerform&&<ActionSuccess/>}
       {showModalUsersDetails && (
         <DetailsUser
           formDataUser={formDataUser}
@@ -122,6 +141,8 @@ function Stores() {
         <UpdateUser
           handleShowUserUpdate={handleShowUserUpdate}
           formDataUser={formDataUser}
+          fetchDataUser={fetchDataUser}
+          handleShowActionPerform={handleShowActionPerform}
         />
       )}
 
@@ -129,6 +150,8 @@ function Stores() {
         <UpdateStore
           formDataUserStore={formDataUserStore}
           handleShowUserUpdateStore={handleShowUserUpdateStore}
+          fetchDataUser={fetchDataUser}
+          handleShowActionPerform={handleShowActionPerform}
         />
       )}
 
@@ -137,6 +160,7 @@ function Stores() {
           handleShowModalAddUser={handleShowModalAddUser}
           fetchDataUser={fetchDataUser}
           setShowModalAddUser={setShowModalAddUser}
+          handleShowActionPerform={handleShowActionPerform}
         />
       )}
       {showModalAddCompany && (
@@ -144,6 +168,7 @@ function Stores() {
           handleShowModalAddCompany={handleShowModalAddCompany}
           fetchDataUser={fetchDataUser}
           setShowModalAddCompany={setShowModalAddCompany}
+          handleShowActionPerform={handleShowActionPerform}
         />
       )}
       <div className="header-users">
@@ -213,6 +238,8 @@ function Stores() {
                   handleSetFormDataUserStore={handleSetFormDataUserStore}
                   handleShowUserUpdate={handleShowUserUpdate}
                   handleShowUserUpdateStore={handleShowUserUpdateStore}
+                  handleShowActionPerform={handleShowActionPerform}
+                  fetchDataUser={fetchDataUser}
                 />
               );
             })}

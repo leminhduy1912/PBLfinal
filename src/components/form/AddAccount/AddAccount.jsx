@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 // import { FaTimes } from 'react-icons/fa';
-import { useCreateCompany, useCreateUser } from "../../../hooks/useCreateUser";
+import { useCreateUser } from "../../../hooks/User/useCreateUser";
 import ClearIcon from "@mui/icons-material/Clear";
 import "./AddAccount.css";
+// import Loading from "../../Loading/Loading";
 function AddAccount(props) {
   const { fetchDataUser, setShowModalAddUser } = props;
   const [formAdduser, setFormAddUser] = useState({
@@ -14,18 +15,19 @@ function AddAccount(props) {
     roleId: "",
   });
   const { success, message, loading, error, execute } = useCreateUser();
-  
 
-  if (success == true) {
-    props.handleShowModalAddUser(false);
-  }
   const handleAdduser = async (e) => {
     e.preventDefault();
     await execute(formAdduser);
-    setShowModalAddUser(false);
+  
+    await props.handleShowActionPerform();
     await fetchDataUser();
+    setShowModalAddUser(false);
+    console.log(message);
   };
   return (
+    <>
+    {/* {success==false? <Loading/>: null} */}
     <div className="AddAccount-container">
       <div className="AddAccount-content">
         <h1>Add User</h1>
@@ -42,7 +44,7 @@ function AddAccount(props) {
 
         <form action="">
           <div className="form-group">
-            <label className="form-input-control">Tên người dùng</label>
+            <label htmlFor="Tên người dùng" className="form-input-control">Tên người dùng</label>
             <input
               className="form-input-control"
               type="text"
@@ -53,7 +55,7 @@ function AddAccount(props) {
             />
           </div>
           <div className="form-group">
-            <label className="form-input-control">Email</label>
+            <label htmlFor="Email" className="form-input-control">Email</label>
             <input
               className="form-input-control"
               type="text"
@@ -65,11 +67,11 @@ function AddAccount(props) {
           </div>
 
           <div className="form-group">
-            <label className="form-input-control">Số CCCD/CMND</label>
+            <label htmlFor="Số CCCD/CMND" className="form-input-control">Số CCCD/CMND</label>
             <input
               className="form-input-control"
               type="text"
-              placeholder="Email"
+              placeholder="Số CCCD/CMND"
               onChange={(e) => {
                 setFormAddUser({ ...formAdduser, nationalId: e.target.value });
               }}
@@ -77,7 +79,7 @@ function AddAccount(props) {
           </div>
 
           <div className="form-group">
-            <label className="form-input-control">Số điện thoại</label>
+            <label htmlFor="Số điện thoại" className="form-input-control">Số điện thoại</label>
             <input
               className="form-input-control"
               type="text"
@@ -89,7 +91,7 @@ function AddAccount(props) {
           </div>
 
           <div className="form-group">
-            <label className="form-input-control">Chức vụ</label>
+            <label htmlFor="Chức vụ" className="form-input-control">Chức vụ</label>
             <select
               name=""
               id=""
@@ -106,7 +108,7 @@ function AddAccount(props) {
           </div>
 
           <div className="form-group">
-            <label className="form-input-control">Mật khẩu</label>
+            <label htmlFor="Mật khẩu" className="form-input-control">Mật khẩu</label>
             <input
               className="form-input-control"
               type="password"
@@ -121,6 +123,7 @@ function AddAccount(props) {
         <button onClick={handleAdduser}>Submit</button>
       </div>
     </div>
+    </>
   );
 }
 

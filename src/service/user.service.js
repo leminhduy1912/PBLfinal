@@ -1,6 +1,6 @@
 import { Axios } from "../config";
 export const getAllUser = async (query) => {
-  console.log("GET");
+
   return await Axios({
     method: "GET",
     headers: {
@@ -14,7 +14,7 @@ export const getAllUser = async (query) => {
 
 
 export const createCompanyUser=async (Obj)=>{
-  console.log("create");
+
  let  formData= new FormData();
 formData.append("businessId",Obj.businessId)
 formData.append("companyName",Obj.companyName)
@@ -62,7 +62,7 @@ let  formData= new FormData();
  
  }
  export const deleteUser=async(storeId)=>{
- console.log(storeId);
+
 return await Axios({
   method:"DELETE",
   headers: {
@@ -72,4 +72,20 @@ return await Axios({
   url:"/private/user/"+storeId,
  
 })
+ }
+ export const updateUser=async(Obj,id)=>{
+  let formData= new FormData()
+  for (const key in Obj){
+    formData.append(key,Obj[key])
+  }
+
+  return await Axios({
+    method:"PUT",
+    headers: {
+      ACCESS_TOKEN:
+        "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJyb2xlIjoiQURNIiwiaXNzIjoibWluaG5nb2MiLCJleHAiOjE2ODA0MDk1MDMsImlhdCI6MTY4MDQwOTIwMywidXNlcklkIjoiMTBSMmgteF8zS0NfOFJPNGRBWjNIMnEifQ.b21RKgAlaCEGIwP5pwdmD21n9GxQkLWt-pKXprZh1lDjaKMawypkGYWJg54w4HEx4M5Qlt_bXCk7kfEM3_5KTdqeiCLuwwQmborY8PWlzoAOLl96iwnODwULUwCkg2B_KRNiuhKVeoh8FtIQAM-W8tQJe4ywnYc6XdYRgFRWtUOtbjD6NnATr2N6zGkqBMUMfd-iT1Eng51cYS8jyhkT-RGVYpA7bjtjiUma-6MnIdm4MVAY_t3eJhgGlpAeBB4z3maUUzvMggqmU_Vr7rqAjgkcuORsIjsb_fEt8I_FlVhQd_bvkHVMveI9H6rsBlTi1vbpQfqkV3sLc5kOWij-AA",
+    },
+    url:"/private/user/"+id,
+    data:formData
+  })
  }

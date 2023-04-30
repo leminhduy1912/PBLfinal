@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
-import { getAllUser } from "../service/user.service";
-import { ConvertToQueryParams } from "../utils/ConvertToQueryParams";
+import { getAllUser } from "../../service/user.service";
+import { ConvertToQueryParams } from "../../utils/ConvertToQueryParams";
 
 export const useFetchUser = (url) => {
   const [data, setData] = useState({});

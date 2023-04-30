@@ -1,10 +1,25 @@
 import React from 'react'
+import { useState } from 'react'
 import "./UpdateUser.css"
 import { FaTimes } from 'react-icons/fa'
+import { useUpdateUser } from '../../../hooks/User/useUpdateUser'
+// import Loading from '../../Loading/Loading'
 const UpdateUser = (props) => {
-    
+    const [formTemp,setFormTemp]= useState()
+    const [formUpdateUser,setFormUpdateUser]= useState(props.formDataUser)
+    const {message,success,loading,error,execute}= useUpdateUser()
+    const handleUpdateUser=async(e)=>{
+     e.preventDefault();
+     await execute(formUpdateUser,formUpdateUser.id)
+     await props.fetchDataUser()
+     await props.handleShowActionPerform()
+     props.handleShowUserUpdate(false)
+    }
   return (
+    <>
+
     <div className="update-user-container">
+     
       <div className="update-user-content">
 
         
@@ -12,43 +27,63 @@ const UpdateUser = (props) => {
 
         <div
           className="x-icon"
-         onClick={()=>{props.handleShowUserUpdate(false)}}
         >
-          <FaTimes />
+          <FaTimes 
+           onClick={()=>{props.handleShowUserUpdate(false)}}/>
         </div>
 
         <form action="">
           <div className="form-group">
-            <label className="form-input-control">Name Store</label>
+            <label htmlFor='Name Store' className="form-input-control">FullName</label>
             <input
-            value={props.formDataUser.fullName}
+            onChange={(e)=>{
+            setFormUpdateUser({...formUpdateUser,fullName:e.target.value},
+            setFormTemp({...formTemp,fullName:e.target.value})
+            )}
+          }
+            value={formUpdateUser.fullName}
               className="form-input-control"
               type="text"
               placeholder="Name Store"
             />
           </div>
           <div className="form-group">
-            <label className="form-input-control">Số điện thoại</label>
+            <label htmlFor='Số điện thoại' className="form-input-control">Số điện thoại</label>
             <input
-            value={props.formDataUser.userNumber}
+             onChange={(e)=>{
+              setFormUpdateUser({...formUpdateUser,userNumber:e.target.value},
+              setFormTemp({...formTemp,userNumber:e.target.value})
+              )}
+            }
+            value={formUpdateUser.userNumber}
               className="form-input-control"
               type="text"
               placeholder="Name Store"
             />
           </div>
           <div className="form-group">
-            <label className="form-input-control">Email</label>
+            <label htmlFor='Email' className="form-input-control">Email</label>
             <input
-            value={props.formDataUser.email}
+             onChange={(e)=>{
+              setFormUpdateUser({...formUpdateUser,email:e.target.value},
+              setFormTemp({...formTemp,email:e.target.value})
+              )}
+            }
+            value={formUpdateUser.email}
               className="form-input-control"
               type="text"
               placeholder="Email"
             />
           </div>
           <div className="form-group">
-            <label className="form-input-control">Số CCCD/CMND</label>
+            <label htmlFor='Số CCCD/CMND' className="form-input-control">Số CCCD/CMND</label>
             <input
-            value={props.formDataUser.nationalId}
+             onChange={(e)=>{
+              setFormUpdateUser({...formUpdateUser,nationalId:e.target.value},
+              setFormTemp({...formTemp,nationalId:e.target.value})
+              )}
+            }
+            value={formUpdateUser.nationalId}
               className="form-input-control"
               type="text"
               placeholder="Name Store"
@@ -56,8 +91,15 @@ const UpdateUser = (props) => {
           </div>
 
           <div className="form-group">
-            <label className="form-input-control">Chức vụ</label>
-            <select name="" id="" value={props.formDataUser.roleId}>
+            <label htmlFor='Chức vụ' className="form-input-control">Chức vụ</label>
+            <select name="" id="" 
+            value={formUpdateUser.roleId}
+            onChange={(e)=>{
+              setFormUpdateUser({...formUpdateUser,roleId:e.target.value},
+              setFormTemp({...formTemp,roleId:e.target.value})
+              )}
+            }
+            >
               
               <option value={0}>Admin</option>
               <option value={2}>Moderator</option>
@@ -65,8 +107,15 @@ const UpdateUser = (props) => {
             </select>
           </div>
           <div className="form-group">
-            <label className="form-input-control">Status</label>
-            <select name="" id="" value={props.formDataUser.action}>
+            <label htmlFor='Status' className="form-input-control">Status</label>
+            <select name="" id="" 
+            value={formUpdateUser.action}
+            onChange={(e)=>{
+              setFormUpdateUser({...formUpdateUser,action:e.target.value},
+              setFormTemp({...formTemp,action:e.target.value})
+              )}
+            }
+            >
               <option value="" selected disabled>
                 --Status--
               </option>
@@ -76,9 +125,12 @@ const UpdateUser = (props) => {
           </div>
         </form>
 
-        <button>Submit</button>
+        <button
+        onClick={handleUpdateUser}
+        >Submit</button>
       </div>
     </div>
+    </>
   )
 }
 

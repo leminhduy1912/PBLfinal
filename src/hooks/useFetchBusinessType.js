@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import { getAllBusinessType } from '../service/business.service';
 
 export const useFetchBusinessType = () => {
