@@ -11,13 +11,13 @@
     border-radius: 5px;
     border-color: green;
     box-shadow: 0 5px 8px rgba(0, 0, 0,0.7);
-    transform: translateX(calc(100% + 37px));
+    /* transform: translateX(calc(100% + 37px)); */
     background-color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;  
-    transition: right 0.5s ease-out;  
-    animation: slideInLeft ease 1.2s;
+    /* transition: right 0.5s ease-out;  
+    animation: slideInLeft ease 10s; */
 }
 .action-success .icon{
     display: grid;

@@ -1,27 +1,39 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./AddCertificate.css"
 import { FaTimes } from 'react-icons/fa'
 import { useCreateCertificate } from '../../../hooks/Certificate/useCreateCertificate'
+import ActionSuccess from '../../ActionSuccess/ActionSuccess'
 function Addcertificate(props) {
    const [formDataCertificate,setFormDataCertificate]= useState({name:'',description:'',image:''})
    const  {success,message, error, loading ,execute}= useCreateCertificate();
+  //  const [actionPerform,setActionPerform]= useState(false)
+  //  let  messsagePayload="";
+   const actionSuccess=async()=>{
+     await props.handleShowModalAddCertificate(false);
+     await props.handleSetShowSuccess({message:message})
+   }
   if (success==true){
-    props.handleShowModalAddCertificate(false);
-    props.getCertificates();
+   actionSuccess()
   }
-   const  handleAddCertificate=()=>{
-  execute(formDataCertificate)
+   const  handleAddCertificate=async(e)=>{
+    e.preventDefault();
+  await execute(formDataCertificate)
    }
   return (
+    <>
+
+ 
     <div className="add-certificate-container">
       <div className="add-certificate-content">
         <h1>Add Certificate</h1>
     
         <div
           className="x-icon"
-          onClick={()=>{props.handleShowModalAddCertificate(false)}}
+         
         >
-          <FaTimes />
+          <FaTimes 
+           onClick={()=>{props.handleShowModalAddCertificate(false)}}
+          />
         </div>
 
         <form action="">
@@ -63,6 +75,7 @@ function Addcertificate(props) {
         >Submit</button>
       </div>
     </div>
+    </>
   )
 }
 

@@ -12,6 +12,7 @@ export const Product = (props) => {
     action,
     product_type: { id: typeId, name: typeName },
   } = product;
+  console.log(certificates);
   return (
     <div className="product-card-container">
 

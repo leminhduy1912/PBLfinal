@@ -5,6 +5,7 @@ import CertificateRow from '../../tables/CertificateRow/CertificateRow'
 import "./Certificate.css"
 import AddCertificate from '../../form/AddCertificate/AddCertificate'
 import UpdateCertificate from '../../form/UpdateCertificate/UpdateCertificate'
+import ActionSuccess from '../../ActionSuccess/ActionSuccess'
 const Certificate = () => {
    
     const [showModalAddCertificate,setShowModalAddCertificate]= useState(false)
@@ -25,16 +26,28 @@ const Certificate = () => {
     setFormDataCertificate(Obj);
     }
     const {data,error,loading,execute} = useFetchCertificate();
-    console.log(data);
+   const [messageAction,setMessageAction]= useState("")
     const getCertificates=()=>{
             execute()
     }
-   
+   const [showSuccess,setShowSuccess]= useState(false)
+   const handleSetShowSuccess=(Object)=>{
+    console.log(Object);
+    setMessageAction(Object.message)
+        setShowSuccess(true)
+        setTimeout(()=>{
+          setShowSuccess(false)
+        },3000)
+   }
+  //  handleSetShowSuccess()
+
   return (
     <>
+   {showSuccess&& <ActionSuccess  messageAction={messageAction}   />}
     {showModalAddCertificate&& <AddCertificate 
      handleShowModalAddCertificate={handleShowModalAddCertificate}
      getCertificates={getCertificates}
+     handleSetShowSuccess={handleSetShowSuccess}
      />}
     {showModalUpdateCertificate&& 
     <UpdateCertificate  
