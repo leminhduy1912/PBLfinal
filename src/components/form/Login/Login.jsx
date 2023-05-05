@@ -10,7 +10,7 @@ const Login = (props) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [errMessage, setErrMessage] = useState();
-  const [dispatch] = useContext(StoreContext);
+  const [state, dispatch] = useContext(StoreContext);
   const navigate = useNavigate();
   const updateGlobalState = ({ token, role }) => {
     dispatch({ type: SET_AUTH_STATE, payload: { token: token, role: role } });
@@ -24,7 +24,7 @@ const Login = (props) => {
         return;
       }
       updateGlobalState({ token: res.data.ACCESS_TOKEN, role: res.data.role });
-      return navigate("/admin");
+      return navigate("/home");
     } catch (error) {
       console.log(error);
     }
@@ -56,7 +56,7 @@ const Login = (props) => {
             </div>
             {errMessage && <div>{errMessage}</div>}
 
-            <button type="submit" onClick={(e)=>handleLogin(e)}>
+            <button type="submit" onClick={(e) => handleLogin(e)}>
               Submit
             </button>
           </form>

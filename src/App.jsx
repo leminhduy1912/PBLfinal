@@ -30,30 +30,25 @@ function App() {
           <Route path="/*" element={<ErrorComponent />} />
           <Route path="/404" element={<ErrorComponent />} />
 
-          <Route element={<RedirectAccess />}>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<CompanyRegister />} />
-            {/* <Route path="/" element={<Home />} /> */}
-            <Route
-              path="/home"
-              element={<Sidebar data={SidebarData} role="Admin" />}
-            >   </Route>
-          
+          {/* <Route element={<RedirectAccess />}> */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<CompanyRegister />} />
+          {/* <Route path="/" element={<Home />} /> */}
+          <Route
+            path="/home"
+            element={<Sidebar data={SidebarData} role="Admin" />}
+          >
+            {" "}
           </Route>
+          {/* </Route> */}
 
-          <Route element={<RequireAuth roles={["admin", "moderator"]} />}>
+          <Route element={<RequireAuth roles={["Admin", "moderator"]} />}>
             <Route
               path="/home"
               element={<Sidebar data={SidebarData} role="Admin" />}
-            >   
-                
+            ></Route>
 
-            </Route>
-           
-            <Route
-              path="/moderrator"
-              element={<Sidebar data={SidebarData} />}
-            />
+            <Route path="/moderator" element={<Sidebar data={SidebarData} />} />
           </Route>
         </Routes>
         {/* <Routes>
