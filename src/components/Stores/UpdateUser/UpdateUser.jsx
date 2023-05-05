@@ -8,12 +8,19 @@ const UpdateUser = (props) => {
     const [formTemp,setFormTemp]= useState()
     const [formUpdateUser,setFormUpdateUser]= useState(props.formDataUser)
     const {message,success,loading,error,execute}= useUpdateUser()
+    const actionSuccess=async()=>{
+      await props.handleShowUserUpdate(false)
+      await props.handleShowActionPerform(message)
+      console.log("message",message);
+      await props.fetchDataUser()
+    }
+  if (success==true){
+  actionSuccess()
+  }
     const handleUpdateUser=async(e)=>{
      e.preventDefault();
      await execute(formUpdateUser,formUpdateUser.id)
-     await props.fetchDataUser()
-     await props.handleShowActionPerform()
-     props.handleShowUserUpdate(false)
+   
     }
   return (
     <>

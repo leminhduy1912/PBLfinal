@@ -1,10 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./UpdateCertificate.css"
 import { FaTimes } from 'react-icons/fa'
+import { useUpdateCertificate } from '../../../hooks/Certificate/useUpdateCertificate'
 function UpdateCertificate(props) {
-    const handleHideModalUpdateCertificate=()=>{
-   props.handleShowModalUpdateCertificate(false)
-    }
+  const {message,loading,success,error,executeUpdateCerti}= useUpdateCertificate()
+  const [formCertificateInfor,setFormCertificateInfor]= useState(props.formDataCertificate)
+
+  const [formTemp,setFormTemp]= useState({})
+  const actionSuccess=async()=>{
+  await props.getCertificates()
+  await props.handleSetShowSuccess(message)
+  await props.handleShowModalUpdateCertificate(false)
+ 
+  }
+  if (success==true){
+    actionSuccess()
+  }
+  const handleUpdateCertificate=async(e)=>{
+    e.preventDefault()
+  await executeUpdateCerti(formTemp)
+  }
+   
   return (
     <div className="update-certificate-container">
     <div className="update-certificate-content">
@@ -12,43 +28,58 @@ function UpdateCertificate(props) {
   
       <div
         className="x-icon"
-        onClick={handleHideModalUpdateCertificate}
       >
-        <FaTimes />
+        <FaTimes 
+         onClick={()=>{props.handleShowModalUpdateCertificate(false)}}
+        />
       </div>
 
       <form action="">
         <div className="form-group">
-          <label className="form-input-control">Tên chứng nhận</label>
+          <label htmlFor='Tên chứng nhận' className="form-input-control">Tên chứng nhận</label>
           <input
+          onChange={(e)=>{
+          setFormCertificateInfor({...props.formCertificateInfor,name:e.target.value}),
+          setFormTemp({...formTemp,name:e.target.value})
+          }}
             className="form-input-control"
             type="text"
             placeholder="Tên chứng nhận"
-            value={props.formDataCertificate.name}
+             value={formCertificateInfor.name}
           />
         </div>
       
         <div className="form-group">
-          <label className="form-input-control">Mô tả</label>
+          <label htmlFor='Mô tả' className="form-input-control">Mô tả</label>
           <input
+          onChange={(e)=>{
+            setFormCertificateInfor({...props.formCertificateInfor,description:e.target.value}),
+            setFormTemp({...formTemp,description:e.target.value})
+            }}
             className="form-input-control"
             type="text"
             placeholder="Nhập mô tả"
-            value={props.formDataCertificate.description}
+            value={formCertificateInfor.description}
           />
         </div>
         <div className="form-group">
-          <label className="form-input-control">Hình ảnh</label>
+          <label htmlFor='Hình ảnh' className="form-input-control">Hình ảnh</label>
           <input
+           onChange={(e)=>{
+            setFormCertificateInfor({...props.formCertificateInfor,path:e.target.value}),
+            setFormTemp({...formTemp,path:e.target.files[0]})
+            }}
             className="form-input-control"
             type="file"
-            // value={props.formDataCertificate.path}
+         
           />
         </div>
 
       </form>
 
-      <button>Submit</button>
+      <button
+      onClick={handleUpdateCertificate}
+      >Submit</button>
     </div>
   </div>
   )

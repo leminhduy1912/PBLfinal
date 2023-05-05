@@ -28,7 +28,7 @@ for ( let i=0;i<dataBusinessType.length;i++){
     }
   }
 
-  if (props.role.roleCode ==="STR"){
+  if (props.role.roleCode ==="STR"||props.role.roleCode ==="USR"||props.role.roleCode ==="ADM"){
     Object={
       ...props.formDataUserStore,
         action:props.action,
@@ -47,13 +47,11 @@ for ( let i=0;i<dataBusinessType.length;i++){
     }
   }
   const  {message,success,loading,error,execute} = useDeleteUser()
-
   const handleDeleteUser=async(e)=>{
     e.preventDefault();
     await execute(props.id)
     await props.fetchDataUser()
-    await props.handleShowActionPerform()   
-
+    await props.handleShowActionPerform(props.action===1?"Inactive Success":"Active Success")
   }
   const handleShowUsersDetail=()=>{
   
@@ -72,7 +70,7 @@ for ( let i=0;i<dataBusinessType.length;i++){
   }
 
   const handleShowUserUpdate=()=>{
-    if (props.role.roleCode ==="MOD"){
+    if (props.role.roleCode ==="MOD"||props.role.roleCode ==="USR"||props.role.roleCode ==="ADM"){
       props.handleShowUserUpdate(true)
       props.handleSetFormDataUser(Object)
     }
@@ -108,5 +106,5 @@ for ( let i=0;i<dataBusinessType.length;i++){
         </td>
       </tr>
     
-  );
-};
+  )
+  }

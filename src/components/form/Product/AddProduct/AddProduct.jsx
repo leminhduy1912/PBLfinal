@@ -1,55 +1,97 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./AddProduct.css"
 import ClearIcon from '@mui/icons-material/Clear';
+import { useProductKind } from '../../../../hooks/Product/useProductKind';
+import { getAllCompaniesCurrent } from '../../../../hooks/User/useGetAllCompanies';
+import { useCreateProduct } from '../../../../hooks/Product/useCreateProduct';
+import ActionSuccess from '../../../ActionSuccess/ActionSuccess';
+
 function AddProduct(props) {
     const handleHideModalAddProduct=()=>{
         props.handleShowModalAddProduct(false);
     }
-
+const {message,success,data,loading,error}= useProductKind()
+const  {dataCompanies,errorCompanies}= getAllCompaniesCurrent()
+const {successCreateProduct,messageCreateProduct, errorCreateProduct ,executeCreateProduct}= useCreateProduct();
+const [formAddProduct,setFormAddProduct]= useState({})
+const [messageAction,setMessageAction]= useState("")
+if (successCreateProduct==true){
+  
+   setMessageAction(messageCreateProduct)
+  props.handleShowModalAddProduct(false)
+}
+const handleAddNewProduct=()=>{
+ executeCreateProduct(formAddProduct)
+}
   return (
+    <>
+    {/* <ActionSuccess messageAction={messageAction}/> */}
     <div className="productAdd-container">
     <div className="productAdd-content">
       <h1>Add Product</h1>
 
       <div
         className="x-icon"
-        onClick={handleHideModalAddProduct}
+       
       >
-       <ClearIcon/>
+       <ClearIcon
+       onClick={handleHideModalAddProduct}
+       />
       </div>
 
       <form action="">
         <div className="form-group">
-          <label className="form-input-control">Product Name</label>
+          <label htmlFor='Product Name' className="form-input-control">Product Name</label>
           <input
             className="form-input-control"
             type="text"
             placeholder="Product Name"
+            value={formAddProduct.productName}
+            onChange={(e)=>{setFormAddProduct({...formAddProduct,productName:e.target.value})}}
           />
         </div>
         <div className="form-group">
-          <label className="form-input-control">Company Name</label>
-          <input
-            className="form-input-control"
-            type="text"
-            placeholder="Company Name"
-          />
+          <label htmlFor='Company Name' className="form-input-control">Company Name</label>
+          <select 
+          name="" 
+          id=""  
+          value={formAddProduct.userId} 
+          onChange={(e)=>{setFormAddProduct({...formAddProduct,userId:e.target.value})}}
+          >
+            <option value="" disabled selected>--None--</option>
+           {dataCompanies.map((item,index)=>{
+            return(
+              <option key={index} value={item.id} >{item.companyName}</option>
+            )
+           })}
+          </select>
         </div>
         <div className="form-group">
-          <label className="form-input-control">Status</label>
-          <select name="" id="">
-            <option value="" disabled selected>--Status--</option>
-            <option value="">Active</option>
-            <option value="">Inactive</option>
+          <label htmlFor='Product Kind' className="form-input-control">Product Kind</label>
+          <select 
+          name="" 
+          id=""
+          value={formAddProduct.kindof} 
+          onChange={(e)=>{setFormAddProduct({...formAddProduct,kindof:e.target.value})}}
+          >
+            <option value="" disabled selected>--None--</option>
+           {data.map((item,index)=>{
+            return(
+              <option key={index} value={item.id} >{item.name}</option>
+            )
+           })}
           </select>
         </div>
         
 
       </form>
 
-      <button>Submit</button>
+      <button
+      onClick={handleAddNewProduct}
+      >Submit</button>
     </div>
   </div>
+    </>
   )
 }
 

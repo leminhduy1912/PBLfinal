@@ -17,9 +17,7 @@ function AccountUpdate({statusModalUpdateHide}) {
 
         <div
           className="x-icon"
-          onClick={ 
-            handleHideUpdateModal
-          }
+        
         >
           <FaTimes />
         </div>

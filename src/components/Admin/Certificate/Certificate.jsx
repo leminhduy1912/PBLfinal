@@ -31,9 +31,9 @@ const Certificate = () => {
             execute()
     }
    const [showSuccess,setShowSuccess]= useState(false)
-   const handleSetShowSuccess=(Object)=>{
-    console.log(Object);
-    setMessageAction(Object.message)
+   const handleSetShowSuccess=(message)=>{
+  
+    setMessageAction(message)
         setShowSuccess(true)
         setTimeout(()=>{
           setShowSuccess(false)
@@ -53,6 +53,8 @@ const Certificate = () => {
     <UpdateCertificate  
     handleShowModalUpdateCertificate={handleShowModalUpdateCertificate}  
     formDataCertificate={formDataCertificate}
+    getCertificates={getCertificates}
+    handleSetShowSuccess={handleSetShowSuccess}
     />}
     <div className="certificate-container">
     <div className="certificate-header">
@@ -83,6 +85,8 @@ const Certificate = () => {
            handleShowModalUpdateCertificate={handleShowModalUpdateCertificate}
            formDataCertificate={formDataCertificate}
            handleSetFormDataCertificate={handleSetFormDataCertificate}
+           getCertificates={getCertificates}
+           handleSetShowSuccess={handleSetShowSuccess}
            />
            )
           })}

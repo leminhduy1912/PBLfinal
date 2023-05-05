@@ -8,19 +8,25 @@ import "./UpdateStore.css";
 import { useFetchBusinessType } from "../../../hooks/useFetchBusinessType";
 
 import { useUpdateUser } from "../../../hooks/User/useUpdateUser";
-import Loading from "../../../components/Loading/Loading";
+// import Loading from "../../../components/Loading/Loading";
 function UpdateStore(props) {
 const {dataBusinessType,loadingBusinessType,errorBusinessType}= useFetchBusinessType();
 const {message,success,loading,error,execute}= useUpdateUser()
 const [formUpdateUser,setFormUpdateUser]= useState(props.formDataUserStore)
 const [formTemp,setFormTemp]= useState()
+const actionSuccess=async()=>{
+  await props.handleShowUserUpdateStore(false)
+  await props.handleShowActionPerform(message)
+  await props.fetchDataUser()
+}
+if (success==true){
+actionSuccess()
+}
 let id =formUpdateUser.id;
 const handleUpdateCompany=async(e)=>{
 e.preventDefault();
 await execute(formTemp,id)
-await props.fetchDataUser()
-props.handleShowUserUpdateStore(false)
-await props.handleShowActionPerform()
+
 }
   return (
     <>

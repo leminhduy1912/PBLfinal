@@ -10,7 +10,8 @@ export const useCreateCompany=()=>{
  
     const createCompany=async(Object)=>{
         let res;
-        try {
+        try {   
+                setLoading(true)
                 res= await createCompanyUser(Object)
                 if (res.meta.status_code==201){
                     setSuccess(true)
@@ -21,7 +22,7 @@ export const useCreateCompany=()=>{
         } catch (error) {
             setError(error)
         }
-    }
+}
     return{ success,
             message,
              error,
@@ -31,29 +32,25 @@ export const useCreateCompany=()=>{
 }
 export const useCreateUser=()=>{
     const [success,setSuccess]= useState(false)
-   const [message,setMessage]= useState('')
+    const [message,setMessage]= useState('')
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
     
- 
     const createUserAdmin=async(Object)=>{
         let res;
-        try {
-                res= await createUser(Object)   
+        try {   
+                setLoading(true)
+                res= await createUser(Object) 
+                if (res.meta.status_code==201){
+                    setSuccess(true)
+                    setMessage("Add New User Success")
+                    setLoading(false)
+                }   
         } catch (error) {
             setError(error)
         }
-        finally {
-           
-            if (res.meta.status_code==201){
-                    
-                setSuccess(true)
-                setMessage("Add New User Success")
-               setLoading(false)
-             
-           } 
-        }
-    }
+      
+}
 
 
     return{ success,

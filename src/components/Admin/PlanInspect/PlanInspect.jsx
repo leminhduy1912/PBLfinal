@@ -7,8 +7,9 @@ import UpdatePlan from "../../form/UpdatePlan/UpdatePlan";
 import { RequireAuth } from "../../../hoc/RequiredAuth";
 import { PlanRowElement } from "../../tables";
 import DetailsPlan from "../../form/DetailsPlan/DetailsPlan";
-import { usePlan } from "../../../hooks/usePlan";
-import { usePlanDetails } from "../../../hooks/usePlanDetails";
+import { usePlan } from "../../../hooks/Plan/usePlan";
+import { usePlanDetails } from "../../../hooks/Plan/usePlanDetails";
+import ReportDocx from "../../form/ReportDocx/ReportDocx";
 function PlanInspect() {
   const {dataPlanDetails,loadingPlanDetails,errorPlanDetails}= usePlanDetails("RaEurAclqGCOy7vCSbuXFjZ");
 
@@ -33,9 +34,11 @@ const {data,loading,error}= usePlan();
   };
   return (
     <>
-      {showModalDetailsPlan && (
-        <DetailsPlan handleShowMoDalDetailsPlan={handleShowMoDalDetailsPlan} />
-      )}
+    {showModalDetailsPlan&& 
+    <ReportDocx
+    handleShowMoDalDetailsPlan={handleShowMoDalDetailsPlan}
+    />}
+     
       {showModalUpdatePlan && (
         <UpdatePlan handleShowModalUpdatePlan={handleShowModalUpdatePlan} />
       )}

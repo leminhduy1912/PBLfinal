@@ -15,7 +15,7 @@ export const useCreateCertificate = () => {
                   if (res.meta.status_code==201){
                     setSuccess(true)
                     setMessage("Add New Certificate Success")
-                    
+                    setLoading(false)
                 } 
                 }
                 catch (error){

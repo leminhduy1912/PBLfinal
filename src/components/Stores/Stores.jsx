@@ -71,8 +71,8 @@ function Stores() {
   };
 
   const [showModalAddUser, setShowModalAddUser] = useState(false);
-  const handleShowModalAddUser = () => {
-    setShowModalAddUser(false);
+  const handleShowModalAddUser = (value) => {
+    setShowModalAddUser(value);
   };
   const [showModalAddCompany, setShowModalAddCompany] = useState(false);
   const handleShowModalAddCompany = (value) => {
@@ -83,9 +83,10 @@ function Stores() {
 
 
   const [actionPerform,setActionPerform]= useState(false)
-
-  const handleShowActionPerform=()=>{
-
+  const [messageAction,setMessageAction]= useState("")
+  const handleShowActionPerform=(message)=>{
+    
+    setMessageAction(message)
     setActionPerform(true)
     setTimeout(()=>{
       setActionPerform(false)
@@ -122,7 +123,7 @@ function Stores() {
 
   return (
     <>
-      {actionPerform&&<ActionSuccess/>}
+      {actionPerform&&<ActionSuccess messageAction={messageAction}/>}
       {showModalUsersDetails && (
         <DetailsUser
           formDataUser={formDataUser}

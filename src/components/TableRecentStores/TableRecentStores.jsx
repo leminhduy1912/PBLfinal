@@ -22,15 +22,7 @@ const TableRecentStores = () => {
      setFilter({ email: "", fullname: "", page: 1 });
      await executeDataUser(filter);
    };
-   const [actionPerform,setActionPerform]= useState(false)
-
-  const handleShowActionPerform=()=>{
-
-    setActionPerform(true)
-    setTimeout(()=>{
-      setActionPerform(false)
-    },3000)
-  }
+   
 
 
 
@@ -86,11 +78,21 @@ const TableRecentStores = () => {
    const handleSetFormDataUserStore=(newObj)=>{
     setFormDataUserStore(newObj)
    }
- 
-// console.log(formDataUserStore);
+   const [actionPerform,setActionPerform]= useState(false)
+   const [messageAction,setMessageAction]= useState("")
+   const handleShowActionPerform=(message)=>{
+
+     setMessageAction(message)
+     setActionPerform(true)
+     setTimeout(()=>{
+       setActionPerform(false)
+     },3000)
+   }
+  
+
   return (
     <>
-    {actionPerform&& <ActionSuccess/>}
+    {actionPerform&& <ActionSuccess   messageAction={messageAction}/>}
   {showModalUserStoreDetails&&
   <DetailsStores     
   handleShowUserStoreDetails={handleShowUserStoreDetails} 
@@ -108,12 +110,14 @@ const TableRecentStores = () => {
   <UpdateUser 
   handleShowUserUpdate={handleShowUserUpdate}
   formDataUser={formDataUser}
+  handleShowActionPerform={handleShowActionPerform}
   />}
 
   {showModalUpdateUserStore &&
    <UpdateStore
    handleShowUserUpdateStore={handleShowUserUpdateStore}
    formDataUserStore={formDataUserStore}
+   handleShowActionPerform={handleShowActionPerform}
    />}
     <div className="TableRecentStore">
       <h1>Recent Users</h1>

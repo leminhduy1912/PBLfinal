@@ -28,7 +28,7 @@
     color: green;
 }
 .action-success p {
-    text-transform: uppercase;
+    
     font-weight: 500;
 }
 @keyframes slideInLeft{

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { getPlanDetails } from "../service/plan.service"
+import { getPlanDetails } from "../../service/plan.service"
 
 export const usePlanDetails = (id) => {
   const [dataPlanDetails, setDataPlanDetails] = useState({});

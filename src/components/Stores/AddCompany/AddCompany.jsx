@@ -23,14 +23,18 @@ const AddCompany = (props) => {
     })
     const {success,message,loading,error,execute}= useCreateCompany();
    
-  
+    const actionSuccess=async()=>{
+        await props.handleShowModalAddCompany(false)
+        await props.handleShowActionPerform(message)
+        await props.fetchDataUser()
+      }
+    if (success==true){
+    actionSuccess()
+    }
 
     const handleAddCompanySubmit = async(e) => {
         e.preventDefault();
         await execute(formDataAddCompany)
-        await props.fetchDataUser()
-        setShowModalAddCompany(false)
-        await props.handleShowActionPerform();
       };
       
 

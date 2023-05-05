@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, {useState } from "react";
 // import { FaTimes } from 'react-icons/fa';
 import { useCreateUser } from "../../../hooks/User/useCreateUser";
 import ClearIcon from "@mui/icons-material/Clear";
@@ -15,20 +15,21 @@ function AddAccount(props) {
     roleId: "",
   });
   const { success, message, loading, error, execute } = useCreateUser();
-
+  
+  const actionSuccess=async()=>{
+    await props.handleShowModalAddUser(false)
+    await props.handleShowActionPerform(message)
+    await props.fetchDataUser()
+  }
+if (success==true){
+actionSuccess()
+}
   const handleAdduser = async (e) => {
     e.preventDefault();
     await execute(formAdduser);
-    await props.handleShowActionPerform();
-    await fetchDataUser();
-    setShowModalAddUser(false);
-    console.log(message);
+   
   };
-  useEffect(() => {
-    if (!loading) {
-      console.log("real",message);
-    }
-  }, [loading, message]);
+ 
   return (
     <>
     {/* {success==false? <Loading/>: null} */}

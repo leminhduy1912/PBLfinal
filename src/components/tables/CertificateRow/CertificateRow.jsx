@@ -5,11 +5,13 @@ import "./CertificateRow.css"
 import { useDeleteCertificate } from '../../../hooks/Certificate/useDeleteCetificate';
 
 function CertificateRow(props) {
-  const {message,error,execute}= useDeleteCertificate()
-    const {index,certificate}= props;
+  const {success,message,error,execute}= useDeleteCertificate()
+    const {index,certificate}= props; 
     const handleDeleteCertificate= async(e)=>{
    e.preventDefault();
      await execute(id);
+     await props.handleSetShowSuccess("Delete Certificate Success")
+     await props.getCertificates()
     }
     const {
       id,

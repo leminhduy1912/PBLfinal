@@ -6,11 +6,11 @@ import ActionSuccess from '../../ActionSuccess/ActionSuccess'
 function Addcertificate(props) {
    const [formDataCertificate,setFormDataCertificate]= useState({name:'',description:'',image:''})
    const  {success,message, error, loading ,execute}= useCreateCertificate();
-  //  const [actionPerform,setActionPerform]= useState(false)
-  //  let  messsagePayload="";
+
    const actionSuccess=async()=>{
      await props.handleShowModalAddCertificate(false);
-     await props.handleSetShowSuccess({message:message})
+     await props.handleSetShowSuccess(message)
+     await props.getCertificates()
    }
   if (success==true){
    actionSuccess()

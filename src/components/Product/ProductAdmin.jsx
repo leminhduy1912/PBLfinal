@@ -21,11 +21,26 @@ export const ProductAdmin = () => {
   const handleShowModalAddProduct = (value) => {
     setShowModalAddProduct(value);
   };
+  const [formDataProduct,setFormDataProduct]= useState({
+    action:'',
+    certificate:[],
+    companyName:'',
+    id:'',
+    kindof:'',
+    productName:'',
+    product_type:{},
+    userId:''
+  })
+  const handleSetFormDataProduct=(Obj)=>{
+    setFormDataProduct(Obj)
+  }
   return (
     <>
       {showModalDetailsProduct && (
         <DetailsProduct
           handleShowMoDalDetailsProduct={handleShowMoDalDetailsProduct}
+          formDataProduct={formDataProduct}
+          // handleSetFormDataProduct={handleSetFormDataProduct}
         />
       )}
       {showModalUpdateProduct && (
@@ -65,10 +80,9 @@ export const ProductAdmin = () => {
                     key={index}
                     index={index + 1}
                     product={item}
-                    handleShowMoDalDetailsProduct={
-                      handleShowMoDalDetailsProduct
-                    }
+                    handleShowMoDalDetailsProduct={handleShowMoDalDetailsProduct}
                     handleShowMoDalUpdateProduct={handleShowMoDalUpdateProduct}
+                    handleSetFormDataProduct={handleSetFormDataProduct}
                   />
                 );
               })}

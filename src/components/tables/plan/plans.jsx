@@ -3,7 +3,7 @@ import { DateConvert } from "../../../utils/DateConvert";
 import "./plans.css";
 import { RequireAuth } from "./../../../hoc/RequiredAuth";
 
-import { usePlanDetails } from '../../../hooks/usePlanDetails';
+import { usePlanDetails } from '../../../hooks/Plan/usePlanDetails';
 export const PlanRowElement = (props) => {
 // const {data,loading,error}= usePlanDetails("RaEurAclqGCOy7vCSbuXFjZ");
 // console.log(data);

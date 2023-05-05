@@ -4,23 +4,19 @@ export const useUpdateUser=()=>{
     const [message,setMessage]= useState('')
     const [success,setSuccess]= useState(false)
     const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
      const handleUpdateUser=async(Obj,id)=>{
-        console.log("Obj",Obj);
-        console.log("id",id);
-        console.log("hook update");
+        let res;
         try {
-            let res;
             res = await updateUser(Obj,id)
-            setMessage(res.meta.message)
             if (res.meta.status_code==201){
                 setSuccess(true)
-                setLoading(true)
+                setMessage("Update Success")
+                setLoading(false)
             }
-            console.log(message);
         } catch (error) {
             setError(error)
         }
      }
-     return {success,error,loading,execute:handleUpdateUser}
+     return {success,message,error,loading,execute:handleUpdateUser}
 }

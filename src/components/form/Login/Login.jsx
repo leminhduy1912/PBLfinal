@@ -56,7 +56,7 @@ const Login = (props) => {
             </div>
             {errMessage && <div>{errMessage}</div>}
 
-            <button type="submit" onClick={handleLogin}>
+            <button type="submit" onClick={(e)=>handleLogin(e)}>
               Submit
             </button>
           </form>
