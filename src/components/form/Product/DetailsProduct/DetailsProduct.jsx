@@ -3,7 +3,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import { FaTimes } from 'react-icons/fa';
 import "./DetailsProduct.css"
 function DetailsProduct(props) {
-  console.log(props.formDataProduct);
+ 
 
   return (
     <div className='details-product-container'>
@@ -104,6 +104,7 @@ function DetailsProduct(props) {
                placeholder='Description'
                value={item.description} 
                />
+              
                 </div>
                 </div>
            )
@@ -175,7 +176,7 @@ function DetailsProduct(props) {
         </form>
 
         
-        <button>Submit</button>
+        <button className='btn-submit'>Submit</button>
         </div>
     </div>
 </div>

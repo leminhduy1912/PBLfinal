@@ -14,14 +14,14 @@ const {message,success,data,loading,error}= useProductKind()
 const  {dataCompanies,errorCompanies}= getAllCompaniesCurrent()
 const {successCreateProduct,messageCreateProduct, errorCreateProduct ,executeCreateProduct}= useCreateProduct();
 const [formAddProduct,setFormAddProduct]= useState({})
-const [messageAction,setMessageAction]= useState("")
+
 if (successCreateProduct==true){
-  
-   setMessageAction(messageCreateProduct)
+  props.handleShowSuccesAction(messageCreateProduct)
   props.handleShowModalAddProduct(false)
+  props.fetchDataProduct()
 }
-const handleAddNewProduct=()=>{
- executeCreateProduct(formAddProduct)
+const handleAddNewProduct=async()=>{
+ await executeCreateProduct(formAddProduct)
 }
   return (
     <>

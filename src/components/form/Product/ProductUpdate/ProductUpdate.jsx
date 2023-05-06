@@ -2,9 +2,7 @@ import React from 'react'
 import ClearIcon from '@mui/icons-material/Clear';
 import "./ProductUpdate.css"
 function DetailsProduct(props) {
-  const hanldeHideModalUpdateProduct=()=>{
-    props.handleShowMoDalUpdateProduct(false)
-  }
+
   return (
     <div className="productUpdate-container">
     <div className="productUpdate-content">
@@ -12,9 +10,11 @@ function DetailsProduct(props) {
 
       <div
         className="x-icon"
-        onClick={hanldeHideModalUpdateProduct}
+        
       >
-       <ClearIcon/>
+       <ClearIcon
+       onClick={()=>{props.handleShowMoDalUpdateProduct(false)}}
+       />
       </div>
 
       <form action="">

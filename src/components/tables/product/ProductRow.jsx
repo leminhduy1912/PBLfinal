@@ -1,5 +1,6 @@
 import React from "react";
 import "./ProductRow.css";
+import useDeleteProduct from "../../../hooks/Product/useDeleteProduct";
 
 export const ProductRow = (props) => {
 
@@ -12,7 +13,17 @@ const handleShowMoDalUpdateProduct=()=>{
   props.handleShowMoDalUpdateProduct(true)
 
 }
-
+const {successDeleteProduct,messageDeleteProduct,errorDeleteProduct,executeDeleteProduct}= useDeleteProduct()
+const handleDeleteProduct=async(e)=>{
+  e.preventDefault();
+  await executeDeleteProduct(props.product.id)
+  props.handleShowSuccesAction("Deleted Product")
+  await props.fetchDataProduct()
+}
+const handleAddCertificateToProduct=()=>{
+ 
+  props.handleShowModalAddCertificateToProduct({id:id,value:true})
+}
 // console.log(props.handleSetFormDataProduct());
   const { index, product } = props;
 
@@ -48,8 +59,8 @@ const formTemp={
         <td>
           <button onClick={handleShowDetailsProduct}>Details</button>
           <button onClick={handleShowMoDalUpdateProduct}>Update</button>
-          <button>Delete</button>
-          <button>Add Certificate</button>
+          <button  onClick={handleDeleteProduct}>Delete</button>
+          <button onClick={handleAddCertificateToProduct} >Add Certificate</button>
         </td>
       </tr>
     </>

@@ -6,9 +6,15 @@ import ProductUpdate from "../form/Product/ProductUpdate/ProductUpdate";
 import { ProductRow } from "~components";
 import { useAdminProduct } from "~hooks";
 import AddProduct from "../form/Product/AddProduct/AddProduct";
+import ActionSuccess from "../ActionSuccess/ActionSuccess";
+import AddCertificateToProduct from "../form/Product/AddCertificateToProduct/AddCertificateToProduct";
 
 export const ProductAdmin = () => {
-  const { data, error, loading } = useAdminProduct();
+  const { data, error, loading,executeDataProduct } = useAdminProduct();
+  const fetchDataProduct=async()=>{
+    await executeDataProduct()
+  }
+  
   const [showModalDetailsProduct, setShowModalDetailsProduct] = useState(false);
   const handleShowMoDalDetailsProduct = (value) => {
     setShowModalDetailsProduct(value);
@@ -20,6 +26,14 @@ export const ProductAdmin = () => {
   const [showModalAddProduct, setShowModalAddProduct] = useState(false);
   const handleShowModalAddProduct = (value) => {
     setShowModalAddProduct(value);
+  };
+  const [showModalAddCertificateToProduct, setShowModalAddCertificateToProduct] = useState(false);
+  const [idProduct,setIdProduct]= useState("")
+  const handleShowModalAddCertificateToProduct = (Obj) => {
+  
+    setShowModalAddCertificateToProduct(Obj.value);
+    console.log(showModalAddCertificateToProduct);
+    Obj.id && setIdProduct(Obj.id)
   };
   const [formDataProduct,setFormDataProduct]= useState({
     action:'',
@@ -34,8 +48,28 @@ export const ProductAdmin = () => {
   const handleSetFormDataProduct=(Obj)=>{
     setFormDataProduct(Obj)
   }
+  const [messageAction,setMessageAction]= useState("")
+  const [showSuccessAction,setShowSuccessAction]= useState(false)
+  const handleShowSuccesAction=(message)=>{
+    setMessageAction(message)
+    setShowSuccessAction(true)
+    setTimeout(()=>{
+    setShowSuccessAction(false)
+    },3000)
+  }
+    
   return (
     <>
+    {showModalAddCertificateToProduct&&
+    <AddCertificateToProduct
+     idProduct={idProduct}
+     handleShowModalAddCertificateToProduct={handleShowModalAddCertificateToProduct}
+     handleShowSuccesAction={handleShowSuccesAction}
+     fetchDataProduct={fetchDataProduct}
+    />}
+    {
+      showSuccessAction&&<ActionSuccess messageAction={messageAction}  />
+    }
       {showModalDetailsProduct && (
         <DetailsProduct
           handleShowMoDalDetailsProduct={handleShowMoDalDetailsProduct}
@@ -49,7 +83,11 @@ export const ProductAdmin = () => {
         />
       )}
       {showModalAddProduct && (
-        <AddProduct handleShowModalAddProduct={handleShowModalAddProduct} />
+        <AddProduct 
+        handleShowModalAddProduct={handleShowModalAddProduct} 
+        handleShowSuccesAction={handleShowSuccesAction}
+        fetchDataProduct={fetchDataProduct}
+        />
       )}
       <div>
         <div className="product-header">
@@ -83,6 +121,10 @@ export const ProductAdmin = () => {
                     handleShowMoDalDetailsProduct={handleShowMoDalDetailsProduct}
                     handleShowMoDalUpdateProduct={handleShowMoDalUpdateProduct}
                     handleSetFormDataProduct={handleSetFormDataProduct}
+                    formDataProduct={formDataProduct}
+                    fetchDataProduct={fetchDataProduct}
+                    handleShowSuccesAction={handleShowSuccesAction}
+                    handleShowModalAddCertificateToProduct={handleShowModalAddCertificateToProduct}
                   />
                 );
               })}
