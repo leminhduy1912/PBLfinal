@@ -47,7 +47,7 @@ td {
   justify-content: space-between;
   align-items: center;
 }
-.planInspect-header button {
+.planInspect-header .btn-add-plan {
   width: 110px;
   height: 50px;
   cursor: pointer;
@@ -58,8 +58,11 @@ td {
   letter-spacing: 1px;
 font-size: 14px;
 padding: 5px;
+transition: transform 0.2s ease;
 
-
+}
+.planInspect-header .btn-add-plan:hover{
+  transform: scale(1.1);
 }
 
 

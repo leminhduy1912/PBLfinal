@@ -63,6 +63,7 @@ await props.handleShowModalAddCertificateToProduct({id:id,value:true})
           <button onClick={handleShowMoDalUpdateProduct}>Update</button>
           <button  onClick={handleDeleteProduct}>Delete</button>
           <button onClick={handleAddCertificateToProduct} >Add Certificate</button>
+         
         </td>
       </tr>
     </>

@@ -43,6 +43,7 @@ function CertificateRow(props) {
         <button
         onClick={handleShowModalUpdateCertificate}
         >Update</button>
+        
         <button
         onClick={handleDeleteCertificate}
         >Delete</button>

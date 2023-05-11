@@ -101,8 +101,11 @@ tbody tr td {
   letter-spacing: 1px;  
   font-size: 14px;
   font-weight: 300;
+  transition: transform 0.2s ease;
 }
-
+.header-users  .btn:hover{
+  transform: scale(1.1);
+}
 .header-users .searching{
   width: 650px;
   height: 50px;

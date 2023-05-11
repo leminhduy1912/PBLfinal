@@ -23,6 +23,10 @@
    letter-spacing: 1px;
    font-size: 15px;
    font-weight: 500;
+   transition: transform 0.2s ease;
+}
+.certificate-header button:hover{
+    transform: scale(1.1);
 }
 .certificate-img{
     width: 90px;

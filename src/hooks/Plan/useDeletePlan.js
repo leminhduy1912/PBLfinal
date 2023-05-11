@@ -13,5 +13,5 @@ export const useDeletePlan=()=>{
             setErrorDeletePlan(error)
         }
     }
-    return {errorDeletePlan,executeDeletePlam:loadDeletePlan}
+    return {errorDeletePlan,executeDeletePlan:loadDeletePlan}
 }

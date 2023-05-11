@@ -54,13 +54,9 @@ setPlanId(planId)
 
 const {dataGetSpecificPlan,errorGetSpecificPlan,successGetSpecificPlan,executeGetSpecificPlan}= useGetSpecific()
 const [isLoaded,setIsLoaded]= useState(false)
-// console.log("data",dataGetSpecificPlan);
+
 const handleSetPlanId=async(id)=>{
   await executeGetSpecificPlan(id)
-
-//  setDetailsPlan(dataGetSpecificPlan)
-// setPlanId(id)
-
 }
 useEffect(() => {
   if (successGetSpecificPlan) {
@@ -106,7 +102,7 @@ useEffect(() => {
         {/* <RequireAuth role="admin"> */}
         <div className="planInspect-header">
           <h1>Plan Management</h1>
-          <button
+          <button className="btn-add-plan"
             onClick={() => {
               setShowModalAddPlan(true);
             }}
@@ -137,7 +133,8 @@ useEffect(() => {
                     handleSetTimePlan={handleSetTimePlan}
                     handleShowMoDalDetailsPlan={handleShowMoDalDetailsPlan}
                     handleSetPlanId={handleSetPlanId}
-
+                    fetchDataPlans={fetchDataPlans}
+                    handleShowSuccessAction={handleShowSuccessAction}
                   ></PlanRowElement>
                 );
               })}
