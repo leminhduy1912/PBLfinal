@@ -5,8 +5,8 @@ import { useUpdateCertificate } from '../../../hooks/Certificate/useUpdateCertif
 function UpdateCertificate(props) {
   const {message,loading,success,error,executeUpdateCerti}= useUpdateCertificate()
   const [formCertificateInfor,setFormCertificateInfor]= useState(props.formDataCertificate)
-
-  const [formTemp,setFormTemp]= useState({})
+  
+  const [formTemp,setFormTemp]= useState({id:props.formDataCertificate.id})
   const actionSuccess=async()=>{
   await props.getCertificates()
   await props.handleSetShowSuccess(message)

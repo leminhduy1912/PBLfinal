@@ -1,7 +1,9 @@
-import React from 'react'
+
 import ClearIcon from '@mui/icons-material/Clear';
 import "./DetailsPlan.css"
 import { FaTimes } from 'react-icons/fa';
+
+import { ConvertTimestampToDate } from '../../../utils/ConvertTimestampToDate';
 function DetailsPlan(props) {
 
   return (
@@ -11,11 +13,12 @@ function DetailsPlan(props) {
         <h1>Details Plan</h1>
         <div 
         className="x-icon"
-        onClick={()=>{
-            props.handleShowMoDalDetailsPlan(false)
-      }}
         >
-            <FaTimes/>
+            <FaTimes
+            onClick={()=>{
+                props.handleShowMoDalDetailsPlan(false)
+          }}
+            />
           
         </div>
         <form action="">
@@ -24,129 +27,74 @@ function DetailsPlan(props) {
                 <div className="form-group">
 
                 <div className="label">
-                <label  htmlFor="">Tên công ty</label>
+                <label  htmlFor="Tên công ty">Tên công ty</label>
                 
                 </div>
 
-                <input className='form-control' type="text" placeholder='Tên công ty' />
+                <input 
+                disabled
+                className='form-control' 
+                type="text" 
+                placeholder='Tên công ty' 
+                value={props.detailsPlan.company.companyName}
+                
+                />
                 </div>
                 
 
                 <div className="form-group">
                 <div className="label">    
-                <label  htmlFor="">Thời gian</label>
+                <label  htmlFor="Thời gian">Thời gian</label>
                 
                 </div>
-                <input className='form-control' type="datetime-local"  />
+                <input 
+                disabled
+                className='form-control' 
+                type="datetime-local"
+                value={ConvertTimestampToDate(props.detailsPlan.time)}  
+                />
                 </div>
                  
                  <div className="form-group">
                     <div className='label'>
-                <label className='form-control' htmlFor="">Status</label>
+                <label className='form-control' htmlFor="Status">Status</label>
                 
                 </div>
-                <input className='form-control' type="text" placeholder='Status' />
+                <select name="" id="" value={props.detailsPlan.action} disabled>
+                    <option value={1}>Active</option>
+                    <option value={0}>Inactived</option>
+                </select>
                 </div>
 
-                <div className="form-group">  
-                <div className="label">
-                <label  htmlFor="">Mã số thuế</label>
+                
+
                
-                </div>
-                <input className='form-control' type="text" placeholder='Mã số thuế' />
-                </div>
 
-                <div className="form-group">
-                <div className="label">
-                <label htmlFor="">Loại hinh kinh doanh</label>
-                
-                </div>
-                <select name="" id="">
-                    <option value="" selected disabled>--Loại hình kinh doanh--</option>
-                    <option value="">Kinh doanh ăn uống</option>
-                    <option value="">kinh doanh thực phẩm</option>
-                </select>
-                </div>
-
+  
             </div>
+    <div className="details-plan-infor inspector" >
+            {props.detailsPlan.inspectors && props.detailsPlan.inspectors.map((item, index) => {
+       
+return (
 
-            <div className="details-plan-infor inspector">
-
-                <div className="form-group">   
-                <div className="label">
-                <label  htmlFor="">Tên thanh tra 1</label>
-                
-                </div>
-                <div className="inspector-status">
-                <input className='form-control' type="text" placeholder='Tên thanh tra 4' />
-                <select name="" id="">
-                <option value="">Active</option>
-                <option value="">Inactive</option>
-                </select>
-                <button>Inactive</button>
-                </div>
-                </div>
-
-                <div className="form-group">    
-                <div className="label">
-                <label  htmlFor="">Tên thanh tra 2</label>
-                
-                </div>
-                <div className="inspector-status">
-                <input className='form-control' type="text" placeholder='Tên thanh tra 4' />
-                <select name="" id="">
-                <option value="">Active</option>
-                <option value="">Inactive</option>
-                </select>
-                <button>Inactive</button>
-                </div>
-                </div>
-
-                <div className="form-group">
-                <div className="label">    
-                <label  htmlFor="">Tên thanh tra 3</label>
-                
-                </div>
-                <div className="inspector-status">
-                <input className='form-control' type="text" placeholder='Tên thanh tra 4' />
-                <select name="" id="">
-                <option value="">Active</option>
-                <option value="">Inactive</option>
-                </select>
-                <button>Inactive</button>
-                </div>
-                </div>
-
-                <div className="form-group"> 
-                <div className='label'>  
-                <label  htmlFor="">Tên thanh tra 4</label>
-                </div>
-                <div className="inspector-status">
-                <input className='form-control' type="text" placeholder='Tên thanh tra 4' />
-                <select name="" id="">
-                <option value="">Active</option>
-                <option value="">Inactive</option>
-                </select>
-                <button>Inactive</button>
-                </div>
-                </div>
-
-                <div className="form-group"> 
-                <div className="label">   
-                <label  htmlFor="">Tên thanh tra 5</label>
-                
-                </div>
-                <div className="inspector-status">
-                <input className='form-control' type="text" placeholder='Tên thanh tra 4' />
-                <select name="" id="">
-                <option value="">Active</option>
-                <option value="">Inactive</option>
-                </select>
-                <button>Inactive</button>
-                </div>
-                </div>
-
-            </div>
+      <div className="form-group" key={index}>
+        <div className="label">
+          <label htmlFor="">Tên thanh tra {index + 1}</label>
+        </div>
+        <div className="inspector-status">
+          <input className="form-control" type="text" />
+          <select name="" id="" value={item.action} disabled>
+            <option value={1}>Active</option>
+            <option value={0}>Inactive</option>
+          </select>
+          <button>Inactive</button>
+        </div>
+      </div>
+)
+        
+    })}
+    </div>
+  
         </form>
 
         

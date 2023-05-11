@@ -2,7 +2,7 @@ import { SET_AUTH_STATE } from "./Constants";
 
 export const initialState = {
   token: "A",
-  role: "",
+  role: "Admin",
 };
 export const reducer = (state, action) => {
   switch (action.type) {

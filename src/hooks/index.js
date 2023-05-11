@@ -1,2 +1,2 @@
-export { useProduct } from "./useProducts";
+export { useProduct } from "../hooks/Product/useProducts";
 export { useAdminProduct } from "./Product/useAdminProduct";

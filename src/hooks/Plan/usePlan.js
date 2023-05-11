@@ -4,26 +4,19 @@ import { getAllPlans } from "../../service/plan.service";
 
 export const usePlan = () => {
   const [data, setData] = useState([]);
-  const [loading,setLoading]=useState(false)
+  // const [loading,setLoading]=useState(false)
   const [error,setError]= useState(null)
+  const loadDataPlan=async()=>{
+   let res;
+   try {
+    res= await getAllPlans()
+    setData(res.data.result);
+   } catch (error) {
+    setError(error)
+   }
+  }
   useEffect( () => {
-    let res;
-    (
-      async()=>{
-       try {
-        setLoading(true)
-        res= await getAllPlans()
-        setData(res.data.result);
-  
-       } catch (error) {
-        setError(error)
-       } finally{
-        if (res !== undefined) {
-          setLoading(false);
-        }
-       }
-      }
-    )()
+ loadDataPlan()
   }, []);
-  return {data,loading,error}
+  return {data,error,executeAllPlans:loadDataPlan}
 };

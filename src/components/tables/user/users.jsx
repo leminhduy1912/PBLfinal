@@ -51,7 +51,7 @@ for ( let i=0;i<dataBusinessType.length;i++){
     e.preventDefault();
     await execute(props.id)
     await props.fetchDataUser()
-    await props.handleShowActionPerform(props.action===1?"Inactive Success":"Active Success")
+    await props.handleShowActionPerform(props.action===1?"Inactived Success":"Actived Success")
   }
   const handleShowUsersDetail=()=>{
   

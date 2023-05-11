@@ -5,7 +5,7 @@ import { SearchOutlined } from "@mui/icons-material";
 import { useFetchUser } from "../../hooks/User/useFetchUser";
 import { RowUsers } from "../tables/user/users";
 import { Pagination } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import DetailsStores from "./DetailsStores/DetailsStores";
 import UpdateStore from "./UpdateStore/UpdateStore";
 import AddAccount from "../form/AddAccount/AddAccount";
@@ -13,9 +13,12 @@ import DetailsUser from "./DetailsUser/DetailsUser";
 import UpdateUser from "./UpdateUser/UpdateUser";
 import AddCompany from "./AddCompany/AddCompany";
 import ActionSuccess from "../ActionSuccess/ActionSuccess";
+import { RequireAuth } from "~hoc";
+import { StoreContext } from "~store";
 
 function Stores() {
-  
+  const [state] = useContext(StoreContext);
+
   // Details
   const [showModalUsersDetails, setShowModalUsersDetails] = useState(false);
   const handleShowUsersDetails = (value) => {
@@ -190,6 +193,9 @@ function Stores() {
           <button onClick={handleOnClick}> Search </button>
         </div>
         <div className="btn-area">
+
+{
+  state.role === "Admin" &&
           <button
             className="btn"
             onClick={() => {
@@ -199,6 +205,9 @@ function Stores() {
           
             Add User
           </button>
+}
+{state.role==="Admin" &&
+
           <button
             className="btn"
             onClick={() => {
@@ -208,6 +217,8 @@ function Stores() {
             {" "}
             Add Company
           </button>
+}
+
         </div>
       </div>
       <table>

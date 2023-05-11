@@ -13,7 +13,7 @@ e.preventDefault();
 await executeAddCertificateToProduct({productId:props.idProduct,certificateId:certificateId})
 await props.handleShowModalAddCertificateToProduct({value:false})
 props.handleShowSuccesAction("Added Certificate To Product");
-props.fetchDataProduct();
+props.fetchDataProduct()
  }
   return (
     <>
@@ -22,14 +22,14 @@ props.fetchDataProduct();
     <div className="add-certificate-product-content">
       <h1>Add Certificate To Product</h1>
 
-      <div
-        className="x-icon"
-       
-      >
-       <ClearIcon
-      onClick={()=>{props.handleShowModalAddCertificateToProduct({value:false})}}
-       />
-      </div>
+          <div
+            className="x-icon"
+
+          >
+            <ClearIcon
+              onClick={() => { props.handleShowModalAddCertificateToProduct({ value: false }) }}
+            />
+          </div>
 
       <form action="">
        

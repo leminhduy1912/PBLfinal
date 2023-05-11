@@ -2,8 +2,11 @@
     margin: 0px 20px;
     width: 430px;
 }
+.product-table-row td:nth-child(1){
+    width: 10px;
+}
 .product-table-row td{
-    width: 100px;
+    width: 80px;
 }
 .product-table-row td:last-child button {
     width: 120px;

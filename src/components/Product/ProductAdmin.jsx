@@ -74,12 +74,15 @@ export const ProductAdmin = () => {
         <DetailsProduct
           handleShowMoDalDetailsProduct={handleShowMoDalDetailsProduct}
           formDataProduct={formDataProduct}
-          // handleSetFormDataProduct={handleSetFormDataProduct}
+          handleSetFormDataProduct={handleSetFormDataProduct}
         />
       )}
       {showModalUpdateProduct && (
         <ProductUpdate
           handleShowMoDalUpdateProduct={handleShowMoDalUpdateProduct}
+          formDataProduct={formDataProduct}
+          fetchDataProduct={fetchDataProduct}
+          handleSetFormDataProduct={handleSetFormDataProduct}
         />
       )}
       {showModalAddProduct && (

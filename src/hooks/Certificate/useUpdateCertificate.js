@@ -10,11 +10,10 @@ export const useUpdateCertificate=()=>{
         let res;
         try {
             res= await updateCertificate(Obj)
-            if (res.meta.status_code==200){
-                setSuccess(true)
-                setMessage("Update Certificate Success")
-            }
+            setSuccess(true)
+            setMessage("Update Certificate Success")
         } catch (error) {
+            setSuccess(false)
             setError(error)
         }
     }

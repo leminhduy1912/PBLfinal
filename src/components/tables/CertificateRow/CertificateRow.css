@@ -1,6 +1,6 @@
 .certificate-table tbody tr td:last-child {
-   max-width: 200px;
   
+  width: 150px;
 }
 .certificate-table tbody tr td:last-child button {
    width: 80px;

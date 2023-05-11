@@ -11,7 +11,6 @@ const UpdateUser = (props) => {
     const actionSuccess=async()=>{
       await props.handleShowUserUpdate(false)
       await props.handleShowActionPerform(message)
-      console.log("message",message);
       await props.fetchDataUser()
     }
   if (success==true){

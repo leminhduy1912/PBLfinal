@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/aria-role */
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Pagination, TablePagination } from "@mui/material";
 import "./PlanInspect.css";
 import AddPlan from "../../form/AddPlan/AddPlan";
@@ -10,9 +10,15 @@ import DetailsPlan from "../../form/DetailsPlan/DetailsPlan";
 import { usePlan } from "../../../hooks/Plan/usePlan";
 import { usePlanDetails } from "../../../hooks/Plan/usePlanDetails";
 import ReportDocx from "../../form/ReportDocx/ReportDocx";
+import ActionSuccess from "../../ActionSuccess/ActionSuccess";
+import { useGetSpecific } from "../../../hooks/Plan/useGetSpecificPlan";
 function PlanInspect() {
   const {dataPlanDetails,loadingPlanDetails,errorPlanDetails}= usePlanDetails("RaEurAclqGCOy7vCSbuXFjZ");
 
+  const [showModalReport, setShowModalReport] = useState(false);
+  const handleShowMoDalReport = (value) => {
+    setShowModalReport(value);
+  };
   const [showModalDetailsPlan, setShowModalDetailsPlan] = useState(false);
   const handleShowMoDalDetailsPlan = (value) => {
     setShowModalDetailsPlan(value);
@@ -25,25 +31,76 @@ function PlanInspect() {
   const handleShowModalAddPlan = (value) => {
     setShowModalAddPlan(value);
   };
-const {data,loading,error}= usePlan();
+const {data,error,executeAllPlans}= usePlan();
+const fetchDataPlans=()=>{
+executeAllPlans()
+}
+const  [messageAction,setMessageAction]= useState("")
+const [showActionSuccess,setShowActionSuccess]=useState(false)
+const handleShowSuccessAction=(message)=>{
+setMessageAction(message)
+setShowActionSuccess(true)
+setTimeout(()=>{
+  setShowActionSuccess(false)
+},3000)
+}
+const [time,setTime]= useState(null)
+const [planId,setPlanId]=  useState(null)
+const handleSetTimePlan=(time,planId)=>{
+setTime(time)
+setPlanId(planId)
+}
+ const [detailsPlan,setDetailsPlan]= useState({})
 
-  
+const {dataGetSpecificPlan,errorGetSpecificPlan,successGetSpecificPlan,executeGetSpecificPlan}= useGetSpecific()
+const [isLoaded,setIsLoaded]= useState(false)
+// console.log("data",dataGetSpecificPlan);
+const handleSetPlanId=async(id)=>{
+  await executeGetSpecificPlan(id)
 
+//  setDetailsPlan(dataGetSpecificPlan)
+// setPlanId(id)
+
+}
+useEffect(() => {
+  if (successGetSpecificPlan) {
+    setDetailsPlan(dataGetSpecificPlan)
+    setIsLoaded(true)
+  }
+}, [dataGetSpecificPlan, successGetSpecificPlan]);
   const handleOnChange = (event, value) => {
     console.log(value);
   };
   return (
     <>
-    {showModalDetailsPlan&& 
+
+    {showActionSuccess&&<ActionSuccess messageAction={messageAction}/>}
+    {isLoaded&&showModalDetailsPlan  &&
+      <DetailsPlan
+      handleShowMoDalDetailsPlan={handleShowMoDalDetailsPlan}
+    
+      detailsPlan={detailsPlan}
+    
+      />}
+    {showModalReport&& 
     <ReportDocx
-    handleShowMoDalDetailsPlan={handleShowMoDalDetailsPlan}
+    handleShowMoDalReport={handleShowMoDalReport}
     />}
      
       {showModalUpdatePlan && (
-        <UpdatePlan handleShowModalUpdatePlan={handleShowModalUpdatePlan} />
+        <UpdatePlan 
+        handleShowModalUpdatePlan={handleShowModalUpdatePlan} 
+        time={time}
+        planId={planId}
+        fetchDataPlans={fetchDataPlans}
+        />
       )}
       {showModalAddPlan && (
-        <AddPlan handleShowModalAddPlan={handleShowModalAddPlan} />
+        <AddPlan 
+        handleShowModalAddPlan={handleShowModalAddPlan} 
+        fetchDataPlans={fetchDataPlans}
+        handleShowSuccessAction={handleShowSuccessAction}
+        />
       )}
       <div className="table-wrapper">
         {/* <RequireAuth role="admin"> */}
@@ -76,7 +133,11 @@ const {data,loading,error}= usePlan();
                     index={index + 1}
                     {...item}
                     handleShowModalUpdatePlan={handleShowModalUpdatePlan}
+                    handleShowMoDalReport={handleShowMoDalReport}
+                    handleSetTimePlan={handleSetTimePlan}
                     handleShowMoDalDetailsPlan={handleShowMoDalDetailsPlan}
+                    handleSetPlanId={handleSetPlanId}
+
                   ></PlanRowElement>
                 );
               })}

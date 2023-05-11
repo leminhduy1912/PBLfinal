@@ -110,66 +110,7 @@ function DetailsProduct(props) {
            )
         })
        }
-                {/* <div className="form-group">   
-                <div className="label">
-                <label  htmlFor="">Tên chứng chỉ 1</label>
-                
-                </div>
-                <div className="product-certificate-status">
-                <input className='form-control' type="text" placeholder='Tên chứng chỉ 1' />
-                <select name="" id="">
-                <option value="">Active</option>
-                <option value="">Inactive</option>
-                </select>
-             
-                </div>
-                </div>
-
-                <div className="form-group">    
-                <div className="label">
-                <label  htmlFor="">Tên chứng chỉ 2</label>
-                
-                </div>
-                <div className="product-certificate-status">
-                <input className='form-control' type="text" placeholder='Tên chứng chỉ 2' />
-                <select name="" id="">
-                <option value="">Active</option>
-                <option value="">Inactive</option>
-                </select>
-        
-                </div>
-                </div>
-
-                <div className="form-group">
-                <div className="label">    
-                <label  htmlFor="">Tên chứng chỉ 3</label>
-                
-                </div>
-                <div className="product-certificate-status">
-                <input className='form-control' type="text" placeholder='Tên chứng chỉ 4' />
-                <select name="" id="">
-                <option value="">Active</option>
-                <option value="">Inactive</option>
-                </select>
-               
-                </div>
-                </div>
-
-                <div className="form-group"> 
-                <div className='label'>  
-                <label  htmlFor="">Tên chứng chỉ 4</label>
-                </div>
-                <div className="product-certificate-status">
-                <input className='form-control' type="text" placeholder='Tên chứng chỉ 4' />
-                
-                <select name="" id="">
-                <option value="">Active</option>
-                <option value="">Inactive</option>
-                </select>
-         
-                </div>
-                </div> */}
-
+              
               
 
             </div>
