@@ -1,15 +1,17 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import { FaTimes } from "react-icons/fa";
 import "./UpdateStore.css";
 import { useFetchBusinessType } from "../../../hooks/useFetchBusinessType";
 
 import { useUpdateUser } from "../../../hooks/User/useUpdateUser";
-// import Loading from "../../../components/Loading/Loading";
+import { StoreContext } from "~store";
+
 function UpdateStore(props) {
+  const [state]=  useContext(StoreContext)
 const {dataBusinessType,loadingBusinessType,errorBusinessType}= useFetchBusinessType();
 const {message,success,loading,error,execute}= useUpdateUser()
 const [formUpdateUser,setFormUpdateUser]= useState(props.formDataUserStore)
@@ -17,7 +19,12 @@ const [formTemp,setFormTemp]= useState()
 const actionSuccess=async()=>{
   await props.handleShowUserUpdateStore(false)
   await props.handleShowActionPerform(message)
-  await props.fetchDataUser()
+  if (state.role==="Moderator"){
+    await props.fetchCompanies()
+  }
+  if (state.role==="Admin"){
+    await props.fetchDataUser()
+  }
 }
 if (success==true){
 actionSuccess()
@@ -26,8 +33,8 @@ let id =formUpdateUser.id;
 const handleUpdateCompany=async(e)=>{
 e.preventDefault();
 await execute(formTemp,id)
-
 }
+
   return (
     <>
 {/* {success==false?<Loading/>:null} */}
@@ -210,8 +217,7 @@ await execute(formTemp,id)
                 
                 </div>
                 <select name="" id="" 
-                
-                
+
                  >
                 
                  <option value={3} disabled selected >Store</option>

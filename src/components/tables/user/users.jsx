@@ -1,9 +1,11 @@
 import "./users.css";
 import { useFetchBusinessType } from "../../../hooks/useFetchBusinessType";
 import { useDeleteUser } from "../../../hooks/User/useDeleteUser";
+import { useContext } from "react";
+import { StoreContext } from "~store";
 export const RowUsers = (props) => {
 
-
+  const [state]= useContext(StoreContext)
   const {dataBusinessType,errorBusinessType,loadingBusinessType}= useFetchBusinessType();
 
 
@@ -15,7 +17,7 @@ for ( let i=0;i<dataBusinessType.length;i++){
   }}
 
   let Object;
-  if (props.role.roleCode ==="MOD"){
+  if (props.role.roleCode ==="MOD"||props.role.roleCode ==="USR"||props.role.roleCode ==="ADM"){
     Object={
       ...props.formDataUser,
       fullName:props.fullName,
@@ -24,11 +26,11 @@ for ( let i=0;i<dataBusinessType.length;i++){
       action: props.action,
       nationalId:props.nationalId,
       userNumber:props.userNumber,
-      roleId:props.role.roleId//dung détructủing cho de doc
+      roleId:props.role.roleId
     }
   }
 
-  if (props.role.roleCode ==="STR"||props.role.roleCode ==="USR"||props.role.roleCode ==="ADM"){
+  if (props.role.roleCode ==="STR"){
     Object={
       ...props.formDataUserStore,
         action:props.action,
@@ -50,20 +52,26 @@ for ( let i=0;i<dataBusinessType.length;i++){
   const handleDeleteUser=async(e)=>{
     e.preventDefault();
     await execute(props.id)
-    await props.fetchDataUser()
+    if (state.role==="Moderator"||props.role.roleCode ==="USR"||props.role.roleCode ==="ADM"){
+      await props.fetchCompanies()
+    }
+    if (state.role=="Admin"){
+
+      await props.fetchDataUser()
+    }
     await props.handleShowActionPerform(props.action===1?"Inactived Success":"Actived Success")
   }
   const handleShowUsersDetail=()=>{
   
  
-    if (props.role.roleCode ==="MOD"){
+    if (props.role.roleCode ==="MOD"||props.role.roleCode ==="USR"||props.role.roleCode ==="ADM"){
       
       props.handleShowUsersDetails(true)
       props.handleSetFormDataUser(Object)
     }
 
     if (props.role.roleCode ==="STR"){
-      console.log("Storre");
+    
       props.handleShowUserStoreDetails(true)
       props.handleSetFormDataUserStore(Object)
     }
@@ -89,11 +97,7 @@ for ( let i=0;i<dataBusinessType.length;i++){
         <td>{props.index}</td>
         <td>{props.companyName ?? "null"}</td>
         <td>{props.taxIndentity ?? "null"}</td>
-        <td>
-          {nameBusinessType}
-            {/* <option value="">{props.businessId ?? "null"}</option> */}
-         
-        </td>
+        <td>{nameBusinessType ?? "null"}</td>
         <td>{props.email}</td>
         <td>{props.action === 1 ? "Active" : "Inactive"}</td>
         <td>{props.role.roleName ?? ""}</td>

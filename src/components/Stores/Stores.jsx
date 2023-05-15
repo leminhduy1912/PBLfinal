@@ -15,6 +15,7 @@ import AddCompany from "./AddCompany/AddCompany";
 import ActionSuccess from "../ActionSuccess/ActionSuccess";
 import { RequireAuth } from "~hoc";
 import { StoreContext } from "~store";
+import { getAllCompaniesCurrent } from "../../hooks/User/useGetAllCompanies";
 
 function Stores() {
   const [state] = useContext(StoreContext);
@@ -99,12 +100,17 @@ function Stores() {
 
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [currentPageCompanies,setCurrentPageCompanies]=useState(1)
   const [email, setEmail] = useState("");
   const [fullname, setFullName] = useState("");
   const [filter, setFilter] = useState({ fullname, email, page: 1 });
-  const { data, pagination, error, loading, executeDataUser } =
-    useFetchUser(filter);
+  const { data, pagination, error, loading, executeDataUser } = useFetchUser(filter);
+  const [filterCompanies,setFilterCompanies]= useState({page:1})
+  const {dataCompanies,errorCompanies,paginationCompanies,executeDataCompanies}= getAllCompaniesCurrent(filterCompanies);
 
+  const fetchCompanies=async()=>{
+    executeDataCompanies(filterCompanies)
+  }
   const fetchDataUser = async () => {
     setFilter({ email: "", fullname: "", page: 1 });
     await executeDataUser(filter);
@@ -114,6 +120,10 @@ function Stores() {
     setCurrentPage(value);
     setFilter({ fullname: fullname, email: email, page: value });
   };
+  const handleOnChangeCompanies=(event,value)=>{
+    setCurrentPageCompanies(value)
+    setFilterCompanies({page:value})
+  }
   const handleOnClick = () => {
     setFilter({ fullname: fullname, email: email, page: currentPage });
     setEmail("");
@@ -214,7 +224,7 @@ function Stores() {
               setShowModalAddCompany(true);
             }}
           >
-            {" "}
+          
             Add Company
           </button>
 }
@@ -235,7 +245,7 @@ function Stores() {
           </tr>
         </thead>
         <tbody>
-          {Array.isArray(data) &&
+          {/* {state.role==="Admin" && Array.isArray(data) &&
             data.map((item, index) => {
               return (
                 <RowUsers
@@ -254,11 +264,52 @@ function Stores() {
                   fetchDataUser={fetchDataUser}
                 />
               );
-            })}
+            })
+          } */}
+          {state.role==="Moderator" && Array.isArray(dataCompanies)&&
+          dataCompanies.map((item, index) => {
+            return (
+              <RowUsers
+                key={index}
+                index={index + 1 + (currentPage - 1) * 8}
+                {...item}
+                handleShowUsersDetails={handleShowUsersDetails}
+                formDataUser={formDataUser}
+                handleSetFormDataUser={handleSetFormDataUser}
+                handleShowUserStoreDetails={handleShowUserStoreDetails}
+                formDataUserStore={formDataUserStore}
+                handleSetFormDataUserStore={handleSetFormDataUserStore}
+                handleShowUserUpdate={handleShowUserUpdate}
+                handleShowUserUpdateStore={handleShowUserUpdateStore}
+                handleShowActionPerform={handleShowActionPerform}
+                fetchCompanies={fetchCompanies}
+              />
+            );
+          })
+          }
         </tbody>
       </table>
       {loading && <> Loading...</>}
-      {!(
+      
+      {state.role==="Moderator"&& !(
+        dataCompanies &&
+        Object.keys(dataCompanies).length === 0 &&
+        Object.getPrototypeOf(dataCompanies) === Object.prototype
+      ) && (
+        <>
+          <br />
+          <div className="pagination">
+            <Pagination
+              count={paginationCompanies.totalPages}
+              showFirstButton
+              showLastButton
+              page={currentPage}
+              onChange={handleOnChangeCompanies}
+            />
+          </div>
+        </>
+      )}
+      {/* {!(
         data &&
         Object.keys(data).length === 0 &&
         Object.getPrototypeOf(data) === Object.prototype
@@ -275,7 +326,7 @@ function Stores() {
             />
           </div>
         </>
-      )}
+      )} */}
     </>
   );
 }
