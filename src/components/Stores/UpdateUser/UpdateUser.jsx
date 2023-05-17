@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react'
 import "./UpdateUser.css"
 import { FaTimes } from 'react-icons/fa'
 import { useUpdateUser } from '../../../hooks/User/useUpdateUser'
+import { StoreContext } from '~store'
 // import Loading from '../../Loading/Loading'
 const UpdateUser = (props) => {
-    const [formTemp,setFormTemp]= useState()
+  const [state]= useContext(StoreContext)
+    const [formTemp,setFormTemp]= useState({id:props.formDataUser.id})
     const [formUpdateUser,setFormUpdateUser]= useState(props.formDataUser)
     const {message,success,loading,error,execute}= useUpdateUser()
     const actionSuccess=async()=>{
@@ -16,9 +18,10 @@ const UpdateUser = (props) => {
   if (success==true){
   actionSuccess()
   }
+ 
     const handleUpdateUser=async(e)=>{
      e.preventDefault();
-     await execute(formUpdateUser,formUpdateUser.id)
+     await execute(formTemp,formTemp.id,state.id,state.token)
    
     }
   return (

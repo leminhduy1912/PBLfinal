@@ -7,10 +7,10 @@ export const useDeleteUser=()=>{
     const [message, setMessage] = useState('');
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-    const deleteCompanyUser=async(id)=>{
+    const deleteCompanyUser=async(id,clientId,token)=>{
         let res;
         try {
-                res= await deleteUser(id)
+                res= await deleteUser(id,clientId,token)
                 if (res.meta.status_code==200){
                     setLoading(true)
                     setSuccess(true)

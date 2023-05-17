@@ -5,10 +5,12 @@ export const useUpdateUser=()=>{
     const [success,setSuccess]= useState(false)
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
-     const handleUpdateUser=async(Obj,id)=>{
+     const handleUpdateUser=async(Obj,id,clientId,token)=>{
+        console.log("token",token);
+        console.log("id",clientId);
         let res;
         try {
-            res = await updateUser(Obj,id)
+            res = await updateUser(Obj,id,clientId,token)
             if (res.meta.status_code==201){
                 setSuccess(true)
                 setMessage("Update Success")

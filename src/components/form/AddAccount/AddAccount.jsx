@@ -1,10 +1,13 @@
-import React, {useState } from "react";
+import React, {useContext, useState } from "react";
 // import { FaTimes } from 'react-icons/fa';
 import { useCreateUser } from "../../../hooks/User/useCreateUser";
 import ClearIcon from "@mui/icons-material/Clear";
 import "./AddAccount.css";
+import { StoreContext } from "~store";
 // import Loading from "../../Loading/Loading";
 function AddAccount(props) {
+  const [state]= useContext(StoreContext)
+  console.log("state",state);
   const { fetchDataUser, setShowModalAddUser } = props;
   const [formAdduser, setFormAddUser] = useState({
     email: "",
@@ -26,7 +29,7 @@ actionSuccess()
 }
   const handleAdduser = async (e) => {
     e.preventDefault();
-    await execute(formAdduser);
+    await execute(formAdduser,state.id,state.token);
    
   };
  

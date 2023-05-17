@@ -51,12 +51,11 @@ for ( let i=0;i<dataBusinessType.length;i++){
   const  {message,success,loading,error,execute} = useDeleteUser()
   const handleDeleteUser=async(e)=>{
     e.preventDefault();
-    await execute(props.id)
+    await execute(props.id,state.id,state.token)
     if (state.role==="Moderator"||props.role.roleCode ==="USR"||props.role.roleCode ==="ADM"){
       await props.fetchCompanies()
     }
     if (state.role=="Admin"){
-
       await props.fetchDataUser()
     }
     await props.handleShowActionPerform(props.action===1?"Inactived Success":"Actived Success")

@@ -29,10 +29,10 @@ const actionSuccess=async()=>{
 if (success==true){
 actionSuccess()
 }
-let id =formUpdateUser.id;
+
 const handleUpdateCompany=async(e)=>{
 e.preventDefault();
-await execute(formTemp,id)
+await execute(formTemp,formUpdateUser.id,state.id,state.token)
 }
 
   return (

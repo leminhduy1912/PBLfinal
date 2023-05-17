@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState,useContext } from 'react'
 import { FaTimes } from 'react-icons/fa'
 import "./AddCompany.css"
 import { useFetchBusinessType } from '../../../hooks/useFetchBusinessType'
 import { useCreateCompany } from '../../../hooks/User/useCreateUser'
+import { StoreContext } from '~store'
 const AddCompany = (props) => {
+    const [state]= useContext(StoreContext);
+    
     const {dataBusinessType,loadingBusinessType,errorBusinessType} = useFetchBusinessType();
+    console.log("type",dataBusinessType);
     const [errMessage,setErrMessage]= useState('');
     const { fetchDataUser, setShowModalAddCompany } = props;
     const [formDataAddCompany,setFormDataAddCompany]= useState({
@@ -34,7 +38,7 @@ const AddCompany = (props) => {
 
     const handleAddCompanySubmit = async(e) => {
         e.preventDefault();
-        await execute(formDataAddCompany)
+        await execute(formDataAddCompany,state.id,state.token)
       };
       
 
@@ -133,7 +137,7 @@ const AddCompany = (props) => {
                     <option value="" disabled selected>--None--</option>
                   {dataBusinessType.map((item,index)=>{
                     return (
-                        <option key={index}  value={item.businessId}>{item.typeName}</option>
+                        <option key={index}  value={item.id}>{item.businessName}</option>
                     )
                   })}
                 </select>

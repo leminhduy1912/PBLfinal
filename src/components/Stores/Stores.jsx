@@ -19,6 +19,7 @@ import { getAllCompaniesCurrent } from "../../hooks/User/useGetAllCompanies";
 
 function Stores() {
   const [state] = useContext(StoreContext);
+  
 
   // Details
   const [showModalUsersDetails, setShowModalUsersDetails] = useState(false);
@@ -245,7 +246,7 @@ function Stores() {
           </tr>
         </thead>
         <tbody>
-          {/* {state.role==="Admin" && Array.isArray(data) &&
+          {state.role==="Admin" && Array.isArray(data) &&
             data.map((item, index) => {
               return (
                 <RowUsers
@@ -265,7 +266,7 @@ function Stores() {
                 />
               );
             })
-          } */}
+          }
           {state.role==="Moderator" && Array.isArray(dataCompanies)&&
           dataCompanies.map((item, index) => {
             return (
@@ -309,6 +310,26 @@ function Stores() {
           </div>
         </>
       )}
+      {
+        state.role==="Admin" && !(
+          data &&
+        Object.keys(data).length === 0 &&
+        Object.getPrototypeOf(data) === Object.prototype
+        ) && (
+          <>
+          <br />
+          <div className="pagination">
+            <Pagination
+              count={pagination.totalPages}
+              showFirstButton
+              showLastButton
+              page={currentPage}
+              onChange={handleOnChange}
+            />
+          </div>
+        </>
+        )
+      }
       {/* {!(
         data &&
         Object.keys(data).length === 0 &&
