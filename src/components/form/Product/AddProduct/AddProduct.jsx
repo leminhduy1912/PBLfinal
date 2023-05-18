@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import "./AddProduct.css"
 import ClearIcon from '@mui/icons-material/Clear';
 import { useProductKind } from '../../../../hooks/Product/useProductKind';
 import { getAllCompaniesCurrent } from '../../../../hooks/User/useGetAllCompanies';
 import { useCreateProduct } from '../../../../hooks/Product/useCreateProduct';
 import ActionSuccess from '../../../ActionSuccess/ActionSuccess';
+import { StoreContext } from '~store';
 
 function AddProduct(props) {
+  const [state]= useContext(StoreContext)
     const handleHideModalAddProduct=()=>{
         props.handleShowModalAddProduct(false);
     }
@@ -21,7 +23,7 @@ if (successCreateProduct==true){
   props.fetchDataProduct()
 }
 const handleAddNewProduct=async()=>{
- await executeCreateProduct(formAddProduct)
+ await executeCreateProduct(formAddProduct,state.id,state.token)
 }
   return (
     <>

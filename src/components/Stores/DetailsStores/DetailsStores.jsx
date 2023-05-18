@@ -146,13 +146,13 @@ function DetailsStores(props) {
 
                 <div className="form-group">
                 <div className="label">
-                <label htmlFor="Loại hinh kinh doanh">Loại hinh kinh doanh</label>
+                <label htmlFor="Loại hinh kinh doanh">Loại hình kinh doanh</label>
                 
                 </div>
                 <select name="" id="" disabled value={props.formDataUserStore.businessId}> 
                   {dataBusinessType.map((item,index)=>{
                     return (
-                      <option key={index} value={item.businessId}>{item.typeName}</option>
+                      <option key={index} value={item.id}>{item.businessName}</option>
                     )
                   })}
                 </select>

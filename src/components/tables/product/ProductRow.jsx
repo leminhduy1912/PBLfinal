@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./ProductRow.css";
 import useDeleteProduct from "../../../hooks/Product/useDeleteProduct";
+import { StoreContext } from "~store";
 
 export const ProductRow = (props) => {
+  const [state]= useContext(StoreContext)
   const { index, product } = props;
   const {
     id,
@@ -38,7 +40,7 @@ const handleShowMoDalUpdateProduct=()=>{
 const {successDeleteProduct,messageDeleteProduct,errorDeleteProduct,executeDeleteProduct}= useDeleteProduct()
 const handleDeleteProduct=async(e)=>{
   e.preventDefault();
-  await executeDeleteProduct(props.product.id)
+  await executeDeleteProduct(props.product.id,state.id,state.token)
   props.handleShowSuccesAction("Deleted Product")
   await props.fetchDataProduct()
 }

@@ -5,10 +5,10 @@ export const useDeleteCertificate=()=>{
     const [success,setSuccess]= useState(false)
     const [error,setError]= useState(null)
     const [message,setMessage]= useState("")
-    const handleDeleteCertificate=async(id)=>{
+    const handleDeleteCertificate=async(id,clientId,token)=>{
         let res;
         try {
-            res = await deleteCertificate(id)
+            res = await deleteCertificate(id,clientId,token)
             if (res.meta.status_code==204){
                 setSuccess(true)
                 setMessage(res.meta.message)

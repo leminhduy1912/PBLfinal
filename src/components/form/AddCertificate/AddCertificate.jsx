@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "./AddCertificate.css"
 import { FaTimes } from 'react-icons/fa'
 import { useCreateCertificate } from '../../../hooks/Certificate/useCreateCertificate'
 import ActionSuccess from '../../ActionSuccess/ActionSuccess'
+import { StoreContext } from '~store'
 function Addcertificate(props) {
+  const [state]= useContext(StoreContext)
    const [formDataCertificate,setFormDataCertificate]= useState({name:'',description:'',image:''})
    const  {success,message, error, loading ,execute}= useCreateCertificate();
 
@@ -17,10 +19,10 @@ function Addcertificate(props) {
   }
    const  handleAddCertificate=async(e)=>{
     e.preventDefault();
-  await execute(formDataCertificate)
+  await execute(formDataCertificate,state.id,state.token)
    }
   return (
-    //m tét li teernere eweb di
+   
     <>
 
  

@@ -6,11 +6,11 @@ export const useCreateProduct=()=>{
     const [messageCreateProduct, setMessageCreateProduct] = useState('');
     const [errorCreateProduct, setErrorCreateProduct] = useState(null);
  
-    const loadDataCreateProduct=async(Obj)=>{
+    const loadDataCreateProduct=async(Obj,clientId,token)=>{
         let res;
         try {
                 
-                  res= await createNewProduct(Obj);
+                  res= await createNewProduct(Obj,clientId,token);
                   if (res.meta.status_code==201){
                     setSuccessCreateProduct(true)
                     setMessageCreateProduct("Add New Product Success")

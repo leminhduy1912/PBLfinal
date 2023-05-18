@@ -1,10 +1,13 @@
 .product-table-row td:last-child{
     margin: 0px 20px;
- 
+    width: 600px;
     /* max-width: 500px; */
 }
 .product-table-row td:nth-child(1){
-    width: 10px;
+    width: 20px;
+}
+.product-table-row td{
+    width: 140px;
 }
 /* .product-table-row td{
     width: 80px;

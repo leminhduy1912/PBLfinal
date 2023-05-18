@@ -23,7 +23,7 @@ const Login = (props) => {
         setErrMessage(res.meta.error);
         return;
       }
-      console.log(res);
+    
       updateGlobalState({ id:res.data.id , token: res.data.ACCESS_TOKEN, role: res.data.role });
       return navigate("/home");
     } catch (error) {

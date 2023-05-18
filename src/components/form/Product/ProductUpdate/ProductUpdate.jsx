@@ -4,10 +4,11 @@ import { FaTimes } from 'react-icons/fa';
 import "./ProductUpdate.css"
 import { useProductKind } from '../../../../hooks/Product/useProductKind';
 import { useDeleteCertificateFromProduct } from '../../../../hooks/Product/useDeleteCertificateFromProduct';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useUpdateProduct } from '../../../../hooks/Product/useUpdateProduct';
+import { StoreContext } from '~store';
 function DetailsProduct(props) {
-
+  const [state]= useContext(StoreContext)
   const [formTemp,setFormTemp]= useState({id:props.formDataProduct.id})
   const [formDataProduct,setFormDataProduct]= useState(
     {
@@ -22,13 +23,13 @@ function DetailsProduct(props) {
   const {successUpdateProduct,messageUpdateProduct,errorUpdateProduct,executeUpdateProduct}= useUpdateProduct()
   const handleUpdateProduct=async(e)=>{
   e.preventDefault()
-  await executeUpdateProduct(formTemp)
+  await executeUpdateProduct(formTemp,state.id,state.token)
   await props.handleShowMoDalUpdateProduct(false)
   await props.fetchDataProduct();
   await props.handleShowSuccesAction("Updated Product")
 }
 const handleDeleteCertificateFromProduct=async(certificateId,index)=>{
-  await executeDeleteCertificateFromProduct(props.formDataProduct.id,certificateId)
+  await executeDeleteCertificateFromProduct(props.formDataProduct.id,certificateId,state.id,state.token)
   await props.fetchDataProduct();
   const updatedDisableBtnStates = [...disableBtnStates];
   updatedDisableBtnStates[index] = true;

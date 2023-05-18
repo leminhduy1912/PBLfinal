@@ -30,9 +30,7 @@ export const ProductAdmin = () => {
   const [showModalAddCertificateToProduct, setShowModalAddCertificateToProduct] = useState(false);
   const [idProduct,setIdProduct]= useState("")
   const handleShowModalAddCertificateToProduct = (Obj) => {
-  
     setShowModalAddCertificateToProduct(Obj.value);
-    console.log(showModalAddCertificateToProduct);
     Obj.id && setIdProduct(Obj.id)
   };
   const [formDataProduct,setFormDataProduct]= useState({
@@ -51,6 +49,7 @@ export const ProductAdmin = () => {
   const [messageAction,setMessageAction]= useState("")
   const [showSuccessAction,setShowSuccessAction]= useState(false)
   const handleShowSuccesAction=(message)=>{
+    
     setMessageAction(message)
     setShowSuccessAction(true)
     setTimeout(()=>{
@@ -68,7 +67,8 @@ export const ProductAdmin = () => {
      fetchDataProduct={fetchDataProduct}
     />}
     {
-      showSuccessAction&&<ActionSuccess messageAction={messageAction}  />
+      showSuccessAction&&
+      <ActionSuccess messageAction={messageAction}  />
     }
       {showModalDetailsProduct && (
         <DetailsProduct
@@ -83,6 +83,7 @@ export const ProductAdmin = () => {
           formDataProduct={formDataProduct}
           fetchDataProduct={fetchDataProduct}
           handleSetFormDataProduct={handleSetFormDataProduct}
+          handleShowSuccesAction={handleShowSuccesAction}
         />
       )}
       {showModalAddProduct && (

@@ -103,3 +103,27 @@ return await Axios({
     
   })
  }
+ export const userComment=async(Obj)=>{
+  let formData= new FormData()
+  for (const key in Obj){
+    formData.append(key,Obj[key])
+  }
+  return await Axios({
+    method:"POST",
+    url:"/post",
+    data:formData
+  })
+ }
+ export const companyRegister=async(Obj)=>{
+  let formData= new FormData()
+  for (const key in Obj){
+    formData.append(key,Obj[key])
+  }
+  return await Axios({
+    method:"POST",
+    url:"/auth/register",
+    data:formData
+    
+  })
+ }
+

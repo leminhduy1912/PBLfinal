@@ -5,11 +5,11 @@ export const useUpdateProduct=()=>{
     const [successUpdateProduct,setSuccessUpdateProduct]= useState(false)
     const [messageUpdateProduct, setMessageUpdateProduct] = useState('');
     const [errorUpdateProduct, setErrorUpdateProduct] = useState(null);
-    const loadUpdateProduct=async(Obj)=>{
+    const loadUpdateProduct=async(Obj,clientId,token)=>{
       let res;
       try {
-        res= await updateProduct(Obj)
-        if (res.meta.status_code==200){
+        res= await updateProduct(Obj,clientId,token)
+        if (res.meta.status_code==204){
             setSuccessUpdateProduct(true)
             setMessageUpdateProduct("Updated Product")
         }

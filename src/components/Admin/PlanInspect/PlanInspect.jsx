@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/aria-role */
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect, useContext } from "react";
 import { Pagination, TablePagination } from "@mui/material";
 import "./PlanInspect.css";
 import AddPlan from "../../form/AddPlan/AddPlan";
@@ -12,7 +12,9 @@ import { usePlanDetails } from "../../../hooks/Plan/usePlanDetails";
 import ReportDocx from "../../form/ReportDocx/ReportDocx";
 import ActionSuccess from "../../ActionSuccess/ActionSuccess";
 import { useGetSpecific } from "../../../hooks/Plan/useGetSpecificPlan";
+import { StoreContext } from "~store";
 function PlanInspect() {
+  const [state]= useContext(StoreContext)
   const {dataPlanDetails,loadingPlanDetails,errorPlanDetails}= usePlanDetails("RaEurAclqGCOy7vCSbuXFjZ");
 
   const [showModalReport, setShowModalReport] = useState(false);
@@ -67,89 +69,106 @@ useEffect(() => {
   const handleOnChange = (event, value) => {
     console.log(value);
   };
+
   return (
     <>
-
-    {showActionSuccess&&<ActionSuccess messageAction={messageAction}/>}
-    {isLoaded&&showModalDetailsPlan  &&
-      <DetailsPlan
-      handleShowMoDalDetailsPlan={handleShowMoDalDetailsPlan}
-    
-      detailsPlan={detailsPlan}
-    
-      />}
-    {showModalReport&& 
-    <ReportDocx
-    handleShowMoDalReport={handleShowMoDalReport}
-    />}
-     
-      {showModalUpdatePlan && (
-        <UpdatePlan 
-        handleShowModalUpdatePlan={handleShowModalUpdatePlan} 
-        time={time}
-        planId={planId}
-        fetchDataPlans={fetchDataPlans}
-        />
+      {state.role === "Admin" && (
+        <>
+          {showActionSuccess && <ActionSuccess messageAction={messageAction} />}
+          {isLoaded && showModalDetailsPlan && (
+            <DetailsPlan
+              handleShowMoDalDetailsPlan={handleShowMoDalDetailsPlan}
+              detailsPlan={detailsPlan}
+            />
+          )}
+          {showModalReport && (
+            <ReportDocx handleShowMoDalReport={handleShowMoDalReport} />
+          )}
+  
+          {showModalUpdatePlan && (
+            <UpdatePlan
+              handleShowModalUpdatePlan={handleShowModalUpdatePlan}
+              time={time}
+              planId={planId}
+              fetchDataPlans={fetchDataPlans}
+            />
+          )}
+          {showModalAddPlan && (
+            <AddPlan
+              handleShowModalAddPlan={handleShowModalAddPlan}
+              fetchDataPlans={fetchDataPlans}
+              handleShowSuccessAction={handleShowSuccessAction}
+            />
+          )}
+          <div className="table-wrapper">
+            {/* <RequireAuth role="admin"> */}
+            <div className="planInspect-header">
+              <h1>Quản lý Kế hoạch</h1>
+              <button
+                className="btn-add-plan"
+                onClick={() => {
+                  setShowModalAddPlan(true);
+                }}
+              >
+                Thêm Kế hoạch
+              </button>
+            </div>
+  
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Công ty</th>
+                  <th>Thời gian</th>
+                  <th>Hành động</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.length > 0 &&
+                  data.map((item, index) => {
+                    return (
+                      <PlanRowElement
+                        key={index}
+                        index={index + 1}
+                        {...item}
+                        handleShowModalUpdatePlan={handleShowModalUpdatePlan}
+                        handleShowMoDalReport={handleShowMoDalReport}
+                        handleSetTimePlan={handleSetTimePlan}
+                        handleShowMoDalDetailsPlan={handleShowMoDalDetailsPlan}
+                        handleSetPlanId={handleSetPlanId}
+                        fetchDataPlans={fetchDataPlans}
+                        handleShowSuccessAction={handleShowSuccessAction}
+                      ></PlanRowElement>
+                    );
+                  })}
+              </tbody>
+            </table>
+          </div>
+          {/* <TablePagination total={5} /> */}
+          <div className="pagination">
+            <Pagination
+              count={20}
+              showFirstButton
+              showLastButton
+              onChange={handleOnChange}
+            />
+          </div>
+        </>
       )}
-      {showModalAddPlan && (
-        <AddPlan 
-        handleShowModalAddPlan={handleShowModalAddPlan} 
-        fetchDataPlans={fetchDataPlans}
-        handleShowSuccessAction={handleShowSuccessAction}
-        />
-      )}
-      <div className="table-wrapper">
-        {/* <RequireAuth role="admin"> */}
+  
+      {state.role === "Moderator" && (
         <div className="planInspect-header">
-          <h1>Plan Management</h1>
-          <button className="btn-add-plan"
+          <h1>Submit Report Result</h1>
+          <button
+            className="btn-add-plan"
             onClick={() => {
               setShowModalAddPlan(true);
             }}
           >
-            Add Plan
+           Click Here To Submit
           </button>
         </div>
-    
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Company</th>
-              <th>Time</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.length > 0 &&
-              data.map((item, index) => {
-                return (
-                  <PlanRowElement
-                    key={index}
-                    index={index + 1}
-                    {...item}
-                    handleShowModalUpdatePlan={handleShowModalUpdatePlan}
-                    handleShowMoDalReport={handleShowMoDalReport}
-                    handleSetTimePlan={handleSetTimePlan}
-                    handleShowMoDalDetailsPlan={handleShowMoDalDetailsPlan}
-                    handleSetPlanId={handleSetPlanId}
-                    fetchDataPlans={fetchDataPlans}
-                    handleShowSuccessAction={handleShowSuccessAction}
-                  ></PlanRowElement>
-                );
-              })}
-          </tbody>
-        </table>
-      </div>
-      {/* <TablePagination total={5} /> */}
-      <div className="pagination">
-        <Pagination
-          count={20}
-          showFirstButton
-          showLastButton
-          onChange={handleOnChange}
-        />
-      </div>
+      )}
     </>
   );
 }

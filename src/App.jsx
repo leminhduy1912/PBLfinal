@@ -33,7 +33,7 @@ function App() {
           {/* <Route element={<RedirectAccess />}> */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<CompanyRegister />} />
-          {/* <Route path="/" element={<Home />} /> */}
+          <Route path="/landingPage" element={<Home />} />
           <Route
             path="/home"
             element={<Sidebar data={SidebarData} role="Admin" />}

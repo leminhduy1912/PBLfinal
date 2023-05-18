@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import "./UpdateCertificate.css"
 import { FaTimes } from 'react-icons/fa'
 import { useUpdateCertificate } from '../../../hooks/Certificate/useUpdateCertificate'
+import { StoreContext } from '~store'
 function UpdateCertificate(props) {
+  const [state]= useContext(StoreContext)
   const {message,loading,success,error,executeUpdateCerti}= useUpdateCertificate()
   const [formCertificateInfor,setFormCertificateInfor]= useState(props.formDataCertificate)
   
@@ -18,7 +20,7 @@ function UpdateCertificate(props) {
   }
   const handleUpdateCertificate=async(e)=>{
     e.preventDefault()
-  await executeUpdateCerti(formTemp)
+  await executeUpdateCerti(formTemp,state.id,state.token)
   }
    
   return (
@@ -69,6 +71,7 @@ function UpdateCertificate(props) {
             setFormCertificateInfor({...props.formCertificateInfor,path:e.target.value}),
             setFormTemp({...formTemp,path:e.target.files[0]})
             }}
+            value={formCertificateInfor.path}
             className="form-input-control"
             type="file"
          
