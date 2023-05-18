@@ -4,10 +4,10 @@ export const useDeletePlan=()=>{
     
    
     const [errorDeletePlan, setErrorDeletePlan]= useState(null); 
-    const loadDeletePlan=async(planId)=>{
+    const loadDeletePlan=async(planId,clientId,token)=>{
         let res;
         try {
-            res= await deletePlan(planId)
+            res= await deletePlan(planId,clientId,token)
 
         } catch (error) {
             setErrorDeletePlan(error)

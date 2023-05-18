@@ -4,7 +4,10 @@ import "./plans.css";
 import { RequireAuth } from "./../../../hoc/RequiredAuth";
 import { useDeletePlan } from '../../../hooks/Plan/useDeletePlan'
 import { usePlanDetails } from '../../../hooks/Plan/usePlanDetails';
+import { useContext } from "react";
+import { StoreContext } from "~store";
 export const PlanRowElement = (props) => {
+  const [state]= useContext(StoreContext)
 const {errorDeletePlan,executeDeletePlan}= useDeletePlan()
 const handleAddInspector=async()=>{
   await props.handleShowModalAddInspectorToPlan(true)
@@ -12,7 +15,7 @@ const handleAddInspector=async()=>{
 }
 const handleCancelPlan=async(e)=>{
   e.preventDefault()
-  await executeDeletePlan(props.id)
+  await executeDeletePlan(props.id,state.id,state.token)
   await props.fetchDataPlans()
   await props.handleShowSuccessAction("Canceled Plan")
 }

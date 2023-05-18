@@ -101,6 +101,7 @@ useEffect(() => {
               time={time}
               planId={planId}
               fetchDataPlans={fetchDataPlans}
+              handleShowSuccessAction={handleShowSuccessAction}
             />
           )}
           {showModalAddPlan && (

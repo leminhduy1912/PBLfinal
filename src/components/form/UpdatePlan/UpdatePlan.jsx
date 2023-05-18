@@ -1,20 +1,21 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { FaTimes } from 'react-icons/fa'
 import "./UpdatePLan.css"
 import { ConvertTimestampToDate } from '../../../utils/ConvertTimestampToDate'
 import { ConvertToTimeStamp } from '../../../utils/ConvertToTimestamp'
 import { useEditTimePlan } from '../../../hooks/Plan/useEditTimePlan'
+import { StoreContext } from '~store'
 function UpdatePlan(props) {
-
+const [state]= useContext(StoreContext)
 const [timePlan,setTimePlan]= useState(props.time)
- const {successEditTimePlan,messageEditTimePlan,errorEditTimePlan,executeEditTimePlan}= useEditTimePlan()
-// let date= ConvertTimestampToDate(props.time);
-// console.log("date",date);
+const {successEditTimePlan,messageEditTimePlan,errorEditTimePlan,executeEditTimePlan}= useEditTimePlan()
+
 const handleEditTimePlan=async(e)=>{
 e.preventDefault();
-await executeEditTimePlan(timePlan,props.planId)
+await executeEditTimePlan(timePlan,props.planId,state.id,state.token)
 await props.handleShowModalUpdatePlan(false)
 await props.fetchDataPlans()
+await props.handleShowSuccessAction("Edited Time Plan")
 }
 // console.log(ConvertTimestampToDate(1684324920000));
   return (
