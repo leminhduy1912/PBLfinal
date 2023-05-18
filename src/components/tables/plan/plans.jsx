@@ -6,6 +6,10 @@ import { useDeletePlan } from '../../../hooks/Plan/useDeletePlan'
 import { usePlanDetails } from '../../../hooks/Plan/usePlanDetails';
 export const PlanRowElement = (props) => {
 const {errorDeletePlan,executeDeletePlan}= useDeletePlan()
+const handleAddInspector=async()=>{
+  await props.handleShowModalAddInspectorToPlan(true)
+  await props.setPlanId(props.id)
+}
 const handleCancelPlan=async(e)=>{
   e.preventDefault()
   await executeDeletePlan(props.id)
@@ -41,7 +45,7 @@ await props.handleSetPlanId(props.id)
           <button onClick={handleCancelPlan}>Cancel</button>
           {/* </RequireAuth> */}
           {/* <RequireAuth role="moderator"> */}
-          <button>Add Inspector</button>
+          <button onClick={handleAddInspector}>Add Inspector</button>
           {/* </RequireAuth> */}
         </td>
       </tr>

@@ -84,3 +84,19 @@ export const deletePlan=async(planId)=>{
    
   });
 }
+export const addInspectorToPlan=async(Obj,clientId,token)=>{
+  let formData= new FormData()
+  for (const key in Obj){
+    formData.append(key,Obj[key])
+  }
+  return await Axios({
+    method: "POST",
+    headers: {
+      ACCESS_TOKEN: token,
+      client_id:clientId
+    },
+    url: "/private/adm/plan/inspectors",
+    data:formData
+   
+  });
+}

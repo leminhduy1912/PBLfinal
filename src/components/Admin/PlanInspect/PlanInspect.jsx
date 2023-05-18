@@ -13,10 +13,14 @@ import ReportDocx from "../../form/ReportDocx/ReportDocx";
 import ActionSuccess from "../../ActionSuccess/ActionSuccess";
 import { useGetSpecific } from "../../../hooks/Plan/useGetSpecificPlan";
 import { StoreContext } from "~store";
+import AddInspector from "../../form/AddInspector/AddInspector";
 function PlanInspect() {
   const [state]= useContext(StoreContext)
   const {dataPlanDetails,loadingPlanDetails,errorPlanDetails}= usePlanDetails("RaEurAclqGCOy7vCSbuXFjZ");
-
+  const [showModalAddInspector,setShowModalAddInspector]= useState(false)
+  const handleShowModalAddInspectorToPlan=(value)=>{
+    setShowModalAddInspector(value)
+  }
   const [showModalReport, setShowModalReport] = useState(false);
   const handleShowMoDalReport = (value) => {
     setShowModalReport(value);
@@ -81,6 +85,12 @@ useEffect(() => {
               detailsPlan={detailsPlan}
             />
           )}
+          {showModalAddInspector&&
+          <AddInspector
+          handleShowModalAddInspectorToPlan={handleShowModalAddInspectorToPlan}
+          planId={planId}
+          handleShowSuccessAction={handleShowSuccessAction}
+          />}
           {showModalReport && (
             <ReportDocx handleShowMoDalReport={handleShowMoDalReport} />
           )}
@@ -103,14 +113,14 @@ useEffect(() => {
           <div className="table-wrapper">
             {/* <RequireAuth role="admin"> */}
             <div className="planInspect-header">
-              <h1>Quản lý Kế hoạch</h1>
+              <h1>Plan Management</h1>
               <button
                 className="btn-add-plan"
                 onClick={() => {
                   setShowModalAddPlan(true);
                 }}
               >
-                Thêm Kế hoạch
+               Add Plan
               </button>
             </div>
   
@@ -138,6 +148,8 @@ useEffect(() => {
                         handleSetPlanId={handleSetPlanId}
                         fetchDataPlans={fetchDataPlans}
                         handleShowSuccessAction={handleShowSuccessAction}
+                        handleShowModalAddInspectorToPlan={handleShowModalAddInspectorToPlan}
+                        setPlanId={setPlanId}
                       ></PlanRowElement>
                     );
                   })}
