@@ -104,6 +104,7 @@ function PlanInspect() {
             <ReportDocx
               handleShowMoDalReport={handleShowMoDalReport}
               planId={planId}
+              handleShowSuccessAction={handleShowSuccessAction}
             />
           )}
 

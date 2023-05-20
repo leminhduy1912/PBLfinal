@@ -26,20 +26,21 @@ const ReportDocx = (props) => {
     }
   }, [dataGetPlanDocx, successGetPlanDocx]);
   return (
-    isLoaded && (
-      <div className="report-docx-container">
-        <div className="report-docx-content">
-          <div className="header-report-docx">
-            <h1>Report</h1>
-            <button
-              className="btn"
-              onClick={() => {
-                props.handleShowMoDalReport(false);
-              }}
-            >
-              <FaTimes />
-            </button>
-          </div>
+    <div className="report-docx-container">
+      <div className="report-docx-content">
+        <div className="header-report-docx">
+          <h1>Report</h1>
+          <button
+            className="btn"
+            onClick={() => {
+              props.handleShowMoDalReport(false);
+            }}
+          >
+            <FaTimes />
+          </button>
+        </div>
+        {isLoaded === false && <h3>Nothing to show</h3>}
+        {isLoaded && (
           <iframe
             src={
               "https://ntphtdn-my.sharepoint.com/:w:/g/personal/minhngoc_40303_onedrive_iesschool_edu_vn/" +
@@ -50,9 +51,9 @@ const ReportDocx = (props) => {
             height="550px"
             title="Report"
           ></iframe>
-        </div>
+        )}
       </div>
-    )
+    </div>
   );
 };
 
