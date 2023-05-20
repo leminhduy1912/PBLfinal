@@ -5,12 +5,12 @@ export const useGetSpecific=()=>{
     const [successGetSpecificPlan,setSuccessGetSpecificPlan]= useState(false)
     
     const [errorGetSpecificPlan, setErrorGetSpecificPlan]= useState(null);
-    const loadSpecificPlan=async(id)=>{
+    const loadSpecificPlan=async(id,clientId,token)=>{
         let res;
         try {
-            res= await getSpecificPlan(id)
+            res= await getSpecificPlan(id,clientId,token)
              if (res.meta.status_code==200){
-               console.log("thanh cong ");
+              
                 setSuccessGetSpecificPlan(true)
                 setDataGetSpecificPlan(res.data.result)
              }

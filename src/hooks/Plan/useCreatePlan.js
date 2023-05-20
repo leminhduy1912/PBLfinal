@@ -4,10 +4,10 @@ export const useCreatePlan=()=>{
     const [successAddNewPlan,setSuccessAddNewPlan]= useState(false)
     const [messageAddNewPlan, setMessageAddNewPlan] = useState('');
     const [errorAddNewPlan, setErrorAddNewPlan]= useState(null);
-    const loadAddNewPlan=async(Obj)=>{
+    const loadAddNewPlan=async(Obj,clientId,token)=>{
      let res;
      try {
-        res= await addNewPlan(Obj);
+        res= await addNewPlan(Obj,clientId,token);
         if (res.meta.status_code==200||res.meta.status_code==201){
             setSuccessAddNewPlan(true)
             setMessageAddNewPlan("Added New Plan")

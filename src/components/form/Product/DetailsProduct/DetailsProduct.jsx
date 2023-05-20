@@ -1,9 +1,9 @@
 import React from 'react'
-import ClearIcon from '@mui/icons-material/Clear';
+
 import { FaTimes } from 'react-icons/fa';
 import "./DetailsProduct.css"
 function DetailsProduct(props) {
- console.log("props",props);
+;
 
   return (
     <div className='details-product-container'>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { companyRegister } from "../service/user.service";
+import { companyRegister } from "../../service/user.service";
 
 export const useCompanyRegister=()=>{
      // const [success,setSuccess]= useState(false)

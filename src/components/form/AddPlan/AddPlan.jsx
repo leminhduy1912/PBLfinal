@@ -1,17 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { getAllCompaniesCurrent } from "../../../hooks/User/useGetAllCompanies";
 import "./AddPlan.css"
 import ClearIcon from '@mui/icons-material/Clear';
 import { useCreatePlan } from "../../../hooks/Plan/useCreatePlan";
 import { ConvertToTimeStamp } from "../../../utils/ConvertToTimestamp";
-// import { DateConvert } from "~utils";
+import { StoreContext } from "~store";
+
 function AddPlan(props) {
+ const [state]= useContext(StoreContext)
  const {dataCompanies,errorCompanies}= getAllCompaniesCurrent()
  const [formAddNewPlan,setFormAddNewPlan]= useState({})
  const {successAddNewPlan,messageAddNewPlan,errorAddNewPlan,executeAddPlan}= useCreatePlan()
 const handleAddNewPlan=async(e)=>{
 e.preventDefault()
-await executeAddPlan(formAddNewPlan)
+await executeAddPlan(formAddNewPlan,state.id,state.token)
 await props.fetchDataPlans()
 await props.handleShowModalAddPlan(false)
 await props.handleShowSuccessAction("Added New Plan")

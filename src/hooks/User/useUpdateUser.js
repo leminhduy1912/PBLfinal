@@ -6,8 +6,7 @@ export const useUpdateUser=()=>{
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
      const handleUpdateUser=async(Obj,id,clientId,token)=>{
-        console.log("token",token);
-        console.log("id",clientId);
+
         let res;
         try {
             res = await updateUser(Obj,id,clientId,token)

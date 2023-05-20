@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {UilStar,UilAsterisk} from '@iconscout/react-unicons'
 import "./CompanyRegister.css"
-import { useCompanyRegister } from '../../../hooks/useCompanyRegister'
+import { useCompanyRegister } from '../../../hooks/Auth/useCompanyRegister'
 import { useFetchBusinessType } from '../../../hooks/useFetchBusinessType'
 import ActionSuccess from '../../ActionSuccess/ActionSuccess'
 function CompanyRegister() {

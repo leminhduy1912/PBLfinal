@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/aria-role */
-import React, { useState,useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Pagination, TablePagination } from "@mui/material";
 import "./PlanInspect.css";
 import AddPlan from "../../form/AddPlan/AddPlan";
@@ -15,12 +15,13 @@ import { useGetSpecific } from "../../../hooks/Plan/useGetSpecificPlan";
 import { StoreContext } from "~store";
 import AddInspector from "../../form/AddInspector/AddInspector";
 function PlanInspect() {
-  const [state]= useContext(StoreContext)
-  const {dataPlanDetails,loadingPlanDetails,errorPlanDetails}= usePlanDetails("RaEurAclqGCOy7vCSbuXFjZ");
-  const [showModalAddInspector,setShowModalAddInspector]= useState(false)
-  const handleShowModalAddInspectorToPlan=(value)=>{
-    setShowModalAddInspector(value)
-  }
+  const [state] = useContext(StoreContext);
+  const { dataPlanDetails, loadingPlanDetails, errorPlanDetails } =
+    usePlanDetails("RaEurAclqGCOy7vCSbuXFjZ");
+  const [showModalAddInspector, setShowModalAddInspector] = useState(false);
+  const handleShowModalAddInspectorToPlan = (value) => {
+    setShowModalAddInspector(value);
+  };
   const [showModalReport, setShowModalReport] = useState(false);
   const handleShowMoDalReport = (value) => {
     setShowModalReport(value);
@@ -37,39 +38,44 @@ function PlanInspect() {
   const handleShowModalAddPlan = (value) => {
     setShowModalAddPlan(value);
   };
-const {data,error,executeAllPlans}= usePlan();
-const fetchDataPlans=()=>{
-executeAllPlans()
-}
-const  [messageAction,setMessageAction]= useState("")
-const [showActionSuccess,setShowActionSuccess]=useState(false)
-const handleShowSuccessAction=(message)=>{
-setMessageAction(message)
-setShowActionSuccess(true)
-setTimeout(()=>{
-  setShowActionSuccess(false)
-},3000)
-}
-const [time,setTime]= useState(null)
-const [planId,setPlanId]=  useState(null)
-const handleSetTimePlan=(time,planId)=>{
-setTime(time)
-setPlanId(planId)
-}
- const [detailsPlan,setDetailsPlan]= useState({})
+  const { data, error, executeAllPlans } = usePlan();
+  const fetchDataPlans = () => {
+    executeAllPlans();
+  };
+  const [messageAction, setMessageAction] = useState("");
+  const [showActionSuccess, setShowActionSuccess] = useState(false);
+  const handleShowSuccessAction = (message) => {
+    setMessageAction(message);
+    setShowActionSuccess(true);
+    setTimeout(() => {
+      setShowActionSuccess(false);
+    }, 3000);
+  };
+  const [time, setTime] = useState(null);
+  const [planId, setPlanId] = useState(null);
+  const handleSetTimePlan = (time, planId) => {
+    setTime(time);
+    setPlanId(planId);
+  };
+  const [detailsPlan, setDetailsPlan] = useState({});
 
-const {dataGetSpecificPlan,errorGetSpecificPlan,successGetSpecificPlan,executeGetSpecificPlan}= useGetSpecific()
-const [isLoaded,setIsLoaded]= useState(false)
+  const {
+    dataGetSpecificPlan,
+    errorGetSpecificPlan,
+    successGetSpecificPlan,
+    executeGetSpecificPlan,
+  } = useGetSpecific();
+  const [isLoaded, setIsLoaded] = useState(false);
 
-const handleSetPlanId=async(id)=>{
-  await executeGetSpecificPlan(id)
-}
-useEffect(() => {
-  if (successGetSpecificPlan) {
-    setDetailsPlan(dataGetSpecificPlan)
-    setIsLoaded(true)
-  }
-}, [dataGetSpecificPlan, successGetSpecificPlan]);
+  const handleSetPlanId = async (id) => {
+    await executeGetSpecificPlan(id, state.id, state.token);
+  };
+  useEffect(() => {
+    if (successGetSpecificPlan) {
+      setDetailsPlan(dataGetSpecificPlan);
+      setIsLoaded(true);
+    }
+  }, [dataGetSpecificPlan, successGetSpecificPlan]);
   const handleOnChange = (event, value) => {
     console.log(value);
   };
@@ -85,16 +91,22 @@ useEffect(() => {
               detailsPlan={detailsPlan}
             />
           )}
-          {showModalAddInspector&&
-          <AddInspector
-          handleShowModalAddInspectorToPlan={handleShowModalAddInspectorToPlan}
-          planId={planId}
-          handleShowSuccessAction={handleShowSuccessAction}
-          />}
-          {showModalReport && (
-            <ReportDocx handleShowMoDalReport={handleShowMoDalReport} />
+          {showModalAddInspector && (
+            <AddInspector
+              handleShowModalAddInspectorToPlan={
+                handleShowModalAddInspectorToPlan
+              }
+              planId={planId}
+              handleShowSuccessAction={handleShowSuccessAction}
+            />
           )}
-  
+          {showModalReport && (
+            <ReportDocx
+              handleShowMoDalReport={handleShowMoDalReport}
+              planId={planId}
+            />
+          )}
+
           {showModalUpdatePlan && (
             <UpdatePlan
               handleShowModalUpdatePlan={handleShowModalUpdatePlan}
@@ -121,10 +133,10 @@ useEffect(() => {
                   setShowModalAddPlan(true);
                 }}
               >
-               Add Plan
+                Add Plan
               </button>
             </div>
-  
+
             <table>
               <thead>
                 <tr>
@@ -149,7 +161,9 @@ useEffect(() => {
                         handleSetPlanId={handleSetPlanId}
                         fetchDataPlans={fetchDataPlans}
                         handleShowSuccessAction={handleShowSuccessAction}
-                        handleShowModalAddInspectorToPlan={handleShowModalAddInspectorToPlan}
+                        handleShowModalAddInspectorToPlan={
+                          handleShowModalAddInspectorToPlan
+                        }
                         setPlanId={setPlanId}
                       ></PlanRowElement>
                     );
@@ -168,7 +182,7 @@ useEffect(() => {
           </div>
         </>
       )}
-  
+
       {state.role === "Moderator" && (
         <div className="planInspect-header">
           <h1>Submit Report Result</h1>
@@ -178,7 +192,7 @@ useEffect(() => {
               setShowModalAddPlan(true);
             }}
           >
-           Click Here To Submit
+            Click Here To Submit
           </button>
         </div>
       )}
