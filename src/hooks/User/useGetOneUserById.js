@@ -12,6 +12,7 @@ export const useGetOneUserById=()=>{
         try {
             res = await getOneUserById(id,clientId,token)
           if (res.meta.status_code==200){
+            
               setDataGetOneUserById(res.data.result)
               setSuccessGetOneUserById(true)
 
