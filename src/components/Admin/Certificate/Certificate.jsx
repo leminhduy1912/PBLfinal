@@ -1,12 +1,15 @@
 import { useFetchCertificate } from "../../../hooks/Certificate/useFetchCertificate";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Pagination } from "@mui/material";
 import CertificateRow from "../../tables/CertificateRow/CertificateRow";
 import "./Certificate.css";
 import AddCertificate from "../../form/AddCertificate/AddCertificate";
 import UpdateCertificate from "../../form/UpdateCertificate/UpdateCertificate";
 import ActionSuccess from "../../ActionSuccess/ActionSuccess";
+import { StoreContext } from "~store";
 const Certificate = () => {
+  const [state] = useContext(StoreContext);
+
   const [showModalAddCertificate, setShowModalAddCertificate] = useState(false);
   const handleShowModalAddCertificate = (value) => {
     setShowModalAddCertificate(value);
@@ -27,9 +30,10 @@ const Certificate = () => {
   const handleSetFormDataCertificate = (Obj) => {
     setFormDataCertificate(Obj);
   };
+  const [pageCurrent, setPageCurrent] = useState(1);
   const [filter, setFilter] = useState({ page: 1 });
   const { pagination, data, success, error, loading, execute } =
-    useFetchCertificate();
+    useFetchCertificate(filter, state.id, state.token);
   const [listCertificates, setListCertificate] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [messageAction, setMessageAction] = useState("");
@@ -37,16 +41,11 @@ const Certificate = () => {
     setFilter({ page: 1 });
     execute(filter);
   };
-  useEffect(() => {
-    execute(filter);
-  }, []);
-  useEffect(() => {
-    if (success == true) {
-      setIsLoaded(true);
-      setListCertificate(data);
-      console.log(pagination);
-    }
-  }, [data, success]);
+
+  const handleOnChange = (event, value) => {
+    setPageCurrent(value);
+    setFilter({ page: value });
+  };
   const [showSuccess, setShowSuccess] = useState(false);
   const handleSetShowSuccess = (message) => {
     setMessageAction(message);
@@ -92,9 +91,8 @@ const Certificate = () => {
             </tr>
           </thead>
           <tbody>
-            {isLoaded &&
-              Array.isArray(listCertificates) &&
-              listCertificates.map((item, index) => {
+            {Array.isArray(data) &&
+              data.map((item, index) => {
                 return (
                   <CertificateRow
                     key={index}
@@ -112,15 +110,16 @@ const Certificate = () => {
               })}
           </tbody>
         </table>
-        {isLoaded && (
+        {
           <div className="pagination">
             <Pagination
-              count={pagination.totalResults}
+              count={pagination.totalPages}
               showFirstButton
               showLastButton
+              onChange={handleOnChange}
             />
           </div>
-        )}
+        }
       </div>
     </>
   );

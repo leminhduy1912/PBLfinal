@@ -12,8 +12,11 @@ const Login = (props) => {
   const [errMessage, setErrMessage] = useState();
   const [state, dispatch] = useContext(StoreContext);
   const navigate = useNavigate();
-  const updateGlobalState = ({ id,token, role }) => {
-    dispatch({ type: SET_AUTH_STATE, payload: { id:id,token: token, role: role } });
+  const updateGlobalState = ({ id, token, role }) => {
+    dispatch({
+      type: SET_AUTH_STATE,
+      payload: { id: id, token: token, role: role },
+    });
   };
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -23,8 +26,12 @@ const Login = (props) => {
         setErrMessage(res.meta.error);
         return;
       }
-    
-      updateGlobalState({ id:res.data.id , token: res.data.ACCESS_TOKEN, role: res.data.role });
+
+      updateGlobalState({
+        id: res.data.id,
+        token: res.data.ACCESS_TOKEN,
+        role: res.data.role,
+      });
       return navigate("/home");
     } catch (error) {
       console.log(error);

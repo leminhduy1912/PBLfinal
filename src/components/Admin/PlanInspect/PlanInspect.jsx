@@ -38,9 +38,17 @@ function PlanInspect() {
   const handleShowModalAddPlan = (value) => {
     setShowModalAddPlan(value);
   };
-  const { data, error, executeAllPlans } = usePlan();
+
+  // get Plans
+  const [pageCurrent, setPageCurrent] = useState(1);
+  const [filter, setFilter] = useState({ page: 1 });
+  const { pagination, data, error, executeAllPlans } = usePlan(
+    filter,
+    state.id,
+    state.token
+  );
   const fetchDataPlans = () => {
-    executeAllPlans();
+    executeAllPlans({ page: pageCurrent }, state.id, state.token);
   };
   const [messageAction, setMessageAction] = useState("");
   const [showActionSuccess, setShowActionSuccess] = useState(false);
@@ -77,7 +85,8 @@ function PlanInspect() {
     }
   }, [dataGetSpecificPlan, successGetSpecificPlan]);
   const handleOnChange = (event, value) => {
-    console.log(value);
+    setPageCurrent(value);
+    setFilter({ page: value });
   };
 
   return (
@@ -153,7 +162,7 @@ function PlanInspect() {
                     return (
                       <PlanRowElement
                         key={index}
-                        index={index + 1}
+                        index={index + 1 + (pageCurrent - 1) * 8}
                         {...item}
                         handleShowModalUpdatePlan={handleShowModalUpdatePlan}
                         handleShowMoDalReport={handleShowMoDalReport}
@@ -172,10 +181,10 @@ function PlanInspect() {
               </tbody>
             </table>
           </div>
-          {/* <TablePagination total={5} /> */}
+
           <div className="pagination">
             <Pagination
-              count={20}
+              count={pagination.totalPages}
               showFirstButton
               showLastButton
               onChange={handleOnChange}

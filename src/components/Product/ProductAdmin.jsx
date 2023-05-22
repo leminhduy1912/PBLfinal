@@ -8,13 +8,23 @@ import { useAdminProduct } from "~hooks";
 import AddProduct from "../form/Product/AddProduct/AddProduct";
 import ActionSuccess from "../ActionSuccess/ActionSuccess";
 import AddCertificateToProduct from "../form/Product/AddCertificateToProduct/AddCertificateToProduct";
+import { useContext } from "react";
+import { StoreContext } from "~store";
 
 export const ProductAdmin = () => {
-  const { data, error, loading,executeDataProduct } = useAdminProduct();
-  const fetchDataProduct=async()=>{
-    await executeDataProduct()
-  }
-  
+  const [state] = useContext(StoreContext);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [filter, setFilter] = useState({ page: 1 });
+  const handleOnChange = (event, value) => {
+    setCurrentPage(value);
+    setFilter({ page: value });
+  };
+  const { pagination, data, error, loading, executeDataProduct } =
+    useAdminProduct(filter, state.id, state.token);
+  const fetchDataProduct = async () => {
+    await executeDataProduct(filter, state.id, state.role);
+  };
+
   const [showModalDetailsProduct, setShowModalDetailsProduct] = useState(false);
   const handleShowMoDalDetailsProduct = (value) => {
     setShowModalDetailsProduct(value);
@@ -27,49 +37,51 @@ export const ProductAdmin = () => {
   const handleShowModalAddProduct = (value) => {
     setShowModalAddProduct(value);
   };
-  const [showModalAddCertificateToProduct, setShowModalAddCertificateToProduct] = useState(false);
-  const [idProduct,setIdProduct]= useState("")
+  const [
+    showModalAddCertificateToProduct,
+    setShowModalAddCertificateToProduct,
+  ] = useState(false);
+  const [idProduct, setIdProduct] = useState("");
   const handleShowModalAddCertificateToProduct = (Obj) => {
     setShowModalAddCertificateToProduct(Obj.value);
-    Obj.id && setIdProduct(Obj.id)
+    Obj.id && setIdProduct(Obj.id);
   };
-  const [formDataProduct,setFormDataProduct]= useState({
-    action:'',
-    certificate:[],
-    companyName:'',
-    id:'',
-    kindof:'',
-    productName:'',
-    product_type:{},
-    userId:''
-  })
-  const handleSetFormDataProduct=(Obj)=>{
-    setFormDataProduct(Obj)
-  }
-  const [messageAction,setMessageAction]= useState("")
-  const [showSuccessAction,setShowSuccessAction]= useState(false)
-  const handleShowSuccesAction=(message)=>{
-    
-    setMessageAction(message)
-    setShowSuccessAction(true)
-    setTimeout(()=>{
-    setShowSuccessAction(false)
-    },3000)
-  }
-    
+  const [formDataProduct, setFormDataProduct] = useState({
+    action: "",
+    certificate: [],
+    companyName: "",
+    id: "",
+    kindof: "",
+    productName: "",
+    product_type: {},
+    userId: "",
+  });
+  const handleSetFormDataProduct = (Obj) => {
+    setFormDataProduct(Obj);
+  };
+  const [messageAction, setMessageAction] = useState("");
+  const [showSuccessAction, setShowSuccessAction] = useState(false);
+  const handleShowSuccesAction = (message) => {
+    setMessageAction(message);
+    setShowSuccessAction(true);
+    setTimeout(() => {
+      setShowSuccessAction(false);
+    }, 3000);
+  };
+
   return (
     <>
-    {showModalAddCertificateToProduct&&
-    <AddCertificateToProduct
-     idProduct={idProduct}
-     handleShowModalAddCertificateToProduct={handleShowModalAddCertificateToProduct}
-     handleShowSuccesAction={handleShowSuccesAction}
-     fetchDataProduct={fetchDataProduct}
-    />}
-    {
-      showSuccessAction&&
-      <ActionSuccess messageAction={messageAction}  />
-    }
+      {showModalAddCertificateToProduct && (
+        <AddCertificateToProduct
+          idProduct={idProduct}
+          handleShowModalAddCertificateToProduct={
+            handleShowModalAddCertificateToProduct
+          }
+          handleShowSuccesAction={handleShowSuccesAction}
+          fetchDataProduct={fetchDataProduct}
+        />
+      )}
+      {showSuccessAction && <ActionSuccess messageAction={messageAction} />}
       {showModalDetailsProduct && (
         <DetailsProduct
           handleShowMoDalDetailsProduct={handleShowMoDalDetailsProduct}
@@ -87,10 +99,10 @@ export const ProductAdmin = () => {
         />
       )}
       {showModalAddProduct && (
-        <AddProduct 
-        handleShowModalAddProduct={handleShowModalAddProduct} 
-        handleShowSuccesAction={handleShowSuccesAction}
-        fetchDataProduct={fetchDataProduct}
+        <AddProduct
+          handleShowModalAddProduct={handleShowModalAddProduct}
+          handleShowSuccesAction={handleShowSuccesAction}
+          fetchDataProduct={fetchDataProduct}
         />
       )}
       <div>
@@ -115,37 +127,39 @@ export const ProductAdmin = () => {
             </tr>
           </thead>
           <tbody>
-            {Array.isArray(data.items) &&
-              data.items.map((item, index) => {
+            {Array.isArray(data) &&
+              data.map((item, index) => {
                 return (
                   <ProductRow
                     key={index}
-                    index={index + 1}
+                    index={index + 1 + (currentPage - 1) * 8}
                     product={item}
-                    handleShowMoDalDetailsProduct={handleShowMoDalDetailsProduct}
+                    handleShowMoDalDetailsProduct={
+                      handleShowMoDalDetailsProduct
+                    }
                     handleShowMoDalUpdateProduct={handleShowMoDalUpdateProduct}
                     handleSetFormDataProduct={handleSetFormDataProduct}
                     formDataProduct={formDataProduct}
                     fetchDataProduct={fetchDataProduct}
                     handleShowSuccesAction={handleShowSuccesAction}
-                    handleShowModalAddCertificateToProduct={handleShowModalAddCertificateToProduct}
+                    handleShowModalAddCertificateToProduct={
+                      handleShowModalAddCertificateToProduct
+                    }
                   />
                 );
               })}
           </tbody>
         </table>
-        {loading && <div>Loading...</div>}
-        {data.items && (
+
+        {pagination && (
           <>
             <br />
             <div className="pagination">
               <Pagination
-                count={data.pagination.totalPages}
+                count={pagination.totalPages}
                 showFirstButton
                 showLastButton
-                page={data.pagination.currentPage}
-                onPage
-                // onChange={handleOnChange}
+                onChange={handleOnChange}
               />
             </div>
           </>

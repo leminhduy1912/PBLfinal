@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { StoreContext } from "../../store";
 
 export const useAuth = (role) => {
-  const [state, _] = useContext(StoreContext);
+  const [state] = useContext(StoreContext);
   if (state.role !== role || !state.token) {
     return { isLogged: false, role: "" };
   }
