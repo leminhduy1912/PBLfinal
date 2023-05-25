@@ -7,7 +7,7 @@ export const getAllUser = async (query, clientId, token) => {
       client_id: clientId,
     },
     // withCredentials: true,
-    url: "/private/adm/users" + query,
+    url: "/private/users" + query,
   });
 };
 
@@ -63,7 +63,7 @@ export const deleteUser = async (storeId, clientId, token) => {
       ACCESS_TOKEN: token,
       client_id: clientId,
     },
-    url: "/private/user/" + storeId,
+    url: "/user/" + storeId,
   });
 };
 export const updateUser = async (Obj, id, clientId, token) => {

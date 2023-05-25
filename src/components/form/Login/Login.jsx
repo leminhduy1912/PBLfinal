@@ -5,8 +5,10 @@ import { StoreContext } from "../../../store";
 import { SET_AUTH_STATE } from "../../../store/Constants";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
+import Loading from "../../Loading/Loading";
 
 const Login = (props) => {
+  const [isLoaded, setIsLoaded] = useState(false);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [errMessage, setErrMessage] = useState();
@@ -20,6 +22,7 @@ const Login = (props) => {
   };
   const handleLogin = async (e) => {
     e.preventDefault();
+    setIsLoaded(true);
     try {
       const res = await loginHandler(email, password);
       if (res.meta.error) {
@@ -27,50 +30,56 @@ const Login = (props) => {
         return;
       }
 
-      updateGlobalState({
-        id: res.data.id,
-        token: res.data.ACCESS_TOKEN,
-        role: res.data.role,
-      });
-      return navigate("/home");
+      if (res.data) {
+        setIsLoaded(false);
+        updateGlobalState({
+          id: res.data.id,
+          token: res.data.ACCESS_TOKEN,
+          role: res.data.role,
+        });
+        return navigate("/home");
+      }
     } catch (error) {
       console.log(error);
     }
   };
   return (
-    <div className="LogIn-container">
-      <div className="LogIn-glass">
-        <div className="Login">
-          <h1>Log In</h1>
-          <form>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                id="email"
-                type="text"
-                placeholder="Email"
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
+    <>
+      {isLoaded && <Loading />}
+      <div className="LogIn-container">
+        <div className="LogIn-glass">
+          <div className="Login">
+            <h1>Log In</h1>
+            <form>
+              <div className="form-group">
+                <label htmlFor="email">Email</label>
+                <input
+                  id="email"
+                  type="text"
+                  placeholder="Email"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
 
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <input
-                id="password"
-                type="password"
-                placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            {errMessage && <div>{errMessage}</div>}
+              <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <input
+                  id="password"
+                  type="password"
+                  placeholder="Password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              {errMessage && <div>{errMessage}</div>}
 
-            <button type="submit" onClick={(e) => handleLogin(e)}>
-              Submit
-            </button>
-          </form>
+              <button type="submit" onClick={(e) => handleLogin(e)}>
+                Submit
+              </button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 export default Login;

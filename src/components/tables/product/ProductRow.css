@@ -6,6 +6,9 @@
 .product-table-row td:nth-child(1) {
   width: 20px;
 }
+.product-table-row td:nth-child(4) {
+  width: 15px;
+}
 .product-table-row td {
   width: 140px;
 }

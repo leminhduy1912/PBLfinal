@@ -94,7 +94,7 @@ function Stores() {
   };
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [currentPageCompanies, setCurrentPageCompanies] = useState(1);
+
   const [email, setEmail] = useState("");
   const [fullname, setFullName] = useState("");
   const [filter, setFilter] = useState({ fullname, email, page: 1 });
@@ -103,17 +103,7 @@ function Stores() {
     state.id,
     state.token
   );
-  const [filterCompanies, setFilterCompanies] = useState({ page: 1 });
-  const {
-    dataCompanies,
-    errorCompanies,
-    paginationCompanies,
-    executeDataCompanies,
-  } = getAllCompaniesCurrent(filterCompanies, state.id, state.token);
 
-  const fetchCompanies = async () => {
-    executeDataCompanies(filterCompanies);
-  };
   const fetchDataUser = async () => {
     setFilter(
       { email: "", fullname: "", page: currentPage },
@@ -127,10 +117,7 @@ function Stores() {
     setCurrentPage(value);
     setFilter({ fullname: fullname, email: email, page: value });
   };
-  const handleOnChangeCompanies = (event, value) => {
-    setCurrentPageCompanies(value);
-    setFilterCompanies({ page: value });
-  };
+
   const handleOnClick = () => {
     setFilter({ fullname: fullname, email: email, page: currentPage });
     setEmail("");
@@ -246,7 +233,7 @@ function Stores() {
           </tr>
         </thead>
         <tbody>
-          {state.role === "Admin" &&
+          {data &&
             Array.isArray(data) &&
             data.map((item, index) => {
               return (
@@ -267,87 +254,20 @@ function Stores() {
                 />
               );
             })}
-          {state.role === "Moderator" &&
-            Array.isArray(dataCompanies) &&
-            dataCompanies.map((item, index) => {
-              return (
-                <RowUsers
-                  key={index}
-                  index={index + 1 + (currentPage - 1) * 8}
-                  {...item}
-                  handleShowUsersDetails={handleShowUsersDetails}
-                  formDataUser={formDataUser}
-                  handleSetFormDataUser={handleSetFormDataUser}
-                  handleShowUserStoreDetails={handleShowUserStoreDetails}
-                  formDataUserStore={formDataUserStore}
-                  handleSetFormDataUserStore={handleSetFormDataUserStore}
-                  handleShowUserUpdate={handleShowUserUpdate}
-                  handleShowUserUpdateStore={handleShowUserUpdateStore}
-                  handleShowActionPerform={handleShowActionPerform}
-                  fetchCompanies={fetchCompanies}
-                />
-              );
-            })}
         </tbody>
       </table>
-      {loading && <> Loading...</>}
 
-      {state.role === "Moderator" &&
-        !(
-          dataCompanies &&
-          Object.keys(dataCompanies).length === 0 &&
-          Object.getPrototypeOf(dataCompanies) === Object.prototype
-        ) && (
-          <>
-            <br />
-            <div className="pagination">
-              <Pagination
-                count={paginationCompanies.totalPages}
-                showFirstButton
-                showLastButton
-                page={currentPage}
-                onChange={handleOnChangeCompanies}
-              />
-            </div>
-          </>
-        )}
-      {state.role === "Admin" &&
-        !(
-          data &&
-          Object.keys(data).length === 0 &&
-          Object.getPrototypeOf(data) === Object.prototype
-        ) && (
-          <>
-            <br />
-            <div className="pagination">
-              <Pagination
-                count={pagination.totalPages}
-                showFirstButton
-                showLastButton
-                page={currentPage}
-                onChange={handleOnChange}
-              />
-            </div>
-          </>
-        )}
-      {/* {!(
-        data &&
-        Object.keys(data).length === 0 &&
-        Object.getPrototypeOf(data) === Object.prototype
-      ) && (
-        <>
-          <br />
-          <div className="pagination">
-            <Pagination
-              count={pagination.totalPages}
-              showFirstButton
-              showLastButton
-              page={currentPage}
-              onChange={handleOnChange}
-            />
-          </div>
-        </>
-      )} */}
+      {pagination && (
+        <div className="pagination">
+          <Pagination
+            count={pagination.totalPages}
+            showFirstButton
+            showLastButton
+            page={currentPage}
+            onChange={handleOnChange}
+          />
+        </div>
+      )}
     </>
   );
 }

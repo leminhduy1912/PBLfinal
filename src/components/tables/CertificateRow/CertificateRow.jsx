@@ -5,7 +5,6 @@ import { useDeleteCertificate } from "../../../hooks/Certificate/useDeleteCetifi
 import { StoreContext } from "~store";
 
 function CertificateRow(props) {
-  console.log(props.certificate);
   const [state] = useContext(StoreContext);
   const { success, message, error, execute } = useDeleteCertificate();
   const { index, certificate } = props;

@@ -38,8 +38,7 @@ const Certificate = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [messageAction, setMessageAction] = useState("");
   const getCertificates = () => {
-    setFilter({ page: 1 });
-    execute(filter);
+    setFilter({ page: pageCurrent });
   };
 
   const handleOnChange = (event, value) => {

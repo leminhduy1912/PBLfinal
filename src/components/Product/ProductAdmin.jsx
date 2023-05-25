@@ -22,7 +22,7 @@ export const ProductAdmin = () => {
   const { pagination, data, error, loading, executeDataProduct } =
     useAdminProduct(filter, state.id, state.token);
   const fetchDataProduct = async () => {
-    await executeDataProduct(filter, state.id, state.role);
+    await executeDataProduct(filter, state.id, state.token);
   };
 
   const [showModalDetailsProduct, setShowModalDetailsProduct] = useState(false);
