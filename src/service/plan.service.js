@@ -26,20 +26,6 @@ export const addNewPlan = (Obj, clientId, token) => {
   });
 };
 
-export const getPlanDetails = async (id, clientId, token) => {
-  const formData = new FormData();
-  formData.set("id", id);
-  return await Axios({
-    method: "GET",
-    headers: {
-      ACCESS_TOKEN: token,
-      client_id: clientId,
-    },
-    url: "/private/adm/plan",
-    data: formData,
-  });
-};
-
 export const editTimeOfPlan = async (time, planId, clientId, token) => {
   let formData = new FormData();
   formData.append("id", planId);
@@ -86,11 +72,10 @@ export const deletePlan = async (planId, clientId, token) => {
     url: "/private/adm/plan?id=" + planId,
   });
 };
-export const addInspectorToPlan = async (Obj, clientId, token) => {
+export const addInspectorToPlan = async (planId, userId, clientId, token) => {
   let formData = new FormData();
-  for (const key in Obj) {
-    formData.append(key, Obj[key]);
-  }
+  formData.append("planId", planId);
+  formData.append("userId", userId);
   return await Axios({
     method: "POST",
     headers: {
@@ -109,5 +94,20 @@ export const getPlanDocx = async (id, clientId, token) => {
       client_id: clientId,
     },
     url: "/private/report?id=" + id,
+  });
+};
+
+export const submitDocx = async (planId, filePath, clientId, token) => {
+  let formData = new FormData();
+  formData.append("file", filePath);
+  formData.append("planId", planId);
+  return await Axios({
+    method: "POST",
+    headers: {
+      ACCESS_TOKEN: token,
+      client_id: clientId,
+    },
+    url: "private/report",
+    data: formData,
   });
 };

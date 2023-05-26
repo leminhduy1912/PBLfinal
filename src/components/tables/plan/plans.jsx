@@ -3,7 +3,7 @@ import { DateConvert } from "../../../utils/DateConvert";
 import "./plans.css";
 import { RequireAuth } from "./../../../hoc/RequiredAuth";
 import { useDeletePlan } from "../../../hooks/Plan/useDeletePlan";
-import { usePlanDetails } from "../../../hooks/Plan/usePlanDetails";
+// import { usePlanDetails } from "../../../hooks/Plan/usePlanDetails";
 import { useContext, useEffect, useState } from "react";
 import { StoreContext } from "~store";
 import { useGetPlanDocx } from "../../../hooks/Plan/useGetPlanDocx";
@@ -29,8 +29,14 @@ export const PlanRowElement = (props) => {
   };
 
   const handleShowReport = async () => {
-    props.handleShowMoDalReport(true);
-    props.setPlanId(props.id);
+    if (state.role === "Admin") {
+      props.handleShowMoDalReport(true);
+      props.setPlanId(props.id);
+    }
+    if (state.role === "Moderator") {
+      props.handleShowModalSubmitDocx(true);
+      props.setPlanId(props.id);
+    }
   };
   const hanldeEditTime = () => {
     props.handleShowModalUpdatePlan(true);
