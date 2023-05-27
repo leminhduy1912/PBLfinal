@@ -51,14 +51,18 @@ export const PlanRowElement = (props) => {
         <td>{props.company.companyName}</td>
         <td>{DateConvert(props.time)}</td>
         <td className="td-button" style={{ overflow: "hidden" }}>
-          {/* <RequireAuth role="admin"> */}
           <button onClick={handleShowReport}>Report</button>
           <button onClick={handleShowDetailsPlan}>Details</button>
-          <button onClick={hanldeEditTime}>Edit Time</button>
-          <button onClick={handleCancelPlan}>Cancel</button>
-          {/* </RequireAuth> */}
-          {/* <RequireAuth role="moderator"> */}
-          <button onClick={handleAddInspector}>Add Inspector</button>
+          {state.role === "Admin" && (
+            <button onClick={hanldeEditTime}>Edit Time</button>
+          )}
+          {state.role === "Admin" && (
+            <button onClick={handleCancelPlan}>Cancel</button>
+          )}
+
+          {state.role === "Admin" && (
+            <button onClick={handleAddInspector}>Add Inspector</button>
+          )}
           {/* </RequireAuth> */}
         </td>
       </tr>

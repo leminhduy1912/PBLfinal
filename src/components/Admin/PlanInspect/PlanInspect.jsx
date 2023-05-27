@@ -163,9 +163,9 @@ function PlanInspect() {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Công ty</th>
-                <th>Thời gian</th>
-                <th>Hành động</th>
+                <th>Company Name</th>
+                <th>Time</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>

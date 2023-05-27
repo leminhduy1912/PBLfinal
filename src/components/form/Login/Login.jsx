@@ -25,6 +25,9 @@ const Login = (props) => {
     setIsLoaded(true);
     try {
       const res = await loginHandler(email, password);
+      if (res) {
+        setIsLoaded(false);
+      }
       if (res.meta.error) {
         setErrMessage(res.meta.error);
         return;
