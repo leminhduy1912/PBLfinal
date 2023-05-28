@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // import { FaTimes } from 'react-icons/fa';
 import { useCreateUser } from "../../../hooks/User/useCreateUser";
 import ClearIcon from "@mui/icons-material/Clear";
@@ -7,7 +7,7 @@ import { StoreContext } from "~store";
 // import Loading from "../../Loading/Loading";
 function AddAccount(props) {
   const [state] = useContext(StoreContext);
-  console.log("state", state);
+
   const { fetchDataUser, setShowModalAddUser } = props;
   const [formAdduser, setFormAddUser] = useState({
     email: "",
@@ -17,16 +17,26 @@ function AddAccount(props) {
     password: "",
     roleId: "",
   });
-  const { success, message, loading, error, execute } = useCreateUser();
-
+  const { statusCode, message, error, execute } = useCreateUser();
+  const [errorUserRegistered, setErrorUserRegistered] = useState(false);
   const actionSuccess = async () => {
     await props.handleShowModalAddUser(false);
     await props.handleShowActionPerform(message);
     await props.fetchDataUser();
   };
-  if (success == true) {
-    actionSuccess();
-  }
+
+  useEffect(() => {
+    // console.log("state code", statusCode);
+    // console.log(error);
+    console.log("message", message);
+    if (statusCode == 201) {
+      actionSuccess();
+    }
+    if (statusCode == 409) {
+      setErrorUserRegistered(true);
+      // console.log("loi");
+    }
+  }, [execute, statusCode]);
   const handleAdduser = async (e) => {
     e.preventDefault();
     await execute(formAdduser, state.id, state.token);
@@ -123,7 +133,7 @@ function AddAccount(props) {
                 <option value="" disabled selected>
                   --Chức vụ--
                 </option>
-                <option value={1}>Người dùng</option>
+
                 <option value={2}>Thanh tra</option>
               </select>
             </div>
@@ -142,7 +152,7 @@ function AddAccount(props) {
               />
             </div>
           </form>
-
+          {errorUserRegistered && <span>{message}</span>}
           <button onClick={handleAdduser}>Submit</button>
         </div>
       </div>
