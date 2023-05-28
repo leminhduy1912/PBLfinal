@@ -16,6 +16,8 @@ import ActionSuccess from "../ActionSuccess/ActionSuccess";
 import { RequireAuth } from "~hoc";
 import { StoreContext } from "~store";
 import { getAllCompaniesCurrent } from "../../hooks/User/useGetAllCompanies";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Stores() {
   const [state] = useContext(StoreContext);
@@ -86,11 +88,7 @@ function Stores() {
   const [actionPerform, setActionPerform] = useState(false);
   const [messageAction, setMessageAction] = useState("");
   const handleShowActionPerform = (message) => {
-    setMessageAction(message);
-    setActionPerform(true);
-    setTimeout(() => {
-      setActionPerform(false);
-    }, 3000);
+    toast.success(message);
   };
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -130,7 +128,19 @@ function Stores() {
 
   return (
     <>
-      {actionPerform && <ActionSuccess messageAction={messageAction} />}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      {/* {actionPerform && <ActionSuccess messageAction={messageAction} />} */}
       {showModalUsersDetails && (
         <DetailsUser
           formDataUser={formDataUser}

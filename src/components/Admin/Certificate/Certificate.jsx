@@ -7,6 +7,9 @@ import AddCertificate from "../../form/AddCertificate/AddCertificate";
 import UpdateCertificate from "../../form/UpdateCertificate/UpdateCertificate";
 import ActionSuccess from "../../ActionSuccess/ActionSuccess";
 import { StoreContext } from "~store";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Certificate = () => {
   const [state] = useContext(StoreContext);
 
@@ -47,16 +50,25 @@ const Certificate = () => {
   };
   const [showSuccess, setShowSuccess] = useState(false);
   const handleSetShowSuccess = (message) => {
-    setMessageAction(message);
-    setShowSuccess(true);
-    setTimeout(() => {
-      setShowSuccess(false);
-    }, 3000);
+    toast.success(message);
   };
 
   return (
     <>
-      {showSuccess && <ActionSuccess messageAction={messageAction} />}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+
+      {/* {showSuccess && <ActionSuccess messageAction={messageAction} />} */}
       {showModalAddCertificate && (
         <AddCertificate
           handleShowModalAddCertificate={handleShowModalAddCertificate}

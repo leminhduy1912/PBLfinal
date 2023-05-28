@@ -1,19 +1,21 @@
 // import React, { useState ,useEffect} from 'react'
-import { UilCheckCircle, } from '@iconscout/react-unicons';
-import "./ActionSuccess.css"
-const ActionSuccess = (props) => {
-// console.log('re-render');
-  return (
-   <div className="action-success">
-    <div className="icon">
 
-    <UilCheckCircle/>
-    </div>
-    {/* <p>Thao Tác hoàn tất</p> */}
-    <p>{props.messageAction}</p>
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./ActionSuccess.css";
+const ActionSuccess = () => {
+  <ToastContainer
+    position="top-right"
+    autoClose={2000}
+    hideProgressBar={false}
+    newestOnTop={false}
+    closeOnClick
+    rtl={false}
+    pauseOnFocusLoss
+    draggable
+    pauseOnHover
+    theme="light"
+  />;
+};
 
-   </div>
-  )
-}
-
-export default ActionSuccess
+export default ActionSuccess;

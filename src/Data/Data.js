@@ -1,4 +1,3 @@
-// // Sidebar imports
 import {
   UilEstate,
   UilClipboardAlt,
@@ -7,7 +6,8 @@ import {
   UilStore,
   UilMoneyWithdrawal,
   UilPizzaSlice,
-  UilCheckCircle
+  UilCheckCircle,
+  UilExclamationTriangle,
 } from "@iconscout/react-unicons";
 
 // import HomeIcon from "@mui/icons-material/Home";
@@ -34,12 +34,16 @@ export const SidebarData = [
     heading: "Products",
   },
   {
-    icon:  UilCheckCircle,
+    icon: UilCheckCircle,
     heading: "Certificate",
   },
   {
     icon: UilChart,
     heading: "Profile",
+  },
+  {
+    icon: UilExclamationTriangle,
+    heading: "Post",
   },
 ];
 

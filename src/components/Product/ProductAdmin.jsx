@@ -10,6 +10,8 @@ import ActionSuccess from "../ActionSuccess/ActionSuccess";
 import AddCertificateToProduct from "../form/Product/AddCertificateToProduct/AddCertificateToProduct";
 import { useContext } from "react";
 import { StoreContext } from "~store";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const ProductAdmin = () => {
   const [state] = useContext(StoreContext);
@@ -62,15 +64,23 @@ export const ProductAdmin = () => {
   const [messageAction, setMessageAction] = useState("");
   const [showSuccessAction, setShowSuccessAction] = useState(false);
   const handleShowSuccesAction = (message) => {
-    setMessageAction(message);
-    setShowSuccessAction(true);
-    setTimeout(() => {
-      setShowSuccessAction(false);
-    }, 3000);
+    toast.success(message);
   };
 
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       {showModalAddCertificateToProduct && (
         <AddCertificateToProduct
           idProduct={idProduct}
@@ -81,7 +91,7 @@ export const ProductAdmin = () => {
           fetchDataProduct={fetchDataProduct}
         />
       )}
-      {showSuccessAction && <ActionSuccess messageAction={messageAction} />}
+      {/* {showSuccessAction && <ActionSuccess messageAction={messageAction} />} */}
       {showModalDetailsProduct && (
         <DetailsProduct
           handleShowMoDalDetailsProduct={handleShowMoDalDetailsProduct}

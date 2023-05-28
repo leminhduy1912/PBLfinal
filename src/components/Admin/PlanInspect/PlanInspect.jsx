@@ -2,6 +2,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Pagination, TablePagination } from "@mui/material";
 import "./PlanInspect.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import AddPlan from "../../form/AddPlan/AddPlan";
 import UpdatePlan from "../../form/UpdatePlan/UpdatePlan";
 import { RequireAuth } from "../../../hoc/RequiredAuth";
@@ -57,11 +60,7 @@ function PlanInspect() {
   const [messageAction, setMessageAction] = useState("");
   const [showActionSuccess, setShowActionSuccess] = useState(false);
   const handleShowSuccessAction = (message) => {
-    setMessageAction(message);
-    setShowActionSuccess(true);
-    setTimeout(() => {
-      setShowActionSuccess(false);
-    }, 3000);
+    toast.success(message);
   };
   const [time, setTime] = useState(null);
   const [planId, setPlanId] = useState(null);
@@ -96,6 +95,18 @@ function PlanInspect() {
   return (
     <>
       <>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
         {showActionSuccess && <ActionSuccess messageAction={messageAction} />}
         {isLoaded && showModalDetailsPlan && (
           <DetailsPlan

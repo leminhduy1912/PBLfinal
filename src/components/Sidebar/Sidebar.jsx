@@ -17,19 +17,23 @@ import Certificate from "../Admin/Certificate/Certificate";
 
 import { SET_AUTH_STATE } from "../../store/Constants";
 import { StoreContext } from "~store";
+import Post from "../../components/Admin/Post/Post";
 const Sidebar = (props) => {
   const { data, role } = props;
   const [selected, setSelected] = useState(0);
-  const navigate= useNavigate()
-  const [state, dispatch] = useContext(StoreContext)
-  const updateGlobalState = ({ id,token, role }) => {
-    dispatch({ type: SET_AUTH_STATE, payload: { id:id,token: token, role: role } });
+  const navigate = useNavigate();
+  const [state, dispatch] = useContext(StoreContext);
+  const updateGlobalState = ({ id, token, role }) => {
+    dispatch({
+      type: SET_AUTH_STATE,
+      payload: { id: id, token: token, role: role },
+    });
   };
-  const logoutHandler=(e)=>{
-        e.preventDefault();
-        updateGlobalState({ id:"", token:"", role:""});
-        return navigate("/landingPage");
-  }
+  const logoutHandler = (e) => {
+    e.preventDefault();
+    updateGlobalState({ id: "", token: "", role: "" });
+    return navigate("/landingPage");
+  };
   let tab;
   if (selected === 0) {
     tab = <Admin />;
@@ -48,6 +52,9 @@ const Sidebar = (props) => {
   }
   if (selected === 5) {
     tab = <Information />;
+  }
+  if (selected === 6) {
+    tab = <Post />;
   }
 
   return (
@@ -81,12 +88,8 @@ const Sidebar = (props) => {
               );
             })}
 
-            <div 
-            className="menuItem"
-            onClick={logoutHandler}
-            >
-              <UilSignOutAlt 
-              />
+            <div className="menuItem" onClick={logoutHandler}>
+              <UilSignOutAlt />
               <span>Log out</span>
             </div>
           </div>

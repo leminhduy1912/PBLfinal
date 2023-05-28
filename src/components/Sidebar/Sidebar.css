@@ -68,8 +68,9 @@
 .menuItem {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
   position: relative;
+  bottom: 50  px;
   height: 2.5rem;
   margin-left: 2rem;
   font-size: 14px;
