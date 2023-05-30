@@ -31,6 +31,7 @@ function CertificateRow(props) {
   return (
     <>
       <tr>
+        <td>{index}</td>
         <td>{name}</td>
         <td>{description}</td>
         <td>{<ProductImage image={certificate} />}</td>

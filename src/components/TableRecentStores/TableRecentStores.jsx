@@ -1,162 +1,46 @@
-import React, {  useState } from "react";
-import "./TableRecentStores.css";
-import { RowUsers } from "../tables/user/users";
-import { useFetchUser } from "../../hooks/User/useFetchUser";
-import DetailsStores from "../Stores/DetailsStores/DetailsStores";
-import UpdateStore from "../Stores/UpdateStore/UpdateStore";
-import DetailsUser from "../Stores/DetailsUser/DetailsUser";
-import UpdateUser from "../Stores/UpdateUser/UpdateUser";
-import ActionSuccess from "../ActionSuccess/ActionSuccess";
+import NotificationRowElement from "../../components/tables/Notification/NotificationRowElement";
+import useGetAllNotifications from "../../hooks/Notification/useGetAllNotifications";
+import React, { useContext, useState } from "react";
+import { StoreContext } from "~store";
+import { Pagination } from "@mui/material";
 const TableRecentStores = () => {
-  //  const { data, pagination, error, loading } = useFetchUser("");
-
-
-
-   const [email, setEmail] = useState("");
-   const [fullname, setFullName] = useState("");
-   const [filter, setFilter] = useState({ fullname, email, page: 1 });
-   const { data, pagination, error, loading, executeDataUser } =
-     useFetchUser(filter);
- 
-   const fetchDataUser = async () => {
-     setFilter({ email: "", fullname: "", page: 1 });
-     await executeDataUser(filter);
-   };
-   
-
-
-
-
-
-   const [showModalDetailsUser,setShowModalDetailsUser]= useState(false)
-   const handleShowUsersDetails=(value)=>{
-    setShowModalDetailsUser(value)
-   }
-   const [showModalUserStoreDetails,setShowModalUserStoreDetails]= useState(false)
-   const handleShowUserStoreDetails=(value)=>{
-     setShowModalUserStoreDetails(value)
-    }
-    const [showModalUpdateUser,setShowModalUpdateUser]= useState(false)
-    const handleShowUserUpdate=(value)=>{
-     setShowModalUpdateUser(value)
-    }
-    const [showModalUpdateUserStore,setShowModalUpdateUserStore]= useState(false)
-    const handleShowUserUpdateStore=(value)=>{
-     setShowModalUpdateUserStore(value)
-    }
-
-   const [formDataUser,setFormDataUser]= useState( {
-    action:'',
-    email:'',
-    fullName:'',
-    id:'',
-    nationalId:'',
-    userNumber:'',
-    roleId:'',
-   })
-   const handleSetFormDataUser=(newObj)=>{
-   setFormDataUser(newObj)
-   }
-// console.log(formDataUser
-// );
-   const [formDataUserStore,setFormDataUserStore]= useState( {
-    action:'',
-    businessId:'',
-    companyId:'',
-    companyName:'',
-    email:'',
-    faxNumber:'',
-    fullName:'',
-    id:'',
-    phoneNumber:'',
-    nationalId:'',
-    userNumber:'',
-    roleId:'',
-    taxIndentity:'',
-  
-   })
-   const handleSetFormDataUserStore=(newObj)=>{
-    setFormDataUserStore(newObj)
-   }
-   const [actionPerform,setActionPerform]= useState(false)
-   const [messageAction,setMessageAction]= useState("")
-   const handleShowActionPerform=(message)=>{
-
-     setMessageAction(message)
-     setActionPerform(true)
-     setTimeout(()=>{
-       setActionPerform(false)
-     },3000)
-   }
-  
-
+  const [state] = useContext(StoreContext);
+  const [pageCurrent, setPageCurrent] = useState(1);
+  const [filter, setFilter] = useState({ page: 1 });
+  const { pagination, data, success, error, loading, execute } =
+    useGetAllNotifications(filter, state.id, state.token);
+  const handleOnChange = (event, value) => {
+    setPageCurrent(value);
+    setFilter({ page: value });
+  };
   return (
     <>
-    {actionPerform&& <ActionSuccess   messageAction={messageAction}/>}
-  {showModalUserStoreDetails&&
-  <DetailsStores     
-  handleShowUserStoreDetails={handleShowUserStoreDetails} 
-  formDataUserStore={formDataUserStore}
-  />}
-
-  {showModalDetailsUser&& 
-  <DetailsUser 
-  handleShowUsersDetails={handleShowUsersDetails} 
-  formDataUser={formDataUser}
-  />}
-
-
-  {showModalUpdateUser&& 
-  <UpdateUser 
-  handleShowUserUpdate={handleShowUserUpdate}
-  formDataUser={formDataUser}
-  handleShowActionPerform={handleShowActionPerform}
-  />}
-
-  {showModalUpdateUserStore &&
-   <UpdateStore
-   handleShowUserUpdateStore={handleShowUserUpdateStore}
-   formDataUserStore={formDataUserStore}
-   handleShowActionPerform={handleShowActionPerform}
-   />}
-    <div className="TableRecentStore">
-      <h1>Recent Users</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Company</th>
-            <th>TAX</th>
-            <th>Type of Business</th>
-            <th>Email</th>
-            <th>Status</th>
-            <th>Role</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Array.isArray(data) &&
-            data.map((item, index) => {
-              return <RowUsers 
-              key={index} 
-              index={index + 1} 
-              {...item} 
-              handleShowUsersDetails={handleShowUsersDetails}
-              handleShowUserUpdate={handleShowUserUpdate}
-              handleShowUserStoreDetails={handleShowUserStoreDetails}
-              formDataUser={formDataUser}
-              handleSetFormDataUser={handleSetFormDataUser}
-              formDataUserStore={formDataUserStore}
-              handleSetFormDataUserStore={handleSetFormDataUserStore}
-              handleShowUserUpdateStore={handleShowUserUpdateStore}
-              fetchDataUser={fetchDataUser}
-              handleShowActionPerform={handleShowActionPerform}
-              />;
-            })}
-        </tbody>
-      </table>
-      {loading && <div>Loading...</div>}
-    </div>
+      <div className="notification-header">
+        <h1>Notifications</h1>
+      </div>
+      <div className="notifications-content">
+        {Array.isArray(data) &&
+          data.length > 0 &&
+          data.map((item, index) => {
+            return (
+              <NotificationRowElement
+                key={index}
+                index={index + 1 + (pageCurrent - 1) * 8}
+                item={item}
+              />
+            );
+          })}
+      </div>
+      {
+        <div className="pagination">
+          <Pagination
+            count={pagination.totalPages}
+            showFirstButton
+            showLastButton
+            onChange={handleOnChange}
+          />
+        </div>
+      }
     </>
   );
 };

@@ -118,8 +118,7 @@ function Stores() {
 
   const handleOnClick = () => {
     setFilter({ fullname: fullname, email: email, page: currentPage });
-    setEmail("");
-    setFullName("");
+    executeDataUser(filter, state.id, state.token);
   };
   const handleKeyEnter = (event) => {
     if (event.key === "Enter")
@@ -140,7 +139,6 @@ function Stores() {
         pauseOnHover
         theme="light"
       />
-      {/* {actionPerform && <ActionSuccess messageAction={messageAction} />} */}
       {showModalUsersDetails && (
         <DetailsUser
           formDataUser={formDataUser}
@@ -195,7 +193,9 @@ function Stores() {
             <SearchOutlined />
           </span>
           <input
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
             onKeyDown={handleKeyEnter}
             placeholder="Enter Email"
           ></input>

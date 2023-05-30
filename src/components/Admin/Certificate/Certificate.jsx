@@ -95,6 +95,7 @@ const Certificate = () => {
         <table className="certificate-table">
           <thead>
             <tr>
+              <th>Id</th>
               <th>Tên chứng chỉ</th>
               <th>Mô tả</th>
               <th className="certificate-img">Hình ảnh</th>
@@ -107,7 +108,7 @@ const Certificate = () => {
                 return (
                   <CertificateRow
                     key={index}
-                    index={index + 1}
+                    index={index + 1 + (pageCurrent - 1) * 8}
                     certificate={item}
                     handleShowModalUpdateCertificate={
                       handleShowModalUpdateCertificate
