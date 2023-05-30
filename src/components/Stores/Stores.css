@@ -83,13 +83,12 @@ tbody tr td {
   border: 0;
 } */
 
-
-.header-users{
-  display: flex ;
+.header-users {
+  display: flex;
   justify-content: space-between;
   padding: 10px;
 }
-.header-users  .btn {
+.header-users .btn {
   width: 140px;
   height: 50px;
   padding: 10px;
@@ -98,15 +97,15 @@ tbody tr td {
   border-radius: 30px;
   cursor: pointer;
   text-transform: uppercase;
-  letter-spacing: 1px;  
+  letter-spacing: 1px;
   font-size: 14px;
   font-weight: 300;
   transition: transform 0.2s ease;
 }
-.header-users  .btn:hover{
+.header-users .btn:hover {
   transform: scale(1.1);
 }
-.header-users .searching{
+.header-users .searching {
   width: 650px;
   height: 50px;
   background-color: var(--activeItem);
@@ -116,7 +115,7 @@ tbody tr td {
   border: none;
   border-radius: 30px;
 }
-.header-users .searching input{
+.header-users .searching input {
   width: 170px;
   height: 20px;
   padding: 5px 18px;
@@ -124,7 +123,7 @@ tbody tr td {
   border-radius: 25px;
   overflow: hidden;
 }
-.header-users .searching span{
+.header-users .searching span {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -132,21 +131,21 @@ tbody tr td {
   width: 20px;
 }
 .header-users .searching button {
-width: 70px;
-height: 35px;
-padding: 5px;
-background-color: rgb(251, 123, 144);
-border: none;
-border-radius: 25px;
-cursor: pointer;
+  width: 70px;
+  height: 35px;
+  padding: 5px;
+  background-color: rgb(251, 123, 144);
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
 }
-.header-users .btn-area{
+.header-users .btn-area {
   width: 300px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.pagination{
+.pagination {
   margin-top: 10px;
   width: 100%;
   /* height: 20px; */

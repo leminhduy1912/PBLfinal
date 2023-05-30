@@ -5,22 +5,17 @@ import React from "react";
 // import { useNavigate } from "react-router-dom";//roi
 import { FaTimes } from "react-icons/fa";
 import "./AddStore.css";
-function AddStore({statusModalAdd}) {
+function AddStore({ statusModalAdd }) {
   // const navigate = useNavigate();
-  const handleAddModalHide=()=>{
-    statusModalAdd(false)
-  }
+  const handleAddModalHide = () => {
+    statusModalAdd(false);
+  };
   return (
     <div className="AddStore-container">
       <div className="AddStore-content">
         <h1>Add Store</h1>
 
-        <div
-          className="x-icon"
-          onClick={() => 
-           handleAddModalHide()
-          }
-        >
+        <div className="x-icon" onClick={() => handleAddModalHide()}>
           <FaTimes />
         </div>
 

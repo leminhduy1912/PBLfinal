@@ -7,7 +7,6 @@ export const getAllProducts = async (query, clientId, token) => {
       ACCESS_TOKEN: token,
       client_id: clientId,
     },
-    // withCredentials: true,
     url: "/private/products" + query,
   });
 };
@@ -80,5 +79,11 @@ export const updateProduct = async (Obj, clientId, token) => {
     },
     url: "/private/product",
     data: formData,
+  });
+};
+export const getHomeProducts = async (query) => {
+  return await Axios({
+    method: "GET",
+    url: "/products" + query,
   });
 };

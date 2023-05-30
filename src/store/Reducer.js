@@ -1,7 +1,7 @@
 import { SET_AUTH_STATE } from "./Constants";
 
 export const initialState = {
-  id:"",
+  id: "",
   token: "",
   role: "",
 };
@@ -10,7 +10,7 @@ export const reducer = (state, action) => {
     case SET_AUTH_STATE:
       return {
         ...initialState,
-        id:action.payload.id,
+        id: action.payload.id,
         token: action.payload.token,
         role: action.payload.role,
       };

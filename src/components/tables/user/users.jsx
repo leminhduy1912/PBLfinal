@@ -107,12 +107,13 @@ export const RowUsers = (props) => {
     borderRadius: "50%",
     backgroundColor: "#ff7b7b",
   };
+  console.log(props);
   return (
     <tr className="user-table-row">
       <td>{props.index}</td>
       <td>{props.companyName ?? "null"}</td>
       <td>{props.taxIndentity ?? "null"}</td>
-      <td>{nameBusinessType ?? "null"}</td>
+      <td>{props.businessType ?? ""}</td>
       <td>{props.email}</td>
       <td>
         {props.action === 1 ? (

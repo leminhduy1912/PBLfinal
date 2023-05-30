@@ -1,5 +1,5 @@
-export const ConvertTimestampToDate=(timestamp)=> {
-   // Tạo một đối tượng Date từ timestamp
+export const ConvertTimestampToDate = (timestamp) => {
+  // Tạo một đối tượng Date từ timestamp
   var date = new Date(timestamp);
 
   // Lấy các thành phần của ngày, tháng và năm
@@ -12,7 +12,8 @@ export const ConvertTimestampToDate=(timestamp)=> {
   var minutes = ("0" + date.getMinutes()).slice(-2);
 
   // Tạo chuỗi định dạng yyyy-MM-ddThh:mm
-  var dateTimeLocal = year + "-" + month + "-" + day + "T" + hours + ":" + minutes;
+  var dateTimeLocal =
+    year + "-" + month + "-" + day + "T" + hours + ":" + minutes;
 
   return dateTimeLocal;
-  }
+};

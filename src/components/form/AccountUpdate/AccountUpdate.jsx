@@ -5,20 +5,17 @@ import React, { useState } from "react";
 import "./AccountUpdate.css";
 import { FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-function AccountUpdate({statusModalUpdateHide}) {
- const handleHideUpdateModal=()=>{
-  statusModalUpdateHide(false)
- }
+function AccountUpdate({ statusModalUpdateHide }) {
+  const handleHideUpdateModal = () => {
+    statusModalUpdateHide(false);
+  };
 
   return (
     <div className="AccountUpdate-container">
       <div className="AccountUpdate-content">
         <h1>Update Account</h1>
 
-        <div
-          className="x-icon"
-        
-        >
+        <div className="x-icon">
           <FaTimes />
         </div>
 

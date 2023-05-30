@@ -2,59 +2,64 @@ import React, { useState } from "react";
 import "./CardChart.css";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { motion,AnimateSharedLayout } from "framer-motion";
-import { UilTimes} from "@iconscout/react-unicons";
+import { motion, AnimateSharedLayout } from "framer-motion";
+import { UilTimes } from "@iconscout/react-unicons";
 import Chart from "react-apexcharts";
 
-
-
-const CardChart=(props)=> {
-  const [expanded,setExpanded] = useState(false)
-    return (
-      <AnimateSharedLayout>
-    {
-     expanded ?(
-      <ExpandedCard param={props} setExpanded={()=>{setExpanded(false)}}/>
-     ) :
-     <CompactCard param={props} setExpanded={()=>{setExpanded(true)}}/>
-    }
-      </AnimateSharedLayout>
-    )
-  }
-
-
-  // CompactCard
-function CompactCard({param,setExpanded}){
-  const Png= param.png
+const CardChart = (props) => {
+  const [expanded, setExpanded] = useState(false);
   return (
-    <motion.div className="CompactCard"
-    style={
-      {
-        background : param.color.backGround,
-        boxShadow: param.color.boxShadow
-      }
-    }
-    onClick={setExpanded}
-    layoutId='expandableCar'
+    <AnimateSharedLayout>
+      {expanded ? (
+        <ExpandedCard
+          param={props}
+          setExpanded={() => {
+            setExpanded(false);
+          }}
+        />
+      ) : (
+        <CompactCard
+          param={props}
+          setExpanded={() => {
+            setExpanded(true);
+          }}
+        />
+      )}
+    </AnimateSharedLayout>
+  );
+};
+
+// CompactCard
+function CompactCard({ param, setExpanded }) {
+  const Png = param.png;
+  return (
+    <motion.div
+      className="CompactCard"
+      style={{
+        background: param.color.backGround,
+        boxShadow: param.color.boxShadow,
+      }}
+      onClick={setExpanded}
+      layoutId="expandableCar"
     >
       <div className="radialBar">
         <CircularProgressbar
-        value={param.barValue}
-        text={`${param.barValue}%`}
+          value={param.barValue}
+          text={`${param.barValue}%`}
         />
         <span>{param.title}</span>
       </div>
       <div className="detail">
-          <Png/>
-          <span>{param.value}</span>
-          <span>Last 1 month</span>
+        <Png />
+        <span>{param.value}</span>
+        <span>Last 1 month</span>
       </div>
     </motion.div>
-  )
+  );
 }
 
 // Expanded Card
-function ExpandedCard({param,setExpanded}){
+function ExpandedCard({ param, setExpanded }) {
   // Chartline
   const data = {
     options: {
@@ -78,7 +83,7 @@ function ExpandedCard({param,setExpanded}){
         type: "gradient",
       },
       dataLabels: {
-         enabled: false,
+        enabled: false,
       },
       stroke: {
         curve: "smooth",
@@ -105,29 +110,24 @@ function ExpandedCard({param,setExpanded}){
       },
     },
   };
-return(
-  <motion.div 
-  className="ExpandedCard"
-  style={
-    {
-      background : param.color.backGround,
-      boxShadow: param.color.boxShadow
-    }
-  }
-  layoutId='expandableCar'
-  >
-  <div style={{alignSelf:'flex-end', cursor:'pointer', color:'white'}}>
-    <UilTimes 
-    onClick={setExpanded}
-    />
-  </div>
-  <span>{param.title}</span>
-  <div className="chartContainer">
-    <Chart series={param.series} type='area' options={data.options}/>
-  </div>
-<span>Last 6 Months</span>
-
-  </motion.div>
-)
+  return (
+    <motion.div
+      className="ExpandedCard"
+      style={{
+        background: param.color.backGround,
+        boxShadow: param.color.boxShadow,
+      }}
+      layoutId="expandableCar"
+    >
+      <div style={{ alignSelf: "flex-end", cursor: "pointer", color: "white" }}>
+        <UilTimes onClick={setExpanded} />
+      </div>
+      <span>{param.title}</span>
+      <div className="chartContainer">
+        <Chart series={param.series} type="area" options={data.options} />
+      </div>
+      <span>Last 6 Months</span>
+    </motion.div>
+  );
 }
-export default CardChart
+export default CardChart;

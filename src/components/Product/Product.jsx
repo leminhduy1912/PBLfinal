@@ -15,7 +15,6 @@ export const Product = (props) => {
   console.log(certificates);
   return (
     <div className="product-card-container">
-
       <div className="product-information">
         <h3>Tên công ty :</h3>
         <h3>{companyName}</h3>
@@ -31,15 +30,15 @@ export const Product = (props) => {
       <div className="product-information">
         <h3>Chứng nhận :</h3>
         <div className="product-card-image">
-        {certificates.length > 0 ? (
-          certificates.map((image, index) => {
-            return <ProductImage key={index} image={image} />;
-          })
-        ) : (
-          <h1>No Certificates</h1>
-        )}
+          {certificates.length > 0 ? (
+            certificates.map((image, index) => {
+              return <ProductImage key={index} image={image} />;
+            })
+          ) : (
+            <h1>No Certificates</h1>
+          )}
         </div>
-      </div> 
+      </div>
     </div>
   );
 };

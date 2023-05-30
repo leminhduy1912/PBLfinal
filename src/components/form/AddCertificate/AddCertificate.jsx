@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import "./AddCertificate.css";
 import { FaTimes } from "react-icons/fa";
 import { useCreateCertificate } from "../../../hooks/Certificate/useCreateCertificate";
-import ActionSuccess from "../../ActionSuccess/ActionSuccess";
 import { StoreContext } from "~store";
 function Addcertificate(props) {
   const [state] = useContext(StoreContext);
