@@ -22,6 +22,7 @@ function Information() {
   useEffect(() => {
     executeGetOneUserById(state.id, state.id, state.token);
   }, []);
+
   const [showModalResetPassword, setShowModalResetPassword] = useState(false);
   const handleShowModalResetPassword = (value) => {
     setShowModalResetPassword(value);
@@ -253,11 +254,52 @@ function Information() {
                 </div>
 
                 <div className="form-group">
+                  <label htmlFor="taxIndentity">Tax Indentity</label>
+                  <input
+                    type="text"
+                    placeholder="taxIndentity"
+                    value={dataInformation.taxIndentity}
+                    onChange={(e) => {
+                      setDataInformation({
+                        ...dataInformation,
+                        taxIndentityr: e.target.value,
+                      }),
+                        setBtnDisable(false),
+                        setUpdateForm({
+                          ...updateForm,
+                          taxIndentity: e.target.value,
+                        });
+                    }}
+                  />
+                </div>
+              </div>
+
+              <div className="Information-group">
+                <div className="form-group">
+                  <label htmlFor="Tên người đại diện">Tên người đại diện</label>
+                  <input
+                    type="text"
+                    placeholder="Fax Number"
+                    value={dataInformation.fullName}
+                    onChange={(e) => {
+                      setDataInformation({
+                        ...dataInformation,
+                        fullName: e.target.value,
+                      }),
+                        setBtnDisable(false),
+                        setUpdateForm({
+                          ...updateForm,
+                          fullName: e.target.value,
+                        });
+                    }}
+                  />
+                </div>
+                <div className="form-group">
                   <label htmlFor="Số Điện thoại">Số Điện thoại</label>
                   <input
                     type="text"
                     placeholder="Số Điện thoại"
-                    value={dataInformation.nationalId}
+                    value={dataInformation.phoneNumber}
                     onChange={(e) => {
                       setDataInformation({
                         ...dataInformation,
@@ -271,9 +313,6 @@ function Information() {
                     }}
                   />
                 </div>
-              </div>
-
-              <div className="Information-group">
                 <div className="form-group">
                   <label htmlFor="Fax Number">Fax Number</label>
                   <input
@@ -302,19 +341,16 @@ function Information() {
                     id=""
                     value={dataInformation.role.roleId}
                   >
-                    <option value={2}>Thanh Tra</option>
+                    <option value={3}>Store</option>
                   </select>
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="">Mật khẩu</label>
-                  <input type="text" placeholder="Mật khẩu" />
                 </div>
               </div>
             </form>
-            <div className="btn-infor-group">
-              <button disabled={btnDisable}>Cập nhật</button>
-              <button disabled={false}>Change password</button>
+            <div className="btn-group-infor">
+              <button onClick={handleChangePassword}>Change Password</button>
+              <button disabled={btnDisable} onClick={handleUpdateInformation}>
+                Cập nhật
+              </button>
             </div>
           </div>
         </div>

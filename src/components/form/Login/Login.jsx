@@ -40,7 +40,15 @@ const Login = (props) => {
           token: res.data.ACCESS_TOKEN,
           role: res.data.role,
         });
-        return navigate("/home");
+        if (res.data.role === "Admin") {
+          return navigate("/admin");
+        }
+        if (res.data.role === "Moderator") {
+          return navigate("/moderator");
+        }
+        if (res.data.role === "Store") {
+          return navigate("/company");
+        }
       }
     } catch (error) {
       console.log(error);

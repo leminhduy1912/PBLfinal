@@ -13,16 +13,13 @@
 .user-table-row td:nth-child(6) {
   width: 27px;
 }
-/* .user-table-row .td-button{
-  
- display: flex;
- justify-content: space-around;
- align-items: center;
- min-height: 114px;
-border: none;
- 
+.user-table-row td:nth-child(2) {
+  width: 200px;
+}
+.user-table-row td:nth-child(5) {
+  width: 200px;
+}
 
-}  */
 .user-table-row td:last-child {
   /* display: flex;
   justify-content: space-around;

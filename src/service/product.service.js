@@ -10,6 +10,16 @@ export const getAllProducts = async (query, clientId, token) => {
     url: "/private/products" + query,
   });
 };
+export const companyGetAllProduct = async (query, clientId, token) => {
+  return await Axios({
+    method: "GET",
+    headers: {
+      ACCESS_TOKEN: token,
+      client_id: clientId,
+    },
+    url: "/cpn/product" + query,
+  });
+};
 export const getAllProductKind = async () => {
   return await Axios({
     method: "GET",

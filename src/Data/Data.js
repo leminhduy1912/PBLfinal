@@ -46,7 +46,48 @@ export const SidebarData = [
     heading: "Post",
   },
 ];
+export const SidebarDataModerator = [
+  {
+    icon: UilEstate,
+    heading: "Dashboard",
+  },
+  {
+    icon: UilClipboardAlt,
+    heading: "Plan",
+  },
+  {
+    icon: UilUsersAlt,
+    heading: "Users",
+  },
+  {
+    icon: UilPizzaSlice,
+    heading: "Products",
+  },
+  {
+    icon: UilCheckCircle,
+    heading: "Certificate",
+  },
+  {
+    icon: UilChart,
+    heading: "Profile",
+  },
+];
+export const SidebarDataCompany = [
+  {
+    icon: UilEstate,
+    heading: "Dashboard",
+  },
 
+  {
+    icon: UilPizzaSlice,
+    heading: "Products",
+  },
+
+  {
+    icon: UilChart,
+    heading: "Profile",
+  },
+];
 export const cardsData = [
   {
     title: "New Stores",
