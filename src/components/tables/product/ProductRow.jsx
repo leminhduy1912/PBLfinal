@@ -72,11 +72,17 @@ export const ProductRow = (props) => {
         </td>
         <td>
           <button onClick={handleShowDetailsProduct}>Details</button>
-          <button onClick={handleShowMoDalUpdateProduct}>Update</button>
-          <button onClick={handleDeleteProduct}>Delete</button>
-          <button onClick={handleAddCertificateToProduct}>
-            Add Certificate
-          </button>
+          {(state.role === "Admin" || state.role === "Moderator") && (
+            <button onClick={handleShowMoDalUpdateProduct}>Update</button>
+          )}
+          {(state.role === "Admin" || state.role === "Moderator") && (
+            <button onClick={handleDeleteProduct}>Delete</button>
+          )}
+          {(state.role === "Admin" || state.role === "Moderator") && (
+            <button onClick={handleAddCertificateToProduct}>
+              Add Certificate
+            </button>
+          )}
         </td>
       </tr>
     </>

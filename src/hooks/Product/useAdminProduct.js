@@ -3,13 +3,12 @@ import { useEffect, useState } from "react";
 import { getAllProducts } from "~service";
 import { ConvertToQueryParams } from "~utils";
 
-export const useAdminProduct = (url, clientId, token) => {
+export const useAdminProduct = () => {
   const [data, setData] = useState({});
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [pagination, setPagination] = useState({});
   const loadDataProduct = useCallback(async (url, clientId, token) => {
-    console.log("ttt", clientId, token);
     let res;
     try {
       setLoading(true);
@@ -26,8 +25,8 @@ export const useAdminProduct = (url, clientId, token) => {
   }, []);
 
   useEffect(() => {
-    loadDataProduct(url, clientId, token);
-  }, [loadDataProduct, url, clientId, token]);
+    loadDataProduct();
+  }, [loadDataProduct]);
 
   return {
     data,

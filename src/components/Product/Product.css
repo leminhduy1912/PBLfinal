@@ -37,7 +37,14 @@
   justify-content: space-between;
   align-items: center;
 }
-.product-header button {
+.product-header div {
+  width: 500px;
+  height: 60px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.product-header div button {
   width: 150px;
   height: 40px;
   background-color: rgb(251, 123, 144);
@@ -48,6 +55,7 @@
   letter-spacing: 1px;
   font-size: 14px;
   transition: transform 0.2s ease;
+  margin: auto 5px;
   /* padding: 5px 10px; */
 }
 .product-header button:hover {

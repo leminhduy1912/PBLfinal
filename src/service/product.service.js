@@ -17,7 +17,32 @@ export const companyGetAllProduct = async (query, clientId, token) => {
       ACCESS_TOKEN: token,
       client_id: clientId,
     },
-    url: "/cpn/product" + query,
+    url: "/cpn/products" + query,
+  });
+};
+export const companyRequestProduct = async (Obj, clientId, token) => {
+  let formData = new FormData();
+  for (const key in Obj) {
+    formData.append(key, Obj[key]);
+  }
+  return await Axios({
+    method: "POST",
+    headers: {
+      ACCESS_TOKEN: token,
+      client_id: clientId,
+    },
+    url: "/cpn/product",
+    data: formData,
+  });
+};
+export const getAllPendingProduct = async (query, clienId, token) => {
+  return await Axios({
+    method: "GET",
+    headers: {
+      ACCESS_TOKEN: token,
+      client_id: clienId,
+    },
+    url: "/private/products/pending" + query,
   });
 };
 export const getAllProductKind = async () => {

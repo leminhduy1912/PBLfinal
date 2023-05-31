@@ -1,6 +1,6 @@
 import { Pagination } from "@mui/material";
 import "./Product.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DetailsProduct from "../form/Product/DetailsProduct/DetailsProduct";
 import ProductUpdate from "../form/Product/ProductUpdate/ProductUpdate";
 import { ProductRow } from "~components";
@@ -12,17 +12,53 @@ import { useContext } from "react";
 import { StoreContext } from "~store";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useGetPendingProduct } from "../../hooks/Product/useGetPendingProducts";
 
 export const ProductAdmin = () => {
   const [state] = useContext(StoreContext);
+  const [disableBtnGetAllProduct, setDisableBtnGetAllProduct] = useState(true);
+  const [disableBtnGetPendingProduct, setDisableBtnPendingProduct] =
+    useState(false);
+  const handleGetProducts = () => {
+    setDisableBtnPendingProduct(false);
+    setDisableBtnGetAllProduct(true);
+  };
+  const handleGetPendindProducts = () => {
+    setDisableBtnGetAllProduct(false);
+    setDisableBtnPendingProduct(true);
+  };
+
   const [currentPage, setCurrentPage] = useState(1);
   const [filter, setFilter] = useState({ page: 1 });
+  const { pagination, data, error, loading, executeDataProduct } =
+    useAdminProduct();
   const handleOnChange = (event, value) => {
     setCurrentPage(value);
     setFilter({ page: value });
   };
-  const { pagination, data, error, loading, executeDataProduct } =
-    useAdminProduct(filter, state.id, state.token);
+
+  const [currentPagePendingProduct, setCurrentPagePendingProduct] = useState(1);
+  const [filterPendingProduct, setFilterPendingProduct] = useState({ page: 1 });
+  const {
+    dataGetPendingProduct,
+    paginationGetPendingProduct,
+    errorGetPendingProduct,
+    executeDataGetPendingProduct,
+  } = useGetPendingProduct();
+  const handleOnChangePendingProduct = (event, value) => {
+    setCurrentPagePendingProduct(value);
+    setFilterPendingProduct({ page: value });
+  };
+  useEffect(() => {
+    if (disableBtnGetAllProduct === true) {
+      executeDataProduct(filter, state.id, state.token);
+    }
+  }, [filter, disableBtnGetAllProduct]);
+  useEffect(() => {
+    if (disableBtnGetPendingProduct === true) {
+      executeDataGetPendingProduct(filterPendingProduct, state.id, state.token);
+    }
+  }, [filterPendingProduct, disableBtnGetPendingProduct]);
   const fetchDataProduct = async () => {
     await executeDataProduct(filter, state.id, state.token);
   };
@@ -118,13 +154,27 @@ export const ProductAdmin = () => {
       <div>
         <div className="product-header">
           <h1>Recent Product</h1>
-          <button
-            onClick={() => {
-              setShowModalAddProduct(true);
-            }}
-          >
-            Add Product
-          </button>
+          <div>
+            <button
+              disabled={disableBtnGetAllProduct}
+              onClick={handleGetProducts}
+            >
+              Get Products
+            </button>
+            <button
+              disabled={disableBtnGetPendingProduct}
+              onClick={handleGetPendindProducts}
+            >
+              Get Pending Product
+            </button>
+            <button
+              onClick={() => {
+                setShowModalAddProduct(true);
+              }}
+            >
+              Add Product
+            </button>
+          </div>
         </div>
         <table>
           <thead>
@@ -137,8 +187,31 @@ export const ProductAdmin = () => {
             </tr>
           </thead>
           <tbody>
-            {Array.isArray(data) &&
+            {disableBtnGetAllProduct &&
+              Array.isArray(data) &&
               data.map((item, index) => {
+                return (
+                  <ProductRow
+                    key={index}
+                    index={index + 1 + (currentPage - 1) * 8}
+                    product={item}
+                    handleShowMoDalDetailsProduct={
+                      handleShowMoDalDetailsProduct
+                    }
+                    handleShowMoDalUpdateProduct={handleShowMoDalUpdateProduct}
+                    handleSetFormDataProduct={handleSetFormDataProduct}
+                    formDataProduct={formDataProduct}
+                    fetchDataProduct={fetchDataProduct}
+                    handleShowSuccesAction={handleShowSuccesAction}
+                    handleShowModalAddCertificateToProduct={
+                      handleShowModalAddCertificateToProduct
+                    }
+                  />
+                );
+              })}
+            {disableBtnGetPendingProduct &&
+              Array.isArray(dataGetPendingProduct) &&
+              dataGetPendingProduct.map((item, index) => {
                 return (
                   <ProductRow
                     key={index}
@@ -161,15 +234,30 @@ export const ProductAdmin = () => {
           </tbody>
         </table>
 
-        {pagination && (
+        {disableBtnGetAllProduct && pagination && (
           <>
             <br />
             <div className="pagination">
               <Pagination
+                page={currentPage}
                 count={pagination.totalPages}
                 showFirstButton
                 showLastButton
                 onChange={handleOnChange}
+              />
+            </div>
+          </>
+        )}
+        {disableBtnGetPendingProduct && paginationGetPendingProduct && (
+          <>
+            <br />
+            <div className="pagination">
+              <Pagination
+                page={currentPagePendingProduct}
+                count={paginationGetPendingProduct.totalPages}
+                showFirstButton
+                showLastButton
+                onChange={handleOnChangePendingProduct}
               />
             </div>
           </>

@@ -90,8 +90,6 @@ function DetailsProduct(props) {
               })}
             </div>
           </form>
-
-          <button className="btn-submit">Submit</button>
         </div>
       </div>
     </div>
