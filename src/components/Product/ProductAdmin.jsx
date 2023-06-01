@@ -62,6 +62,13 @@ export const ProductAdmin = () => {
   const fetchDataProduct = async () => {
     await executeDataProduct(filter, state.id, state.token);
   };
+  const fetchDataPendingProduct = async () => {
+    await executeDataGetPendingProduct(
+      filterPendingProduct,
+      state.id,
+      state.token
+    );
+  };
 
   const [showModalDetailsProduct, setShowModalDetailsProduct] = useState(false);
   const handleShowMoDalDetailsProduct = (value) => {
@@ -206,6 +213,9 @@ export const ProductAdmin = () => {
                     handleShowModalAddCertificateToProduct={
                       handleShowModalAddCertificateToProduct
                     }
+                    disableBtnGetAllProduct={disableBtnGetAllProduct}
+                    disableBtnGetPendingProduct={disableBtnGetPendingProduct}
+                    fetchDataPendingProduct={fetchDataPendingProduct}
                   />
                 );
               })}
@@ -215,7 +225,7 @@ export const ProductAdmin = () => {
                 return (
                   <ProductRow
                     key={index}
-                    index={index + 1 + (currentPage - 1) * 8}
+                    index={index + 1 + (currentPagePendingProduct - 1) * 8}
                     product={item}
                     handleShowMoDalDetailsProduct={
                       handleShowMoDalDetailsProduct
@@ -228,6 +238,9 @@ export const ProductAdmin = () => {
                     handleShowModalAddCertificateToProduct={
                       handleShowModalAddCertificateToProduct
                     }
+                    disableBtnGetAllProduct={disableBtnGetAllProduct}
+                    disableBtnGetPendingProduct={disableBtnGetPendingProduct}
+                    fetchDataPendingProduct={fetchDataPendingProduct}
                   />
                 );
               })}

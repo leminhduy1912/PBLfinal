@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import "./ProductRow.css";
 import useDeleteProduct from "../../../hooks/Product/useDeleteProduct";
 import { StoreContext } from "~store";
+import useActivePendingProduct from "../../../hooks/Product/useActivePendingProduct";
 
 export const ProductRow = (props) => {
   const greenCircle = {
@@ -55,7 +56,17 @@ export const ProductRow = (props) => {
   const handleAddCertificateToProduct = async () => {
     await props.handleShowModalAddCertificateToProduct({ id: id, value: true });
   };
-  // console.log(props.handleSetFormDataProduct());
+
+  const {
+    successActivePendingProduct,
+    errorActivePendingProduct,
+    executeActivePendingProduct,
+  } = useActivePendingProduct();
+  const handleActivePendingProduct = async () => {
+    await executeActivePendingProduct(props.product.id, state.id, state.token);
+    props.fetchDataPendingProduct();
+    props.handleShowSuccesAction("Actived Product Success");
+  };
 
   return (
     <>
@@ -71,18 +82,28 @@ export const ProductRow = (props) => {
           )}
         </td>
         <td>
-          <button onClick={handleShowDetailsProduct}>Details</button>
-          {(state.role === "Admin" || state.role === "Moderator") && (
-            <button onClick={handleShowMoDalUpdateProduct}>Update</button>
-          )}
-          {(state.role === "Admin" || state.role === "Moderator") && (
-            <button onClick={handleDeleteProduct}>Delete</button>
-          )}
-          {(state.role === "Admin" || state.role === "Moderator") && (
-            <button onClick={handleAddCertificateToProduct}>
-              Add Certificate
-            </button>
-          )}
+          {props.disableBtnGetAllProduct &&
+            (state.role === "Admin" || state.role === "Moderator") && (
+              <button onClick={handleShowDetailsProduct}>Details</button>
+            )}
+          {props.disableBtnGetPendingProduct &&
+            (state.role === "Admin" || state.role === "Moderator") && (
+              <button onClick={handleActivePendingProduct}>Active</button>
+            )}
+          {props.disableBtnGetAllProduct &&
+            (state.role === "Admin" || state.role === "Moderator") && (
+              <button onClick={handleShowMoDalUpdateProduct}>Update</button>
+            )}
+          {props.disableBtnGetAllProduct &&
+            (state.role === "Admin" || state.role === "Moderator") && (
+              <button onClick={handleDeleteProduct}>Delete</button>
+            )}
+          {props.disableBtnGetAllProduct &&
+            (state.role === "Admin" || state.role === "Moderator") && (
+              <button onClick={handleAddCertificateToProduct}>
+                Add Certificate
+              </button>
+            )}
         </td>
       </tr>
     </>

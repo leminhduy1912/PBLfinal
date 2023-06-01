@@ -6,7 +6,7 @@ import "./App.css";
 import { Home } from "./pages/home/Home";
 import { ErrorComponent } from "./components/Error/ErrorComponent";
 import Sidebar from "./components/Sidebar/Sidebar";
-import SideBarCompany from "./components/Moderator/SideBar/SideBar";
+import SideBarCompany from "./components/Company/SideBar/SideBar";
 import Login from "./components/form/Login/Login";
 import CompanyRegister from "./components/form/CompanyRegister/CompanyRegister";
 import {

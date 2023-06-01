@@ -15,6 +15,7 @@ export const useProduct = (url) => {
     try {
       setLoading(true);
       res = await getAllProducts(ConvertToQueryParams(url, clientId, token));
+
       setData(res.data.result);
       setPagination(res.pagination);
     } catch (error) {

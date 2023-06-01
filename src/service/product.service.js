@@ -45,6 +45,16 @@ export const getAllPendingProduct = async (query, clienId, token) => {
     url: "/private/products/pending" + query,
   });
 };
+export const activePendingProduct = async (id, clientId, token) => {
+  return await Axios({
+    method: "PUT",
+    headers: {
+      ACCESS_TOKEN: token,
+      client_id: clientId,
+    },
+    url: "/private/products/pending?id=" + id,
+  });
+};
 export const getAllProductKind = async () => {
   return await Axios({
     method: "GET",

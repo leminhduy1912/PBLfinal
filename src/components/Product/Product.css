@@ -44,7 +44,22 @@
   justify-content: space-around;
   align-items: center;
 }
+.product-header button,
 .product-header div button {
+  width: 150px;
+  height: 40px;
+  background-color: rgb(251, 123, 144);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 14px;
+  transition: transform 0.2s ease;
+  margin: auto 5px;
+  /* padding: 5px 10px; */
+}
+.product-header button {
   width: 150px;
   height: 40px;
   background-color: rgb(251, 123, 144);
