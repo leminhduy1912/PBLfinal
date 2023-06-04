@@ -53,6 +53,7 @@ function Information() {
     e.preventDefault();
     handleShowModalResetPassword(true);
   };
+
   return (
     <>
       {showActionSuccess && <ActionSuccess messageAction={messageAction} />}
@@ -175,6 +176,7 @@ function Information() {
                     id=""
                     value={dataInformation.role.roleId}
                   >
+                    <option value={1}>Admin</option>
                     <option value={2}>Thanh Tra</option>
                   </select>
                 </div>

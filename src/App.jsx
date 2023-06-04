@@ -43,9 +43,6 @@ function App() {
               <SideBarCompany data={SidebarDataCompany} role="Company  " />
             }
           ></Route>
-          {/* <Route
-            element={<RequireAuth roles={["Admin", "moderator"]} />}
-          ></Route> */}
         </Routes>
       </div>
     </BrowserRouter>

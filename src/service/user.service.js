@@ -93,6 +93,16 @@ export const getAllCompanies = async (query) => {
     url: "/private/companies" + query,
   });
 };
+export const getAllCompaniesAddPlan = async (clientId, token) => {
+  return await Axios({
+    method: "GET",
+    headers: {
+      ACCESS_TOKEN: token,
+      client_id: clientId,
+    },
+    url: "/private/all-companies",
+  });
+};
 export const userComment = async (Obj) => {
   let formData = new FormData();
   for (const key in Obj) {

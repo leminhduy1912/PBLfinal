@@ -11,6 +11,16 @@ export const getAllCertificate = async (query, clientId, token) => {
     url: "/private/certificate" + query,
   });
 };
+export const getAllCertificatesAddProduct = async (clientId, token) => {
+  return await Axios({
+    method: "GET",
+    headers: {
+      ACCESS_TOKEN: token,
+      client_id: clientId,
+    },
+    url: "/private/certificates",
+  });
+};
 export const createCertificate = async (Obj, clientId, token) => {
   let formDataCertificate = new FormData();
   formDataCertificate.append("image", Obj.image);
