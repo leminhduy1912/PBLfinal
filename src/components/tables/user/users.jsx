@@ -1,8 +1,9 @@
 import "./users.css";
 import { useFetchBusinessType } from "../../../hooks/useFetchBusinessType";
 import { useDeleteUser } from "../../../hooks/User/useDeleteUser";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { StoreContext } from "~store";
+import { useAdminResetPassword } from "../../../hooks/Auth/useAdminResetPassword";
 export const RowUsers = (props) => {
   const [state] = useContext(StoreContext);
   const { dataBusinessType, errorBusinessType, loadingBusinessType } =
@@ -94,7 +95,20 @@ export const RowUsers = (props) => {
       props.handleSetFormDataUserStore(Object);
     }
   };
-
+  const {
+    statusCodeAdminResetPasword,
+    successAdminResetPassword,
+    errorAdminResetPassword,
+    executeAdminResetPassord,
+  } = useAdminResetPassword();
+  const handleResetPassword = async () => {
+    await executeAdminResetPassord(props.id, state.id, state.token);
+  };
+  useEffect(() => {
+    if (statusCodeAdminResetPasword) {
+      props.handleShowActionPerform("Reseted Password Success");
+    }
+  }, [statusCodeAdminResetPasword]);
   const greenCircle = {
     width: "20px",
     height: "20px",
@@ -135,6 +149,11 @@ export const RowUsers = (props) => {
         <button onClick={handleDeleteUser} className="btn">
           {props.action === 1 ? "Inactive" : "Active"}
         </button>
+        {state.role === "Admin" && (
+          <button className="btn" onClick={handleResetPassword}>
+            Reset Password
+          </button>
+        )}
       </td>
     </tr>
   );

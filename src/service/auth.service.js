@@ -30,3 +30,17 @@ export const resetPassword = async (
     data: formData,
   });
 };
+export const adminResetPassword = async (id, clientId, token) => {
+  const formData = new FormData();
+  formData.set("userId", id);
+
+  return await Axios({
+    method: "PUT",
+    headers: {
+      ACCESS_TOKEN: token,
+      client_id: clientId,
+    },
+    url: "/private/adm/reset",
+    data: formData,
+  });
+};
