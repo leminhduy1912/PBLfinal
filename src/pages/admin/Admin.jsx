@@ -7,12 +7,11 @@ export const Admin = () => {
   const [state] = useContext(StoreContext);
   return (
     <div className="Maindash">
-      {state.role === "Moderator" ||
-        (state.role === "Admin" && (
-          <>
-            <h1>Dashboard</h1> <StatsBanner />
-          </>
-        ))}
+      {(state.role === "Moderator" || state.role === "Admin") && (
+        <>
+          <h1>Dashboard</h1> <StatsBanner />
+        </>
+      )}
       <TableRecentStores />
     </div>
   );
