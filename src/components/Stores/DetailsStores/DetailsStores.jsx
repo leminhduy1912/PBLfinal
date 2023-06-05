@@ -2,12 +2,18 @@ import React from "react";
 import "./DetailsStores.css";
 import { FaTimes } from "react-icons/fa";
 import { useFetchBusinessType } from "../../../hooks/useFetchBusinessType";
+import { motion } from "framer-motion";
 function DetailsStores(props) {
   const { dataBusinessType, loadingBusinessType, errorBusinessType } =
     useFetchBusinessType();
   // console.log(props.formDataUserStore);
   return (
-    <div className="company-information-container">
+    <motion.div
+      className="company-information-container"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <div className="company-information-content">
         <div className="company-information-form">
           <div className="x-icon">
@@ -180,7 +186,7 @@ function DetailsStores(props) {
           </form>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

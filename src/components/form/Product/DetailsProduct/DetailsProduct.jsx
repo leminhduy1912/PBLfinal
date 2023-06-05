@@ -2,9 +2,15 @@ import React from "react";
 
 import { FaTimes } from "react-icons/fa";
 import "./DetailsProduct.css";
+import { motion } from "framer-motion";
 function DetailsProduct(props) {
   return (
-    <div className="details-product-container">
+    <motion.div
+      className="details-product-container"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <div className="details-product-content">
         <div className="details-product-form">
           <h1>Details Product</h1>
@@ -92,7 +98,7 @@ function DetailsProduct(props) {
           </form>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

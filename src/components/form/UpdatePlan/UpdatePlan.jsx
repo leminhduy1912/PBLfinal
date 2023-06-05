@@ -5,6 +5,7 @@ import { ConvertTimestampToDate } from "../../../utils/ConvertTimestampToDate";
 import { ConvertToTimeStamp } from "../../../utils/ConvertToTimestamp";
 import { useEditTimePlan } from "../../../hooks/Plan/useEditTimePlan";
 import { StoreContext } from "~store";
+import { motion } from "framer-motion";
 function UpdatePlan(props) {
   const [state] = useContext(StoreContext);
   const [timePlan, setTimePlan] = useState(props.time);
@@ -24,7 +25,12 @@ function UpdatePlan(props) {
   };
   // console.log(ConvertTimestampToDate(1684324920000));
   return (
-    <div className="UpdatePLan-container">
+    <motion.div
+      className="UpdatePLan-container"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <div className="UpdatePlan-content">
         <h1>Update Plan</h1>
         <div className="x-icon">
@@ -46,7 +52,7 @@ function UpdatePlan(props) {
 
         <button onClick={handleEditTimePlan}>Submit</button>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

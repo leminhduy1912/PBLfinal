@@ -4,6 +4,7 @@ import { useCreateUser } from "../../../hooks/User/useCreateUser";
 import ClearIcon from "@mui/icons-material/Clear";
 import "./AddAccount.css";
 import { StoreContext } from "~store";
+import { motion } from "framer-motion";
 // import Loading from "../../Loading/Loading";
 function AddAccount(props) {
   const [state] = useContext(StoreContext);
@@ -45,7 +46,12 @@ function AddAccount(props) {
   return (
     <>
       {/* {success==false? <Loading/>: null} */}
-      <div className="AddAccount-container">
+      <motion.div
+        className="AddAccount-container"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
         <div className="AddAccount-content">
           <h1>Add User</h1>
 
@@ -155,7 +161,7 @@ function AddAccount(props) {
           {errorUserRegistered && <span>{message}</span>}
           <button onClick={handleAdduser}>Submit</button>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }

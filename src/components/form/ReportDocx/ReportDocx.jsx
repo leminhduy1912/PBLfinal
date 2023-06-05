@@ -4,6 +4,7 @@ import { FaTimes } from "react-icons/fa";
 import { useState } from "react";
 import { useGetPlanDocx } from "../../../hooks/Plan/useGetPlanDocx";
 import { StoreContext } from "~store";
+import { motion } from "framer-motion";
 const ReportDocx = (props) => {
   const [state] = useContext(StoreContext);
   const [path, setPath] = useState("");
@@ -26,7 +27,12 @@ const ReportDocx = (props) => {
     }
   }, [dataGetPlanDocx, successGetPlanDocx]);
   return (
-    <div className="report-docx-container">
+    <motion.div
+      className="report-docx-container"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <div className="report-docx-content">
         <div className="header-report-docx">
           <h1>Report</h1>
@@ -53,7 +59,7 @@ const ReportDocx = (props) => {
           ></iframe>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

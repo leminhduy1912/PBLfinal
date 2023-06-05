@@ -1,9 +1,15 @@
 import React from "react";
 import { FaTimes } from "react-icons/fa";
 import "./DetailsUser.css";
+import { motion } from "framer-motion";
 const DetailsUser = (props) => {
   return (
-    <div className="details-user-container">
+    <motion.div
+      className="details-user-container"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <div className="details-user-content">
         <h1>User Details</h1>
 
@@ -85,7 +91,7 @@ const DetailsUser = (props) => {
           </div>
         </form>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

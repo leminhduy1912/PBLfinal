@@ -13,7 +13,7 @@ import { StoreContext } from "~store";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useGetPendingProduct } from "../../hooks/Product/useGetPendingProducts";
-
+import { motion } from "framer-motion";
 export const ProductAdmin = () => {
   const [state] = useContext(StoreContext);
   const [disableBtnGetAllProduct, setDisableBtnGetAllProduct] = useState(true);
@@ -158,7 +158,11 @@ export const ProductAdmin = () => {
           fetchDataProduct={fetchDataProduct}
         />
       )}
-      <div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
         <div className="product-header">
           <h1>Recent Product</h1>
           <div>
@@ -275,7 +279,7 @@ export const ProductAdmin = () => {
             </div>
           </>
         )}
-      </div>
+      </motion.div>
     </>
   );
 };

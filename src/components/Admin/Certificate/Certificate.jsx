@@ -9,7 +9,7 @@ import ActionSuccess from "../../ActionSuccess/ActionSuccess";
 import { StoreContext } from "~store";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { motion } from "framer-motion";
 const Certificate = () => {
   const [state] = useContext(StoreContext);
 
@@ -84,7 +84,12 @@ const Certificate = () => {
           handleSetShowSuccess={handleSetShowSuccess}
         />
       )}
-      <div className="certificate-container">
+      <motion.div
+        className="certificate-container"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
         <div className="certificate-header">
           <h1>Certificates Management</h1>
           <button onClick={() => setShowModalAddCertificate(true)}>
@@ -132,7 +137,7 @@ const Certificate = () => {
             />
           </div>
         }
-      </div>
+      </motion.div>
     </>
   );
 };

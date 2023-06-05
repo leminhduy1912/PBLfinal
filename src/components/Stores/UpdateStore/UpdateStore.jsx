@@ -9,7 +9,7 @@ import { useFetchBusinessType } from "../../../hooks/useFetchBusinessType";
 
 import { useUpdateUser } from "../../../hooks/User/useUpdateUser";
 import { StoreContext } from "~store";
-
+import { motion } from "framer-motion";
 function UpdateStore(props) {
   const [state] = useContext(StoreContext);
   const { dataBusinessType, loadingBusinessType, errorBusinessType } =
@@ -39,7 +39,12 @@ function UpdateStore(props) {
   return (
     <>
       {/* {success==false?<Loading/>:null} */}
-      <div className="company-update-container">
+      <motion.div
+        className="company-update-container"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
         <div className="company-update-content">
           <div className="company-update-form">
             <div
@@ -258,7 +263,7 @@ function UpdateStore(props) {
             <button onClick={handleUpdateCompany}>Submit</button>
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }

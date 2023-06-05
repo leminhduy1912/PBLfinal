@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import "./ResetPassword.css";
 import { StoreContext } from "~store";
+import { motion } from "framer-motion";
 import { useResetPassword } from "../../../hooks/Auth/useResetPassword";
 const ResetPassword = (props) => {
   const [state] = useContext(StoreContext);
@@ -28,7 +29,12 @@ const ResetPassword = (props) => {
     await executeResetPassord(oldPassword, newPassword, state.id, state.token);
   };
   return (
-    <div className="reset-password-container">
+    <motion.div
+      className="reset-password-container"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <div className="reset-password-content">
         <h1>Update Password</h1>
 
@@ -72,7 +78,7 @@ const ResetPassword = (props) => {
 
         <button onClick={handleResetPassword}>Submit</button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

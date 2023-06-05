@@ -4,7 +4,7 @@ import "./SubmitDocx.css";
 import { useSubmitDocx } from "../../../hooks/Plan/useSubmitDocx";
 import { StoreContext } from "~store";
 import Loading from "../../Loading/Loading";
-
+import { motion } from "framer-motion";
 const SubmitDocx = (props) => {
   const [state] = useContext(StoreContext);
   const [filePath, setFilePath] = useState(null);
@@ -39,7 +39,12 @@ const SubmitDocx = (props) => {
       {props.planId !== null && props.planId !== undefined && (
         <>
           {loading && <Loading />}
-          <div className="submit-docx-container">
+          <motion.div
+            className="submit-docx-container"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
             <div className="submit-docx-content">
               <h1>Submit Result</h1>
               <div className="x-icon">
@@ -70,7 +75,7 @@ const SubmitDocx = (props) => {
                 Submit
               </button>
             </div>
-          </div>
+          </motion.div>
         </>
       )}
     </>

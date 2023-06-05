@@ -3,6 +3,7 @@ import "./UpdateCertificate.css";
 import { FaTimes } from "react-icons/fa";
 import { useUpdateCertificate } from "../../../hooks/Certificate/useUpdateCertificate";
 import { StoreContext } from "~store";
+import { motion } from "framer-motion";
 function UpdateCertificate(props) {
   const [state] = useContext(StoreContext);
   const { message, loading, success, error, executeUpdateCerti } =
@@ -29,7 +30,12 @@ function UpdateCertificate(props) {
   };
 
   return (
-    <div className="update-certificate-container">
+    <motion.div
+      className="update-certificate-container"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <div className="update-certificate-content">
         <h1>Update Certificate</h1>
 
@@ -100,7 +106,7 @@ function UpdateCertificate(props) {
 
         <button onClick={handleUpdateCertificate}>Submit</button>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

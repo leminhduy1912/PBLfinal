@@ -1,11 +1,16 @@
 import ClearIcon from "@mui/icons-material/Clear";
 import "./DetailsPlan.css";
 import { FaTimes } from "react-icons/fa";
-
+import { motion } from "framer-motion";
 import { ConvertTimestampToDate } from "../../../utils/ConvertTimestampToDate";
 function DetailsPlan(props) {
   return (
-    <div className="details-plan-container">
+    <motion.div
+      className="details-plan-container"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <div className="details-plan-content">
         <div className="details-plan-form">
           <h1>Details Plan</h1>
@@ -81,7 +86,7 @@ function DetailsPlan(props) {
           <button>Submit</button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

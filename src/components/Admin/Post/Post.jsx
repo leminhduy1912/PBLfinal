@@ -4,6 +4,7 @@ import { Pagination } from "@mui/material";
 import React, { useContext, useState } from "react";
 import PostRowElement from "../../../components/tables/Post/PostRowElement";
 import { ToastContainer, toast } from "react-toastify";
+import { motion } from "framer-motion";
 const Post = () => {
   const [state] = useContext(StoreContext);
   const [pageCurrent, setPageCurrent] = useState(1);
@@ -36,7 +37,12 @@ const Post = () => {
         pauseOnHover
         theme="light"
       />
-      <div className="post-container">
+      <motion.div
+        className="post-container"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
         <div className="post-header">
           <h1>Post</h1>
         </div>
@@ -78,7 +84,7 @@ const Post = () => {
             />
           </div>
         }
-      </div>
+      </motion.div>
     </>
   );
 };

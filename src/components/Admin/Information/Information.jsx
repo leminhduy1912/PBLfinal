@@ -6,7 +6,7 @@ import { useUpdateUser } from "../../../hooks/User/useUpdateUser";
 import ResetPassword from "../../../components/form/ResetPassword/ResetPassword";
 import ActionSuccess from "../../../components/ActionSuccess/ActionSuccess";
 // import ResetPassword from "../../form/ResetPassword/ResetPassWord";
-
+import { motion } from "framer-motion";
 function Information() {
   const [state] = useContext(StoreContext);
   const { success, message, error, loading, execute } = useUpdateUser();
@@ -64,7 +64,12 @@ function Information() {
         />
       )}
       {isLoaded && (state.role === "Admin" || state.role === "Moderator") && (
-        <div className="Information-container">
+        <motion.div
+          className="Information-container"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
           <h1>Information Account</h1>
           <div className="Information-content">
             <form action="">
@@ -189,11 +194,16 @@ function Information() {
               </button>
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
 
       {isLoaded && state.role === "Store" && (
-        <div className="Information-container">
+        <motion.div
+          className="Information-container"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
           <h1>Information Account</h1>
           <div className="Information-content">
             <form action="">
@@ -355,7 +365,7 @@ function Information() {
               </button>
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
     </>
   );

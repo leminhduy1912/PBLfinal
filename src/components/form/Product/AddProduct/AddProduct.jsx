@@ -7,7 +7,7 @@ import { useCreateProduct } from "../../../../hooks/Product/useCreateProduct";
 import ActionSuccess from "../../../ActionSuccess/ActionSuccess";
 import { StoreContext } from "~store";
 import { useRequestProduct } from "../../../../hooks/Company/useRequestProduct";
-
+import { motion } from "framer-motion";
 function AddProduct(props) {
   const [state] = useContext(StoreContext);
   const handleHideModalAddProduct = () => {
@@ -49,7 +49,12 @@ function AddProduct(props) {
   return (
     <>
       {/* <ActionSuccess messageAction={messageAction}/> */}
-      <div className="productAdd-container">
+      <motion.div
+        className="productAdd-container"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
         <div className="productAdd-content">
           <h1>Add Product</h1>
 
@@ -135,7 +140,7 @@ function AddProduct(props) {
 
           <button onClick={handleAddNewProduct}>Submit</button>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }

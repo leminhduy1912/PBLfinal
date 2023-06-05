@@ -4,7 +4,7 @@ import { FaTimes } from "react-icons/fa";
 import { useGetAllMods } from "../../../hooks/User/useGetAllMods";
 import { StoreContext } from "~store";
 import { useAddInspectorToPlan } from "../../../hooks/Plan/useAddInspectorToPlan";
-
+import { motion } from "framer-motion";
 const AddInspector = (props) => {
   const { dataGetAllMods, errorGetAllMods, loadingGetAllMods } =
     useGetAllMods();
@@ -23,7 +23,12 @@ const AddInspector = (props) => {
   return (
     <>
       {props.planId !== null && props.planId !== undefined && (
-        <div className="add-inspector-container">
+        <motion.div
+          className="add-inspector-container"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
           <div className="add-inspector-content">
             <h1>Add Inspector To Plan</h1>
             <div className="x-icon">
@@ -61,7 +66,7 @@ const AddInspector = (props) => {
               Submit
             </button>
           </div>
-        </div>
+        </motion.div>
       )}
     </>
   );

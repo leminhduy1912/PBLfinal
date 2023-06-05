@@ -18,6 +18,7 @@ import { useGetSpecific } from "../../../hooks/Plan/useGetSpecificPlan";
 import { StoreContext } from "~store";
 import AddInspector from "../../form/AddInspector/AddInspector";
 import SubmitDocx from "../../../components/form/SubmitDocx/SubmitDocx";
+import { motion } from "framer-motion";
 function PlanInspect() {
   const [state] = useContext(StoreContext);
 
@@ -154,7 +155,12 @@ function PlanInspect() {
             handleShowSuccessAction={handleShowSuccessAction}
           />
         )}
-        <div className="table-wrapper">
+        <motion.div
+          className="table-wrapper"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
           {/* <RequireAuth role="admin"> */}
           <div className="planInspect-header">
             <h1>Plan Management</h1>
@@ -205,16 +211,21 @@ function PlanInspect() {
                 })}
             </tbody>
           </table>
-        </div>
+        </motion.div>
 
-        <div className="pagination">
+        <motion.div
+          className="pagination"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
           <Pagination
             count={pagination.totalPages}
             showFirstButton
             showLastButton
             onChange={handleOnChange}
           />
-        </div>
+        </motion.div>
       </>
     </>
   );

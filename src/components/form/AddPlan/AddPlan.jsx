@@ -6,7 +6,7 @@ import { useCreatePlan } from "../../../hooks/Plan/useCreatePlan";
 import { ConvertToTimeStamp } from "../../../utils/ConvertToTimestamp";
 import { StoreContext } from "~store";
 import { useGetAllCompaniesAddPLan } from "../../../hooks/User/useGetCompaniesAddPlan";
-
+import { motion } from "framer-motion";
 function AddPlan(props) {
   const [state] = useContext(StoreContext);
   const [listCompanies, setListCompanies] = useState([]);
@@ -41,7 +41,12 @@ function AddPlan(props) {
       {listCompanies &&
         Array.isArray(listCompanies) &&
         listCompanies.length > 0 && (
-          <div className="AddPlan-container">
+          <motion.div
+            className="AddPlan-container"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
             <div className="AddPlan-content">
               <h1>Add Plan</h1>
               <div className="x-icon">
@@ -92,7 +97,7 @@ function AddPlan(props) {
               </form>
               <button onClick={handleAddNewPlan}>Submit</button>
             </div>
-          </div>
+          </motion.div>
         )}
     </>
   );

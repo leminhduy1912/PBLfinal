@@ -3,6 +3,7 @@ import "./AddCertificate.css";
 import { FaTimes } from "react-icons/fa";
 import { useCreateCertificate } from "../../../hooks/Certificate/useCreateCertificate";
 import { StoreContext } from "~store";
+import { motion } from "framer-motion";
 function Addcertificate(props) {
   const [state] = useContext(StoreContext);
   const [formDataCertificate, setFormDataCertificate] = useState({
@@ -27,7 +28,12 @@ function Addcertificate(props) {
   };
   return (
     <>
-      <div className="add-certificate-container">
+      <motion.div
+        className="add-certificate-container"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
         <div className="add-certificate-content">
           <h1>Add Certificate</h1>
 
@@ -86,7 +92,7 @@ function Addcertificate(props) {
 
           <button onClick={handleAddCertificate}>Submit</button>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }

@@ -18,7 +18,7 @@ import { StoreContext } from "~store";
 import { getAllCompaniesCurrent } from "../../hooks/User/useGetAllCompanies";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { motion } from "framer-motion";
 function Stores() {
   const [state] = useContext(StoreContext);
 
@@ -187,97 +187,103 @@ function Stores() {
           handleShowActionPerform={handleShowActionPerform}
         />
       )}
-      <div className="header-users">
-        <div className="searching">
-          <span>
-            <SearchOutlined />
-          </span>
-          <input
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-            onKeyDown={handleKeyEnter}
-            placeholder="Enter Email"
-          ></input>
-          <input
-            onChange={(e) => setFullName(e.target.value)}
-            onKeyDown={handleKeyEnter}
-            placeholder="Enter FullName"
-          ></input>
-          <button onClick={handleOnClick}> Search </button>
-        </div>
-        <div className="btn-area">
-          {state.role === "Admin" && (
-            <button
-              className="btn"
-              onClick={() => {
-                setShowModalAddUser(true);
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        <div className="header-users">
+          <div className="searching">
+            <span>
+              <SearchOutlined />
+            </span>
+            <input
+              onChange={(e) => {
+                setEmail(e.target.value);
               }}
-            >
-              Add User
-            </button>
-          )}
-          {state.role === "Admin" && (
-            <button
-              className="btn"
-              onClick={() => {
-                setShowModalAddCompany(true);
-              }}
-            >
-              Add Company
-            </button>
-          )}
+              onKeyDown={handleKeyEnter}
+              placeholder="Enter Email"
+            ></input>
+            <input
+              onChange={(e) => setFullName(e.target.value)}
+              onKeyDown={handleKeyEnter}
+              placeholder="Enter FullName"
+            ></input>
+            <button onClick={handleOnClick}> Search </button>
+          </div>
+          <div className="btn-area">
+            {state.role === "Admin" && (
+              <button
+                className="btn"
+                onClick={() => {
+                  setShowModalAddUser(true);
+                }}
+              >
+                Add User
+              </button>
+            )}
+            {state.role === "Admin" && (
+              <button
+                className="btn"
+                onClick={() => {
+                  setShowModalAddCompany(true);
+                }}
+              >
+                Add Company
+              </button>
+            )}
+          </div>
         </div>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Company</th>
-            <th>TAX</th>
-            <th>Type of Business</th>
-            <th>Email</th>
-            <th>Status</th>
-            <th>Role</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data &&
-            Array.isArray(data) &&
-            data.map((item, index) => {
-              return (
-                <RowUsers
-                  key={index}
-                  index={index + 1 + (currentPage - 1) * 8}
-                  {...item}
-                  handleShowUsersDetails={handleShowUsersDetails}
-                  formDataUser={formDataUser}
-                  handleSetFormDataUser={handleSetFormDataUser}
-                  handleShowUserStoreDetails={handleShowUserStoreDetails}
-                  formDataUserStore={formDataUserStore}
-                  handleSetFormDataUserStore={handleSetFormDataUserStore}
-                  handleShowUserUpdate={handleShowUserUpdate}
-                  handleShowUserUpdateStore={handleShowUserUpdateStore}
-                  handleShowActionPerform={handleShowActionPerform}
-                  fetchDataUser={fetchDataUser}
-                />
-              );
-            })}
-        </tbody>
-      </table>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Company</th>
+              <th>TAX</th>
+              <th>Type of Business</th>
+              <th>Email</th>
+              <th>Status</th>
+              <th>Role</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data &&
+              Array.isArray(data) &&
+              data.map((item, index) => {
+                return (
+                  <RowUsers
+                    key={index}
+                    index={index + 1 + (currentPage - 1) * 8}
+                    {...item}
+                    handleShowUsersDetails={handleShowUsersDetails}
+                    formDataUser={formDataUser}
+                    handleSetFormDataUser={handleSetFormDataUser}
+                    handleShowUserStoreDetails={handleShowUserStoreDetails}
+                    formDataUserStore={formDataUserStore}
+                    handleSetFormDataUserStore={handleSetFormDataUserStore}
+                    handleShowUserUpdate={handleShowUserUpdate}
+                    handleShowUserUpdateStore={handleShowUserUpdateStore}
+                    handleShowActionPerform={handleShowActionPerform}
+                    fetchDataUser={fetchDataUser}
+                  />
+                );
+              })}
+          </tbody>
+        </table>
 
-      {pagination && (
-        <div className="pagination">
-          <Pagination
-            count={pagination.totalPages}
-            showFirstButton
-            showLastButton
-            page={currentPage}
-            onChange={handleOnChange}
-          />
-        </div>
-      )}
+        {pagination && (
+          <div className="pagination">
+            <Pagination
+              count={pagination.totalPages}
+              showFirstButton
+              showLastButton
+              page={currentPage}
+              onChange={handleOnChange}
+            />
+          </div>
+        )}
+      </motion.div>
     </>
   );
 }

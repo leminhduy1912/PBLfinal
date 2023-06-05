@@ -6,6 +6,7 @@ import { useDeleteCertificateFromProduct } from "../../../../hooks/Product/useDe
 import { useContext, useState } from "react";
 import { useUpdateProduct } from "../../../../hooks/Product/useUpdateProduct";
 import { StoreContext } from "~store";
+import { motion } from "framer-motion";
 function DetailsProduct(props) {
   const [state] = useContext(StoreContext);
   const [formTemp, setFormTemp] = useState({ id: props.formDataProduct.id });
@@ -50,7 +51,12 @@ function DetailsProduct(props) {
   const { message, success, data, loading, error } = useProductKind();
   //  console.log(props.formDataProduct);
   return (
-    <div className="details-product-container">
+    <motion.div
+      className="details-product-container"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <div className="details-product-content">
         <div className="details-product-form">
           <h1>Update Product</h1>
@@ -155,7 +161,7 @@ function DetailsProduct(props) {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

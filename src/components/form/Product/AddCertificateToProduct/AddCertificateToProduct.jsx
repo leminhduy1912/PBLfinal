@@ -4,7 +4,7 @@ import { useAddCertificateToProduct } from "../../../../hooks/Certificate/useAdd
 import "./AddCertificateToProduct.css";
 import ClearIcon from "@mui/icons-material/Clear";
 import { StoreContext } from "~store";
-
+import { motion } from "framer-motion";
 import { useGetCertificatesAddProduct } from "../../../../hooks/Certificate/useGetAllCertificatesAddProduct";
 const AddCertificateToProduct = (props) => {
   console.log("hhahaha");
@@ -42,7 +42,12 @@ const AddCertificateToProduct = (props) => {
       {listCertificates &&
         listCertificates.length > 0 &&
         Array.isArray(listCertificates) && (
-          <div className="add-certificate-product-container">
+          <motion.div
+            className="add-certificate-product-container"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
             <div className="add-certificate-product-content">
               <h1>Add Certificate To Product</h1>
 
@@ -84,7 +89,7 @@ const AddCertificateToProduct = (props) => {
 
               <button onClick={handleAddCertificateToProduct}>Submit</button>
             </div>
-          </div>
+          </motion.div>
         )}
     </>
   );

@@ -4,6 +4,7 @@ import "./AddCompany.css";
 import { useFetchBusinessType } from "../../../hooks/useFetchBusinessType";
 import { useCreateCompany } from "../../../hooks/User/useCreateUser";
 import { StoreContext } from "~store";
+import { motion } from "framer-motion";
 const AddCompany = (props) => {
   const [state] = useContext(StoreContext);
 
@@ -48,7 +49,12 @@ const AddCompany = (props) => {
   };
 
   return (
-    <div className="add-company-container">
+    <motion.div
+      className="add-company-container"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <div className="add-company-content">
         <div className="add-company-form">
           <h1>Add Company</h1>
@@ -298,7 +304,7 @@ const AddCompany = (props) => {
           <button onClick={handleAddCompanySubmit}>Register</button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -4,6 +4,7 @@ import "./UpdateUser.css";
 import { FaTimes } from "react-icons/fa";
 import { useUpdateUser } from "../../../hooks/User/useUpdateUser";
 import { StoreContext } from "~store";
+import { motion } from "framer-motion";
 // import Loading from '../../Loading/Loading'
 const UpdateUser = (props) => {
   const [state] = useContext(StoreContext);
@@ -25,7 +26,12 @@ const UpdateUser = (props) => {
   };
   return (
     <>
-      <div className="update-user-container">
+      <motion.div
+        className="update-user-container"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
         <div className="update-user-content">
           <h1>Update User</h1>
 
@@ -153,7 +159,7 @@ const UpdateUser = (props) => {
 
           <button onClick={handleUpdateUser}>Submit</button>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };
