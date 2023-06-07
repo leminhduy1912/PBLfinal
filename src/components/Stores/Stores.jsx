@@ -113,7 +113,7 @@ function Stores() {
 
   const handleOnChange = (event, value) => {
     setCurrentPage(value);
-    setFilter({ fullname: fullname, email: email, page: value });
+    setFilter({ fullname: fullname, email: email, page: 1 });
   };
 
   const handleOnClick = () => {

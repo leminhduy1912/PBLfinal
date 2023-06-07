@@ -13,16 +13,11 @@ function AddProduct(props) {
   const handleHideModalAddProduct = () => {
     props.handleShowModalAddProduct(false);
   };
-  const { message, success, data, loading, error } = useProductKind();
-  const { dataCompanies, errorCompanies } = getAllCompaniesCurrent();
-  const {
-    successCreateProduct,
-    messageCreateProduct,
-    errorCreateProduct,
-    executeCreateProduct,
-  } = useCreateProduct();
-  const { successRequestProduct, errorRequestProduct, executeRequestProduct } =
-    useRequestProduct();
+  const { data } = useProductKind();
+  const { dataCompanies } = getAllCompaniesCurrent();
+  const { successCreateProduct, messageCreateProduct, executeCreateProduct } =
+    useCreateProduct();
+  const { successRequestProduct, executeRequestProduct } = useRequestProduct();
   const [formAddProduct, setFormAddProduct] = useState({ userId: state.id });
 
   useEffect(() => {

@@ -8,6 +8,7 @@ import { useContext, useEffect, useState } from "react";
 import { StoreContext } from "~store";
 import { useGetPlanDocx } from "../../../hooks/Plan/useGetPlanDocx";
 export const PlanRowElement = (props) => {
+  console.log(props);
   const [state] = useContext(StoreContext);
 
   const [path, setPath] = useState("");
@@ -20,7 +21,9 @@ export const PlanRowElement = (props) => {
     e.preventDefault();
     await executeDeletePlan(props.id, state.id, state.token);
     await props.fetchDataPlans();
-    await props.handleShowSuccessAction("Canceled Plan");
+    await props.handleShowSuccessAction(
+      props.action === 1 ? "Canceled Plan" : "Actived Plan"
+    );
   };
   const handleShowDetailsPlan = async (e) => {
     e.preventDefault();
@@ -42,6 +45,7 @@ export const PlanRowElement = (props) => {
     props.handleShowModalUpdatePlan(true);
     props.handleSetTimePlan(props.time, props.id);
   };
+
   return (
     <>
       <tr>
@@ -57,7 +61,9 @@ export const PlanRowElement = (props) => {
             <button onClick={hanldeEditTime}>Edit Time</button>
           )}
           {state.role === "Admin" && (
-            <button onClick={handleCancelPlan}>Cancel</button>
+            <button onClick={handleCancelPlan}>
+              {props.action === 1 ? "Cancel" : "Active"}
+            </button>
           )}
 
           {state.role === "Admin" && (

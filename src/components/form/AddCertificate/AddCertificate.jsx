@@ -22,7 +22,6 @@ function Addcertificate(props) {
     actionSuccess();
   }
   const handleAddCertificate = async (e) => {
-    console.log("check", formDataCertificate);
     e.preventDefault();
     await execute(formDataCertificate, state.id, state.token);
   };

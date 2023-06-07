@@ -4,6 +4,7 @@ import { FaTimes } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { ConvertTimestampToDate } from "../../../utils/ConvertTimestampToDate";
 function DetailsPlan(props) {
+  console.log("props", props);
   return (
     <motion.div
       className="details-plan-container"

@@ -48,10 +48,21 @@ export const deleteCertificate = async (id, clientId, token) => {
   });
 };
 export const updateCertificate = async (Obj, clientId, token) => {
+  console.log(Obj);
   let formData = new FormData();
-  for (const key in Obj) {
-    formData.append(key, Obj[key]);
+  if (Obj.image) {
+    formData.append("image", Obj.image);
+    console.log("co image");
   }
+  if (Obj.name) {
+    formData.append("name", Obj.name);
+    console.log("co name");
+  }
+  if (Obj.description) {
+    formData.append("description", Obj.description);
+    console.log("co des");
+  }
+  console.log(formData);
   return await Axios({
     method: "PUT",
     headers: {
@@ -68,6 +79,7 @@ export const addCertificateToProduct = async (Obj) => {
   for (const key in Obj) {
     formData.append(key, Obj[key]);
   }
+
   return await Axios({
     method: "POST",
     headers: {

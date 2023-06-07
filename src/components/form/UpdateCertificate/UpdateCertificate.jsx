@@ -95,9 +95,8 @@ function UpdateCertificate(props) {
                   ...props.formCertificateInfor,
                   path: e.target.value,
                 }),
-                  setFormTemp({ ...formTemp, path: e.target.files[0] });
+                  setFormTemp({ ...formTemp, image: e.target.files[0] });
               }}
-              value={formCertificateInfor.path}
               className="form-input-control"
               type="file"
             />
