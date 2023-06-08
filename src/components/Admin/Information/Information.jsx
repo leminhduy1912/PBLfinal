@@ -6,6 +6,7 @@ import { useUpdateUser } from "../../../hooks/User/useUpdateUser";
 import ResetPassword from "../../../components/form/ResetPassword/ResetPassword";
 import ActionSuccess from "../../../components/ActionSuccess/ActionSuccess";
 // import ResetPassword from "../../form/ResetPassword/ResetPassWord";
+import { ToastContainer, toast } from "react-toastify";
 import { motion } from "framer-motion";
 function Information() {
   const [state] = useContext(StoreContext);
@@ -39,15 +40,15 @@ function Information() {
   const [messageAction, setMessageAction] = useState("");
   const [showActionSuccess, setShowActionSuccess] = useState(false);
   const handleShowSuccessAction = (message) => {
-    setMessageAction(message);
-    setShowActionSuccess(true);
-    setTimeout(() => {
-      setShowActionSuccess(false);
-    }, 3000);
+    toast.success(message);
   };
+
   const handleUpdateInformation = async (e) => {
     e.preventDefault();
     await execute(updateForm, state.id, state.id, state.token);
+    if (success) {
+      handleShowSuccessAction("Changed Information");
+    }
   };
   const handleChangePassword = (e) => {
     e.preventDefault();
@@ -56,6 +57,18 @@ function Information() {
 
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       {showActionSuccess && <ActionSuccess messageAction={messageAction} />}
       {showModalResetPassword && (
         <ResetPassword
@@ -274,7 +287,7 @@ function Information() {
                     onChange={(e) => {
                       setDataInformation({
                         ...dataInformation,
-                        taxIndentityr: e.target.value,
+                        taxIndentity: e.target.value,
                       }),
                         setBtnDisable(false),
                         setUpdateForm({

@@ -3,8 +3,10 @@ import "./DetailsPlan.css";
 import { FaTimes } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { ConvertTimestampToDate } from "../../../utils/ConvertTimestampToDate";
+import { useContext } from "react";
+import { StoreContext } from "~store";
 function DetailsPlan(props) {
-  console.log("props", props);
+  const [state] = useContext(StoreContext);
   return (
     <motion.div
       className="details-plan-container"
@@ -76,7 +78,7 @@ function DetailsPlan(props) {
                           <option value={1}>Active</option>
                           <option value={0}>Inactive</option>
                         </select>
-                        <button>Inactive</button>
+                        {state.role === "Admin" && <button>Inactive</button>}
                       </div>
                     </div>
                   );

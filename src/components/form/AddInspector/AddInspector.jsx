@@ -13,6 +13,7 @@ const AddInspector = (props) => {
   const [state] = useContext(StoreContext);
   let userId;
   const handleAddInspectorToPlan = async (planId) => {
+    console.log("user Id", userId);
     await executeAddInspectorToPlan(planId, userId, state.id, state.token);
     if (errorAddInspectorToPlan === "") {
       props.handleShowModalAddInspectorToPlan(false);

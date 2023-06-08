@@ -6,10 +6,10 @@ export const useUpdateCertificate = () => {
   const [loading, setLoading] = useState(true);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
-  const certificateUpdate = async (Obj, clientId, token) => {
+  const certificateUpdate = async (id, Obj, clientId, token) => {
     let res;
     try {
-      res = await updateCertificate(Obj, clientId, token);
+      res = await updateCertificate(id, Obj, clientId, token);
       setSuccess(true);
       setMessage("Update Certificate Success");
     } catch (error) {

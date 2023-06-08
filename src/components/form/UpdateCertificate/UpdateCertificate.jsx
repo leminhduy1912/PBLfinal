@@ -13,8 +13,9 @@ function UpdateCertificate(props) {
   );
 
   const [formTemp, setFormTemp] = useState({
-    id: props.formDataCertificate.id,
+    // id: props.formDataCertificate.id,
   });
+
   const actionSuccess = async () => {
     await props.getCertificates();
     await props.handleSetShowSuccess(message);
@@ -25,7 +26,13 @@ function UpdateCertificate(props) {
   }
   const handleUpdateCertificate = async (e) => {
     e.preventDefault();
-    await executeUpdateCerti(formTemp, state.id, state.token);
+    console.log("form temp", formTemp);
+    await executeUpdateCerti(
+      props.formDataCertificate.id,
+      formTemp,
+      state.id,
+      state.token
+    );
     await props.getCertificates();
   };
 

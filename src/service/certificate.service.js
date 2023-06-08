@@ -47,20 +47,17 @@ export const deleteCertificate = async (id, clientId, token) => {
     url: "/private/certificate/" + id,
   });
 };
-export const updateCertificate = async (Obj, clientId, token) => {
-  console.log(Obj);
+export const updateCertificate = async (id, Obj, clientId, token) => {
   let formData = new FormData();
+  formData.append("id", id);
   if (Obj.image) {
     formData.append("image", Obj.image);
-    console.log("co image");
   }
   if (Obj.name) {
     formData.append("name", Obj.name);
-    console.log("co name");
   }
   if (Obj.description) {
     formData.append("description", Obj.description);
-    console.log("co des");
   }
   console.log(formData);
   return await Axios({

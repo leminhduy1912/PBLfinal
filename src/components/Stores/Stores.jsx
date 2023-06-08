@@ -113,11 +113,11 @@ function Stores() {
 
   const handleOnChange = (event, value) => {
     setCurrentPage(value);
-    setFilter({ fullname: fullname, email: email, page: 1 });
+    setFilter({ fullname: fullname, email: email, page: value });
   };
 
   const handleOnClick = () => {
-    setFilter({ fullname: fullname, email: email, page: currentPage });
+    setFilter({ fullname: fullname, email: email, page: 1 });
     executeDataUser(filter, state.id, state.token);
   };
   const handleKeyEnter = (event) => {
