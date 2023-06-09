@@ -73,7 +73,12 @@ function DetailsPlan(props) {
                         <label htmlFor="">Tên thanh tra {index + 1}</label>
                       </div>
                       <div className="inspector-status">
-                        <input className="form-control" type="text" />
+                        <input
+                          className="form-control"
+                          type="text"
+                          value={item.name}
+                          disabled
+                        />
                         <select name="" id="" value={item.action} disabled>
                           <option value={1}>Active</option>
                           <option value={0}>Inactive</option>
