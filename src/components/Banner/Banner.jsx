@@ -10,6 +10,7 @@ export const Banner = () => {
   const onChange = (event, value) => {
     setPage(page);
     setFilter({ ...filter, page: value });
+    execute({ ...filter, company: company, product: product });
   };
 
   const [company, setCompany] = useState("");
