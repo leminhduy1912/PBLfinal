@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import { UilStar, UilAsterisk } from "@iconscout/react-unicons";
+import React, { useEffect, useState } from "react";
+
 import "./CompanyRegister.css";
 import { useCompanyRegister } from "../../../hooks/Auth/useCompanyRegister";
 import { useFetchBusinessType } from "../../../hooks/useFetchBusinessType";
-import ActionSuccess from "../../ActionSuccess/ActionSuccess";
+import { ToastContainer, toast } from "react-toastify";
 function CompanyRegister() {
   const { dataBusinessType, errorBusinessType, loadingBusinessType } =
     useFetchBusinessType();
-  const { errorRegister, executeCompanyRegister } = useCompanyRegister();
+  const { statusCode, errorRegister, executeCompanyRegister } =
+    useCompanyRegister();
+  const [triggerEffect, setTriggerEffect] = useState(false);
   const [formRegisterCompany, setFormRegisterCompany] = useState({});
-  const handleRegister = async (e) => {
-    e.preventDefault();
-    await executeCompanyRegister(formRegisterCompany);
-    if (errorRegister === "") {
+  useEffect(() => {
+    if (statusCode == 200) {
       handleShowActionPerform("Register successfully");
       setFormRegisterCompany({
         companyName: "",
@@ -26,19 +26,34 @@ function CompanyRegister() {
         password: "",
       });
     }
+    if (statusCode == 409) {
+      toast.error("Nationality or Email has already exist");
+    }
+  }, [triggerEffect]);
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    setTriggerEffect(!triggerEffect);
+    await executeCompanyRegister(formRegisterCompany);
   };
   const [actionPerform, setActionPerform] = useState(false);
   const [messageAction, setMessageAction] = useState("");
   const handleShowActionPerform = (message) => {
-    setMessageAction(message);
-    setActionPerform(true);
-    setTimeout(() => {
-      setActionPerform(false);
-    }, 3000);
+    toast.success(message);
   };
   return (
     <>
-      {actionPerform && <ActionSuccess messageAction={messageAction} />}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="CompanyRegister-container">
         <div className="CompanyRegister-content">
           <div className="CompanyRegister-form">
@@ -236,14 +251,6 @@ function CompanyRegister() {
                     value={formRegisterCompany.password}
                   />
                 </div>
-
-                {/* <div className="form-group"> 
-                    <div className="label">   
-                    <label  htmlFor="">Nhập lại mật khẩu</label>
-                    <span>(*)</span>
-                    </div>
-                    <input className='form-control' type="text" placeholder='Nhập lại mật khẩu' />
-                    </div> */}
               </div>
             </form>
 

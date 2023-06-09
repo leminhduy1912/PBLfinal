@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Comment.css";
 import { useUserComment } from "../../../hooks/useUserComment";
+import { ToastContainer, toast } from "react-toastify";
 function Comment(props) {
   const { error, executeUserComment } = useUserComment();
 
@@ -8,7 +9,7 @@ function Comment(props) {
     e.preventDefault();
     await executeUserComment(formComment);
     if (error === "") {
-      await props.handleShowActionPerform("Successful comment");
+      toast.success("Commented Success");
       setFormComment({ title: "", content: "" });
     }
   };
@@ -16,37 +17,51 @@ function Comment(props) {
     typeId: "ggzbMjNlojYdZ-53gDweinl",
   });
   return (
-    <div className="comment-form-container">
-      <div className="comment-form-content">
-        <h1>Đóng góp ý kiến </h1>
-        <form action="">
-          <div className="form-group">
-            <label htmlFor="Nhập tiêu đề :">Nhập tiêu đề : </label>
-            <input
-              type="text"
-              placeholder="Nhập tiêu đề"
-              onChange={(e) => {
-                setFormComment({ ...formComment, title: e.target.value });
-              }}
-              value={formComment.title}
-            />
-          </div>
+    <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      <div className="comment-form-container">
+        <div className="comment-form-content">
+          <h1>Đóng góp ý kiến </h1>
+          <form action="">
+            <div className="form-group">
+              <label htmlFor="Nhập tiêu đề :">Nhập tiêu đề : </label>
+              <input
+                type="text"
+                placeholder="Nhập tiêu đề"
+                onChange={(e) => {
+                  setFormComment({ ...formComment, title: e.target.value });
+                }}
+                value={formComment.title}
+              />
+            </div>
 
-          <div className="form-group">
-            <label htmlFor="Nhập nội dung ">Nhập nội dung : </label>
-            <input
-              type="text"
-              placeholder="Nhập tên cửa hàng"
-              onChange={(e) => {
-                setFormComment({ ...formComment, content: e.target.value });
-              }}
-              value={formComment.content}
-            />
-          </div>
-        </form>
-        <button onClick={handleUserComment}>Submit</button>
+            <div className="form-group">
+              <label htmlFor="Nhập nội dung ">Nhập nội dung : </label>
+              <input
+                type="text"
+                placeholder="Nhập tên cửa hàng"
+                onChange={(e) => {
+                  setFormComment({ ...formComment, content: e.target.value });
+                }}
+                value={formComment.content}
+              />
+            </div>
+          </form>
+          <button onClick={handleUserComment}>Submit</button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
