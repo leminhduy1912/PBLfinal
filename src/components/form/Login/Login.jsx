@@ -86,6 +86,9 @@ const Login = (props) => {
               <button type="submit" onClick={(e) => handleLogin(e)}>
                 Submit
               </button>
+              <span className="register-span">
+                Don't have account ? <a href="/register">click here</a>
+              </span>
             </form>
           </div>
         </div>
