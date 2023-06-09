@@ -13,7 +13,7 @@ export const Admin = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      {(state.role === "Moderator" || state.role === "Admin") && (
+      {state.role === "Admin" && (
         <>
           <h1>Dashboard</h1> <StatsBanner />
         </>

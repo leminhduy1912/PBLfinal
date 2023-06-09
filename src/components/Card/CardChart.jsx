@@ -65,7 +65,7 @@ function ExpandedCard({ param, setExpanded }) {
     options: {
       chart: {
         type: "area",
-        height: "auto",
+        height: "600",
       },
 
       dropShadow: {
@@ -91,7 +91,7 @@ function ExpandedCard({ param, setExpanded }) {
       },
       tooltip: {
         x: {
-          format: "dd/MM/yy HH:mm",
+          format: "dd/MM/yy ",
         },
       },
       grid: {
@@ -99,14 +99,7 @@ function ExpandedCard({ param, setExpanded }) {
       },
       xaxis: {
         type: "month",
-        categories: [
-          "1/2023",
-          "2,2023",
-          "3/2023",
-          "4/2023",
-          "5/2023",
-          "6/2023",
-        ],
+        categories: param.categories,
       },
     },
   };
